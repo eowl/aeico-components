@@ -22,6 +22,7 @@
   "scripts": {
     "build": "vite build && tsc --declaration --emitDeclarationOnly --outDir dist/types -p tsconfig.json",
     "dev": "vite build --watch",
+    "dev:example": "vite --config vite.example.config.ts",
     "type-check": "tsc --noEmit",
     "test": "web-test-runner --config web-test-runner.config.mjs",
     "test:watch": "web-test-runner --config web-test-runner.config.mjs --watch",
