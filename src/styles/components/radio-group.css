@@ -1,0 +1,360 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--rg-gap, 0.286em);
+  font-size: var(--size-m);
+  --rg-solid-bg:          var(--color-solid);
+  --rg-solid-bg-hover:    var(--color-solid-hover);
+  --rg-solid-bg-active:   var(--color-solid-active);
+  --rg-solid-color:       var(--color-on-solid);
+  --rg-solid-color-hover: var(--color-on-solid-hover, var(--color-on-solid));
+  --rg-border:            var(--color-border);
+  --rg-border-hover:      var(--color-border-hover);
+  --rg-accent:            var(--color-accent);
+  --rg-accent-hover:      var(--color-accent-hover);
+  --rg-subtle-bg:         var(--color-subtle);
+  --rg-subtle-bg-hover:   var(--color-subtle-hover);
+
+  --rg-font-size:    1em;
+  --rg-height:       2.286em;
+  --rg-padding:      0.429em 1.071em;
+  --rg-min-width:    4.571em;
+  --rg-radius:       4px;
+  --rg-font-weight:  400;
+
+  --color-unselected:       var(--surface-base);
+  --color-unselected-hover: var(--color-gray-lighter);
+}
+
+:host([size="xs"]) { --rg-radius: 3px; }
+:host([size="sm"]) { --rg-radius: 3px; }
+
+.rg-container {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+slot {
+  display: none;
+}
+
+.rg-radio-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-size: var(--rg-font-size);
+  color: var(--color-text-main);
+  user-select: none;
+}
+
+.rg-radio-input {
+  width: 14px;
+  height: 14px;
+  accent-color: var(--rg-solid-bg, var(--color-primary));
+  cursor: pointer;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.rg-radio-label {
+  line-height: 1.5;
+}
+
+.rg-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  font-size: var(--rg-font-size);
+  font-weight: 400;
+  height: var(--rg-height);
+  padding: var(--rg-padding);
+  min-width: var(--rg-min-width);
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s, color 0.15s, border-color 0.15s, box-shadow 0.15s;
+  outline: none;
+  border-radius: var(--rg-radius);
+
+  background:   var(--color-unselected);
+  border:       1px solid var(--color-gray-light);
+  color:        var(--color-text-muted);
+}
+
+.rg-btn:hover:not(:disabled):not(.selected) {
+  background:   var(--color-unselected-hover);
+  border-color: var(--color-gray-light);
+  color:        var(--color-text-main);
+}
+
+.rg-btn.selected {
+  background:   var(--rg-solid-bg);
+  border-color: var(--rg-solid-bg);
+  color:        var(--rg-solid-color);
+  font-weight:  500;
+  box-shadow:   0 1px 4px rgb(from black r g b / 0.22);
+}
+
+.rg-btn.selected:hover:not(:disabled) {
+  background:   var(--rg-solid-bg-hover);
+  border-color: var(--rg-solid-bg-hover);
+}
+
+.rg-btn:active:not(:disabled):not(.selected) {
+  background: var(--rg-subtle-bg-hover);
+  transform: translateY(1px);
+}
+
+.rg-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+:host([variant="outlined"]) .rg-btn {
+  background:   transparent;
+  border-color: var(--rg-border);
+  color:        var(--rg-accent);
+}
+:host([variant="outlined"]) .rg-btn:hover:not(:disabled):not(.selected) {
+  background:   var(--rg-subtle-bg);
+  border-color: var(--rg-accent);
+  color:        var(--rg-accent-hover);
+}
+:host([variant="outlined"]) .rg-btn.selected {
+  background:   var(--rg-solid-bg);
+  border-color: var(--rg-solid-bg);
+  color:        var(--rg-solid-color);
+}
+
+:host([variant="subtle"]) .rg-btn {
+  background:   transparent;
+  border-color: transparent;
+  color:        var(--rg-accent);
+}
+:host([variant="subtle"]) .rg-btn:hover:not(:disabled):not(.selected) {
+  background:   var(--rg-subtle-bg);
+  border-color: transparent;
+  color:        var(--rg-accent-hover);
+}
+:host([variant="subtle"]) .rg-btn.selected {
+  background:   var(--rg-subtle-bg-hover);
+  border-color: transparent;
+  color:        var(--rg-accent-hover);
+  font-weight:  600;
+  box-shadow:   none;
+}
+
+:host([variant="filled"]) .rg-btn:not(.selected) {
+  background:   var(--surface-base);
+  border-color: var(--border-default);
+  color:        var(--color-text-muted);
+}
+
+:host([variant="filled"]) .rg-btn:hover:not(:disabled):not(.selected) {
+  background:   var(--surface-raised);
+  border-color: var(--border-hover);
+  color:        var(--color-text-main);
+}
+
+:host([mode="button"]) .rg-container {
+  gap: 6px;
+}
+
+:host([mode="button-group"]) .rg-container {
+  gap: 0;
+}
+
+:host([mode="button-group"]) .rg-btn:not(.first):not(.only) {
+  margin-left: -1px;
+}
+
+:host([mode="button-group"]) .rg-btn.first {
+  border-radius: var(--rg-radius) 0 0 var(--rg-radius);
+}
+:host([mode="button-group"]) .rg-btn.inner {
+  border-radius: 0;
+}
+:host([mode="button-group"]) .rg-btn.last {
+  border-radius: 0 var(--rg-radius) var(--rg-radius) 0;
+}
+:host([mode="button-group"]) .rg-btn.only {
+  border-radius: var(--rg-radius);
+}
+
+:host([mode="button-group"]) .rg-btn:hover:not(:disabled),
+:host([mode="button-group"]) .rg-btn.selected {
+  position: relative;
+  z-index: 1;
+}
+
+:host([mode="segmented"]) .rg-container {
+  gap: 2px;
+  background:    var(--surface-raised);
+  border:        1px solid var(--border-subtle);
+  border-radius: calc(var(--rg-radius) + 2px);
+  padding:       2px;
+  flex-wrap:     nowrap;
+}
+
+:host([mode="segmented"]) .rg-btn {
+  background:    transparent;
+  border-color:  transparent;
+  color:         var(--color-text-muted);
+  border-radius: var(--rg-radius);
+  min-width:     var(--rg-min-width);
+  box-shadow:    none;
+  font-weight:   400;
+}
+
+:host([mode="segmented"]) .rg-btn:hover:not(:disabled):not(.selected) {
+  background:   var(--rg-subtle-bg);
+  border-color: transparent;
+  color:        var(--color-text-secondary, var(--color-text-main));
+}
+
+:host([mode="segmented"]) .rg-btn.selected {
+  background:   var(--rg-solid-bg);
+  border-color: transparent;
+  color:        var(--rg-solid-color);
+  font-weight:  500;
+  box-shadow:   0 1px 4px rgb(from black r g b / 0.35);
+}
+
+:host([mode="segmented"]) .rg-btn.selected:hover:not(:disabled) {
+  background: var(--rg-solid-bg-hover);
+}
+
+:host([mode="segmented"]:not([color])) .rg-btn.selected {
+  background: var(--color-gray-lighter);
+  color:      var(--color-text-main);
+}
+
+:host([mode="segmented"][variant="outlined"]) .rg-container {
+  border-color: var(--rg-border);
+}
+:host([mode="segmented"][variant="outlined"]) .rg-btn.selected {
+  background:   var(--rg-solid-bg);
+  border-color: transparent;
+  color:        var(--rg-solid-color);
+}
+
+.reset-btn,
+.clear-btn {
+  display:        inline-flex;
+  align-items:    center;
+  justify-content: center;
+  cursor:         pointer;
+  transition:     var(--reset-btn-transition);
+  flex-shrink:    0;
+  line-height:    1;
+  font-family:    inherit;
+  padding:        0;
+
+  width:          1.333em;
+  height:         1.333em;
+  border-radius:  var(--reset-btn-border-radius);
+  border:         none;
+  background:     var(--reset-btn-bg);
+  color:          var(--reset-btn-color);
+}
+
+.reset-btn:hover { background: var(--reset-btn-bg-hover); color: var(--reset-btn-color-hover); }
+.clear-btn:hover  { background: var(--clear-btn-bg-hover);  color: var(--clear-btn-color-hover); }
+
+:host([mode="button"]) .reset-btn,
+:host([mode="button"]) .clear-btn,
+:host([mode="button-group"]) .reset-btn,
+:host([mode="button-group"]) .clear-btn,
+:host([mode="segmented"]) .reset-btn,
+:host([mode="segmented"]) .clear-btn {
+  height:        var(--rg-height);
+  width:         var(--rg-height);
+  border-radius: var(--rg-radius);
+  font-size:     var(--rg-font-size);
+}
+
+:host([mode="button"]) .reset-btn,
+:host([mode="button"]) .clear-btn,
+:host([mode="button-group"]) .reset-btn,
+:host([mode="button-group"]) .clear-btn,
+:host([mode="segmented"]) .reset-btn,
+:host([mode="segmented"]) .clear-btn {
+  background:   transparent;
+  border:       1px solid var(--color-gray-light);
+  color:        var(--color-text-muted);
+}
+
+:host([mode="button"]) .reset-btn:hover,
+:host([mode="button-group"]) .reset-btn:hover,
+:host([mode="segmented"]) .reset-btn:hover {
+  background:   var(--border-subtle);
+  border-color: var(--color-gray-lighter);
+  color:        var(--color-text-main);
+}
+
+:host([mode="button"]) .clear-btn:hover,
+:host([mode="button-group"]) .clear-btn:hover,
+:host([mode="segmented"]) .clear-btn:hover {
+  background:   rgb(from var(--red) r g b / 0.10);
+  border-color: var(--color-gray-lighter);
+  color:        var(--color-danger);
+}
+
+:host([variant="outlined"][mode="button"]) .reset-btn,
+:host([variant="outlined"][mode="button"]) .clear-btn,
+:host([variant="outlined"][mode="button-group"]) .reset-btn,
+:host([variant="outlined"][mode="button-group"]) .clear-btn,
+:host([variant="outlined"][mode="segmented"]) .reset-btn,
+:host([variant="outlined"][mode="segmented"]) .clear-btn {
+  background:   transparent;
+  border-color: var(--rg-border);
+  color:        var(--rg-accent);
+}
+
+:host([variant="outlined"][mode="button"]) .reset-btn:hover,
+:host([variant="outlined"][mode="button-group"]) .reset-btn:hover,
+:host([variant="outlined"][mode="segmented"]) .reset-btn:hover {
+  background:   var(--border-subtle);
+  border-color: var(--rg-border-hover);
+  color:        var(--rg-accent-hover);
+}
+
+:host([variant="outlined"][mode="button"]) .clear-btn:hover,
+:host([variant="outlined"][mode="button-group"]) .clear-btn:hover,
+:host([variant="outlined"][mode="segmented"]) .clear-btn:hover {
+  background:   rgb(from var(--red) r g b / 0.10);
+  border-color: var(--rg-border-hover);
+  color:        var(--color-danger);
+}
+
+:host([variant="subtle"][mode="button"]) .reset-btn,
+:host([variant="subtle"][mode="button"]) .clear-btn,
+:host([variant="subtle"][mode="button-group"]) .reset-btn,
+:host([variant="subtle"][mode="button-group"]) .clear-btn,
+:host([variant="subtle"][mode="segmented"]) .reset-btn,
+:host([variant="subtle"][mode="segmented"]) .clear-btn {
+  background:   transparent;
+  border-color: transparent;
+  color:        var(--rg-accent);
+}
+
+:host([variant="subtle"][mode="button"]) .reset-btn:hover,
+:host([variant="subtle"][mode="button-group"]) .reset-btn:hover,
+:host([variant="subtle"][mode="segmented"]) .reset-btn:hover {
+  background:   var(--border-subtle);
+  border-color: transparent;
+  color:        var(--rg-accent-hover);
+}
+
+:host([variant="subtle"][mode="button"]) .clear-btn:hover,
+:host([variant="subtle"][mode="button-group"]) .clear-btn:hover,
+:host([variant="subtle"][mode="segmented"]) .clear-btn:hover {
+  background:   rgb(from var(--red) r g b / 0.10);
+  border-color: transparent;
+  color:        var(--color-danger);
+}

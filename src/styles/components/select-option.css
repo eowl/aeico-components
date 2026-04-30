@@ -1,0 +1,43 @@
+:host {
+  display: block;
+
+  --option-padding: 0.417em 0.667em;
+  --option-bg: transparent;
+  --option-bg-hover: var(--surface-raised);
+  --option-bg-selected: color-mix(in srgb, var(--color-primary) 12%, transparent);
+  --option-color: var(--color-text-main);
+  --option-color-disabled: var(--color-text-disabled);
+  --option-color-selected: var(--color-primary);
+  --option-font-size: 1em;
+  --option-transition: background 0.1s;
+}
+
+.option-item {
+  padding: var(--option-padding);
+  font-size: var(--option-font-size);
+  color: var(--option-color);
+  background: var(--option-bg);
+  cursor: pointer;
+  transition: var(--option-transition);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  user-select: none;
+}
+
+:host(:hover:not([disabled])) .option-item {
+  background: var(--option-bg-hover);
+}
+
+:host([selected]) .option-item {
+  background: var(--option-bg-selected);
+  color: var(--option-color-selected);
+}
+
+:host([disabled]) .option-item {
+  color: var(--option-color-disabled);
+  cursor: default;
+  pointer-events: none;
+}
+
+

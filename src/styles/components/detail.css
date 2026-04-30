@@ -1,0 +1,127 @@
+:host {
+  display: block;
+
+  --detail-bg:         var(--color-solid);
+  --detail-color:      var(--color-on-solid);
+  --detail-border:     var(--color-solid);
+  --detail-header-bg:  color-mix(in srgb, var(--color-solid), black 10%);
+  --detail-radius:     6px;
+}
+
+:host([variant="faint"]) {
+  --detail-bg:         var(--color-bg-subtle);
+  --detail-color:      var(--color-text-subtle);
+  --detail-border:     var(--color-border-subtle);
+  --detail-header-bg:  var(--color-bg-subtle);
+}
+
+:host([variant="subtle"]) {
+  --detail-bg:         transparent;
+  --detail-color:      var(--color-text-main);
+  --detail-border:     transparent;
+  --detail-header-bg:  transparent;
+}
+
+:host([variant="filled"]) {
+  --detail-bg:         var(--color-solid);
+  --detail-color:      var(--color-on-solid);
+  --detail-border:     var(--color-solid);
+  --detail-header-bg:  color-mix(in srgb, var(--color-solid), black 10%);
+}
+
+:host([variant="outlined"]) {
+  --detail-bg:         transparent;
+  --detail-color:      var(--color-text-subtle);
+  --detail-border:     var(--color-border);
+  --detail-header-bg:  transparent;
+}
+
+:host([disabled]) {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.detail {
+  border: 1px solid var(--detail-border);
+  border-radius: var(--detail-radius);
+  color: var(--detail-color);
+  background: var(--detail-bg);
+  overflow: hidden;
+}
+
+.summary {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--detail-header-bg);
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  outline-offset: -2px;
+  user-select: none;
+}
+
+.summary:hover {
+  filter: brightness(0.93);
+}
+
+.summary:focus-visible {
+  outline: 2px solid var(--color-border);
+}
+
+slot[name="summary"] {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.label {
+  flex: 1;
+}
+
+slot[name="expand"],
+slot[name="collapse"] {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+slot[name="collapse"] {
+  display: none;
+}
+
+:host([open]) slot[name="expand"] {
+  display: none;
+}
+
+:host([open]) slot[name="collapse"] {
+  display: inline-flex;
+}
+
+.content-outer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.25s ease;
+}
+
+:host([open]) .content-outer {
+  grid-template-rows: 1fr;
+}
+
+.content {
+  overflow: hidden;
+  padding: 0 14px;
+  transition: padding 0.25s ease;
+}
+
+:host([open]) .content {
+  padding: 12px 14px;
+}
+

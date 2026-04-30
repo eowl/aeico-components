@@ -1,0 +1,44 @@
+:host {
+  display: inline-flex;
+  cursor: pointer;
+  margin-bottom: -1px;
+}
+
+button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  color: var(--ae-tab-color, #909090);
+  font-size: var(--ae-tab-font-size, inherit);
+  transition: color 0.15s, border-color 0.15s;
+  outline: none;
+  white-space: nowrap;
+  user-select: none;
+}
+
+button:hover {
+  color: var(--ae-tab-hover-color, var(--color-primary));
+}
+
+button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
+}
+
+:host([active]) button {
+  color: var(--ae-tab-active-color, var(--color-primary));
+  border-bottom-color: var(--ae-tab-active-color, var(--color-primary));
+}
+
+:host([disabled]) button {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}

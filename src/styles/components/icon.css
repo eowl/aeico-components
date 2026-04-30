@@ -1,0 +1,29 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  width:  1em;
+  height: 1em;
+  color: inherit;
+  flex-shrink: 0;
+  line-height: 0;
+  vertical-align: middle;
+}
+
+:host([color]) {
+  color: var(--color-solid);
+}
+
+.icon-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: var(--icon-fill, currentColor);
+  stroke: var(--icon-stroke, none);
+  stroke-width: var(--icon-stroke-width, 2);
+  stroke-linecap: var(--icon-stroke-linecap, round);
+  stroke-linejoin: var(--icon-stroke-linejoin, round);
+  pointer-events: none;
+  overflow: visible;
+}

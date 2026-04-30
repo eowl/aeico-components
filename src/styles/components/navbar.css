@@ -1,0 +1,250 @@
+:host {
+  /* layout — padding lives in .inner so document * { padding:0 } cannot override it */
+  display: block;
+  position: static;
+  top: auto;
+  z-index: var(--ae-navbar-z-index, 100);
+  box-sizing: border-box;
+  height: var(--ae-navbar-height, 3.25rem);
+  border-radius: var(--ae-navbar-radius, 0);
+
+  /* color */
+  background: var(--ae-navbar-bg, var(--surface-base));
+  color: var(--ae-navbar-color, var(--color-text-main));
+  border-bottom: var(--ae-navbar-border-width, 1px) solid var(--ae-navbar-border-color, var(--border-default));
+  box-shadow: var(--ae-navbar-shadow, none);
+
+  /* layout tokens — declared here so they are clearly part of the public API */
+  --ae-navbar-radius: 0;
+  /* Default padding-x references the global layout token so ae-navbar content
+     automatically aligns with .container / .container-fluid in light DOM.
+     Override with --ae-navbar-padding-x to decouple if needed. */
+  --ae-navbar-padding-x: var(--container-padding-x, 1.5rem);
+  --ae-navbar-gap: 0.5rem;
+
+  /* link style tokens — text mode defaults.
+     CSS custom properties inherit into slotted content, so
+     ::slotted(a[slot="start"]) can reference --ae-navbar-height. */
+  --ae-navbar-link-color: inherit;
+  --ae-navbar-link-font-size: inherit;
+  --ae-navbar-link-padding-x: 0.75rem;  /* horizontal padding only; height fills vertically */
+  --ae-navbar-link-radius: 0;
+  --ae-navbar-link-hover-color: var(--color-text-link-hover);
+  --ae-navbar-link-hover-bg: transparent;
+  --ae-navbar-link-active-color: var(--color-text-link);
+  --ae-navbar-link-active-font-weight: 600;
+}
+
+:host([sticky]) {
+  position: sticky;
+  top: 0;
+}
+
+:host([color]) {
+  --ae-navbar-bg: var(--color-solid);
+  --ae-navbar-color: var(--color-on-solid);
+  --ae-navbar-border-color: transparent;
+  --ae-navbar-link-hover-color: var(--color-on-solid);
+  --ae-navbar-link-active-color: var(--color-on-solid);
+}
+
+/* block preset: hover shows a subtle filled block */
+:host([appearance="block"]) {
+  --ae-navbar-link-hover-bg: var(--color-bg-subtle);
+  --ae-navbar-link-hover-color: inherit;
+}
+
+/* block preset on colored navbar: use semi-transparent white */
+:host([color][appearance="block"]) {
+  --ae-navbar-link-hover-bg: rgba(255, 255, 255, 0.15);
+  --ae-navbar-link-hover-color: var(--color-on-solid);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 var(--ae-navbar-padding-x);
+  gap: var(--ae-navbar-gap);
+  box-sizing: border-box;
+}
+
+[part="brand"] {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+/* nav wraps start + end; takes all remaining space */
+[part="nav"] {
+  flex: 1 1 auto;
+  display: flex;
+  align-self: stretch;   /* stretch to host height so children can fill it */
+  align-items: stretch;
+  min-width: 0;
+}
+
+[part="start"],
+[part="end"] {
+  flex: 0 0 auto;
+  display: flex;
+  align-self: stretch;
+}
+
+[part="start"] {
+  align-items: stretch;  /* slotted <a> will stretch to full height */
+  gap: var(--ae-navbar-start-gap, 0);
+}
+
+[part="end"] {
+  align-items: center;   /* buttons / avatars stay vertically centred */
+  gap: var(--ae-navbar-end-gap, 0.5rem);
+  margin-left: auto;
+}
+
+/* hamburger — hidden on desktop */
+[part="hamburger"] {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+  width: var(--ae-navbar-hamburger-size, 2rem);
+  height: var(--ae-navbar-hamburger-size, 2rem);
+  margin-left: auto;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--ae-navbar-hamburger-color, inherit);
+}
+
+[part="hamburger"]:hover {
+  background: color-mix(in srgb, currentColor 10%, transparent);
+}
+
+[part="hamburger"] span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 1px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* Brand link — sensible defaults, no full-height stretch */
+::slotted(a[slot="brand"]) {
+  display: inline-flex;
+  align-items: center;
+  color: inherit;
+  font-weight: 700;
+  font-size: 1.05rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* Nav links (start / end slots) — fill full navbar height for block hover effect */
+::slotted(a[slot="start"]),
+::slotted(a[slot="end"]) {
+  display: inline-flex;
+  align-items: center;
+  height: var(--ae-navbar-height, 3.25rem);  /* full-height hover area */
+  /* !important overrides document-level * { padding: 0 } reset */
+  padding: 0 var(--ae-navbar-link-padding-x) !important;
+  border-radius: var(--ae-navbar-link-radius);
+  color: var(--ae-navbar-link-color);
+  font-size: var(--ae-navbar-link-font-size);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.15s ease, background-color 0.15s ease;
+  outline-offset: 2px;
+}
+
+::slotted(a[slot="start"]:hover),
+::slotted(a[slot="end"]:hover) {
+  color: var(--ae-navbar-link-hover-color);
+  background-color: var(--ae-navbar-link-hover-bg);
+}
+
+::slotted(a[slot="start"][aria-current="page"]),
+::slotted(a[slot="end"][aria-current="page"]) {
+  color: var(--ae-navbar-link-active-color);
+  font-weight: var(--ae-navbar-link-active-font-weight);
+}
+
+/* ae-dropdown inside navbar — map navbar tokens to dropdown trigger API */
+::slotted(ae-dropdown) {
+  align-self: stretch;
+  --dropdown-trigger-height: 100%;
+  --dropdown-trigger-padding-x: var(--ae-navbar-link-padding-x);
+  --dropdown-trigger-color: var(--ae-navbar-link-color);
+  --dropdown-trigger-bg: none;
+  --dropdown-trigger-radius: var(--ae-navbar-link-radius);
+  --dropdown-trigger-font-size: var(--ae-navbar-link-font-size);
+  --dropdown-trigger-hover-color: var(--ae-navbar-link-hover-color);
+  --dropdown-trigger-hover-bg: var(--ae-navbar-link-hover-bg);
+}
+
+@media (max-width: 768px) {
+  /* collapse the nav container */
+  [part="nav"] {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 0.5rem 0;
+    background: var(--ae-navbar-mobile-bg, var(--ae-navbar-bg, var(--surface-base)));
+    border-bottom: 1px solid var(--ae-navbar-border-color, var(--border-default));
+    box-shadow: var(--ae-navbar-mobile-shadow, 0 4px 12px rgba(0, 0, 0, 0.1));
+    z-index: 1;
+  }
+
+  :host([open]) [part="nav"] {
+    display: flex;
+  }
+
+  /* stack start/end vertically inside the panel */
+  [part="start"],
+  [part="end"] {
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: auto;
+    gap: 0;
+    margin-left: 0;
+    width: 100%;
+  }
+
+  /* Mobile: links revert to auto height and add vertical padding */
+  ::slotted(a[slot="start"]),
+  ::slotted(a[slot="end"]) {
+    height: auto;
+    width: 100%;
+    padding: 0.75rem var(--ae-navbar-link-padding-x);
+    border-radius: 0;
+  }
+
+  /* show hamburger */
+  [part="hamburger"] {
+    display: flex;
+  }
+
+  /* hamburger → × animation */
+  :host([open]) [part="hamburger"] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  :host([open]) [part="hamburger"] span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  :host([open]) [part="hamburger"] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+}

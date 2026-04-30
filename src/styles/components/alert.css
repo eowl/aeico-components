@@ -1,0 +1,104 @@
+.alert {
+  position: relative;
+  padding: 12px 16px;
+  margin-bottom: 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  line-height: 1.6;
+  background-color: var(--alert-solid-bg);
+  color:            var(--alert-solid-color);
+  border: 1px solid var(--alert-solid-bg);
+}
+
+.alert:last-child {
+  margin-bottom: 0;
+}
+
+:host {
+  --color-solid:           var(--color-primary);
+  --color-on-solid:        var(--color-text-main);
+  --color-border:          var(--color-primary);
+  --color-bg-subtle:       var(--color-primary-bg-subtle);
+  --color-text-subtle:     var(--color-primary-text-emphasis);
+  --color-border-subtle:   var(--color-primary-border-subtle);
+
+  --alert-solid-bg:     var(--color-solid);
+  --alert-solid-color:  var(--color-on-solid);
+  --alert-border:       var(--color-border);
+  --alert-subtle-bg:    var(--color-bg-subtle);
+  --alert-subtle-color: var(--color-text-subtle);
+  --alert-subtle-border:var(--color-border-subtle);
+}
+
+
+:host([variant="faint"]) .alert {
+  background-color: var(--alert-subtle-bg);
+  color:            var(--alert-subtle-color);
+  border-color:     var(--alert-subtle-border);
+}
+
+:host([variant="subtle"]) .alert {
+  background-color: var(--alert-subtle-bg);
+  color:            var(--alert-subtle-color);
+  border-color:     transparent;
+}
+
+:host([variant="filled"]) .alert {
+  background-color: var(--alert-solid-bg);
+  color:            var(--alert-solid-color);
+  border-color:     var(--alert-solid-bg);
+}
+
+:host([variant="outlined"]) .alert {
+  background-color: transparent;
+  color:            var(--alert-subtle-color);
+  border-color:     var(--alert-border);
+}
+
+:host([dismissible]) .alert {
+  padding-right: 40px;
+}
+
+:host([icon]) .alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+:host([icon]) .alert::before {
+  content: '';
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+}
+
+.alert-close {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: inherit;
+  opacity: 0.6;
+  cursor: pointer;
+  padding: 4px;
+  font-size: 18px;
+  line-height: 1;
+  transition: opacity 0.15s;
+}
+
+.alert-close:hover {
+  opacity: 1;
+}
+
+:host([size="sm"]) .alert {
+  padding: 8px 12px;
+  font-size: 11px;
+}
+
+:host([size="lg"]) .alert {
+  padding: 16px 20px;
+  font-size: 13px;
+}

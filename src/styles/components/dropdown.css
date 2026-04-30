@@ -1,0 +1,179 @@
+:host {
+  display: inline-block;
+  position: relative;
+
+  --dropdown-z-index: 1000;
+  --dropdown-bg: var(--surface-overlay, #fff);
+  --dropdown-border: 1px solid var(--color-border, rgba(0, 0, 0, 0.12));
+  --dropdown-border-radius: var(--ae-radius-md, 6px);
+  --dropdown-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  --dropdown-min-width: 10rem;
+  --dropdown-padding: 0.25rem 0;
+}
+
+.trigger-wrapper {
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+}
+
+/* Internal trigger rendered when `label` prop is set.
+   Uses --dropdown-trigger-* variables. Context components (e.g. ae-navbar)
+   map their own tokens to these variables via ::slotted(ae-dropdown). */
+.trigger-label {
+  display: inline-flex;
+  align-items: center;
+  height: var(--dropdown-trigger-height, auto);
+  padding: 0 var(--dropdown-trigger-padding-x, 0.75rem);
+  color: var(--dropdown-trigger-color, inherit);
+  background: var(--dropdown-trigger-bg, none);
+  border: none;
+  border-radius: var(--dropdown-trigger-radius, 0);
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  font: inherit;
+  font-size: var(--dropdown-trigger-font-size, inherit);
+  white-space: nowrap;
+  transition: color 0.15s ease, background-color 0.15s ease;
+  outline-offset: 2px;
+}
+
+.trigger-label:hover {
+  color: var(--dropdown-trigger-hover-color, inherit);
+  background-color: var(--dropdown-trigger-hover-bg, transparent);
+}
+
+:host([disabled]) .trigger-label {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Bootstrap-style CSS border caret — shadow DOM only, no global injection needed */
+.ae-dropdown-arrow {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 0.3em;
+  vertical-align: 0.2em;
+  flex-shrink: 0;
+}
+.ae-dropdown-arrow--bottom {
+  border-top: 0.35em solid;
+  border-right: 0.35em solid transparent;
+  border-left: 0.35em solid transparent;
+}
+.ae-dropdown-arrow--top {
+  border-bottom: 0.35em solid;
+  border-right: 0.35em solid transparent;
+  border-left: 0.35em solid transparent;
+}
+.ae-dropdown-arrow--right {
+  border-left: 0.35em solid;
+  border-top: 0.35em solid transparent;
+  border-bottom: 0.35em solid transparent;
+}
+.ae-dropdown-arrow--left {
+  border-right: 0.35em solid;
+  border-top: 0.35em solid transparent;
+  border-bottom: 0.35em solid transparent;
+}
+
+.panel {
+  display: none;
+  position: absolute;
+  z-index: var(--dropdown-z-index);
+  background: var(--dropdown-bg);
+  border: var(--dropdown-border);
+  border-radius: var(--dropdown-border-radius);
+  box-shadow: var(--dropdown-shadow);
+  min-width: var(--dropdown-min-width);
+  padding: var(--dropdown-padding);
+  box-sizing: border-box;
+  /* Prevent panel from being wider than viewport */
+  max-width: calc(100vw - 16px);
+}
+
+.panel.open {
+  display: block;
+}
+
+/* placement variants */
+.panel.placement-bottom-start {
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+}
+
+.panel.placement-bottom-end {
+  top: 100%;
+  right: 0;
+  margin-top: 4px;
+}
+
+.panel.placement-bottom {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 4px;
+}
+
+.panel.placement-top-start {
+  bottom: 100%;
+  left: 0;
+  margin-bottom: 4px;
+}
+
+.panel.placement-top-end {
+  bottom: 100%;
+  right: 0;
+  margin-bottom: 4px;
+}
+
+.panel.placement-top {
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 4px;
+}
+
+/* right placements */
+.panel.placement-right-start {
+  top: 0;
+  left: 100%;
+  margin-left: 4px;
+}
+
+.panel.placement-right-end {
+  bottom: 0;
+  left: 100%;
+  margin-left: 4px;
+}
+
+.panel.placement-right {
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  margin-left: 4px;
+}
+
+/* left placements */
+.panel.placement-left-start {
+  top: 0;
+  right: 100%;
+  margin-right: 4px;
+}
+
+.panel.placement-left-end {
+  bottom: 0;
+  right: 100%;
+  margin-right: 4px;
+}
+
+.panel.placement-left {
+  top: 50%;
+  right: 100%;
+  transform: translateY(-50%);
+  margin-right: 4px;
+}

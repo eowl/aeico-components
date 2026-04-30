@@ -1,0 +1,64 @@
+:host {
+  display: block;
+
+  --card-bg:      var(--color-bg-subtle);
+  --card-color:   var(--color-text-subtle);
+  --card-border:  var(--color-border-subtle);
+  --card-divider: var(--color-border-subtle);
+}
+
+:host([variant="faint"]) {
+  --card-bg:      var(--color-bg-subtle);
+  --card-color:   var(--color-text-subtle);
+  --card-border:  var(--color-border-subtle);
+  --card-divider: var(--color-border-subtle);
+}
+
+:host([variant="subtle"]) {
+  --card-border:  transparent;
+  --card-divider: transparent;
+}
+
+:host([variant="filled"]) {
+  --card-bg:      var(--color-solid);
+  --card-color:   var(--color-on-solid);
+  --card-border:  var(--color-solid);
+  --card-divider: color-mix(in srgb, var(--color-solid), black 15%);
+}
+
+:host([variant="outlined"]) {
+  --card-bg:      transparent;
+  --card-color:   var(--color-text-subtle);
+  --card-border:  var(--color-border);
+  --card-divider: var(--color-border-subtle);
+}
+
+.card {
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  background: var(--card-bg);
+  color: var(--card-color);
+  overflow: hidden;
+}
+
+.header,
+.footer {
+  display: none;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+:host([has-header]) .header {
+  display: block;
+  border-bottom: 1px solid var(--card-divider);
+}
+
+:host([has-footer]) .footer {
+  display: block;
+  border-top: 1px solid var(--card-divider);
+}
+
+.body {
+  padding: 16px;
+}

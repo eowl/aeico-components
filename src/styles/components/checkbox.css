@@ -1,0 +1,78 @@
+:host {
+  display: block;
+  flex: 1;
+  min-width: 0;
+  font-size: var(--size-base);
+
+  /* Layout */
+  --checkbox-field-gap: 4px;
+
+  /* Checkbox */
+  --checkbox-size: 1.167em;
+  --checkbox-border-width: 1px;
+  --checkbox-border-radius: 2px;
+  --checkbox-border-color: var(--border-subtle);
+  --checkbox-bg: var(--surface-base);
+  --checkbox-accent-color: var(--color-solid);
+
+  /* Default color when no [color] attribute — overridden by color.css :host([color=...]) */
+  --color-solid: var(--color-primary);
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: var(--checkbox-field-gap);
+  width: 100%;
+}
+
+.checkbox-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.field-input {
+  width: var(--checkbox-size);
+  height: var(--checkbox-size);
+  cursor: pointer;
+  border: var(--checkbox-border-width) solid var(--checkbox-border-color);
+  border-radius: var(--checkbox-border-radius);
+  background: var(--checkbox-bg);
+  accent-color: var(--checkbox-accent-color);
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.field-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* action buttons */
+.reset-btn,
+.clear-btn {
+  width: 1.333em;
+  height: 1.333em;
+  border: none;
+  border-radius: var(--reset-btn-border-radius);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--reset-btn-bg);
+  color: var(--reset-btn-color);
+  transition: var(--reset-btn-transition);
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.reset-btn:hover {
+  background: var(--reset-btn-bg-hover);
+  color: var(--reset-btn-color-hover);
+}
+
+.clear-btn:hover {
+  background: var(--clear-btn-bg-hover);
+  color: var(--clear-btn-color-hover);
+}

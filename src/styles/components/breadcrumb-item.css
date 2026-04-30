@@ -1,0 +1,59 @@
+:host {
+  display: contents;
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  list-style: none;
+  white-space: nowrap;
+}
+
+/* Separator — uses a fixed muted color that does NOT follow the breadcrumb's color prop */
+.sep {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-text-muted);
+  padding: 0 0.35em;
+  user-select: none;
+  pointer-events: none;
+  flex-shrink: 0;
+  font-size: 0.85em;
+}
+
+/* Hide separator on the first item */
+:host(:first-child) .sep,
+:host(:first-of-type) .sep {
+  display: none;
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-text-muted);
+}
+
+/* Current page — last item */
+:host([aria-current="page"]) .label {
+  color: var(--color-text-main);
+  font-weight: 500;
+  cursor: default;
+}
+
+/* Link items */
+.label a {
+  color: var(--color-accent, var(--color-text-link));
+  text-decoration: none;
+  outline: none;
+}
+
+.label a:hover {
+  color: var(--color-accent-hover, var(--color-text-link-hover));
+  text-decoration: underline;
+}
+
+.label a:focus-visible {
+  outline: 2px solid var(--color-accent, var(--focus-ring-color));
+  outline-offset: 2px;
+  border-radius: 2px;
+}

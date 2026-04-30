@@ -1,0 +1,52 @@
+{
+  "name": "aeico-components",
+  "version": "0.1.1",
+  "description": "Built-in UI components for the Aeico Web Components framework",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "!dist/*.tsbuildinfo",
+    "src"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "vite build && tsc --declaration --emitDeclarationOnly --outDir dist/types -p tsconfig.json",
+    "dev": "vite build --watch",
+    "type-check": "tsc --noEmit",
+    "test": "web-test-runner --config web-test-runner.config.mjs",
+    "test:watch": "web-test-runner --config web-test-runner.config.mjs --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "web-components",
+    "custom-elements",
+    "ui",
+    "components",
+    "aeico"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aeico": "^0.1.2",
+    "aeico-localize": "^0.1.1"
+  },
+  "devDependencies": {
+    "@esm-bundle/chai": "^4.3.4-fix.0",
+    "@types/mocha": "^10.0.10",
+    "@web/dev-server-esbuild": "^1.0.5",
+    "@web/test-runner": "^0.20.2",
+    "@web/test-runner-playwright": "^0.11.1",
+    "typescript": "^5.7.3",
+    "vite": "^6.2.0"
+  }
+}

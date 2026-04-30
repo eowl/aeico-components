@@ -1,0 +1,25 @@
+:host {
+  display: inline-flex;
+  align-items: stretch;
+  gap: 8px;
+}
+
+:host([block]) {
+  display: flex;
+  width: 100%;
+}
+
+:host([block]) ::slotted(ae-button) {
+  flex: 1;
+}
+
+:host([compact]) {
+  gap: 0;
+}
+
+/* Raise hovered/focused button so its border shows above neighbours */
+:host([compact]) ::slotted(ae-button:hover),
+:host([compact]) ::slotted(ae-button:focus-within) {
+  position: relative;
+  z-index: 1;
+}

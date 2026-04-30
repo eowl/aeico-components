@@ -1,0 +1,16 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+[part="tab-nav"] {
+  display: flex;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--ae-tabs-border-color, var(--border-default));
+}
+
+[part="panels"] {
+  flex: 1;
+  overflow: auto;
+}

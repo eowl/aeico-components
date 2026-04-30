@@ -1,0 +1,91 @@
+:host {
+  display: block;
+
+  --dropdown-item-padding: 0.5rem 0.875rem;
+  --dropdown-item-bg: transparent;
+  --dropdown-item-bg-hover: var(--surface-raised, rgba(0, 0, 0, 0.05));
+  --dropdown-item-bg-active: var(--surface-raised-active, rgba(0, 0, 0, 0.1));
+  --dropdown-item-color: var(--color-text-main, inherit);
+  --dropdown-item-color-disabled: var(--color-text-disabled, rgba(0, 0, 0, 0.35));
+  --dropdown-item-font-size: 0.9375rem;
+  --dropdown-item-gap: 0.5rem;
+  --dropdown-item-transition: background 0.1s;
+  --dropdown-item-border-radius: var(--ae-radius-sm, 4px);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--dropdown-item-gap);
+  width: 100%;
+  padding: var(--dropdown-item-padding);
+  font-size: var(--dropdown-item-font-size);
+  font-family: inherit;
+  color: var(--dropdown-item-color);
+  background: var(--dropdown-item-bg);
+  border: none;
+  border-radius: var(--dropdown-item-border-radius);
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  box-sizing: border-box;
+  transition: var(--dropdown-item-transition);
+  outline: none;
+}
+
+.item:hover:not(:disabled):not([aria-disabled="true"]) {
+  background: var(--dropdown-item-bg-hover);
+}
+
+.item:active:not(:disabled):not([aria-disabled="true"]) {
+  background: var(--dropdown-item-bg-active);
+}
+
+.item:focus-visible {
+  background: var(--dropdown-item-bg-hover);
+  outline: 2px solid var(--color-primary, #0e639c);
+  outline-offset: -2px;
+}
+
+/* disabled */
+:host([disabled]) .item,
+.item:disabled {
+  color: var(--dropdown-item-color-disabled);
+  cursor: default;
+  pointer-events: none;
+}
+
+/* Active item — current selection, current route, etc. */
+:host([active]) .item {
+  background: var(--dropdown-item-bg-selected, rgba(0, 0, 0, 0.06));
+  color: var(--dropdown-item-color-active, var(--color-primary, #0e639c));
+  font-weight: 500;
+}
+
+/* Checkbox mode — fixed-width indicator column */
+.check-indicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1em;
+  flex-shrink: 0;
+}
+
+/* CSS-drawn checkmark (border trick) */
+.check-indicator::after {
+  content: '';
+  display: block;
+  width: 0.3em;
+  height: 0.55em;
+  border-right: 0.125em solid currentColor;
+  border-bottom: 0.125em solid currentColor;
+  transform: rotate(45deg) translateY(-0.1em);
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+
+:host([checked]) .check-indicator::after {
+  opacity: 1;
+}

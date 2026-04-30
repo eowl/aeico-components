@@ -1,0 +1,107 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  --tag-solid-bg:        var(--color-solid);
+  --tag-solid-color:     var(--color-on-solid);
+  --tag-border:          var(--color-border);
+  --tag-accent:          var(--color-accent);
+  --tag-subtle-bg:       var(--color-bg-subtle);
+  --tag-subtle-color:    var(--color-text-subtle);
+  --tag-subtle-border:   var(--color-border-subtle);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: inherit;
+  font-weight: 500;
+  white-space: nowrap;
+  vertical-align: middle;
+  line-height: 1.2;
+  font-size: 1em;
+  padding: 0.15em 0.5em 0.15em 0.6em;
+  border-radius: 4px;
+  border: 1px solid var(--tag-solid-bg);
+  background: var(--tag-solid-bg);
+  color: var(--tag-solid-color);
+  max-width: 160px;
+  min-width: 0;
+}
+
+:host([variant="outlined"]) .tag {
+  background:   transparent;
+  border-color: var(--tag-border);
+  color:        var(--tag-accent);
+}
+
+:host([variant="faint"]) .tag {
+  background:   var(--tag-subtle-bg);
+  border-color: var(--tag-subtle-border);
+  color:        var(--tag-subtle-color);
+}
+
+:host([variant="subtle"]) .tag {
+  background:   var(--tag-subtle-bg);
+  border-color: transparent;
+  color:        var(--tag-subtle-color);
+}
+
+:host([variant="text"]) .tag {
+  background:   transparent;
+  border-color: transparent;
+  color:        var(--tag-accent);
+  padding-left:  0;
+  padding-right: 0;
+}
+
+
+:host([pill]) .tag { border-radius: 999px; }
+
+.tag-content {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+::slotted(ae-icon) { font-size: 1.1em; }
+
+.tag-dismiss {
+  display: none;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0.55;
+  line-height: 1;
+  font-size: 1em;
+  padding: 0 1px;
+  border-radius: 2px;
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-family: inherit;
+  transition: opacity 0.1s, background 0.1s;
+}
+
+:host([dismissible]) .tag-dismiss {
+  display: inline-flex;
+}
+
+.tag-dismiss:hover {
+  opacity: 1;
+  background: color-mix(in srgb, currentColor 15%, transparent);
+}
+
+/* disabled: button remains visible but is inert */
+:host([disabled]) .tag-dismiss {
+  opacity: 0.4;
+  pointer-events: none;
+  cursor: default;
+}
+
+:host([disabled]) .tag {
+  opacity: 0.6;
+}

@@ -1,0 +1,43 @@
+/* 
+   layout.css — Light DOM utility classes
+   This file is for use in the user's light DOM (regular HTML),
+   NOT imported by any Web Component internally.
+
+   Import it once in your page:
+     import 'aeico/styles/layout.css'
+   or:
+     <link rel="stylesheet" href="path/to/layout.css">
+
+   The layout tokens defined here on :root are intentionally mirrored
+   in variables.css (:root, :host) so that ae-navbar's shadow DOM
+   inner content also aligns automatically.
+*/
+
+/* Layout tokens — defined on :root so all light DOM elements can use them */
+:root {
+  --container-max-width: 1280px;
+  --container-padding-x: 1.5rem;
+}
+
+/*
+   .container
+   Fixed max-width, centred, with horizontal padding.
+   Same padding-x as ae-navbar's inner content area.
+*/
+.container {
+  width: 100%;
+  max-width: var(--container-max-width, 1280px);
+  margin-inline: auto;
+  padding-inline: var(--container-padding-x, 1.5rem);
+  box-sizing: border-box;
+}
+
+/* 
+   .container-fluid
+   Full-width, only applies horizontal padding.
+*/
+.container-fluid {
+  width: 100%;
+  padding-inline: var(--container-padding-x, 1.5rem);
+  box-sizing: border-box;
+}
