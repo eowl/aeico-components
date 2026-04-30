@@ -1,11 +1,11 @@
-﻿import type { InferProps } from 'aeico'
-import styleVariables from '../styles/variables.css?inline'
-import colorCSS from '../styles/color.css?inline'
-import navbarStyle from '../styles/components/navbar.css?inline'
-import AeicoComponent from '../aeico-component'
-import { html } from 'aeico'
-import { prop } from 'aeico'
-import type { NavbarColor, NavbarAppearance } from './defines'
+﻿import type { InferProps } from 'aeico';
+import styleVariables from '../styles/variables.css?inline';
+import colorCSS from '../styles/color.css?inline';
+import navbarStyle from '../styles/components/navbar.css?inline';
+import AeicoComponent from '../aeico-component';
+import { html } from 'aeico';
+import { prop } from 'aeico';
+import type { NavbarColor, NavbarAppearance } from './defines';
 
 /**
  * Navbar Component
@@ -43,17 +43,17 @@ import type { NavbarColor, NavbarAppearance } from './defines'
  * ```
  */
 class Navbar extends AeicoComponent {
-  static tagName = 'navbar'
+  static tagName = 'navbar';
 
-  protected static styles = [styleVariables, colorCSS, navbarStyle]
+  protected static styles = [styleVariables, colorCSS, navbarStyle];
 
   /** Background color using the design-system color token set. */
   @prop({ type: String })
-  accessor color: NavbarColor | undefined
+  accessor color: NavbarColor | undefined;
 
   /** When true (default), the navbar sticks to the top of the viewport while scrolling. Set to false to let it scroll with the page. */
   @prop({ type: Boolean })
-  accessor sticky: boolean = false
+  accessor sticky: boolean = false;
 
   /**
    * Hover style preset for slotted `<a>` links.
@@ -64,99 +64,99 @@ class Navbar extends AeicoComponent {
    * `--ae-navbar-link-hover-bg` CSS variables.
    */
   @prop({ type: String })
-  accessor appearance: NavbarAppearance = 'text'
+  accessor appearance: NavbarAppearance = 'text';
 
   /** Whether the mobile menu is expanded. Reflects as the `open` attribute. */
   @prop({ type: Boolean })
-  accessor open: boolean = false
+  accessor open: boolean = false;
 
-  private _outsideClickHandler: ((e: MouseEvent) => void) | null = null
+  private _outsideClickHandler: ((e: MouseEvent) => void) | null = null;
 
   connectedCallback() {
-    super.connectedCallback()
+    super.connectedCallback();
     // Close menu when a nav link is clicked on mobile
-    this.listen('click', this._handleInnerClick)
+    this.listen('click', this._handleInnerClick);
     // Close menu when clicking outside the navbar
     this._outsideClickHandler = (e: MouseEvent) => {
       // Event retargeting in shadow DOM means e.target is the host element
       // when the click originates inside the shadow root, so this check is safe.
-      if (
-        !this.contains(e.target as Node) &&
-        !this.shadowRoot?.contains(e.target as Node)
-      ) {
-        this._closeMenu()
+      if (!this.contains(e.target as Node) && !this.shadowRoot?.contains(e.target as Node)) {
+        this._closeMenu();
       }
-    }
-    document.addEventListener('click', this._outsideClickHandler)
+    };
+    document.addEventListener('click', this._outsideClickHandler);
   }
 
   disconnectedCallback() {
-    super.disconnectedCallback()
+    super.disconnectedCallback();
     if (this._outsideClickHandler) {
-      document.removeEventListener('click', this._outsideClickHandler)
-      this._outsideClickHandler = null
+      document.removeEventListener('click', this._outsideClickHandler);
+      this._outsideClickHandler = null;
     }
   }
 
   /** Toggle the mobile menu open/closed. */
   toggleMenu(): void {
-    this.open = !this.open
+    this.open = !this.open;
   }
 
   private _handleInnerClick = (e: Event) => {
-    if (!this.open) return
+    if (!this.open) return;
     // Close mobile menu when a slotted <a> link is clicked
-    const path = e.composedPath() as Element[]
-    if (path.some(el => (el as HTMLElement).tagName === 'A')) {
-      this._closeMenu()
+    const path = e.composedPath() as Element[];
+    if (path.some((el) => (el as HTMLElement).tagName === 'A')) {
+      this._closeMenu();
     }
-  }
+  };
 
   private _toggleMenu = () => {
-    this.open = !this.open
-  }
+    this.open = !this.open;
+  };
 
   private _closeMenu = () => {
-    if (this.open) this.open = false
-  }
+    if (this.open) this.open = false;
+  };
 
   protected render() {
     return html(({ div, nav, button, span, slot }) => {
       div({ class: 'inner' }, () => {
         div({ part: 'brand' }, () => {
-          slot({ name: 'brand' })
-        })
+          slot({ name: 'brand' });
+        });
         nav({ part: 'nav', 'aria-label': 'Main navigation' }, () => {
           div({ part: 'start' }, () => {
-            slot({ name: 'start' })
-          })
+            slot({ name: 'start' });
+          });
           div({ part: 'end' }, () => {
-            slot({ name: 'end' })
-          })
-        })
-        button({
-          part: 'hamburger',
-          type: 'button',
-          'aria-expanded': String(this.open),
-          'aria-label': 'Toggle navigation',
-          '@click': this._toggleMenu,
-        }, () => {
-          span({ 'aria-hidden': 'true' })
-          span({ 'aria-hidden': 'true' })
-          span({ 'aria-hidden': 'true' })
-        })
-      })
-    })
+            slot({ name: 'end' });
+          });
+        });
+        button(
+          {
+            part: 'hamburger',
+            type: 'button',
+            'aria-expanded': String(this.open),
+            'aria-label': 'Toggle navigation',
+            '@click': this._toggleMenu,
+          },
+          () => {
+            span({ 'aria-hidden': 'true' });
+            span({ 'aria-hidden': 'true' });
+            span({ 'aria-hidden': 'true' });
+          },
+        );
+      });
+    });
   }
 }
 
-Navbar.register()
+Navbar.register();
 
 declare global {
   interface HTMLElementTagNameMap {
-    'ae-navbar': Navbar
+    'ae-navbar': Navbar;
   }
 }
 
-export default Navbar
-export type NavbarProps = InferProps<typeof Navbar>
+export default Navbar;
+export type NavbarProps = InferProps<typeof Navbar>;

@@ -1,4 +1,4 @@
-import { IconDefinition, IconRegistryData, defaultViewBox } from './defines'
+import { IconDefinition, IconRegistryData, defaultViewBox } from './defines';
 
 class IconRegistry {
   private static _icons: Map<string, IconDefinition> = new Map();
@@ -22,4 +22,4 @@ class IconRegistry {
   }
 }
 
-export default IconRegistry
+export default IconRegistry;

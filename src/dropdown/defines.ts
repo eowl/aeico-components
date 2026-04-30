@@ -10,4 +10,4 @@ export type DropdownPlacement =
   | 'right-end'
   | 'left'
   | 'left-start'
-  | 'left-end'
+  | 'left-end';

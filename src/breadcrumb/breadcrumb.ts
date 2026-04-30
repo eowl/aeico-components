@@ -1,11 +1,11 @@
-﻿import type { InferProps } from 'aeico'
-import styleVariables from '../styles/variables.css?inline'
-import colorCSS from '../styles/color.css?inline'
-import style from '../styles/components/breadcrumb.css?inline'
-import AeicoComponent from '../aeico-component'
-import { html } from 'aeico'
-import { prop } from 'aeico'
-import type BreadcrumbItem from './breadcrumb-item'
+﻿import type { InferProps } from 'aeico';
+import styleVariables from '../styles/variables.css?inline';
+import colorCSS from '../styles/color.css?inline';
+import style from '../styles/components/breadcrumb.css?inline';
+import AeicoComponent from '../aeico-component';
+import { html } from 'aeico';
+import { prop } from 'aeico';
+import type BreadcrumbItem from './breadcrumb-item';
 
 /**
  * Breadcrumb Component
@@ -45,19 +45,19 @@ import type BreadcrumbItem from './breadcrumb-item'
  * ```
  */
 class Breadcrumb extends AeicoComponent {
-  static tagName = 'breadcrumb'
+  static tagName = 'breadcrumb';
 
-  protected static styles = [styleVariables, colorCSS, style]
+  protected static styles = [styleVariables, colorCSS, style];
 
   /** Text separator shown between items. Ignored when `slot="separator"` is provided. */
   @prop({ type: String })
-  accessor separator: string = '/'
+  accessor separator: string = '/';
 
   @prop({ type: String })
-  accessor color: string | undefined
+  accessor color: string | undefined;
 
-  private _itemsSlot: HTMLSlotElement | null = null
-  private _sepSlot: HTMLSlotElement | null = null
+  private _itemsSlot: HTMLSlotElement | null = null;
+  private _sepSlot: HTMLSlotElement | null = null;
 
   protected render() {
     return html(({ nav, ol, slot }) => {
@@ -65,74 +65,74 @@ class Breadcrumb extends AeicoComponent {
         ol({ part: 'list', className: 'list' }, () => {
           this._itemsSlot = slot({
             '@slotchange': () => this._syncSeparators(),
-          })
-        })
-      })
+          });
+        });
+      });
       this._sepSlot = slot({
         name: 'separator',
         className: 'sep-template',
         '@slotchange': () => this._syncSeparators(),
-      })
-    })
+      });
+    });
   }
 
   protected onUpdated() {
-    this._syncSeparators()
+    this._syncSeparators();
   }
 
   private _getItems(): BreadcrumbItem[] {
-    return (this._itemsSlot?.assignedElements() ?? []) as BreadcrumbItem[]
+    return (this._itemsSlot?.assignedElements() ?? []) as BreadcrumbItem[];
   }
 
   private _getSepElement(): Element | null {
-    return this._sepSlot?.assignedElements()[0] ?? null
+    return this._sepSlot?.assignedElements()[0] ?? null;
   }
 
   private _syncSeparators = () => {
-    const items = this._getItems()
-    const sepEl = this._getSepElement()
+    const items = this._getItems();
+    const sepEl = this._getSepElement();
 
     items.forEach((item, i) => {
       // Remove previously injected separators to avoid duplicates
-      item.querySelectorAll('[data-ae-sep]').forEach(n => n.remove())
+      item.querySelectorAll('[data-ae-sep]').forEach((n) => n.remove());
 
-      const isLast = i === items.length - 1
+      const isLast = i === items.length - 1;
 
       // Mark the last item as the current page for accessibility
       if (isLast) {
-        item.setAttribute('aria-current', 'page')
+        item.setAttribute('aria-current', 'page');
       } else {
-        item.removeAttribute('aria-current')
+        item.removeAttribute('aria-current');
       }
 
       // First item gets no separator
-      if (i === 0) return
+      if (i === 0) return;
 
-      const wrapper = document.createElement('span')
-      wrapper.setAttribute('slot', 'separator')
-      wrapper.setAttribute('data-ae-sep', '')
-      wrapper.setAttribute('aria-hidden', 'true')
+      const wrapper = document.createElement('span');
+      wrapper.setAttribute('slot', 'separator');
+      wrapper.setAttribute('data-ae-sep', '');
+      wrapper.setAttribute('aria-hidden', 'true');
 
       if (sepEl) {
         // Clone the slotted separator element (e.g. ae-icon)
-        wrapper.appendChild(sepEl.cloneNode(true))
+        wrapper.appendChild(sepEl.cloneNode(true));
       } else {
         // Fall back to text separator
-        wrapper.textContent = this.separator
+        wrapper.textContent = this.separator;
       }
 
-      item.prepend(wrapper)
-    })
-  }
+      item.prepend(wrapper);
+    });
+  };
 }
 
-Breadcrumb.register()
+Breadcrumb.register();
 
 declare global {
   interface HTMLElementTagNameMap {
-    'ae-breadcrumb': Breadcrumb
+    'ae-breadcrumb': Breadcrumb;
   }
 }
 
-export default Breadcrumb
-export type BreadcrumbProps = InferProps<typeof Breadcrumb>
+export default Breadcrumb;
+export type BreadcrumbProps = InferProps<typeof Breadcrumb>;

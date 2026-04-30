@@ -1,5 +1,5 @@
-﻿import AeicoComponent from '../aeico-component'
-import type { InferProps, Props } from 'aeico'
+﻿import AeicoComponent from '../aeico-component';
+import type { InferProps, Props } from 'aeico';
 
 /**
  * AeRadio — structured option element for ae-radio-group.
@@ -32,27 +32,27 @@ import type { InferProps, Props } from 'aeico'
  * ```
  */
 class Radio extends AeicoComponent {
-  static tagName = 'radio'
+  static tagName = 'radio';
 
   /** No shadow DOM — this element is a transparent data/content carrier. */
-  static override useShadowDOM = false
+  static override useShadowDOM = false;
 
   static override props: Props = {
-    value:    { type: String },
+    value: { type: String },
     disabled: { type: Boolean },
-  }
+  };
 
-  declare value:     string
-  declare disabled?: boolean
+  declare value: string;
+  declare disabled?: boolean;
 }
 
-Radio.register()
+Radio.register();
 
 declare global {
   interface HTMLElementTagNameMap {
-    'ae-radio': Radio
+    'ae-radio': Radio;
   }
 }
 
-export default Radio
-export type RadioProps = InferProps<typeof Radio>
+export default Radio;
+export type RadioProps = InferProps<typeof Radio>;

@@ -1,5 +1,5 @@
 import { expect } from '@esm-bundle/chai'
-import { mount, unmountAll, updated, whenDefined } from '../helpers/mount.js'
+import { mount, unmountAll, whenDefined } from '../helpers/mount.js'
 import Badge from '../../src/badge/badge.js'
 
 const TAG_NAME = 'ae-badge'

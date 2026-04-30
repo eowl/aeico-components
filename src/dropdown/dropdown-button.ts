@@ -1,12 +1,12 @@
-﻿import AeicoComponent from '../aeico-component'
-import type { InferProps } from 'aeico'
-import { html } from 'aeico'
-import { prop } from 'aeico'
-import type { ButtonColor, ButtonSize, ButtonVariant } from '../button/defines'
-import type { DropdownPlacement } from './defines'
-import type Dropdown from './dropdown'
-import './dropdown'
-import '../button/button'
+﻿import AeicoComponent from '../aeico-component';
+import type { InferProps } from 'aeico';
+import { html } from 'aeico';
+import { prop } from 'aeico';
+import type { ButtonColor, ButtonSize, ButtonVariant } from '../button/defines';
+import type { DropdownPlacement } from './defines';
+import type Dropdown from './dropdown';
+import './dropdown';
+import '../button/button';
 
 /**
  * DropdownButton — a pre-composed trigger + dropdown panel.
@@ -40,7 +40,7 @@ import '../button/button'
  * - `select` — `{ detail: { value, label } }` when a menu item is selected
  */
 class DropdownButton extends AeicoComponent {
-  static tagName = 'dropdown-button'
+  static tagName = 'dropdown-button';
 
   // ae-button and ae-dropdown each carry their own shadow DOM styles.
   // Only the host display is set here so button-group compact layout works.
@@ -51,64 +51,80 @@ class DropdownButton extends AeicoComponent {
     '.caret--top { border-bottom: 0.35em solid; border-right: 0.35em solid transparent; border-left: 0.35em solid transparent; }',
     '.caret--right { border-left: 0.35em solid; border-top: 0.35em solid transparent; border-bottom: 0.35em solid transparent; }',
     '.caret--left { border-right: 0.35em solid; border-top: 0.35em solid transparent; border-bottom: 0.35em solid transparent; }',
-  ]
+  ];
 
   @prop({ type: String })
-  accessor variant: ButtonVariant = 'filled'
+  accessor variant: ButtonVariant = 'filled';
 
   @prop({ type: String })
-  accessor color: ButtonColor = 'default'
+  accessor color: ButtonColor = 'default';
 
   @prop({ type: String })
-  accessor size: ButtonSize = 'md'
+  accessor size: ButtonSize = 'md';
 
   @prop({ type: Boolean })
-  accessor disabled: boolean = false
+  accessor disabled: boolean = false;
 
   @prop({ type: String })
-  accessor placement: DropdownPlacement = 'bottom-start'
+  accessor placement: DropdownPlacement = 'bottom-start';
 
   @prop({ type: Boolean })
-  accessor closeOnSelect: boolean = true
+  accessor closeOnSelect: boolean = true;
 
-  private _dropdownEl: Dropdown | null = null
+  private _dropdownEl: Dropdown | null = null;
 
-  show(): void { if (this.disabled) return; this._dropdownEl?.show() }
-  hide(): void { this._dropdownEl?.hide() }
-  toggle(): void { if (this.disabled) return; this._dropdownEl?.toggle() }
+  show(): void {
+    if (this.disabled) return;
+    this._dropdownEl?.show();
+  }
+  hide(): void {
+    this._dropdownEl?.hide();
+  }
+  toggle(): void {
+    if (this.disabled) return;
+    this._dropdownEl?.toggle();
+  }
 
-  get open(): boolean { return this._dropdownEl?.open ?? false }
+  get open(): boolean {
+    return this._dropdownEl?.open ?? false;
+  }
 
   protected render() {
-    const dir = this.placement.split('-')[0]
+    const dir = this.placement.split('-')[0];
     return html(({ aeDropdown, aeButton, slot, span }) => {
-      this._dropdownEl = aeDropdown({
-        placement: this.placement,
-        'close-on-select': this.closeOnSelect,
-      }, () => {
-        aeButton({
-          slot: 'trigger',
-          variant: this.variant,
-          color: this.color,
-          size: this.size,
-          disabled: this.disabled || undefined,
-        }, () => {
-          slot({ name: 'label' })
-          span({ className: `caret caret--${dir}`, 'aria-hidden': 'true' })
-        })
-        slot()
-      }) as unknown as Dropdown
-    })
+      this._dropdownEl = aeDropdown(
+        {
+          placement: this.placement,
+          'close-on-select': this.closeOnSelect,
+        },
+        () => {
+          aeButton(
+            {
+              slot: 'trigger',
+              variant: this.variant,
+              color: this.color,
+              size: this.size,
+              disabled: this.disabled || undefined,
+            },
+            () => {
+              slot({ name: 'label' });
+              span({ className: `caret caret--${dir}`, 'aria-hidden': 'true' });
+            },
+          );
+          slot();
+        },
+      );
+    });
   }
 }
 
-DropdownButton.register()
+DropdownButton.register();
 
 declare global {
   interface HTMLElementTagNameMap {
-    'ae-dropdown-button': DropdownButton
+    'ae-dropdown-button': DropdownButton;
   }
 }
 
-export default DropdownButton
-export type DropdownButtonProps = InferProps<typeof DropdownButton>
+export default DropdownButton;
+export type DropdownButtonProps = InferProps<typeof DropdownButton>;

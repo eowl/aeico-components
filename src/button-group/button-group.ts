@@ -1,11 +1,11 @@
-﻿import type { InferProps, Props } from 'aeico'
-import styleVariables from '../styles/variables.css?inline'
-import buttonGroupStyle from '../styles/components/button-group.css?inline'
-import AeicoComponent from '../aeico-component'
-import { html } from 'aeico'
-import type { ButtonColor, ButtonVariant, ButtonSize } from '../button'
-import Button from '../button/button'
-import DropdownButton from '../dropdown/dropdown-button'
+﻿import type { InferProps, Props } from 'aeico';
+import styleVariables from '../styles/variables.css?inline';
+import buttonGroupStyle from '../styles/components/button-group.css?inline';
+import AeicoComponent from '../aeico-component';
+import { html } from 'aeico';
+import type { ButtonColor, ButtonVariant, ButtonSize } from '../button';
+import Button from '../button/button';
+import DropdownButton from '../dropdown/dropdown-button';
 
 /**
  * ButtonGroup Component
@@ -39,101 +39,102 @@ import DropdownButton from '../dropdown/dropdown-button'
  */
 class ButtonGroup extends AeicoComponent {
   static props: Props = {
-    variant:  { type: String },
-    color:    { type: String },
-    size:     { type: String },
-    compact:  { type: Boolean },
-    block:    { type: Boolean },
+    variant: { type: String },
+    color: { type: String },
+    size: { type: String },
+    compact: { type: Boolean },
+    block: { type: Boolean },
     disabled: { type: Boolean },
-  }
+  };
 
-  protected static styles = [styleVariables, buttonGroupStyle]
+  protected static styles = [styleVariables, buttonGroupStyle];
 
-  declare variant?:  ButtonVariant
-  declare color?:    ButtonColor
-  declare size?:     ButtonSize
-  declare compact?:  boolean
-  declare block?:    boolean
-  declare disabled?: boolean
+  declare variant?: ButtonVariant;
+  declare color?: ButtonColor;
+  declare size?: ButtonSize;
+  declare compact?: boolean;
+  declare block?: boolean;
+  declare disabled?: boolean;
 
-  private slotEl: HTMLSlotElement | null = null
+  private slotEl: HTMLSlotElement | null = null;
 
   connectedCallback() {
-    super.connectedCallback()
+    super.connectedCallback();
 
-    if (this.variant === undefined) this.variant = 'filled'
-    if (this.color === undefined) this.color = 'default'
-    if (this.size === undefined) this.size = 'md'
+    if (this.variant === undefined) this.variant = 'filled';
+    if (this.color === undefined) this.color = 'default';
+    if (this.size === undefined) this.size = 'md';
   }
 
   protected render() {
     return html(({ slot }) => {
       this.slotEl = slot({
         '@slotchange': () => this._syncChildren(),
-      })
-      this._syncChildren()
-    })
+      });
+      this._syncChildren();
+    });
   }
 
   private _getButtons(): Array<Button | DropdownButton> {
-    if (!this.slotEl) return []
+    if (!this.slotEl) return [];
 
-    return (this.slotEl.assignedElements({ flatten: true }) as Array<Button | DropdownButton>)
-      .filter(el => {
-        const tag = el.tagName.toLowerCase()
-        return tag === 'ae-button' || tag === 'ae-dropdown-button'
-      })
+    return (
+      this.slotEl.assignedElements({ flatten: true }) as Array<Button | DropdownButton>
+    ).filter((el) => {
+      const tag = el.tagName.toLowerCase();
+      return tag === 'ae-button' || tag === 'ae-dropdown-button';
+    });
   }
 
   private _syncChildren() {
-    const buttons  = this._getButtons()
-    const r        = this.size === 'xs' || this.size === 'sm' ? 3 : 4
+    const buttons = this._getButtons();
+    const r = this.size === 'xs' || this.size === 'sm' ? 3 : 4;
 
     buttons.forEach((btn: Button | DropdownButton, i) => {
-      btn.variant = this.variant
-      btn.color = this.color
-      btn.size = this.size
+      btn.variant = this.variant;
+      btn.color = this.color;
+      btn.size = this.size;
 
       if (this.disabled) {
-        btn.disabled = true
+        btn.disabled = true;
       } else {
-        btn.disabled = false
+        btn.disabled = false;
       }
 
       if (this.compact) {
-        const isFirst = i === 0
-        const isLast  = i === buttons.length - 1
+        const isFirst = i === 0;
+        const isLast = i === buttons.length - 1;
 
         // Overlap adjacent borders by pulling non-first buttons left 1px
-        btn.style.marginLeft = isFirst ? '' : '-1px'
+        btn.style.marginLeft = isFirst ? '' : '-1px';
 
         // Shape corners: only the outer edges of the strip keep radius
-        btn.style.setProperty('--_btn-r-tl', isFirst  ? `${r}px` : '0')
-        btn.style.setProperty('--_btn-r-bl', isFirst  ? `${r}px` : '0')
-        btn.style.setProperty('--_btn-r-tr', isLast   ? `${r}px` : '0')
-        btn.style.setProperty('--_btn-r-br', isLast   ? `${r}px` : '0')
+        btn.style.setProperty('--_btn-r-tl', isFirst ? `${r}px` : '0');
+        btn.style.setProperty('--_btn-r-bl', isFirst ? `${r}px` : '0');
+        btn.style.setProperty('--_btn-r-tr', isLast ? `${r}px` : '0');
+        btn.style.setProperty('--_btn-r-br', isLast ? `${r}px` : '0');
       } else {
-        btn.style.marginLeft = ''
-        this._clearRadius(btn)
+        btn.style.marginLeft = '';
+        this._clearRadius(btn);
       }
-    })
+    });
   }
 
   private _clearRadius(btn: HTMLElement) {
-    btn.style.removeProperty('--_btn-r-tl')
-    btn.style.removeProperty('--_btn-r-tr')
-    btn.style.removeProperty('--_btn-r-br')
-    btn.style.removeProperty('--_btn-r-bl')
+    btn.style.removeProperty('--_btn-r-tl');
+    btn.style.removeProperty('--_btn-r-tr');
+    btn.style.removeProperty('--_btn-r-br');
+    btn.style.removeProperty('--_btn-r-bl');
   }
 }
 
-ButtonGroup.register()
+ButtonGroup.register();
 
 declare global {
   interface HTMLElementTagNameMap {
-    'ae-button-group': ButtonGroup
+    'ae-button-group': ButtonGroup;
   }
 }
 
-export default ButtonGroup
-export type ButtonGroupProps = InferProps<typeof ButtonGroup>
+export default ButtonGroup;
+export type ButtonGroupProps = InferProps<typeof ButtonGroup>;

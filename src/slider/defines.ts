@@ -1,17 +1,17 @@
-export type SliderOptionValue = string | number
+export type SliderOptionValue = string | number;
 
 export type SliderOption = {
-  label: string
-  value: SliderOptionValue
-}
+  label: string;
+  value: SliderOptionValue;
+};
 
-export type SliderOptions = SliderOptionValue[] | SliderOption[]
+export type SliderOptions = SliderOptionValue[] | SliderOption[];
 
 export type NormalizedOption = {
-  label: string
-  value: string      // stored as string for consistency with this.value
-  rangeValue: number // numeric value used by the range input
-}
+  label: string;
+  value: string; // stored as string for consistency with this.value
+  rangeValue: number; // numeric value used by the range input
+};
 
 /**
  * A single mark on the slider track.
@@ -22,7 +22,7 @@ export type NormalizedOption = {
  * The slider still snaps according to `step` / `options`.
  * Marks outside [min, max] are silently ignored.
  */
-export type MarkItem = number | { value: number; label?: string }
+export type MarkItem = number | { value: number; label?: string };
 
 /**
  * The `marks` prop accepts:
@@ -30,4 +30,4 @@ export type MarkItem = number | { value: number; label?: string }
  * - `MarkItem[]` — custom marks at the given positions
  * - `false` / omitted — no marks
  */
-export type SliderMarks = boolean | MarkItem[]
+export type SliderMarks = boolean | MarkItem[];

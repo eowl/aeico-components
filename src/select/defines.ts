@@ -1,12 +1,12 @@
-export type SelectOptionValue = string | number
+export type SelectOptionValue = string | number;
 
 export type SelectOption = {
-  label: string
-  value: SelectOptionValue
-}
+  label: string;
+  value: SelectOptionValue;
+};
 
-export type SelectOptions = SelectOptionValue[] | SelectOption[]
+export type SelectOptions = SelectOptionValue[] | SelectOption[];
 
-export type SelectPosition = 'top' | 'bottom' | 'left' | 'right'
+export type SelectPosition = 'top' | 'bottom' | 'left' | 'right';
 
-export type SelectMultiValue = SelectOptionValue[]
+export type SelectMultiValue = SelectOptionValue[];

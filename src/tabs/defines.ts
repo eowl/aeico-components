@@ -1,1 +1,1 @@
-export type TabActiveIndex = number
+export type TabActiveIndex = number;

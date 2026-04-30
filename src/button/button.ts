@@ -1,19 +1,19 @@
-﻿import type { InferProps } from 'aeico'
-import styleVariables from '../styles/variables.css?inline'
-import sizeCSS from '../styles/size.css?inline'
-import colorCSS from '../styles/color.css?inline'
-import buttonStyle from '../styles/components/button.css?inline'
-import AeicoComponent from '../aeico-component'
-import { html } from 'aeico'
-import { ButtonColor, ButtonSize, ButtonVariant } from './defines'
-import { prop } from 'aeico'
+﻿import type { InferProps } from 'aeico';
+import styleVariables from '../styles/variables.css?inline';
+import sizeCSS from '../styles/size.css?inline';
+import colorCSS from '../styles/color.css?inline';
+import buttonStyle from '../styles/components/button.css?inline';
+import AeicoComponent from '../aeico-component';
+import { html } from 'aeico';
+import { ButtonColor, ButtonSize, ButtonVariant } from './defines';
+import { prop } from 'aeico';
 
 /**
  * Button Component
- * 
+ *
  * A customizable button component with multiple variants and sizes.
  * Supports theme and internationalization through mixins.
- * 
+ *
  * @example
  * ```typescript
  * // Using the static create method
@@ -22,7 +22,7 @@ import { prop } from 'aeico'
  *   size: 'md'
  * })
  * ```
- * 
+ *
  * @example
  * ```html
  * <!-- Using as Web Component -->
@@ -32,78 +32,79 @@ import { prop } from 'aeico'
  * ```
  */
 class Button extends AeicoComponent {
-  protected static styles = [styleVariables, sizeCSS, colorCSS, buttonStyle]
+  protected static styles = [styleVariables, sizeCSS, colorCSS, buttonStyle];
 
   @prop({ type: String })
-  color?: ButtonColor
+  color?: ButtonColor;
 
   @prop({ type: String })
-  variant?: ButtonVariant
+  variant?: ButtonVariant;
 
   @prop({ type: String })
-  size?: ButtonSize
+  size?: ButtonSize;
 
   @prop({ type: Boolean })
-  disabled?: boolean
+  disabled?: boolean;
 
   @prop({ type: String })
-  type?: 'button' | 'submit' | 'reset'
+  type?: 'button' | 'submit' | 'reset';
 
   @prop({ type: Boolean })
-  active?: boolean
-  
-  @prop({ type: Boolean })
-  block?: boolean
+  active?: boolean;
 
-  private buttonElement: HTMLButtonElement | null = null
-  private _autoAriaLabel = false
+  @prop({ type: Boolean })
+  block?: boolean;
+
+  private buttonElement: HTMLButtonElement | null = null;
+  private _autoAriaLabel = false;
 
   protected onMounted() {
-    const slot = this.shadowRoot?.querySelector('slot:not([name])')
-    if (slot) this.listen(slot, 'slotchange', this._handleSlotChange)
-    this._handleSlotChange()
+    const slot = this.shadowRoot?.querySelector('slot:not([name])');
+    if (slot) this.listen(slot, 'slotchange', this._handleSlotChange);
+    this._handleSlotChange();
   }
 
   private _handleSlotChange = () => {
-    const slot = this.shadowRoot?.querySelector('slot:not([name])') as HTMLSlotElement | null
-    const nodes = slot?.assignedNodes() ?? []
+    const slot = this.shadowRoot?.querySelector('slot:not([name])') as HTMLSlotElement | null;
+    const nodes = slot?.assignedNodes() ?? [];
     // Icon-only: exactly one element (ae-icon) and no meaningful text nodes
-    const elements = nodes.filter((n): n is Element => n.nodeType === Node.ELEMENT_NODE)
+    const elements = nodes.filter((n): n is Element => n.nodeType === Node.ELEMENT_NODE);
     const hasText = nodes.some(
-      n => n.nodeType === Node.TEXT_NODE && n.textContent!.trim() !== ''
-    )
+      (n) => n.nodeType === Node.TEXT_NODE && n.textContent!.trim() !== '',
+    );
     const isIconOnly =
-      !hasText &&
-      elements.length === 1 &&
-      elements[0].tagName.toLowerCase() === 'ae-icon'
+      !hasText && elements.length === 1 && elements[0].tagName.toLowerCase() === 'ae-icon';
 
     if (isIconOnly) {
-      this.setAttribute('icon-only', '')
+      this.setAttribute('icon-only', '');
       if (!this.hasAttribute('aria-label') || this._autoAriaLabel) {
-        this.setAttribute('aria-label', elements[0].getAttribute('name') ?? '')
-        this._autoAriaLabel = true
+        this.setAttribute('aria-label', elements[0].getAttribute('name') ?? '');
+        this._autoAriaLabel = true;
       }
     } else {
-      this.removeAttribute('icon-only')
+      this.removeAttribute('icon-only');
       if (this._autoAriaLabel) {
-        this.removeAttribute('aria-label')
-        this._autoAriaLabel = false
+        this.removeAttribute('aria-label');
+        this._autoAriaLabel = false;
       }
     }
-  }
+  };
 
   protected render() {
     return html(({ button, slot }) => {
-      this.buttonElement = button({
-        type: this.type || 'button',
-        disabled: this.disabled,
-        part: 'button',
-        'aria-pressed': this.active,
-        'aria-disabled': this.disabled
-      }, () => {
-        slot()
-      })
-    })
+      this.buttonElement = button(
+        {
+          type: this.type || 'button',
+          disabled: this.disabled,
+          part: 'button',
+          'aria-pressed': this.active,
+          'aria-disabled': this.disabled,
+        },
+        () => {
+          slot();
+        },
+      );
+    });
   }
 
   /**
@@ -111,7 +112,7 @@ class Button extends AeicoComponent {
    */
   click() {
     if (!this.disabled && this.buttonElement) {
-      this.buttonElement.click()
+      this.buttonElement.click();
     }
   }
 
@@ -120,7 +121,7 @@ class Button extends AeicoComponent {
    */
   focus() {
     if (this.buttonElement) {
-      this.buttonElement.focus()
+      this.buttonElement.focus();
     }
   }
 
@@ -129,19 +130,18 @@ class Button extends AeicoComponent {
    */
   blur() {
     if (this.buttonElement) {
-      this.buttonElement.blur()
+      this.buttonElement.blur();
     }
   }
-
 }
 
-Button.register()
+Button.register();
 
 declare global {
   interface HTMLElementTagNameMap {
-    'ae-button': Button
+    'ae-button': Button;
   }
 }
 
-export default Button
-export type ButtonProps = InferProps<typeof Button>
+export default Button;
+export type ButtonProps = InferProps<typeof Button>;

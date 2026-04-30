@@ -1,11 +1,11 @@
-﻿import AeicoComponent from '../aeico-component'
-import type { InferProps } from 'aeico'
-import { html } from 'aeico'
-import style from '../styles/components/dropdown-item.css?inline'
-import variables from '../styles/variables.css?inline'
-import { prop } from 'aeico'
+﻿import AeicoComponent from '../aeico-component';
+import type { InferProps } from 'aeico';
+import { html } from 'aeico';
+import style from '../styles/components/dropdown-item.css?inline';
+import variables from '../styles/variables.css?inline';
+import { prop } from 'aeico';
 // Ensure ae-icon is registered when icons are used
-import '../icon/icon'
+import '../icon/icon';
 
 /**
  * Dropdown menu item — used as a direct child of `<ae-dropdown>`.
@@ -22,36 +22,36 @@ import '../icon/icon'
  * ```
  */
 class DropdownItem extends AeicoComponent {
-  static tagName = 'dropdown-item'
+  static tagName = 'dropdown-item';
 
   /** Value emitted in the `select` event detail on the parent dropdown. */
   @prop({ type: String })
-  accessor value: string | undefined
+  accessor value: string | undefined;
 
   /** Disables the item — it becomes non-interactive and visually dimmed. */
   @prop({ type: Boolean })
-  accessor disabled: boolean = false
+  accessor disabled: boolean = false;
 
   /**
    * When set, the item renders as an `<a>` anchor element instead of a
    * `<button>`. Useful for navigation items.
    */
   @prop({ type: String })
-  accessor href: string | undefined
+  accessor href: string | undefined;
 
   /**
    * When `type="checkbox"`, the item behaves as a toggle: each click flips
    * `checked` and includes the new state in the `select` event detail.
    */
   @prop({ type: String })
-  accessor type: 'checkbox' | undefined
+  accessor type: 'checkbox' | undefined;
 
   /**
    * Whether the item is checked. Only meaningful when `type="checkbox"`.
    * Reflects as the `checked` attribute.
    */
   @prop({ type: Boolean })
-  accessor checked: boolean = false
+  accessor checked: boolean = false;
 
   /**
    * Marks the item as the currently active/selected option (e.g. current route,
@@ -59,70 +59,78 @@ class DropdownItem extends AeicoComponent {
    * accent colour.
    */
   @prop({ type: Boolean })
-  accessor active: boolean = false
+  accessor active: boolean = false;
 
-  protected static styles = [variables, style]
+  protected static styles = [variables, style];
 
   connectedCallback() {
-    super.connectedCallback()
-    this.listen('click', this._handleClick)
-    this.setAttribute('role', 'menuitem')
+    super.connectedCallback();
+    this.listen('click', this._handleClick);
+    this.setAttribute('role', 'menuitem');
   }
 
   private _handleClick = (e: Event): void => {
     if (this.disabled) {
-      e.preventDefault()
-      e.stopPropagation()
+      e.preventDefault();
+      e.stopPropagation();
 
-      return
+      return;
     }
     if (this.type === 'checkbox') {
-      this.checked = !this.checked
+      this.checked = !this.checked;
     }
-    const label = this.textContent?.trim() ?? ''
-    this.dispatchEvent(new CustomEvent('_item-select', {
-      bubbles: true,
-      composed: true,
-      detail: { value: this.value ?? '', label, checked: this.checked },
-    }))
-  }
+    const label = this.textContent?.trim() ?? '';
+    this.dispatchEvent(
+      new CustomEvent('_item-select', {
+        bubbles: true,
+        composed: true,
+        detail: { value: this.value ?? '', label, checked: this.checked },
+      }),
+    );
+  };
 
   protected render() {
-    const isCheckbox = this.type === 'checkbox'
+    const isCheckbox = this.type === 'checkbox';
     const sharedProps = {
       part: 'item',
       className: 'item',
       'aria-checked': isCheckbox ? String(this.checked) : undefined,
-    }
+    };
     return html(({ button, a, span, slot }) => {
       const children = () => {
-        if (isCheckbox) span({ className: 'check-indicator', 'aria-hidden': 'true' })
-        slot()
-      }
+        if (isCheckbox) span({ className: 'check-indicator', 'aria-hidden': 'true' });
+        slot();
+      };
       if (this.href) {
-        a({
-          ...sharedProps,
-          href: this.disabled ? undefined : this.href,
-          'aria-disabled': this.disabled || undefined,
-        }, children)
+        a(
+          {
+            ...sharedProps,
+            href: this.disabled ? undefined : this.href,
+            'aria-disabled': this.disabled || undefined,
+          },
+          children,
+        );
       } else {
-        button({
-          ...sharedProps,
-          type: 'button',
-          disabled: this.disabled,
-        }, children)
+        button(
+          {
+            ...sharedProps,
+            type: 'button',
+            disabled: this.disabled,
+          },
+          children,
+        );
       }
-    })
+    });
   }
 }
 
-DropdownItem.register()
+DropdownItem.register();
 
 declare global {
   interface HTMLElementTagNameMap {
-    'ae-dropdown-item': DropdownItem
+    'ae-dropdown-item': DropdownItem;
   }
 }
 
-export default DropdownItem
-export type DropdownItemProps = InferProps<typeof DropdownItem>
+export default DropdownItem;
+export type DropdownItemProps = InferProps<typeof DropdownItem>;

@@ -1,1 +1,1 @@
-export type CheckboxVariant = 'checkbox'
+export type CheckboxVariant = 'checkbox';

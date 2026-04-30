@@ -1,12 +1,12 @@
-﻿import type { InferProps } from 'aeico'
-import styleVariables from '../styles/variables.css?inline'
-import sizeCSS from '../styles/size.css?inline'
-import colorCSS from '../styles/color.css?inline'
-import tagStyle from '../styles/components/tag.css?inline'
-import AeicoComponent from '../aeico-component'
-import { html } from 'aeico'
-import type { TagColor, TagSize, TagVariant } from './defines'
-import { prop } from 'aeico'
+﻿import type { InferProps } from 'aeico';
+import styleVariables from '../styles/variables.css?inline';
+import sizeCSS from '../styles/size.css?inline';
+import colorCSS from '../styles/color.css?inline';
+import tagStyle from '../styles/components/tag.css?inline';
+import AeicoComponent from '../aeico-component';
+import { html } from 'aeico';
+import type { TagColor, TagSize, TagVariant } from './defines';
+import { prop } from 'aeico';
 
 /**
  * Tag Component
@@ -25,58 +25,61 @@ import { prop } from 'aeico'
  * ```
  */
 class Tag extends AeicoComponent {
-  protected static styles = [styleVariables, sizeCSS, colorCSS, tagStyle]
+  protected static styles = [styleVariables, sizeCSS, colorCSS, tagStyle];
 
   @prop({ type: String })
-  accessor color: TagColor | undefined
+  accessor color: TagColor | undefined;
 
   @prop({ type: String })
-  accessor variant: TagVariant | undefined
+  accessor variant: TagVariant | undefined;
 
   @prop({ type: String })
-  accessor size: TagSize | undefined
+  accessor size: TagSize | undefined;
 
   @prop({ type: Boolean })
-  accessor dismissible: boolean = false
+  accessor dismissible: boolean = false;
 
   @prop({ type: Boolean })
-  accessor disabled: boolean = false
+  accessor disabled: boolean = false;
 
   @prop({ type: Boolean })
-  accessor pill: boolean = false
+  accessor pill: boolean = false;
 
   protected render() {
     return html(({ span, button, slot }) => {
       span({ part: 'tag', className: 'tag' }, () => {
-        slot({ name: 'start' })
+        slot({ name: 'start' });
         span({ className: 'tag-content' }, () => {
-          slot()
-        })
-        slot({ name: 'end' })
-        button({
-          type: 'button',
-          className: 'tag-dismiss',
-          'aria-label': 'dismiss',
-          '@click': (e: Event) => {
-            e.stopPropagation()
-            if (this.disabled) return
-            this.emit('dismiss')
+          slot();
+        });
+        slot({ name: 'end' });
+        button(
+          {
+            type: 'button',
+            className: 'tag-dismiss',
+            'aria-label': 'dismiss',
+            '@click': (e: Event) => {
+              e.stopPropagation();
+              if (this.disabled) return;
+              this.emit('dismiss');
+            },
           },
-        }, () => {
-          span({ textContent: '\u00d7' })
-        })
-      })
-    })
+          () => {
+            span({ textContent: '\u00d7' });
+          },
+        );
+      });
+    });
   }
 }
 
-Tag.register()
+Tag.register();
 
 declare global {
   interface HTMLElementTagNameMap {
-    'ae-tag': Tag
+    'ae-tag': Tag;
   }
 }
 
-export default Tag
-export type TagProps = InferProps<typeof Tag>
+export default Tag;
+export type TagProps = InferProps<typeof Tag>;
