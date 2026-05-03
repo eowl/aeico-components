@@ -1,6 +1,6 @@
 {
   "name": "aeico-components",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Built-in UI components for the Aeico Web Components framework",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -42,7 +42,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aeico": "^0.1.2",
+    "aeico": "^0.1.3",
     "aeico-localize": "^0.1.1"
   },
   "devDependencies": {
