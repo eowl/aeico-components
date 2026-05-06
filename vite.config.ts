@@ -1,5 +1,4 @@
 import { defineConfig } from 'vite'
-import path from 'path'
 
 export default defineConfig({
   define: {
@@ -10,8 +9,30 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: path.resolve(__dirname, 'src/index.ts'),
-      name: 'AeicoComponents',
+      entry: {
+        index:          'src/index.ts',
+        alert:          'src/alert/index.ts',
+        badge:          'src/badge/index.ts',
+        breadcrumb:     'src/breadcrumb/index.ts',
+        button:         'src/button/index.ts',
+        'button-group': 'src/button-group/index.ts',
+        card:           'src/card/index.ts',
+        checkbox:       'src/checkbox/index.ts',
+        detail:         'src/detail/index.ts',
+        dialog:         'src/dialog/index.ts',
+        divider:        'src/divider/index.ts',
+        dropdown:       'src/dropdown/index.ts',
+        icon:           'src/icon/index.ts',
+        'icon-button':  'src/icon-button/index.ts',
+        navbar:         'src/navbar/index.ts',
+        'radio-group':  'src/radio-group/index.ts',
+        select:         'src/select/index.ts',
+        slider:         'src/slider/index.ts',
+        switch:         'src/switch/index.ts',
+        tabs:           'src/tabs/index.ts',
+        tag:            'src/tag/index.ts',
+        'text-input':   'src/text-input/index.ts',
+      },
     },
     rollupOptions: {
       external: ['aeico', 'aeico-localize'],
