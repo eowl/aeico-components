@@ -45,15 +45,8 @@ describe('ProgressBar', () => {
       expect(bar).to.exist
     })
 
-    it('renders label element when label is set', async () => {
+    it('does not render a visible label element', async () => {
       const el = await mount<ProgressBar>(`<${TAG_NAME} value="50" label="Upload"></${TAG_NAME}>`)
-      const label = el.shadowRoot?.querySelector('.progress-label')
-      expect(label).to.exist
-      expect(label!.textContent?.trim()).to.equal('Upload')
-    })
-
-    it('does not render label element when label is empty', async () => {
-      const el = await mount<ProgressBar>(`<${TAG_NAME} value="50"></${TAG_NAME}>`)
       const label = el.shadowRoot?.querySelector('.progress-label')
       expect(label).to.not.exist
     })
@@ -120,6 +113,29 @@ describe('ProgressBar', () => {
       const el = await mount<ProgressBar>(`<${TAG_NAME} value="50" label="Loading"></${TAG_NAME}>`)
       const track = el.shadowRoot?.querySelector('.progress-track')
       expect(track!.getAttribute('aria-label')).to.equal('Loading')
+    })
+  })
+
+  describe('CSS custom properties', () => {
+    it('--progress-height changes the track height', async () => {
+      const el = await mount<ProgressBar>(`<${TAG_NAME} value="50"></${TAG_NAME}>`)
+      el.style.setProperty('--progress-height', '16px')
+      const track = el.shadowRoot!.querySelector<HTMLElement>('.progress-track')!
+      expect(getComputedStyle(track).height).to.equal('16px')
+    })
+
+    it('--progress-bar-color overrides the bar background color', async () => {
+      const el = await mount<ProgressBar>(`<${TAG_NAME} value="50"></${TAG_NAME}>`)
+      el.style.setProperty('--progress-bar-color', 'rgb(255, 0, 0)')
+      const bar = el.shadowRoot!.querySelector<HTMLElement>('.progress-bar')!
+      expect(getComputedStyle(bar).backgroundColor).to.equal('rgb(255, 0, 0)')
+    })
+
+    it('--progress-bar-color takes precedence over color prop', async () => {
+      const el = await mount<ProgressBar>(`<${TAG_NAME} value="50" color="success"></${TAG_NAME}>`)
+      el.style.setProperty('--progress-bar-color', 'rgb(255, 165, 0)')
+      const bar = el.shadowRoot!.querySelector<HTMLElement>('.progress-bar')!
+      expect(getComputedStyle(bar).backgroundColor).to.equal('rgb(255, 165, 0)')
     })
   })
 })

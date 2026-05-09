@@ -1,14 +1,7 @@
 :host {
   display: block;
   --progress-height: 8px;
-  /* Override colorCSS default gray — same pattern as slider.css */
   --color-solid: var(--color-primary);
-}
-
-.progress-label {
-  font-size: 0.875em;
-  margin-bottom: 6px;
-  color: var(--color-text-main, inherit);
 }
 
 .progress-track {
@@ -20,9 +13,10 @@
 }
 
 .progress-bar {
+  display: block;
   height: 100%;
   border-radius: inherit;
-  background: var(--color-solid);
+  background: var(--progress-bar-color, var(--color-solid));
   width: 0%;
   transition: width 0.35s ease;
   position: relative;
