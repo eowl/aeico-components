@@ -1,4 +1,4 @@
-﻿import AeicoField from '../aeico-field';
+﻿import AeicoField, { type FieldAction } from '../aeico-field';
 import type { InferProps, Props } from 'aeico';
 import { html } from 'aeico';
 import styleVariables from '../styles/variables.css?inline';
@@ -7,7 +7,7 @@ import colorCSS from '../styles/color.css?inline';
 import styles from '../styles/components/checkbox.css?inline';
 import { CheckboxVariant } from './defines';
 
-class Checkbox extends AeicoField {
+class Checkbox extends AeicoField<boolean> {
   protected fieldElement: HTMLInputElement | null = null;
 
   static tagName = 'checkbox';
@@ -34,11 +34,11 @@ class Checkbox extends AeicoField {
     }
   }
 
-  protected getEventPayload(checked: boolean, oldChecked: boolean, action: any) {
+  protected getEventPayload(checked: boolean, oldChecked: boolean, action: FieldAction) {
     return { checked, oldChecked, action };
   }
 
-  protected setValue(checked: boolean, options?: { silent?: boolean; action?: any }): void {
+  protected setValue(checked: boolean, options?: { silent?: boolean; action?: FieldAction }): void {
     const oldChecked = this.getValue();
     this.checked = checked;
     this.writeValue(checked);

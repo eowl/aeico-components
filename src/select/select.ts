@@ -107,7 +107,7 @@ class Select extends AeicoField<SelectOptionValue | SelectMultiValue> {
     // Reactive re-render via this.value prop change handles the display update
   }
 
-  protected getValue(): any {
+  protected getValue(): SelectOptionValue | SelectMultiValue {
     if (this.multiple) return this._getMultiValues();
 
     return this.value || '';

@@ -136,8 +136,8 @@ class AeicoField<TValue = string> extends AeicoComponent {
    *
    * @returns Current field value
    */
-  protected getValue(): any {
-    return this.fieldElement?.value || '';
+  protected getValue(): TValue {
+    return (this.fieldElement?.value || '') as TValue;
   }
 
   /**
@@ -146,7 +146,7 @@ class AeicoField<TValue = string> extends AeicoComponent {
    *
    * @param _value New value to write to the element
    */
-  protected writeValue(_value: any): void {
+  protected writeValue(_value: TValue): void {
     // Base implementation - subclasses override
   }
 
@@ -159,7 +159,11 @@ class AeicoField<TValue = string> extends AeicoComponent {
    * @param action Action type
    * @returns Event payload object
    */
-  protected getEventPayload(value: any, oldValue: any, action: FieldAction): Record<string, any> {
+  protected getEventPayload(
+    value: TValue,
+    oldValue: TValue,
+    action: FieldAction,
+  ): Record<string, unknown> {
     return { value, oldValue, action };
   }
 
@@ -171,7 +175,7 @@ class AeicoField<TValue = string> extends AeicoComponent {
    * @param options.silent If true, won't emit change event (default: true)
    * @param options.action Action type for the event (default: 'change')
    */
-  protected setValue(value: any, options?: { silent?: boolean; action?: FieldAction }): void {
+  protected setValue(value: TValue, options?: { silent?: boolean; action?: FieldAction }): void {
     const oldValue = this.getValue();
 
     // Update property value
@@ -193,9 +197,9 @@ class AeicoField<TValue = string> extends AeicoComponent {
    * @param value Value to reset to, defaults to defaultValue prop
    * @param options.silent If false, will emit reset event (default: true)
    */
-  public reset(value?: any, options?: { silent?: boolean }): void {
+  public reset(value?: TValue, options?: { silent?: boolean }): void {
     const resetValue = value !== undefined ? value : this.defaultValue;
-    this.setValue(resetValue, { ...options, action: 'reset' });
+    this.setValue(resetValue as TValue, { ...options, action: 'reset' });
   }
 
   /**
@@ -204,7 +208,7 @@ class AeicoField<TValue = string> extends AeicoComponent {
    * @param options.silent If false, will emit clear event (default: true)
    */
   public clear(options?: { silent?: boolean }): void {
-    this.setValue('', { ...options, action: 'clear' });
+    this.setValue('' as TValue, { ...options, action: 'clear' });
   }
 
   /**
