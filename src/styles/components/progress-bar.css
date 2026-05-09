@@ -1,0 +1,44 @@
+:host {
+  display: block;
+  --progress-height: 8px;
+  --color-solid: var(--color-primary);
+}
+
+.progress-track {
+  width: 100%;
+  height: var(--progress-height);
+  background: var(--border-subtle);
+  border-radius: calc(var(--progress-height) / 2);
+  overflow: hidden;
+}
+
+.progress-bar {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--progress-bar-color, var(--color-solid));
+  width: 0%;
+  transition: width 0.35s ease;
+  position: relative;
+}
+
+/* animated: shimmer sweep on top of the solid fill */
+:host([animated]) .progress-bar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: progress-shimmer 1.4s linear infinite;
+}
+
+@keyframes progress-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
