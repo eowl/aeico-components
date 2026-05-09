@@ -27,6 +27,7 @@
   content: '';
   position: absolute;
   inset: 0;
+  border-radius: inherit;
   background: linear-gradient(
     90deg,
     transparent 0%,
