@@ -57,6 +57,7 @@ export { default as Divider } from './divider';
 export { default as Card } from './card';
 export { default as Navbar } from './navbar';
 export { default as Detail } from './detail';
+export { default as ProgressBar } from './progress-bar';
 
 // Component types
 export type { SelectProps, SelectOption, SelectOptions, SelectOptionValue } from './select';
@@ -78,6 +79,7 @@ export type { BadgeProps, BadgeColor, BadgeSize, BadgeVariant } from './badge';
 export type { TagProps, TagColor, TagSize, TagVariant } from './tag';
 export type { DialogProps } from './dialog';
 export type { IconProps, IconSize, IconColor, IconDefinition, IconRegistryData } from './icon';
+export type { ProgressBarProps, ProgressBarColor } from './progress-bar';
 export type { IconButtonProps, IconButtonVariant, IconButtonSize } from './icon-button';
 export type { DividerProps } from './divider';
 export type { CardProps, CardVariant, CardColor } from './card';

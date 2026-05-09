@@ -1,0 +1,49 @@
+:host {
+  display: block;
+  --progress-height: 8px;
+  /* Override colorCSS default gray — same pattern as slider.css */
+  --color-solid: var(--color-primary);
+}
+
+.progress-label {
+  font-size: 0.875em;
+  margin-bottom: 6px;
+  color: var(--color-text-main, inherit);
+}
+
+.progress-track {
+  width: 100%;
+  height: var(--progress-height);
+  background: var(--border-subtle);
+  border-radius: calc(var(--progress-height) / 2);
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--color-solid);
+  width: 0%;
+  transition: width 0.35s ease;
+  position: relative;
+}
+
+/* animated: shimmer sweep on top of the solid fill */
+:host([animated]) .progress-bar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: progress-shimmer 1.4s linear infinite;
+}
+
+@keyframes progress-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
