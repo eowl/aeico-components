@@ -117,7 +117,7 @@ class RadioGroup extends AeicoField {
     return this.value ?? '';
   }
 
-  protected writeValue(_value: any): void {
+  protected writeValue(_value: string): void {
     // All visual state is driven by builder diff on next render;
     // for native radio inputs we need to sync checked immediately.
     // The render() reads this.value, so update handles the rest.
