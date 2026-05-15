@@ -55,18 +55,16 @@ class Button extends AeicoComponent {
   @prop({ type: Boolean })
   block?: boolean;
 
-  private buttonElement: HTMLButtonElement | null = null;
+  private _buttonElement: HTMLButtonElement | null = null;
+  private _slotElement: HTMLSlotElement | null = null;
   private _autoAriaLabel = false;
 
   protected onMounted() {
-    const slot = this.shadowRoot?.querySelector('slot:not([name])');
-    if (slot) this.listen(slot, 'slotchange', this._handleSlotChange);
     this._handleSlotChange();
   }
 
   private _handleSlotChange = () => {
-    const slot = this.shadowRoot?.querySelector('slot:not([name])') as HTMLSlotElement | null;
-    const nodes = slot?.assignedNodes() ?? [];
+    const nodes = this._slotElement?.assignedNodes() ?? [];
     // Icon-only: exactly one element (ae-icon) and no meaningful text nodes
     const elements = nodes.filter((n): n is Element => n.nodeType === Node.ELEMENT_NODE);
     const hasText = nodes.some(
@@ -92,7 +90,7 @@ class Button extends AeicoComponent {
 
   protected render() {
     return html(({ button, slot }) => {
-      this.buttonElement = button(
+      this._buttonElement = button(
         {
           type: this.type || 'button',
           disabled: this.disabled,
@@ -101,7 +99,7 @@ class Button extends AeicoComponent {
           'aria-disabled': this.disabled,
         },
         () => {
-          slot();
+          this._slotElement = slot({ '@slotchange': this._handleSlotChange });
         },
       );
     });
@@ -111,8 +109,8 @@ class Button extends AeicoComponent {
    * Programmatically click the button
    */
   click() {
-    if (!this.disabled && this.buttonElement) {
-      this.buttonElement.click();
+    if (!this.disabled && this._buttonElement) {
+      this._buttonElement.click();
     }
   }
 
@@ -120,8 +118,8 @@ class Button extends AeicoComponent {
    * Focus the button
    */
   focus() {
-    if (this.buttonElement) {
-      this.buttonElement.focus();
+    if (this._buttonElement) {
+      this._buttonElement.focus();
     }
   }
 
@@ -129,8 +127,8 @@ class Button extends AeicoComponent {
    * Blur the button
    */
   blur() {
-    if (this.buttonElement) {
-      this.buttonElement.blur();
+    if (this._buttonElement) {
+      this._buttonElement.blur();
     }
   }
 }

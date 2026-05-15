@@ -74,8 +74,6 @@ class Navbar extends AeicoComponent {
 
   connectedCallback() {
     super.connectedCallback();
-    // Close menu when a nav link is clicked on mobile
-    this.listen('click', this._handleInnerClick);
     // Close menu when clicking outside the navbar
     this._outsideClickHandler = (e: MouseEvent) => {
       // Event retargeting in shadow DOM means e.target is the host element
@@ -119,7 +117,7 @@ class Navbar extends AeicoComponent {
 
   protected render() {
     return html(({ div, nav, button, span, slot }) => {
-      div({ class: 'inner' }, () => {
+      div({ class: 'inner', '@click': this._handleInnerClick }, () => {
         div({ part: 'brand' }, () => {
           slot({ name: 'brand' });
         });
