@@ -66,7 +66,6 @@ class Tabs extends AeicoComponent {
 
   connectedCallback() {
     super.connectedCallback();
-    this.listen('_tab-click', this._handleTabClick);
     this._observer = new MutationObserver(() => this.update());
     this._observer.observe(this, { childList: true });
   }
@@ -113,7 +112,7 @@ class Tabs extends AeicoComponent {
 
   protected render() {
     return html(({ nav, div, slot }) => {
-      nav({ part: 'tab-nav', role: 'tablist' }, () => {
+      nav({ part: 'tab-nav', role: 'tablist', '@_tab-click': this._handleTabClick }, () => {
         slot({ name: 'tab' });
       });
       div({ part: 'panels' }, () => {

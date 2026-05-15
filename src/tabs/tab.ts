@@ -19,7 +19,6 @@ class Tab extends AeicoComponent {
   connectedCallback() {
     this.setAttribute('slot', 'tab');
     super.connectedCallback();
-    this.listen('click', this._handleClick);
   }
 
   private _handleClick = () => {
@@ -42,6 +41,7 @@ class Tab extends AeicoComponent {
           'aria-selected': this.active,
           'aria-disabled': this.disabled,
           disabled: this.disabled,
+          '@click': this._handleClick,
         },
         () => {
           slot();
