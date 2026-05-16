@@ -147,6 +147,28 @@
       font-size: 0.8rem;
       text-decoration: underline;
     }
+
+    /* ── Layout demo helpers ── */
+    .layout-box {
+      background: rgba(99, 102, 241, 0.12);
+      border: 1px solid rgba(99, 102, 241, 0.35);
+      border-radius: 4px;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.8rem;
+      color: var(--accent);
+      font-family: monospace;
+      white-space: nowrap;
+    }
+    .layout-box.tall {
+      padding-block: 1.5rem;
+      text-align: center;
+    }
+    .layout-demo-wrap {
+      border: 1px dashed var(--border-color);
+      border-radius: 6px;
+      padding: 0.75rem;
+      margin-top: 0.75rem;
+    }
   </style>
 </head>
 <body>
@@ -2070,6 +2092,167 @@
         <ae-progress-bar value="45" color="secondary" animated></ae-progress-bar>
       </div>
     </div>
+
+    <!-- Layout Utilities -->
+    <div class="section">
+      <h2>Layout Utilities</h2>
+      <span class="tag">layout.css</span>
+
+      <!-- Container variants -->
+      <div class="demo-group">
+        <label>Container variants — <code>.container-sm</code> / <code>.container-md</code> / <code>.container</code> / <code>.container-xl</code></label>
+        <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.8rem; font-family: monospace;">
+          <div class="container-sm"  style="background: rgba(99,102,241,.08); border: 1px solid rgba(99,102,241,.3); border-radius:4px; padding:0.4rem 0.75rem;">container-sm  — max 720px</div>
+          <div class="container-md"  style="background: rgba(99,102,241,.08); border: 1px solid rgba(99,102,241,.3); border-radius:4px; padding:0.4rem 0.75rem;">container-md  — max 960px</div>
+          <div class="container"     style="background: rgba(99,102,241,.12); border: 1px solid rgba(99,102,241,.4); border-radius:4px; padding:0.4rem 0.75rem;">container     — max 1280px (default)</div>
+          <div class="container-xl" style="background: rgba(99,102,241,.08); border: 1px solid rgba(99,102,241,.3); border-radius:4px; padding:0.4rem 0.75rem;">container-xl  — max 1440px</div>
+        </div>
+      </div>
+
+      <!-- Stack -->
+      <div class="demo-group">
+        <label><code>.stack</code> — vertical flex column, gap controlled by <code>--stack-gap</code></label>
+        <div class="layout-demo-wrap">
+          <div class="stack stack-2">
+            <div class="layout-box">.stack.stack-2 (8px gap)</div>
+            <div class="layout-box">item 2</div>
+            <div class="layout-box">item 3</div>
+          </div>
+        </div>
+        <label><code>.stack.stack-6</code> with <code>.stack-center</code> alignment</label>
+        <div class="layout-demo-wrap">
+          <div class="stack stack-6 stack-center">
+            <div class="layout-box">.stack.stack-6.stack-center (24px gap)</div>
+            <div class="layout-box">item 2</div>
+            <div class="layout-box">item 3</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cluster -->
+      <div class="demo-group">
+        <label><code>.cluster</code> — horizontal flex-wrap, gap controlled by <code>--cluster-gap</code></label>
+        <div class="layout-demo-wrap">
+          <div class="cluster cluster-2">
+            <div class="layout-box">.cluster.cluster-2</div>
+            <div class="layout-box">wraps</div>
+            <div class="layout-box">automatically</div>
+            <div class="layout-box">on narrow screens</div>
+            <div class="layout-box">item 5</div>
+            <div class="layout-box">item 6</div>
+          </div>
+        </div>
+        <label><code>.cluster.cluster-between</code> — space-between justify</label>
+        <div class="layout-demo-wrap">
+          <div class="cluster cluster-4 cluster-between">
+            <div class="layout-box">left</div>
+            <div class="layout-box">middle</div>
+            <div class="layout-box">right</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grid fixed columns -->
+      <div class="demo-group">
+        <label><code>.grid.grid-cols-3</code> — fixed 3-column grid</label>
+        <div class="layout-demo-wrap">
+          <div class="grid grid-cols-3">
+            <div class="layout-box tall">1</div>
+            <div class="layout-box tall">2</div>
+            <div class="layout-box tall">3</div>
+            <div class="layout-box tall">4</div>
+            <div class="layout-box tall">5</div>
+            <div class="layout-box tall">6</div>
+          </div>
+        </div>
+        <label><code>.grid.grid-cols-4</code> with custom <code>--grid-gap</code></label>
+        <div class="layout-demo-wrap">
+          <div class="grid grid-cols-4" style="--grid-gap: var(--space-2)">
+            <div class="layout-box tall">1</div>
+            <div class="layout-box tall">2</div>
+            <div class="layout-box tall">3</div>
+            <div class="layout-box tall">4</div>
+            <div class="layout-box tall">5</div>
+            <div class="layout-box tall">6</div>
+            <div class="layout-box tall">7</div>
+            <div class="layout-box tall">8</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grid auto -->
+      <div class="demo-group">
+        <label><code>.grid-auto</code> — auto-fill, each column min <code>--grid-min-col</code> (default 240px). Resize the window to see columns reflow.</label>
+        <div class="layout-demo-wrap">
+          <div class="grid-auto">
+            <div class="layout-box tall">auto 1</div>
+            <div class="layout-box tall">auto 2</div>
+            <div class="layout-box tall">auto 3</div>
+            <div class="layout-box tall">auto 4</div>
+            <div class="layout-box tall">auto 5</div>
+          </div>
+        </div>
+        <label><code>.grid-auto</code> with <code>--grid-min-col: 160px</code></label>
+        <div class="layout-demo-wrap">
+          <div class="grid-auto" style="--grid-min-col: 160px">
+            <div class="layout-box tall">160px 1</div>
+            <div class="layout-box tall">160px 2</div>
+            <div class="layout-box tall">160px 3</div>
+            <div class="layout-box tall">160px 4</div>
+            <div class="layout-box tall">160px 5</div>
+            <div class="layout-box tall">160px 6</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Responsive grid -->
+      <div class="demo-group">
+        <label>Responsive grid — <code>.grid.grid-cols-1.grid-cols-md-2.grid-cols-lg-3</code>. Resize window: 1col → 2col (≥768px) → 3col (≥992px).</label>
+        <div class="layout-demo-wrap">
+          <div class="grid grid-cols-1 grid-cols-md-2 grid-cols-lg-3">
+            <div class="layout-box tall">responsive 1</div>
+            <div class="layout-box tall">responsive 2</div>
+            <div class="layout-box tall">responsive 3</div>
+            <div class="layout-box tall">responsive 4</div>
+            <div class="layout-box tall">responsive 5</div>
+            <div class="layout-box tall">responsive 6</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gap utilities -->
+      <div class="demo-group">
+        <label><code>.gap-{n}</code> — gap utilities applied to a flex cluster</label>
+        <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.5rem;">
+          <div style="display:flex; align-items:center; gap:0.75rem;">
+            <code style="min-width:6rem; font-size:0.75rem; color:var(--text-secondary)">.gap-1</code>
+            <div class="cluster gap-1">
+              <div class="layout-box">a</div><div class="layout-box">b</div><div class="layout-box">c</div><div class="layout-box">d</div>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.75rem;">
+            <code style="min-width:6rem; font-size:0.75rem; color:var(--text-secondary)">.gap-4</code>
+            <div class="cluster gap-4">
+              <div class="layout-box">a</div><div class="layout-box">b</div><div class="layout-box">c</div><div class="layout-box">d</div>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.75rem;">
+            <code style="min-width:6rem; font-size:0.75rem; color:var(--text-secondary)">.gap-8</code>
+            <div class="cluster gap-8">
+              <div class="layout-box">a</div><div class="layout-box">b</div><div class="layout-box">c</div><div class="layout-box">d</div>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.75rem;">
+            <code style="min-width:6rem; font-size:0.75rem; color:var(--text-secondary)">.gap-x-6 .gap-y-2</code>
+            <div class="grid grid-cols-4 gap-x-6 gap-y-2">
+              <div class="layout-box">a</div><div class="layout-box">b</div><div class="layout-box">c</div><div class="layout-box">d</div>
+              <div class="layout-box">e</div><div class="layout-box">f</div><div class="layout-box">g</div><div class="layout-box">h</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /Layout Utilities -->
 
   </div><!-- .content -->
 
