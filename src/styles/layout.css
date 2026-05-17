@@ -17,6 +17,19 @@
 :root {
   --container-max-width: 1280px;
   --container-padding-x: 1.5rem;
+
+  /* Spacing scale — numeric steps based on a 4px unit.
+   * Usage: gap: var(--space-4);  padding: var(--space-2) var(--space-6);
+   */
+  --space-1:  0.25rem;  /*  4px */
+  --space-2:  0.5rem;   /*  8px */
+  --space-3:  0.75rem;  /* 12px */
+  --space-4:  1rem;     /* 16px */
+  --space-6:  1.5rem;   /* 24px */
+  --space-8:  2rem;     /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
 }
 
 /*
@@ -41,3 +54,218 @@
   padding-inline: var(--container-padding-x, 1.5rem);
   box-sizing: border-box;
 }
+
+/**
+ * Container size variants
+ *
+ * Narrower and wider alternatives to .container, sharing the same box model.
+ * Override the width tokens globally to affect all instances at once:
+ *   --container-sm-max-width  (default 720px)
+ *   --container-md-max-width  (default 960px)
+ *   --container-xl-max-width  (default 1440px)
+ */
+:root {
+  --container-sm-max-width:  720px;
+  --container-md-max-width:  960px;
+  --container-xl-max-width: 1440px;
+}
+
+.container-sm,
+.container-md,
+.container-xl {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: var(--container-padding-x, 1.5rem);
+  box-sizing: border-box;
+}
+
+.container-sm  { max-width: var(--container-sm-max-width,  720px); }
+.container-md  { max-width: var(--container-md-max-width,  960px); }
+.container-xl  { max-width: var(--container-xl-max-width, 1440px); }
+
+/**
+ * Stack
+ *
+ * Vertical flex container. Children are laid out top-to-bottom with a
+ * consistent gap driven by --stack-gap (defaults to --space-4 / 16px).
+ *
+ * Override per-component:  .my-section { --stack-gap: var(--space-6) }
+ * Or use a gap modifier:   <div class="stack stack-6">
+ *
+ * Gap modifier scale (maps to spacing tokens):
+ *   .stack-1  4px    .stack-2  8px    .stack-3  12px   .stack-4  16px
+ *   .stack-6  24px   .stack-8  32px   .stack-10 40px   .stack-12 48px   .stack-16 64px
+ */
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--stack-gap, var(--space-4, 1rem));
+}
+
+.stack-1  { --stack-gap: var(--space-1,  0.25rem); }
+.stack-2  { --stack-gap: var(--space-2,  0.5rem);  }
+.stack-3  { --stack-gap: var(--space-3,  0.75rem); }
+.stack-4  { --stack-gap: var(--space-4,  1rem);    }
+.stack-6  { --stack-gap: var(--space-6,  1.5rem);  }
+.stack-8  { --stack-gap: var(--space-8,  2rem);    }
+.stack-10 { --stack-gap: var(--space-10, 2.5rem);  }
+.stack-12 { --stack-gap: var(--space-12, 3rem);    }
+.stack-16 { --stack-gap: var(--space-16, 4rem);    }
+
+/* Alignment modifiers */
+.stack-center  { align-items: center; }
+.stack-stretch { align-items: stretch; }
+.stack-start   { align-items: flex-start; }
+.stack-end     { align-items: flex-end; }
+
+/**
+ * Cluster
+ *
+ * Horizontal flex container with wrapping. Items flow left-to-right and wrap
+ * to the next line when the container is too narrow.
+ *
+ * Override per-component:  .my-toolbar { --cluster-gap: var(--space-2) }
+ * Or use a gap modifier:   <div class="cluster cluster-2">
+ *
+ * Justify modifiers: .cluster-between  .cluster-center  .cluster-end
+ */
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cluster-gap, var(--space-4, 1rem));
+  align-items: var(--cluster-align, center);
+  justify-content: var(--cluster-justify, flex-start);
+}
+
+.cluster-1  { --cluster-gap: var(--space-1,  0.25rem); }
+.cluster-2  { --cluster-gap: var(--space-2,  0.5rem);  }
+.cluster-3  { --cluster-gap: var(--space-3,  0.75rem); }
+.cluster-4  { --cluster-gap: var(--space-4,  1rem);    }
+.cluster-6  { --cluster-gap: var(--space-6,  1.5rem);  }
+.cluster-8  { --cluster-gap: var(--space-8,  2rem);    }
+.cluster-10 { --cluster-gap: var(--space-10, 2.5rem);  }
+.cluster-12 { --cluster-gap: var(--space-12, 3rem);    }
+.cluster-16 { --cluster-gap: var(--space-16, 4rem);    }
+
+/* Justify modifiers */
+.cluster-between { --cluster-justify: space-between; }
+.cluster-center  { --cluster-justify: center; }
+.cluster-end     { --cluster-justify: flex-end; }
+
+/**
+ * Grid
+ *
+ * CSS Grid container driven by two custom properties:
+ *   --grid-cols  number of equal columns (default 1)
+ *   --grid-gap   gap between cells       (default --space-4 / 16px)
+ *
+ * Fixed-column presets:
+ *   <div class="grid grid-cols-3">
+ *   Override inline: style="--grid-cols: 5; --grid-gap: var(--space-6)"
+ *
+ * Auto-responsive variant (.grid-auto):
+ *   Fills as many columns as fit; minimum column width set by --grid-min-col.
+ *   <div class="grid-auto" style="--grid-min-col: 200px">
+ *
+ * Responsive column modifiers (breakpoints: sm≥576 md≥768 lg≥992 xl≥1200):
+ *   <div class="grid grid-cols-1 grid-cols-md-2 grid-cols-lg-3">
+ */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-cols, 1), 1fr);
+  gap: var(--grid-gap, var(--space-4, 1rem));
+}
+
+/* Fixed-column presets */
+.grid-cols-2  { --grid-cols: 2;  }
+.grid-cols-3  { --grid-cols: 3;  }
+.grid-cols-4  { --grid-cols: 4;  }
+.grid-cols-6  { --grid-cols: 6;  }
+.grid-cols-12 { --grid-cols: 12; }
+
+/* Auto-responsive grid */
+.grid-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--grid-min-col, 240px), 1fr));
+  gap: var(--grid-gap, var(--space-4, 1rem));
+}
+
+/* Responsive column modifiers — sm ≥ 576px */
+@media (min-width: 576px) {
+  .grid-cols-sm-1  { --grid-cols: 1;  }
+  .grid-cols-sm-2  { --grid-cols: 2;  }
+  .grid-cols-sm-3  { --grid-cols: 3;  }
+  .grid-cols-sm-4  { --grid-cols: 4;  }
+}
+
+/* Responsive column modifiers — md ≥ 768px */
+@media (min-width: 768px) {
+  .grid-cols-md-1  { --grid-cols: 1;  }
+  .grid-cols-md-2  { --grid-cols: 2;  }
+  .grid-cols-md-3  { --grid-cols: 3;  }
+  .grid-cols-md-4  { --grid-cols: 4;  }
+  .grid-cols-md-6  { --grid-cols: 6;  }
+}
+
+/* Responsive column modifiers — lg ≥ 992px */
+@media (min-width: 992px) {
+  .grid-cols-lg-1  { --grid-cols: 1;  }
+  .grid-cols-lg-2  { --grid-cols: 2;  }
+  .grid-cols-lg-3  { --grid-cols: 3;  }
+  .grid-cols-lg-4  { --grid-cols: 4;  }
+  .grid-cols-lg-6  { --grid-cols: 6;  }
+  .grid-cols-lg-12 { --grid-cols: 12; }
+}
+
+/* Responsive column modifiers — xl ≥ 1200px */
+@media (min-width: 1200px) {
+  .grid-cols-xl-1  { --grid-cols: 1;  }
+  .grid-cols-xl-2  { --grid-cols: 2;  }
+  .grid-cols-xl-3  { --grid-cols: 3;  }
+  .grid-cols-xl-4  { --grid-cols: 4;  }
+  .grid-cols-xl-6  { --grid-cols: 6;  }
+  .grid-cols-xl-12 { --grid-cols: 12; }
+}
+
+/**
+ * Gap utilities
+ *
+ * Apply to any flex or grid container to set gap via spacing tokens.
+ *   .gap-{n}    both row and column gap
+ *   .gap-x-{n}  column gap only
+ *   .gap-y-{n}  row gap only
+ *
+ * Available steps: 0 1 2 3 4 6 8 10 12 16
+ */
+.gap-0  { gap: 0; }
+.gap-1  { gap: var(--space-1,  0.25rem); }
+.gap-2  { gap: var(--space-2,  0.5rem);  }
+.gap-3  { gap: var(--space-3,  0.75rem); }
+.gap-4  { gap: var(--space-4,  1rem);    }
+.gap-6  { gap: var(--space-6,  1.5rem);  }
+.gap-8  { gap: var(--space-8,  2rem);    }
+.gap-10 { gap: var(--space-10, 2.5rem);  }
+.gap-12 { gap: var(--space-12, 3rem);    }
+.gap-16 { gap: var(--space-16, 4rem);    }
+
+.gap-x-0  { column-gap: 0; }
+.gap-x-1  { column-gap: var(--space-1,  0.25rem); }
+.gap-x-2  { column-gap: var(--space-2,  0.5rem);  }
+.gap-x-3  { column-gap: var(--space-3,  0.75rem); }
+.gap-x-4  { column-gap: var(--space-4,  1rem);    }
+.gap-x-6  { column-gap: var(--space-6,  1.5rem);  }
+.gap-x-8  { column-gap: var(--space-8,  2rem);    }
+.gap-x-10 { column-gap: var(--space-10, 2.5rem);  }
+.gap-x-12 { column-gap: var(--space-12, 3rem);    }
+.gap-x-16 { column-gap: var(--space-16, 4rem);    }
+
+.gap-y-0  { row-gap: 0; }
+.gap-y-1  { row-gap: var(--space-1,  0.25rem); }
+.gap-y-2  { row-gap: var(--space-2,  0.5rem);  }
+.gap-y-3  { row-gap: var(--space-3,  0.75rem); }
+.gap-y-4  { row-gap: var(--space-4,  1rem);    }
+.gap-y-6  { row-gap: var(--space-6,  1.5rem);  }
+.gap-y-8  { row-gap: var(--space-8,  2rem);    }
+.gap-y-10 { row-gap: var(--space-10, 2.5rem);  }
+.gap-y-12 { row-gap: var(--space-12, 3rem);    }
+.gap-y-16 { row-gap: var(--space-16, 4rem);    }
