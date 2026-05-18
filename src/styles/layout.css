@@ -1,4 +1,4 @@
-/* 
+/*
    layout.css — Light DOM utility classes
    This file is for use in the user's light DOM (regular HTML),
    NOT imported by any Web Component internally.
@@ -8,15 +8,24 @@
    or:
      <link rel="stylesheet" href="path/to/layout.css">
 
+   All utility rules live inside @layer aeico-layout so that your own
+   un-layered (or later-layered) styles always override them without !important.
+
    The layout tokens defined here on :root are intentionally mirrored
    in variables.css (:root, :host) so that ae-navbar's shadow DOM
    inner content also aligns automatically.
 */
 
-/* Layout tokens — defined on :root so all light DOM elements can use them */
+/**
+ * Tokens — defined on :root outside @layer so they are always resolvable,
+ * even when the cascade layer order is re-arranged by the consuming app.
+ */
 :root {
-  --container-max-width: 1280px;
-  --container-padding-x: 1.5rem;
+  --container-max-width:    1280px;
+  --container-padding-x:    1.5rem;
+  --container-sm-max-width:  720px;
+  --container-md-max-width:  960px;
+  --container-xl-max-width: 1440px;
 
   /* Spacing scale — numeric steps based on a 4px unit.
    * Usage: gap: var(--space-4);  padding: var(--space-2) var(--space-6);
@@ -32,240 +41,435 @@
   --space-16: 4rem;     /* 64px */
 }
 
-/*
-   .container
-   Fixed max-width, centred, with horizontal padding.
-   Same padding-x as ae-navbar's inner content area.
-*/
-.container {
-  width: 100%;
-  max-width: var(--container-max-width, 1280px);
-  margin-inline: auto;
-  padding-inline: var(--container-padding-x, 1.5rem);
-  box-sizing: border-box;
-}
-
-/* 
-   .container-fluid
-   Full-width, only applies horizontal padding.
-*/
-.container-fluid {
-  width: 100%;
-  padding-inline: var(--container-padding-x, 1.5rem);
-  box-sizing: border-box;
-}
-
 /**
- * Container size variants
- *
- * Narrower and wider alternatives to .container, sharing the same box model.
- * Override the width tokens globally to affect all instances at once:
- *   --container-sm-max-width  (default 720px)
- *   --container-md-max-width  (default 960px)
- *   --container-xl-max-width  (default 1440px)
+ * @layer aeico-layout — all utility rules live here.
+ * Unlayered user styles win automatically. To override from a named layer,
+ * declare the order before importing this file:
+ *   @layer aeico-layout, your-layer;
  */
-:root {
-  --container-sm-max-width:  720px;
-  --container-md-max-width:  960px;
-  --container-xl-max-width: 1440px;
-}
+@layer aeico-layout {
 
-.container-sm,
-.container-md,
-.container-xl {
-  width: 100%;
-  margin-inline: auto;
-  padding-inline: var(--container-padding-x, 1.5rem);
-  box-sizing: border-box;
-}
+  /* #region Container */
 
-.container-sm  { max-width: var(--container-sm-max-width,  720px); }
-.container-md  { max-width: var(--container-md-max-width,  960px); }
-.container-xl  { max-width: var(--container-xl-max-width, 1440px); }
+  /*
+   * .container
+   * Fixed max-width, centred, with horizontal padding.
+   * Same padding-x as ae-navbar's inner content area.
+   */
+  .container {
+    width: 100%;
+    max-width: var(--container-max-width, 1280px);
+    margin-inline: auto;
+    padding-inline: var(--container-padding-x, 1.5rem);
+    box-sizing: border-box;
+  }
 
-/**
- * Stack
- *
- * Vertical flex container. Children are laid out top-to-bottom with a
- * consistent gap driven by --stack-gap (defaults to --space-4 / 16px).
- *
- * Override per-component:  .my-section { --stack-gap: var(--space-6) }
- * Or use a gap modifier:   <div class="stack stack-6">
- *
- * Gap modifier scale (maps to spacing tokens):
- *   .stack-1  4px    .stack-2  8px    .stack-3  12px   .stack-4  16px
- *   .stack-6  24px   .stack-8  32px   .stack-10 40px   .stack-12 48px   .stack-16 64px
- */
-.stack {
-  display: flex;
-  flex-direction: column;
-  gap: var(--stack-gap, var(--space-4, 1rem));
-}
+  /*
+   * .container-fluid
+   * Full-width, only applies horizontal padding.
+   */
+  .container-fluid {
+    width: 100%;
+    padding-inline: var(--container-padding-x, 1.5rem);
+    box-sizing: border-box;
+  }
 
-.stack-1  { --stack-gap: var(--space-1,  0.25rem); }
-.stack-2  { --stack-gap: var(--space-2,  0.5rem);  }
-.stack-3  { --stack-gap: var(--space-3,  0.75rem); }
-.stack-4  { --stack-gap: var(--space-4,  1rem);    }
-.stack-6  { --stack-gap: var(--space-6,  1.5rem);  }
-.stack-8  { --stack-gap: var(--space-8,  2rem);    }
-.stack-10 { --stack-gap: var(--space-10, 2.5rem);  }
-.stack-12 { --stack-gap: var(--space-12, 3rem);    }
-.stack-16 { --stack-gap: var(--space-16, 4rem);    }
+  /**
+   * Container size variants
+   *
+   * Narrower and wider alternatives to .container, sharing the same box model.
+   * Override the width tokens globally to affect all instances at once:
+   *   --container-sm-max-width  (default 720px)
+   *   --container-md-max-width  (default 960px)
+   *   --container-xl-max-width  (default 1440px)
+   */
+  .container-sm,
+  .container-md,
+  .container-xl {
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: var(--container-padding-x, 1.5rem);
+    box-sizing: border-box;
+  }
 
-/* Alignment modifiers */
-.stack-center  { align-items: center; }
-.stack-stretch { align-items: stretch; }
-.stack-start   { align-items: flex-start; }
-.stack-end     { align-items: flex-end; }
+  .container-sm { max-width: var(--container-sm-max-width,  720px); }
+  .container-md { max-width: var(--container-md-max-width,  960px); }
+  .container-xl { max-width: var(--container-xl-max-width, 1440px); }
 
-/**
- * Cluster
- *
- * Horizontal flex container with wrapping. Items flow left-to-right and wrap
- * to the next line when the container is too narrow.
- *
- * Override per-component:  .my-toolbar { --cluster-gap: var(--space-2) }
- * Or use a gap modifier:   <div class="cluster cluster-2">
- *
- * Justify modifiers: .cluster-between  .cluster-center  .cluster-end
- */
-.cluster {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--cluster-gap, var(--space-4, 1rem));
-  align-items: var(--cluster-align, center);
-  justify-content: var(--cluster-justify, flex-start);
-}
+  /* #endregion */
 
-.cluster-1  { --cluster-gap: var(--space-1,  0.25rem); }
-.cluster-2  { --cluster-gap: var(--space-2,  0.5rem);  }
-.cluster-3  { --cluster-gap: var(--space-3,  0.75rem); }
-.cluster-4  { --cluster-gap: var(--space-4,  1rem);    }
-.cluster-6  { --cluster-gap: var(--space-6,  1.5rem);  }
-.cluster-8  { --cluster-gap: var(--space-8,  2rem);    }
-.cluster-10 { --cluster-gap: var(--space-10, 2.5rem);  }
-.cluster-12 { --cluster-gap: var(--space-12, 3rem);    }
-.cluster-16 { --cluster-gap: var(--space-16, 4rem);    }
+  /* #region Stack */
 
-/* Justify modifiers */
-.cluster-between { --cluster-justify: space-between; }
-.cluster-center  { --cluster-justify: center; }
-.cluster-end     { --cluster-justify: flex-end; }
+  /**
+   * Stack
+   *
+   * Vertical flex container. Children are laid out top-to-bottom with a
+   * consistent gap driven by --stack-gap (defaults to --space-4 / 16px).
+   *
+   * Override per-component:  .my-section { --stack-gap: var(--space-6) }
+   * Or use a gap modifier:   <div class="stack stack-6">
+   *
+   * Gap modifier scale (maps to spacing tokens):
+   *   .stack-1  4px    .stack-2  8px    .stack-3  12px   .stack-4  16px
+   *   .stack-6  24px   .stack-8  32px   .stack-10 40px   .stack-12 48px   .stack-16 64px
+   */
+  .stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--stack-gap, var(--space-4, 1rem));
+  }
 
-/**
- * Grid
- *
- * CSS Grid container driven by two custom properties:
- *   --grid-cols  number of equal columns (default 1)
- *   --grid-gap   gap between cells       (default --space-4 / 16px)
- *
- * Fixed-column presets:
- *   <div class="grid grid-cols-3">
- *   Override inline: style="--grid-cols: 5; --grid-gap: var(--space-6)"
- *
- * Auto-responsive variant (.grid-auto):
- *   Fills as many columns as fit; minimum column width set by --grid-min-col.
- *   <div class="grid-auto" style="--grid-min-col: 200px">
- *
- * Responsive column modifiers (breakpoints: sm≥576 md≥768 lg≥992 xl≥1200):
- *   <div class="grid grid-cols-1 grid-cols-md-2 grid-cols-lg-3">
- */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(var(--grid-cols, 1), 1fr);
-  gap: var(--grid-gap, var(--space-4, 1rem));
-}
+  /* Reset block margins on direct children — prevents h1/p/ul from adding
+     unintended spacing on top of the flex gap. */
+  .stack > * { margin-block: 0; margin-inline: 0; }
 
-/* Fixed-column presets */
-.grid-cols-2  { --grid-cols: 2;  }
-.grid-cols-3  { --grid-cols: 3;  }
-.grid-cols-4  { --grid-cols: 4;  }
-.grid-cols-6  { --grid-cols: 6;  }
-.grid-cols-12 { --grid-cols: 12; }
+  /* Default alignment — zero specificity so a single class rule overrides it. */
+  :where(.stack) { align-items: stretch; }
 
-/* Auto-responsive grid */
-.grid-auto {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(var(--grid-min-col, 240px), 1fr));
-  gap: var(--grid-gap, var(--space-4, 1rem));
-}
+  .stack-1  { --stack-gap: var(--space-1,  0.25rem); }
+  .stack-2  { --stack-gap: var(--space-2,  0.5rem);  }
+  .stack-3  { --stack-gap: var(--space-3,  0.75rem); }
+  .stack-4  { --stack-gap: var(--space-4,  1rem);    }
+  .stack-6  { --stack-gap: var(--space-6,  1.5rem);  }
+  .stack-8  { --stack-gap: var(--space-8,  2rem);    }
+  .stack-10 { --stack-gap: var(--space-10, 2.5rem);  }
+  .stack-12 { --stack-gap: var(--space-12, 3rem);    }
+  .stack-16 { --stack-gap: var(--space-16, 4rem);    }
 
-/* Responsive column modifiers — sm ≥ 576px */
-@media (min-width: 576px) {
-  .grid-cols-sm-1  { --grid-cols: 1;  }
-  .grid-cols-sm-2  { --grid-cols: 2;  }
-  .grid-cols-sm-3  { --grid-cols: 3;  }
-  .grid-cols-sm-4  { --grid-cols: 4;  }
-}
+  /* Alignment modifiers */
+  .stack-center  { align-items: center; }
+  .stack-stretch { align-items: stretch; }
+  .stack-start   { align-items: flex-start; }
+  .stack-end     { align-items: flex-end; }
 
-/* Responsive column modifiers — md ≥ 768px */
-@media (min-width: 768px) {
-  .grid-cols-md-1  { --grid-cols: 1;  }
-  .grid-cols-md-2  { --grid-cols: 2;  }
-  .grid-cols-md-3  { --grid-cols: 3;  }
-  .grid-cols-md-4  { --grid-cols: 4;  }
-  .grid-cols-md-6  { --grid-cols: 6;  }
-}
+  /* #endregion */
 
-/* Responsive column modifiers — lg ≥ 992px */
-@media (min-width: 992px) {
-  .grid-cols-lg-1  { --grid-cols: 1;  }
-  .grid-cols-lg-2  { --grid-cols: 2;  }
-  .grid-cols-lg-3  { --grid-cols: 3;  }
-  .grid-cols-lg-4  { --grid-cols: 4;  }
-  .grid-cols-lg-6  { --grid-cols: 6;  }
-  .grid-cols-lg-12 { --grid-cols: 12; }
-}
+  /* #region Cluster */
 
-/* Responsive column modifiers — xl ≥ 1200px */
-@media (min-width: 1200px) {
-  .grid-cols-xl-1  { --grid-cols: 1;  }
-  .grid-cols-xl-2  { --grid-cols: 2;  }
-  .grid-cols-xl-3  { --grid-cols: 3;  }
-  .grid-cols-xl-4  { --grid-cols: 4;  }
-  .grid-cols-xl-6  { --grid-cols: 6;  }
-  .grid-cols-xl-12 { --grid-cols: 12; }
-}
+  /**
+   * Cluster
+   *
+   * Horizontal flex container with wrapping. Items flow left-to-right and wrap
+   * to the next line when the container is too narrow.
+   *
+   * Override per-component:  .my-toolbar { --cluster-gap: var(--space-2) }
+   * Or use a gap modifier:   <div class="cluster cluster-2">
+   *
+   * Inline token overrides (no extra class needed):
+   *   style="--cluster-align: flex-start; --cluster-justify: center"
+   *
+   * Justify modifiers: .cluster-between  .cluster-center  .cluster-end
+   */
+  .cluster {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--cluster-gap, var(--space-4, 1rem));
+  }
 
-/**
- * Gap utilities
- *
- * Apply to any flex or grid container to set gap via spacing tokens.
- *   .gap-{n}    both row and column gap
- *   .gap-x-{n}  column gap only
- *   .gap-y-{n}  row gap only
- *
- * Available steps: 0 1 2 3 4 6 8 10 12 16
- */
-.gap-0  { gap: 0; }
-.gap-1  { gap: var(--space-1,  0.25rem); }
-.gap-2  { gap: var(--space-2,  0.5rem);  }
-.gap-3  { gap: var(--space-3,  0.75rem); }
-.gap-4  { gap: var(--space-4,  1rem);    }
-.gap-6  { gap: var(--space-6,  1.5rem);  }
-.gap-8  { gap: var(--space-8,  2rem);    }
-.gap-10 { gap: var(--space-10, 2.5rem);  }
-.gap-12 { gap: var(--space-12, 3rem);    }
-.gap-16 { gap: var(--space-16, 4rem);    }
+  /* Defaults — override via CSS custom properties or modifier classes.
+     :where() keeps specificity at zero so a plain class rule always wins. */
+  :where(.cluster) {
+    align-items: var(--cluster-align, center);
+    justify-content: var(--cluster-justify, flex-start);
+  }
 
-.gap-x-0  { column-gap: 0; }
-.gap-x-1  { column-gap: var(--space-1,  0.25rem); }
-.gap-x-2  { column-gap: var(--space-2,  0.5rem);  }
-.gap-x-3  { column-gap: var(--space-3,  0.75rem); }
-.gap-x-4  { column-gap: var(--space-4,  1rem);    }
-.gap-x-6  { column-gap: var(--space-6,  1.5rem);  }
-.gap-x-8  { column-gap: var(--space-8,  2rem);    }
-.gap-x-10 { column-gap: var(--space-10, 2.5rem);  }
-.gap-x-12 { column-gap: var(--space-12, 3rem);    }
-.gap-x-16 { column-gap: var(--space-16, 4rem);    }
+  .cluster-1  { --cluster-gap: var(--space-1,  0.25rem); }
+  .cluster-2  { --cluster-gap: var(--space-2,  0.5rem);  }
+  .cluster-3  { --cluster-gap: var(--space-3,  0.75rem); }
+  .cluster-4  { --cluster-gap: var(--space-4,  1rem);    }
+  .cluster-6  { --cluster-gap: var(--space-6,  1.5rem);  }
+  .cluster-8  { --cluster-gap: var(--space-8,  2rem);    }
+  .cluster-10 { --cluster-gap: var(--space-10, 2.5rem);  }
+  .cluster-12 { --cluster-gap: var(--space-12, 3rem);    }
+  .cluster-16 { --cluster-gap: var(--space-16, 4rem);    }
 
-.gap-y-0  { row-gap: 0; }
-.gap-y-1  { row-gap: var(--space-1,  0.25rem); }
-.gap-y-2  { row-gap: var(--space-2,  0.5rem);  }
-.gap-y-3  { row-gap: var(--space-3,  0.75rem); }
-.gap-y-4  { row-gap: var(--space-4,  1rem);    }
-.gap-y-6  { row-gap: var(--space-6,  1.5rem);  }
-.gap-y-8  { row-gap: var(--space-8,  2rem);    }
-.gap-y-10 { row-gap: var(--space-10, 2.5rem);  }
-.gap-y-12 { row-gap: var(--space-12, 3rem);    }
-.gap-y-16 { row-gap: var(--space-16, 4rem);    }
+  /* Justify modifiers */
+  .cluster-between { --cluster-justify: space-between; }
+  .cluster-center  { --cluster-justify: center; }
+  .cluster-end     { --cluster-justify: flex-end; }
+
+  /* #endregion */
+
+  /* #region Grid */
+
+  /**
+   * Grid
+   *
+   * CSS Grid container driven by two custom properties:
+   *   --grid-cols  number of equal columns (default 1)
+   *   --grid-gap   gap between cells       (default --space-4 / 16px)
+   *
+   * Fixed-column presets:
+   *   <div class="grid grid-cols-3">
+   *   Override inline: style="--grid-cols: 5; --grid-gap: var(--space-6)"
+   *
+   * Auto-responsive variant (.grid-auto):
+   *   Fills as many columns as fit; minimum column width set by --grid-min-col.
+   *   <div class="grid-auto" style="--grid-min-col: 200px">
+   *
+   * Responsive column modifiers (breakpoints: sm≥576 md≥768 lg≥992 xl≥1200):
+   *   <div class="grid grid-cols-1 grid-cols-md-2 grid-cols-lg-3">
+   *
+   * Full-width span:
+   *   <div class="grid-span"> inside any .grid or .grid-auto
+   */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-cols, 1), 1fr);
+    gap: var(--grid-gap, var(--space-4, 1rem));
+  }
+
+  /* Reset block margins on direct children — same rationale as .stack. */
+  .grid > * { margin-block: 0; margin-inline: 0; }
+
+  /* Fixed-column presets */
+  .grid-cols-2  { --grid-cols: 2;  }
+  .grid-cols-3  { --grid-cols: 3;  }
+  .grid-cols-4  { --grid-cols: 4;  }
+  .grid-cols-6  { --grid-cols: 6;  }
+  .grid-cols-12 { --grid-cols: 12; }
+
+  /**
+   * Auto-responsive grid
+   *
+   * min() guard prevents columns exceeding 100% of the container width,
+   * avoiding horizontal overflow when --grid-min-col > container width.
+   */
+  .grid-auto {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(var(--grid-min-col, 240px), 100%), 1fr));
+    gap: var(--grid-gap, var(--space-4, 1rem));
+  }
+
+  /* .grid-span — child spans all columns */
+  .grid-span { grid-column: 1 / -1; }
+
+  /* Responsive column modifiers — sm ≥ 576px */
+  @media (min-width: 576px) {
+    .grid-cols-sm-1  { --grid-cols: 1;  }
+    .grid-cols-sm-2  { --grid-cols: 2;  }
+    .grid-cols-sm-3  { --grid-cols: 3;  }
+    .grid-cols-sm-4  { --grid-cols: 4;  }
+  }
+
+  /* Responsive column modifiers — md ≥ 768px */
+  @media (min-width: 768px) {
+    .grid-cols-md-1  { --grid-cols: 1;  }
+    .grid-cols-md-2  { --grid-cols: 2;  }
+    .grid-cols-md-3  { --grid-cols: 3;  }
+    .grid-cols-md-4  { --grid-cols: 4;  }
+    .grid-cols-md-6  { --grid-cols: 6;  }
+  }
+
+  /* Responsive column modifiers — lg ≥ 992px */
+  @media (min-width: 992px) {
+    .grid-cols-lg-1  { --grid-cols: 1;  }
+    .grid-cols-lg-2  { --grid-cols: 2;  }
+    .grid-cols-lg-3  { --grid-cols: 3;  }
+    .grid-cols-lg-4  { --grid-cols: 4;  }
+    .grid-cols-lg-6  { --grid-cols: 6;  }
+    .grid-cols-lg-12 { --grid-cols: 12; }
+  }
+
+  /* Responsive column modifiers — xl ≥ 1200px */
+  @media (min-width: 1200px) {
+    .grid-cols-xl-1  { --grid-cols: 1;  }
+    .grid-cols-xl-2  { --grid-cols: 2;  }
+    .grid-cols-xl-3  { --grid-cols: 3;  }
+    .grid-cols-xl-4  { --grid-cols: 4;  }
+    .grid-cols-xl-6  { --grid-cols: 6;  }
+    .grid-cols-xl-12 { --grid-cols: 12; }
+  }
+
+  /* #endregion */
+
+  /* #region Flank */
+
+  /**
+   * Flank
+   *
+   * A two-column layout where one side ("the flank") has a fixed or intrinsic
+   * width and the other side ("the content") fills the remaining space.
+   * Wraps to a single column when the content area would be narrower than
+   * --flank-content-min (default 50%).
+   *
+   *   --flank-size        width of the flanking element  (default: auto / intrinsic)
+   *   --flank-content-min min inline size of content before wrapping (default: 50%)
+   *   --flank-gap         gap between children           (default: --space-4)
+   *
+   * Default (.flank):    first child = flank,   last child = content
+   * Reversed (.flank-end): first child = content, last child = flank
+   *
+   * Example:
+   *   <div class="flank" style="--flank-size: 12rem">
+   *     <img src="avatar.png" />
+   *     <div>…content…</div>
+   *   </div>
+   */
+  .flank {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--flank-gap, var(--space-4, 1rem));
+  }
+
+  :where(.flank) { align-items: flex-start; }
+
+  /* First child = flank sidebar */
+  .flank > :first-child {
+    flex-basis: var(--flank-size, auto);
+    flex-grow: 1;
+  }
+
+  /* Last child = content area */
+  .flank > :last-child {
+    flex-basis: 0;
+    flex-grow: 999;
+    min-inline-size: var(--flank-content-min, 50%);
+  }
+
+  /* .flank-end — last child becomes the flank, first child is the content */
+  .flank-end > :last-child {
+    flex-basis: var(--flank-size, auto);
+    flex-grow: 1;
+    min-inline-size: unset;
+  }
+
+  .flank-end > :first-child {
+    flex-basis: 0;
+    flex-grow: 999;
+    min-inline-size: var(--flank-content-min, 50%);
+  }
+
+  /* #endregion */
+
+  /* #region Frame */
+
+  /**
+   * Frame
+   *
+   * Aspect-ratio container that crops its content (images, videos, embeds)
+   * to a fixed ratio without distortion.
+   *
+   *   --frame-ratio  aspect ratio (default: 16 / 9)
+   *
+   * Ratio presets:
+   *   .frame-square     1 / 1
+   *   .frame-landscape  16 / 9  (default)
+   *   .frame-portrait   9 / 16
+   *
+   * Example:
+   *   <div class="frame frame-landscape">
+   *     <img src="hero.jpg" alt="…" />
+   *   </div>
+   */
+  .frame {
+    display: flex;
+    overflow: hidden;
+    aspect-ratio: var(--frame-ratio, 16 / 9);
+  }
+
+  :where(.frame) {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .frame > img,
+  .frame > video {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+  }
+
+  .frame-square    { --frame-ratio: 1 / 1;  }
+  .frame-landscape { --frame-ratio: 16 / 9; }
+  .frame-portrait  { --frame-ratio: 9 / 16; }
+
+  /* #endregion */
+
+  /* #region Split */
+
+  /**
+   * Split
+   *
+   * A space-between layout for toolbars, card headers, and navigation bars.
+   * Unlike .cluster.cluster-between, Split does not wrap by default and
+   * supports a column direction (.split-col) for vertical splits.
+   *
+   *   --split-gap  gap between children (default: --space-4)
+   *
+   * Modifiers:
+   *   .split-col  vertical split (flex-direction: column)
+   *
+   * Example:
+   *   <header class="split">
+   *     <span>Title</span>
+   *     <nav>…actions…</nav>
+   *   </header>
+   */
+  .split {
+    display: flex;
+    gap: var(--split-gap, var(--space-4, 1rem));
+  }
+
+  :where(.split) {
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+
+  .split-col {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+  }
+
+  /* #endregion */
+
+  /* #region Gap utilities */
+
+  /**
+   * Gap utilities
+   *
+   * Apply to any flex or grid container to set gap via spacing tokens.
+   *   .gap-{n}    both row and column gap
+   *   .gap-x-{n}  column gap only
+   *   .gap-y-{n}  row gap only
+   *
+   * Available steps: 0 1 2 3 4 6 8 10 12 16
+   */
+  .gap-0  { gap: 0; }
+  .gap-1  { gap: var(--space-1,  0.25rem); }
+  .gap-2  { gap: var(--space-2,  0.5rem);  }
+  .gap-3  { gap: var(--space-3,  0.75rem); }
+  .gap-4  { gap: var(--space-4,  1rem);    }
+  .gap-6  { gap: var(--space-6,  1.5rem);  }
+  .gap-8  { gap: var(--space-8,  2rem);    }
+  .gap-10 { gap: var(--space-10, 2.5rem);  }
+  .gap-12 { gap: var(--space-12, 3rem);    }
+  .gap-16 { gap: var(--space-16, 4rem);    }
+
+  .gap-x-0  { column-gap: 0; }
+  .gap-x-1  { column-gap: var(--space-1,  0.25rem); }
+  .gap-x-2  { column-gap: var(--space-2,  0.5rem);  }
+  .gap-x-3  { column-gap: var(--space-3,  0.75rem); }
+  .gap-x-4  { column-gap: var(--space-4,  1rem);    }
+  .gap-x-6  { column-gap: var(--space-6,  1.5rem);  }
+  .gap-x-8  { column-gap: var(--space-8,  2rem);    }
+  .gap-x-10 { column-gap: var(--space-10, 2.5rem);  }
+  .gap-x-12 { column-gap: var(--space-12, 3rem);    }
+  .gap-x-16 { column-gap: var(--space-16, 4rem);    }
+
+  .gap-y-0  { row-gap: 0; }
+  .gap-y-1  { row-gap: var(--space-1,  0.25rem); }
+  .gap-y-2  { row-gap: var(--space-2,  0.5rem);  }
+  .gap-y-3  { row-gap: var(--space-3,  0.75rem); }
+  .gap-y-4  { row-gap: var(--space-4,  1rem);    }
+  .gap-y-6  { row-gap: var(--space-6,  1.5rem);  }
+  .gap-y-8  { row-gap: var(--space-8,  2rem);    }
+  .gap-y-10 { row-gap: var(--space-10, 2.5rem);  }
+  .gap-y-12 { row-gap: var(--space-12, 3rem);    }
+  .gap-y-16 { row-gap: var(--space-16, 4rem);    }
+
+  /* #endregion */
+
+} /* end @layer aeico-layout */

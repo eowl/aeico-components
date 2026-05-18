@@ -2252,6 +2252,99 @@
         </div>
       </div>
 
+      <!-- Flank -->
+      <div class="demo-group">
+        <label><code>.flank</code> — sidebar + content, wraps when content &lt; <code>--flank-content-min</code> (50%)</label>
+        <div class="layout-demo-wrap">
+          <div class="flank" style="--flank-size: 6rem">
+            <div class="layout-box" style="height:4rem; display:flex; align-items:center; justify-content:center;">sidebar</div>
+            <div class="layout-box" style="min-height:4rem;">content fills remaining space — resize the window to see it wrap below the sidebar</div>
+          </div>
+        </div>
+        <label><code>.flank.flank-end</code> — sidebar on the right</label>
+        <div class="layout-demo-wrap">
+          <div class="flank flank-end" style="--flank-size: 6rem">
+            <div class="layout-box" style="min-height:4rem;">content area on the left</div>
+            <div class="layout-box" style="height:4rem; display:flex; align-items:center; justify-content:center;">sidebar</div>
+          </div>
+        </div>
+        <label><code>.flank</code> with <code>--flank-content-min: 60%</code> — wraps sooner</label>
+        <div class="layout-demo-wrap">
+          <div class="flank" style="--flank-size: 8rem; --flank-content-min: 60%">
+            <div class="layout-box" style="height:4rem; display:flex; align-items:center; justify-content:center;">8rem sidebar</div>
+            <div class="layout-box" style="min-height:4rem;">wraps when viewport is narrower (60% threshold)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Frame -->
+      <div class="demo-group">
+        <label><code>.frame</code> — aspect-ratio crop container (default 16/9). Inner img/video fills and covers.</label>
+        <div class="layout-demo-wrap" style="max-width: 480px">
+          <div class="frame frame-landscape" style="background: rgba(99,102,241,.15); border: 1px solid rgba(99,102,241,.3); border-radius: 6px;">
+            <span style="font-family:monospace; font-size:0.8rem; color:var(--text-secondary)">.frame.frame-landscape — 16 / 9</span>
+          </div>
+        </div>
+        <div class="cluster cluster-4" style="margin-top:.5rem; max-width:480px">
+          <div style="flex:1">
+            <div class="frame frame-square" style="background: rgba(99,102,241,.15); border: 1px solid rgba(99,102,241,.3); border-radius: 6px;">
+              <span style="font-family:monospace; font-size:0.75rem; color:var(--text-secondary)">.frame-square</span>
+            </div>
+          </div>
+          <div style="flex:1">
+            <div class="frame frame-portrait" style="background: rgba(99,102,241,.15); border: 1px solid rgba(99,102,241,.3); border-radius: 6px;">
+              <span style="font-family:monospace; font-size:0.75rem; color:var(--text-secondary)">.frame-portrait</span>
+            </div>
+          </div>
+          <div style="flex:1">
+            <div class="frame" style="--frame-ratio: 4/3; background: rgba(99,102,241,.15); border: 1px solid rgba(99,102,241,.3); border-radius: 6px;">
+              <span style="font-family:monospace; font-size:0.75rem; color:var(--text-secondary);">--frame-ratio: 4/3</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Split -->
+      <div class="demo-group">
+        <label><code>.split</code> — space-between toolbar, no wrapping by default</label>
+        <div class="layout-demo-wrap">
+          <div class="split" style="padding: .5rem; background: rgba(99,102,241,.06); border: 1px solid rgba(99,102,241,.2); border-radius: 6px;">
+            <strong style="font-size:.9rem">Page title</strong>
+            <div class="cluster cluster-2">
+              <div class="layout-box">Action A</div>
+              <div class="layout-box">Action B</div>
+            </div>
+          </div>
+        </div>
+        <label><code>.split.split-col</code> — vertical split (e.g. card with footer pinned to bottom)</label>
+        <div class="layout-demo-wrap">
+          <div class="split split-col" style="height: 10rem; padding: .75rem; background: rgba(99,102,241,.06); border: 1px solid rgba(99,102,241,.2); border-radius: 6px;">
+            <div>
+              <div style="font-weight:600; margin-bottom:.25rem">Card title</div>
+              <div style="font-size:.85rem; color:var(--text-secondary)">Body content pushed to top</div>
+            </div>
+            <div class="layout-box" style="font-size:.8rem">Footer pinned to bottom</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grid span -->
+      <div class="demo-group">
+        <label><code>.grid-span</code> — child spans all grid columns</label>
+        <div class="layout-demo-wrap">
+          <div class="grid grid-cols-3" style="--grid-gap: var(--space-2)">
+            <div class="layout-box grid-span" style="text-align:center">.grid-span — full width</div>
+            <div class="layout-box tall">1</div>
+            <div class="layout-box tall">2</div>
+            <div class="layout-box tall">3</div>
+            <div class="layout-box grid-span" style="text-align:center">.grid-span again</div>
+            <div class="layout-box tall">4</div>
+            <div class="layout-box tall">5</div>
+            <div class="layout-box tall">6</div>
+          </div>
+        </div>
+      </div>
+
     </div><!-- /Layout Utilities -->
 
   </div><!-- .content -->
