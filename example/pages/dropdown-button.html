@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DropdownButton — Aeico Components</title>
+  <link rel="stylesheet" href="../demo.css">
+  <script type="module" src="../shared.ts"></script>
+</head>
+<body>
+  <ae-navbar color="dark" appearance="block" sticky>
+    <a slot="brand" href="/">← All Components</a>
+    <ae-button slot="end" id="theme-toggle" size="sm" color="light" variant="text">🌙 Dark</ae-button>
+    <ae-button-group slot="end" compact>
+      <ae-button id="lang-en" size="sm" color="primary">EN</ae-button>
+      <ae-button id="lang-zh" size="sm">中文</ae-button>
+    </ae-button-group>
+  </ae-navbar>
+  <div class="content">
+    <div class="section">
+      <h2>DropdownButton</h2>
+      <span class="tag">&lt;ae-dropdown-button&gt;</span>
+
+      <div class="demo-group">
+        <label>Standalone - label slot + items in default slot</label>
+        <div class="demo-row">
+          <ae-dropdown-button>
+            <span slot="label">Actions</span>
+            <ae-dropdown-item value="edit"><ae-icon name="edit"></ae-icon>Edit</ae-dropdown-item>
+            <ae-dropdown-item value="view"><ae-icon name="eye"></ae-icon>View</ae-dropdown-item>
+            <ae-dropdown-item value="delete" style="--dropdown-item-color:var(--color-danger,#dc3545)"><ae-icon name="trash"></ae-icon>Delete</ae-dropdown-item>
+          </ae-dropdown-button>
+          <ae-dropdown-button variant="outlined" color="primary">
+            <span slot="label">Primary Outlined</span>
+            <ae-dropdown-item value="a">Item A</ae-dropdown-item>
+            <ae-dropdown-item value="b">Item B</ae-dropdown-item>
+          </ae-dropdown-button>
+          <ae-dropdown-button variant="subtle" color="secondary" placement="bottom-end">
+            <span slot="label">Subtle</span>
+            <ae-dropdown-item value="a">Item A</ae-dropdown-item>
+            <ae-dropdown-item value="b">Item B</ae-dropdown-item>
+          </ae-dropdown-button>
+          <ae-dropdown-button disabled>
+            <span slot="label">Disabled</span>
+            <ae-dropdown-item value="a">Item A</ae-dropdown-item>
+          </ae-dropdown-button>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>Inside ae-button-group compact - Save + options strip</label>
+        <div class="demo-row">
+          <ae-button-group compact color="primary">
+            <ae-button>Save</ae-button>
+            <ae-dropdown-button placement="bottom-end">
+              <ae-dropdown-item value="draft">Save as draft</ae-dropdown-item>
+              <ae-divider></ae-divider>
+              <ae-dropdown-item value="template">Save as template</ae-dropdown-item>
+              <ae-dropdown-item value="schedule">Schedule publish</ae-dropdown-item>
+            </ae-dropdown-button>
+          </ae-button-group>
+          <ae-button-group compact color="primary">
+            <ae-button>Save</ae-button>
+            <ae-dropdown-button placement="bottom-end">
+              <span slot="label">Dropdown</span>
+              <ae-dropdown-item value="draft">Save as draft</ae-dropdown-item>
+              <ae-dropdown-item value="template">Save as template</ae-dropdown-item>
+              <ae-dropdown-item value="schedule">Schedule publish</ae-dropdown-item>
+            </ae-dropdown-button>
+          </ae-button-group>
+          <ae-button-group compact color="danger" variant="outlined">
+            <ae-button>Delete</ae-button>
+            <ae-dropdown-button placement="bottom-end">
+              <ae-dropdown-item value="archive">Archive instead</ae-dropdown-item>
+              <ae-dropdown-item value="soft">Soft delete (recoverable)</ae-dropdown-item>
+            </ae-dropdown-button>
+          </ae-button-group>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>Sizes inside button-group</label>
+        <div class="demo-row">
+          <ae-button-group compact size="sm" color="primary">
+            <ae-button>Publish</ae-button>
+            <ae-dropdown-button placement="bottom-end">
+              <ae-dropdown-item value="draft">Save draft</ae-dropdown-item>
+              <ae-dropdown-item value="preview">Preview</ae-dropdown-item>
+            </ae-dropdown-button>
+          </ae-button-group>
+          <ae-button-group compact size="lg" color="secondary" variant="outlined">
+            <ae-button>Submit</ae-button>
+            <ae-dropdown-button placement="bottom-end">
+              <ae-dropdown-item value="review">Send for review</ae-dropdown-item>
+              <ae-dropdown-item value="later">Remind me later</ae-dropdown-item>
+            </ae-dropdown-button>
+          </ae-button-group>
+        </div>
+      </div>
+    </div>
+
+    <!-- RadioGroup -->
+  </div>
+  <footer id="log-footer">
+    <div id="log-footer-header">
+      Event Log
+      <span class="clear-log" id="clear-log">[clear]</span>
+    </div>
+    <div id="event-log"></div>
+  </footer>
+
+</body>
+</html>
