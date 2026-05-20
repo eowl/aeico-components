@@ -91,187 +91,28 @@ IconRegistry.add({
   'eye':     { path: 'M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z', stroke: true, strokeWidth: 2 },
 })
 
-// Radio options
-const radioOptions = [
-  { label: 'Option A', value: 'a' },
-  { label: 'Option B', value: 'b' },
-  { label: 'Option C', value: 'c' },
-]
-
-// SelectField
-
-const FRUIT_OPTIONS = [
-  { label: 'Apple', value: 'apple' },
+// ── Exported option arrays (used by per-page scripts) ─────────────────
+export const FRUIT_OPTIONS = [
+  { label: 'Apple',  value: 'apple'  },
   { label: 'Banana', value: 'banana' },
   { label: 'Cherry', value: 'cherry' },
-  { label: 'Grape', value: 'grape' },
+  { label: 'Grape',  value: 'grape'  },
 ]
 
-const COLOR_OPTIONS = [
-  { label: 'Red', value: 'red' },
-  { label: 'Green', value: 'green' },
-  { label: 'Blue', value: 'blue' },
+export const COLOR_OPTIONS = [
+  { label: 'Red',    value: 'red'    },
+  { label: 'Green',  value: 'green'  },
+  { label: 'Blue',   value: 'blue'   },
   { label: 'Yellow', value: 'yellow' },
   { label: 'Purple', value: 'purple' },
 ]
 
-const POSITION_OPTIONS = [
+export const POSITION_OPTIONS = [
   { label: 'Option 1', value: '1' },
   { label: 'Option 2', value: '2' },
   { label: 'Option 3', value: '3' },
 ]
 
-// Slot mode — set initial value via JS
-const selectSlotEl = document.querySelector<any>('#select-slot')
-if (selectSlotEl) selectSlotEl.value = 'banana'
-
-// Options prop — JS array with clearable + resettable + defaultValue
-const selectOptsEl = document.querySelector<any>('#select-opts')
-if (selectOptsEl) {
-  selectOptsEl.options = FRUIT_OPTIONS
-  selectOptsEl.defaultValue = 'cherry'
-  selectOptsEl.value = 'cherry'
-}
-
-// Disabled — pre-fill so the selected state is visible
-const selectDisabledEl = document.querySelector<any>('#select-disabled')
-if (selectDisabledEl) {
-  selectDisabledEl.options = FRUIT_OPTIONS
-  selectDisabledEl.value = 'apple'
-}
-
-// Sizes — all share the same options
-;['#select-size-xs', '#select-size-sm', '#select-size-md', '#select-size-lg', '#select-size-xl'].forEach(id => {
-  const el = document.querySelector<any>(id)
-  if (el) el.options = FRUIT_OPTIONS
-})
-
-// Position demos
-;['#select-pos-bottom', '#select-pos-top', '#select-pos-right', '#select-pos-left'].forEach(id => {
-  const el = document.querySelector<any>(id)
-  if (el) el.options = POSITION_OPTIONS
-})
-
-// Multiple — JS options prop, pre-selected + resettable defaultValue
-const selectMultiOptsEl = document.querySelector<any>('#select-multi-opts')
-if (selectMultiOptsEl) {
-  selectMultiOptsEl.options = COLOR_OPTIONS
-  selectMultiOptsEl.defaultValue = ['red', 'blue']
-  selectMultiOptsEl.value = ['red', 'blue']
-}
-
-// Change event — live output
-const selectEventEl = document.querySelector<any>('#select-event')
-const selectEventOutput = document.getElementById('select-event-output')
-if (selectEventEl && selectEventOutput) {
-  selectEventEl.addEventListener('change', (e: CustomEvent) => {
-    const val: unknown = e.detail?.value
-    const display = Array.isArray(val)
-      ? `[${val.map(v => JSON.stringify(v)).join(', ')}]`
-      : JSON.stringify(val)
-    selectEventOutput.textContent = `value: ${display}`
-  })
-}
-
-
-// RadioGroup demos
-const rgDemoOptions = [
-  { label: 'Option A', value: 'a' },
-  { label: 'Option B', value: 'b' },
-  { label: 'Option C', value: 'c' },
-]
-document.querySelectorAll<any>('.rg-opts-demo').forEach(el => {
-  el.options = rgDemoOptions
-})
-const rgDefaultOpts = document.querySelector<any>('#rg-default-opts')
-if (rgDefaultOpts) rgDefaultOpts.options = rgDemoOptions
-const rgButtonOpts = document.querySelector<any>('#rg-button-opts')
-if (rgButtonOpts) rgButtonOpts.options = rgDemoOptions
-const rgButtonGroupOpts = document.querySelector<any>('#rg-button-group-opts')
-if (rgButtonGroupOpts) rgButtonGroupOpts.options = rgDemoOptions
-const rgSegmentedOpts = document.querySelector<any>('#rg-segmented-opts')
-if (rgSegmentedOpts) rgSegmentedOpts.options = rgDemoOptions
-
-// Slider — options mode demos
-const sliderOptsNumeric = document.querySelector<any>('#slider-opts-numeric')
-if (sliderOptsNumeric) {
-  sliderOptsNumeric.options = [0, 25, 50, 75, 100]
-  sliderOptsNumeric.value = '50'
-}
-
-const sliderOptsLabeled = document.querySelector<any>('#slider-opts-labeled')
-if (sliderOptsLabeled) {
-  sliderOptsLabeled.options = [
-    { label: 'XS', value: 'xs' },
-    { label: 'SM', value: 'sm' },
-    { label: 'MD', value: 'md' },
-    { label: 'LG', value: 'lg' },
-    { label: 'XL', value: 'xl' },
-  ]
-  sliderOptsLabeled.value = 'md'
-}
-
-const sliderOptsInput = document.querySelector<any>('#slider-opts-input')
-if (sliderOptsInput) {
-  sliderOptsInput.options = [10, 20, 30, 40, 50]
-  sliderOptsInput.value = '20'
-}
-
-const sliderMarksLabeled = document.querySelector<any>('#slider-marks-labeled')
-if (sliderMarksLabeled) {
-  sliderMarksLabeled.options = [
-    { label: 'XS', value: 'xs' },
-    { label: 'SM', value: 'sm' },
-    { label: 'MD', value: 'md' },
-    { label: 'LG', value: 'lg' },
-    { label: 'XL', value: 'xl' },
-  ]
-  sliderMarksLabeled.value = 'md'
-}
-
-const sliderMarksNumeric = document.querySelector<any>('#slider-marks-numeric')
-if (sliderMarksNumeric) {
-  sliderMarksNumeric.options = [0, 25, 50, 75, 100]
-  sliderMarksNumeric.value = '50'
-}
-
-// Marks — custom array (visual only, step=10 still snaps)
-const sliderMarksCustom = document.querySelector<any>('#slider-marks-custom')
-if (sliderMarksCustom) {
-  sliderMarksCustom.marks = [0, 20, 40, 60, 80, 100]
-}
-
-// Marks — custom array with labels
-const sliderMarksLabeledCustom = document.querySelector<any>('#slider-marks-labeled-custom')
-if (sliderMarksLabeledCustom) {
-  sliderMarksLabeledCustom.marks = [
-    { value: 0,   label: 'Min' },
-    { value: 25,  label: '¼' },
-    { value: 50,  label: 'Mid' },
-    { value: 75,  label: '¾' },
-    { value: 100, label: 'Max' },
-  ]
-}
-
-// Dialog interaction
-const openBtn = document.getElementById('open-dialog-btn')
-const dialog = document.querySelector<any>('#demo-dialog')
-openBtn?.addEventListener('click', () => dialog?.open())
-
-const openNonModalBtn = document.getElementById('open-dialog-nonmodal-btn')
-const nonModalDialog = document.querySelector<any>('#demo-dialog-nonmodal')
-openNonModalBtn?.addEventListener('click', () => nonModalDialog?.open())
-
-// Detail interaction
-const demoDetail = document.querySelector<any>('#demo-detail')
-document.getElementById('detail-open-btn')?.addEventListener('click', () => demoDetail?.open())
-document.getElementById('detail-close-btn')?.addEventListener('click', () => demoDetail?.close())
-document.getElementById('detail-toggle-btn')?.addEventListener('click', () => demoDetail?.toggle())
-
-// Tag dismiss demo — remove tag on dismiss
-document.getElementById('tag-dismissible-row')?.addEventListener('dismiss', (e: Event) => {
-  ;(e.target as HTMLElement).remove()
-})
 
 // --- Event logging ---
 const log = document.getElementById('event-log')!
@@ -359,23 +200,3 @@ document.querySelectorAll<any>('.dropdown-demo').forEach(el => {
   el.addEventListener('close', () => appendLog('dropdown close'))
 })
 
-// --- Field Label demos ---
-const labelDemoSelect = document.querySelector<any>('#label-demo-select')
-if (labelDemoSelect) labelDemoSelect.options = FRUIT_OPTIONS
-
-const labelDemoSelectLeft = document.querySelector<any>('#label-demo-select-left')
-if (labelDemoSelectLeft) labelDemoSelectLeft.options = COLOR_OPTIONS
-
-const tierOptions = [
-  { label: 'Free', value: 'free' },
-  { label: 'Pro', value: 'pro' },
-  { label: 'Enterprise', value: 'enterprise' },
-]
-const labelDemoRg = document.querySelector<any>('#label-demo-rg')
-if (labelDemoRg) labelDemoRg.options = tierOptions
-
-const labelDemoRgLeft = document.querySelector<any>('#label-demo-rg-left')
-if (labelDemoRgLeft) {
-  labelDemoRgLeft.options = tierOptions
-  labelDemoRgLeft.mode = 'button-group'
-}

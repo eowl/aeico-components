@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabs — Aeico Components</title>
+  <link rel="stylesheet" href="../demo.css">
+  <script type="module" src="../shared.ts"></script>
+</head>
+<body>
+  <ae-navbar color="dark" appearance="block" sticky>
+    <a slot="brand" href="/">← All Components</a>
+    <ae-button slot="end" id="theme-toggle" size="sm" color="light" variant="text">🌙 Dark</ae-button>
+    <ae-button-group slot="end" compact>
+      <ae-button id="lang-en" size="sm" color="primary">EN</ae-button>
+      <ae-button id="lang-zh" size="sm">中文</ae-button>
+    </ae-button-group>
+  </ae-navbar>
+  <div class="content">
+    <div class="section">
+      <h2>Tabs</h2>
+      <span class="tag">&lt;ae-tabs&gt; &lt;ae-tab&gt; &lt;ae-tab-panel&gt;</span>
+
+      <div class="demo-group">
+        <label>Basic position-based pairing</label>
+        <ae-tabs>
+          <ae-tab>Tab 1</ae-tab>
+          <ae-tab>Tab 2</ae-tab>
+          <ae-tab>Tab 3</ae-tab>
+          <ae-tab-panel><p style="padding: 1rem;">Content of Tab 1</p></ae-tab-panel>
+          <ae-tab-panel><p style="padding: 1rem;">Content of Tab 2</p></ae-tab-panel>
+          <ae-tab-panel><p style="padding: 1rem;">Content of Tab 3</p></ae-tab-panel>
+        </ae-tabs>
+      </div>
+
+      <div class="demo-group">
+        <label>ID-based pairing (panel attribute panel id)</label>
+        <ae-tabs>
+          <ae-tab panel="panel-c">Panel C first</ae-tab>
+          <ae-tab panel="panel-a">Panel A</ae-tab>
+          <ae-tab panel="panel-b">Panel B</ae-tab>
+          <ae-tab-panel id="panel-a"><p style="padding: 1rem;">This is Panel A</p></ae-tab-panel>
+          <ae-tab-panel id="panel-b"><p style="padding: 1rem;">This is Panel B</p></ae-tab-panel>
+          <ae-tab-panel id="panel-c"><p style="padding: 1rem;">This is Panel C (matched to first tab via ID)</p></ae-tab-panel>
+        </ae-tabs>
+      </div>
+
+      <div class="demo-group">
+        <label>With initial active index</label>
+        <ae-tabs active-index="1">
+          <ae-tab>Home</ae-tab>
+          <ae-tab>Profile</ae-tab>
+          <ae-tab>Settings</ae-tab>
+          <ae-tab-panel><p style="padding: 1rem;">🏠 Home content</p></ae-tab-panel>
+          <ae-tab-panel><p style="padding: 1rem;">👤 Profile content</p></ae-tab-panel>
+          <ae-tab-panel><p style="padding: 1rem;">⚙️ Settings content</p></ae-tab-panel>
+        </ae-tabs>
+      </div>
+
+      <div class="demo-group">
+        <label>With disabled tab</label>
+        <ae-tabs>
+          <ae-tab>Enabled</ae-tab>
+          <ae-tab disabled>Disabled</ae-tab>
+          <ae-tab>Also Enabled</ae-tab>
+          <ae-tab-panel><p style="padding: 1rem;">First tab content</p></ae-tab-panel>
+          <ae-tab-panel><p style="padding: 1rem;">Disabled tab content (unreachable)</p></ae-tab-panel>
+          <ae-tab-panel><p style="padding: 1rem;">Third tab content</p></ae-tab-panel>
+        </ae-tabs>
+      </div>
+
+      <div class="demo-group">
+        <label>With icons</label>
+        <ae-tabs>
+          <ae-tab><ae-icon name="home" size="sm"></ae-icon> Home</ae-tab>
+          <ae-tab><ae-icon name="star" size="sm"></ae-icon> Favorites</ae-tab>
+          <ae-tab><ae-icon name="settings" size="sm"></ae-icon> Settings</ae-tab>
+          <ae-tab-panel><p style="padding: 1rem;">Home page content</p></ae-tab-panel>
+          <ae-tab-panel><p style="padding: 1rem;">Your favorites</p></ae-tab-panel>
+          <ae-tab-panel><p style="padding: 1rem;">Settings panel</p></ae-tab-panel>
+        </ae-tabs>
+      </div>
+    </div>
+
+    <!-- Badge -->
+  </div>
+  <footer id="log-footer">
+    <div id="log-footer-header">
+      Event Log
+      <span class="clear-log" id="clear-log">[clear]</span>
+    </div>
+    <div id="event-log"></div>
+  </footer>
+
+</body>
+</html>

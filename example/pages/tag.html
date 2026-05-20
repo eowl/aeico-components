@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tag — Aeico Components</title>
+  <link rel="stylesheet" href="../demo.css">
+  <script type="module" src="../shared.ts"></script>
+</head>
+<body>
+  <ae-navbar color="dark" appearance="block" sticky>
+    <a slot="brand" href="/">← All Components</a>
+    <ae-button slot="end" id="theme-toggle" size="sm" color="light" variant="text">🌙 Dark</ae-button>
+    <ae-button-group slot="end" compact>
+      <ae-button id="lang-en" size="sm" color="primary">EN</ae-button>
+      <ae-button id="lang-zh" size="sm">中文</ae-button>
+    </ae-button-group>
+  </ae-navbar>
+  <div class="content">
+    <div class="section">
+      <h2>Tag</h2>
+      <span class="tag">&lt;ae-tag&gt;</span>
+
+      <div class="demo-group">
+        <label>filled (default)</label>
+        <div class="demo-row">
+          <ae-tag color="default">Default</ae-tag>
+          <ae-tag color="primary">Primary</ae-tag>
+          <ae-tag color="secondary">Secondary</ae-tag>
+          <ae-tag color="success">Success</ae-tag>
+          <ae-tag color="danger">Danger</ae-tag>
+          <ae-tag color="warning">Warning</ae-tag>
+          <ae-tag color="info">Info</ae-tag>
+          <ae-tag color="light">Light</ae-tag>
+          <ae-tag color="dark">Dark</ae-tag>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>outlined</label>
+        <div class="demo-row">
+          <ae-tag variant="outlined" color="primary">Primary</ae-tag>
+          <ae-tag variant="outlined" color="secondary">Secondary</ae-tag>
+          <ae-tag variant="outlined" color="success">Success</ae-tag>
+          <ae-tag variant="outlined" color="danger">Danger</ae-tag>
+          <ae-tag variant="outlined" color="warning">Warning</ae-tag>
+          <ae-tag variant="outlined" color="info">Info</ae-tag>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>faint</label>
+        <div class="demo-row">
+          <ae-tag variant="faint" color="primary">Primary</ae-tag>
+          <ae-tag variant="faint" color="secondary">Secondary</ae-tag>
+          <ae-tag variant="faint" color="success">Success</ae-tag>
+          <ae-tag variant="faint" color="danger">Danger</ae-tag>
+          <ae-tag variant="faint" color="warning">Warning</ae-tag>
+          <ae-tag variant="faint" color="info">Info</ae-tag>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>subtle</label>
+        <div class="demo-row">
+          <ae-tag variant="subtle" color="primary">Primary</ae-tag>
+          <ae-tag variant="subtle" color="success">Success</ae-tag>
+          <ae-tag variant="subtle" color="danger">Danger</ae-tag>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>text</label>
+        <div class="demo-row">
+          <ae-tag variant="text" color="primary">Primary</ae-tag>
+          <ae-tag variant="text" color="success">Success</ae-tag>
+          <ae-tag variant="text" color="danger">Danger</ae-tag>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>sizes</label>
+        <div class="demo-row" style="align-items: flex-end;">
+          <ae-tag color="primary" size="3xs">3xs</ae-tag>
+          <ae-tag color="primary" size="2xs">2xs</ae-tag>
+          <ae-tag color="primary" size="xs">xs</ae-tag>
+          <ae-tag color="primary" size="sm">sm</ae-tag>
+          <ae-tag color="primary" size="md">md</ae-tag>
+          <ae-tag color="primary" size="lg">lg</ae-tag>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>dismissible</label>
+        <div class="demo-row" id="tag-dismissible-row">
+          <ae-tag id="tag-d-primary" variant="faint" color="primary" dismissible>Primary</ae-tag>
+          <ae-tag id="tag-d-success" variant="faint" color="success" dismissible>Success</ae-tag>
+          <ae-tag id="tag-d-danger" variant="faint" color="danger" dismissible>Danger</ae-tag>
+          <ae-tag id="tag-d-warning" variant="faint" color="warning" dismissible>Warning</ae-tag>
+          <ae-tag id="tag-d-info" variant="outlined" color="info" dismissible>Info</ae-tag>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>disabled + dismissible (button visible, not clickable)</label>
+        <div class="demo-row">
+          <ae-tag variant="faint" color="primary" dismissible disabled>Primary</ae-tag>
+          <ae-tag variant="faint" color="danger" dismissible disabled>Danger</ae-tag>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>pill</label>
+        <div class="demo-row">
+          <ae-tag pill color="primary">Primary</ae-tag>
+          <ae-tag pill color="success" variant="faint" dismissible>Success</ae-tag>
+          <ae-tag pill color="danger" variant="outlined">Danger</ae-tag>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>with icon (start slot)</label>
+        <div class="demo-row">
+          <ae-tag color="success" variant="faint" dismissible>
+            <ae-icon slot="start" name="check"></ae-icon>
+            Approved
+          </ae-tag>
+          <ae-tag color="danger" variant="faint" dismissible>
+            <ae-icon slot="start" name="warning"></ae-icon>
+            Error
+          </ae-tag>
+        </div>
+      </div>
+    </div>
+
+    <!-- Breadcrumb -->
+  </div>
+  <footer id="log-footer">
+    <div id="log-footer-header">
+      Event Log
+      <span class="clear-log" id="clear-log">[clear]</span>
+    </div>
+    <div id="event-log"></div>
+  </footer>
+
+<script type="module">
+document.getElementById('tag-dismissible-row')?.addEventListener('dismiss', (e) => { e.target?.remove() })
+</script>
+</body>
+</html>

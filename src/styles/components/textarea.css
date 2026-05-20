@@ -1,0 +1,119 @@
+:host {
+  display: block;
+  flex: 1;
+  min-width: 0;
+  font-size: var(--size-base);
+
+  --textarea-font-size: 1em;
+  --textarea-padding: 0.333em 0.583em;
+  --textarea-border-width: 1px;
+  --textarea-border-radius: 2px;
+  --textarea-border-color: var(--border-subtle);
+  --textarea-border-color-hover: var(--border-default);
+  --textarea-border-color-focus: var(--border-focus);
+  --textarea-bg: var(--surface-base);
+  --textarea-bg-hover: var(--surface-raised);
+  --textarea-bg-focus: var(--surface-raised);
+  --textarea-color: var(--color-text-muted);
+  --textarea-placeholder-color: var(--color-text-disabled);
+  --textarea-transition: border-color 0.12s, background 0.12s;
+}
+
+.textarea-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  width: 100%;
+}
+
+textarea {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: var(--textarea-font-size);
+  font-family: inherit;
+  line-height: 1.5;
+  padding: var(--textarea-padding);
+  border: var(--textarea-border-width) solid var(--textarea-border-color);
+  border-radius: var(--textarea-border-radius);
+  background: var(--textarea-bg);
+  color: var(--textarea-color);
+  transition: var(--textarea-transition);
+  resize: vertical;
+}
+
+textarea::placeholder {
+  color: var(--textarea-placeholder-color);
+}
+
+textarea:focus {
+  outline: none;
+  border-color: var(--textarea-border-color-focus);
+  background: var(--textarea-bg-focus);
+}
+
+textarea:hover:not(:focus) {
+  border-color: var(--textarea-border-color-hover);
+  background: var(--textarea-bg-hover);
+}
+
+textarea:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  resize: none;
+}
+
+/* Error state */
+:host([error]) textarea {
+  border-color: var(--field-error-color, var(--red));
+}
+
+:host([error]) textarea:hover:not(:focus),
+:host([error]) textarea:focus {
+  border-color: var(--field-error-color, var(--red));
+}
+
+/* Clear button */
+.clear-btn {
+  width: 1.333em;
+  height: 1.333em;
+  border: none;
+  border-radius: var(--clear-btn-border-radius);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--clear-btn-bg);
+  color: var(--clear-btn-color);
+  transition: var(--clear-btn-transition);
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.clear-btn:hover {
+  background: var(--clear-btn-bg-hover);
+  color: var(--clear-btn-color-hover);
+}
+
+/* Reset button */
+.reset-btn {
+  width: 1.333em;
+  height: 1.333em;
+  border: none;
+  border-radius: var(--reset-btn-border-radius);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--reset-btn-bg);
+  color: var(--reset-btn-color);
+  transition: var(--reset-btn-transition);
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.reset-btn:hover {
+  background: var(--reset-btn-bg-hover);
+  color: var(--reset-btn-color-hover);
+}

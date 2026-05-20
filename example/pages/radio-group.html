@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RadioGroup — Aeico Components</title>
+  <link rel="stylesheet" href="../demo.css">
+  <script type="module" src="../shared.ts"></script>
+</head>
+<body>
+  <ae-navbar color="dark" appearance="block" sticky>
+    <a slot="brand" href="/">← All Components</a>
+    <ae-button slot="end" id="theme-toggle" size="sm" color="light" variant="text">🌙 Dark</ae-button>
+    <ae-button-group slot="end" compact>
+      <ae-button id="lang-en" size="sm" color="primary">EN</ae-button>
+      <ae-button id="lang-zh" size="sm">中文</ae-button>
+    </ae-button-group>
+  </ae-navbar>
+  <div class="content">
+    <div class="section">
+      <h2>RadioGroup</h2>
+      <span class="tag">&lt;ae-radio-group&gt;</span>
+
+      <div class="demo-group">
+        <label>Default mode slot options</label>
+        <ae-radio-group resettable value="b">
+          <ae-radio value="a">Option A</ae-radio>
+          <ae-radio value="b">Option B</ae-radio>
+          <ae-radio value="c">Option C</ae-radio>
+        </ae-radio-group>
+      </div>
+
+      <div class="demo-group">
+        <label>Default mode JS options</label>
+        <ae-radio-group id="rg-default-opts" resettable></ae-radio-group>
+      </div>
+      
+      <div class="demo-group">
+        <label>Default mode slot allow-empty with clearable</label>
+        <ae-radio-group resettable clearable allow-empty value="b" default-value="b" color="primary">
+          <ae-radio value="a">Option A</ae-radio>
+          <ae-radio value="b">Option B</ae-radio>
+          <ae-radio value="c">Option C</ae-radio>
+        </ae-radio-group>
+      </div>
+
+      <div class="demo-group">
+        <label>Button mode colors</label>
+        <ae-radio-group mode="button" value="a">
+          <ae-radio value="a">Option A</ae-radio>
+          <ae-radio value="b">Option B</ae-radio>
+          <ae-radio value="c">Option C</ae-radio>
+        </ae-radio-group>
+        <ae-radio-group mode="button" color="primary" value="b" default-value="b" resettable clearable allow-empty>
+          <ae-radio value="a">Option A</ae-radio>
+          <ae-radio value="b">Option B</ae-radio>
+          <ae-radio value="c">Option C</ae-radio>
+        </ae-radio-group>
+        <ae-radio-group mode="button" color="primary" value="b">
+          <ae-radio value="a">Option A</ae-radio>
+          <ae-radio value="b">Option B</ae-radio>
+          <ae-radio value="c">Option C</ae-radio>
+        </ae-radio-group>
+        <ae-radio-group mode="button" color="success" value="c">
+          <ae-radio value="a">Option A</ae-radio>
+          <ae-radio value="b">Option B</ae-radio>
+          <ae-radio value="c">Option C</ae-radio>
+        </ae-radio-group>
+        <ae-radio-group mode="button" color="danger" value="a" default-value="a" resettable clearable>
+          <ae-radio value="a">Option A</ae-radio>
+          <ae-radio value="b">Option B</ae-radio>
+          <ae-radio value="c">Option C</ae-radio>
+        </ae-radio-group>
+      </div>
+
+      <div class="demo-group">
+        <label>Button mode variants</label>
+        <ae-radio-group mode="button" color="primary" variant="filled" value="a">
+          <ae-radio value="a">Filled</ae-radio>
+          <ae-radio value="b">Option B</ae-radio>
+          <ae-radio value="c">Option C</ae-radio>
+        </ae-radio-group>
+        <ae-radio-group mode="button" color="success" variant="filled" value="a">
+          <ae-radio value="a">Filled</ae-radio>
+          <ae-radio value="b">Option B</ae-radio>
+          <ae-radio value="c">Option C</ae-radio>
+        </ae-radio-group>
+        <ae-radio-group mode="button" color="warning" variant="filled" value="a">
+          <ae-radio value="a">Filled</ae-radio>
+          <ae-radio value="b">Option B</ae-radio>
+          <ae-radio value="c">Option C</ae-radio>
+        </ae-radio-group>
+        <ae-radio-group mode="button" color="primary" variant="outlined" value="b">
+          <ae-radio value="a">Option A</ae-radio>
+          <ae-radio value="b">Outlined</ae-radio>
+          <ae-radio value="c">Option C</ae-radio>
+        </ae-radio-group>
+        <ae-radio-group mode="button" color="primary" variant="subtle" value="c">
+          <ae-radio value="a">Option A</ae-radio>
+          <ae-radio value="b">Option B</ae-radio>
+          <ae-radio value="c">Subtle</ae-radio>
+        </ae-radio-group>
+      </div>
+
+      <div class="demo-group">
+        <label>Button mode sizes</label>
+        <ae-radio-group mode="button" color="primary" size="xs" value="a">
+          <ae-radio value="a">XS</ae-radio>
+          <ae-radio value="b">Option B</ae-radio>
+        </ae-radio-group>
+        <ae-radio-group mode="button" color="primary" size="sm" value="a">
+          <ae-radio value="a">SM</ae-radio>
+          <ae-radio value="b">Option B</ae-radio>
+        </ae-radio-group>
+        <ae-radio-group mode="button" color="primary" size="md" value="a">
+          <ae-radio value="a">MD</ae-radio>
+          <ae-radio value="b">Option B</ae-radio>
+        </ae-radio-group>
+        <ae-radio-group mode="button" color="primary" size="lg" value="a">
+          <ae-radio value="a">LG</ae-radio>
+          <ae-radio value="b">Option B</ae-radio>
+        </ae-radio-group>
+      </div>
+
+      <div class="demo-group">
+        <label>Button Group mode sizes</label>
+        <ae-radio-group mode="button-group" color="default" size="xs" value="a">
+          <ae-radio value="a">XS</ae-radio>
+          <ae-radio value="b">Option B</ae-radio>
+        </ae-radio-group>
+        <ae-radio-group mode="button-group" color="primary" size="xs" value="a">
+          <ae-radio value="a">XS</ae-radio>
+          <ae-radio value="b">Option B</ae-radio>
+        </ae-radio-group>
+        <ae-radio-group mode="button-group" color="success" size="sm" value="a">
+          <ae-radio value="a">SM</ae-radio>
+          <ae-radio value="b">Option B</ae-radio>
+        </ae-radio-group>
+        <ae-radio-group mode="button-group" color="info" size="md" value="a">
+          <ae-radio value="a">MD</ae-radio>
+          <ae-radio value="b">Option B</ae-radio>
+        </ae-radio-group>
+        <ae-radio-group mode="button-group" color="warning" size="lg" value="a">
+          <ae-radio value="a">LG</ae-radio>
+          <ae-radio value="b">Option B</ae-radio>
+        </ae-radio-group>
+      </div>
+
+      <div class="demo-group">
+        <label>Button-group mode JS options</label>
+        <ae-radio-group id="rg-button-group-opts" mode="button-group" color="primary" value="a"></ae-radio-group>
+        <ae-radio-group mode="button-group" color="primary" variant="outlined" value="b">
+          <ae-radio value="a">Option A</ae-radio>
+          <ae-radio value="b">Option B</ae-radio>
+          <ae-radio value="c">Option C</ae-radio>
+        </ae-radio-group>
+        <ae-radio-group mode="button-group" color="info" variant="outlined" value="b" resettable clearable>
+          <ae-radio value="a">Option A</ae-radio>
+          <ae-radio value="b">Option B</ae-radio>
+          <ae-radio value="c">Option C</ae-radio>
+        </ae-radio-group>
+      </div>
+
+      <div class="demo-group">
+        <label>Segmented mode</label>
+        <ae-radio-group id="rg-segmented-opts" mode="segmented" value="a"></ae-radio-group>
+        <ae-radio-group mode="segmented" color="primary" value="b" resettable clearable>
+          <ae-radio value="a">Option A</ae-radio>
+          <ae-radio value="b">Option B</ae-radio>
+          <ae-radio value="c">Option C</ae-radio>
+        </ae-radio-group>
+      </div>
+
+      <div class="demo-group">
+        <label>Disabled</label>
+        <ae-radio-group mode="button" color="primary" value="a" disabled>
+          <ae-radio value="a">Option A</ae-radio>
+          <ae-radio value="b">Option B</ae-radio>
+          <ae-radio value="c">Option C</ae-radio>
+        </ae-radio-group>
+        <ae-radio-group mode="button-group" color="primary" value="b" disabled>
+          <ae-radio value="a">Option A</ae-radio>
+          <ae-radio value="b">Option B</ae-radio>
+          <ae-radio value="c">Option C</ae-radio>
+        </ae-radio-group>
+        <ae-radio-group mode="segmented" value="c" disabled>
+          <ae-radio value="a">Option A</ae-radio>
+          <ae-radio value="b">Option B</ae-radio>
+          <ae-radio value="c">Option C</ae-radio>
+        </ae-radio-group>
+      </div>
+    </div>
+
+    <!-- Alert -->
+  </div>
+  <footer id="log-footer">
+    <div id="log-footer-header">
+      Event Log
+      <span class="clear-log" id="clear-log">[clear]</span>
+    </div>
+    <div id="event-log"></div>
+  </footer>
+
+<script type="module">
+const rgDemoOptions = [
+  { label: 'Option A', value: 'a' },
+  { label: 'Option B', value: 'b' },
+  { label: 'Option C', value: 'c' },
+]
+document.querySelectorAll('.rg-opts-demo').forEach(el => { el.options = rgDemoOptions })
+;['#rg-default-opts','#rg-button-opts','#rg-button-group-opts','#rg-segmented-opts'].forEach(id => {
+  const el = document.querySelector(id)
+  if (el) el.options = rgDemoOptions
+})
+</script>
+</body>
+</html>
