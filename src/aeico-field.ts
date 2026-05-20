@@ -147,7 +147,7 @@ class AeicoField<TValue = string> extends AeicoComponent {
   protected renderLabel(fieldId: string): void {
     if (!this.label) return;
     const { span } = tags;
-    tags.label({ id: `${fieldId}-label`, className: 'field-label', 'for': fieldId }, () => {
+    tags.label({ id: `${fieldId}-label`, className: 'field-label', for: fieldId }, () => {
       span({ textContent: this.label! });
       if (this.required) {
         span({ className: 'field-required', 'aria-hidden': 'true', textContent: ' *' });
