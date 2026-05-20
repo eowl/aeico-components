@@ -4,6 +4,7 @@ import { html } from 'aeico';
 import styleVariables from '../styles/variables.css?inline';
 import sizeCSS from '../styles/size.css?inline';
 import colorCSS from '../styles/color.css?inline';
+import fieldLabelCSS from '../styles/components/field-label.css?inline';
 import styles from '../styles/components/switch.css?inline';
 
 class Switch extends AeicoField<boolean> {
@@ -19,7 +20,7 @@ class Switch extends AeicoField<boolean> {
   declare checked?: boolean;
   declare defaultChecked?: boolean;
 
-  protected static styles = [styleVariables, sizeCSS, colorCSS, styles];
+  protected static styles = [styleVariables, sizeCSS, colorCSS, fieldLabelCSS, styles];
 
   protected getValue(): boolean {
     return this.fieldElement?.checked ?? false;
@@ -59,19 +60,25 @@ class Switch extends AeicoField<boolean> {
 
   render() {
     return html(({ div, input, span }) => {
-      div({ className: 'switch-container' }, () => {
+      const id = this.getFieldId();
+      this.renderLabel(id);
+      div({ className: 'switch-container field-body' }, () => {
         div({ className: 'switch-wrapper' }, () => {
           this.fieldElement = input({
+            id,
             type: 'checkbox',
             className: 'field-input',
             checked: Boolean(this.checked),
             disabled: Boolean(this.disabled),
+            required: Boolean(this.required),
             '@change': this.boundOnChange,
           });
           span({ className: 'toggle-slider' });
         });
         this.renderActionButtons();
       });
+      this.renderHelperText();
+      this.renderError();
     });
   }
 }

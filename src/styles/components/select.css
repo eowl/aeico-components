@@ -78,6 +78,16 @@
   pointer-events: none;
 }
 
+/* Error state */
+:host([error]) .trigger {
+  border-color: var(--field-error-color, var(--red));
+}
+
+:host([error]) .trigger:hover:not(.disabled),
+:host([error]) .trigger.open {
+  border-color: var(--field-error-color, var(--red));
+}
+
 .value {
   flex: 1;
   min-width: 0;

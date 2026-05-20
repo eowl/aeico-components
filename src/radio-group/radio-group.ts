@@ -9,6 +9,7 @@ import style from '../styles/components/radio-group.css?inline';
 import variables from '../styles/variables.css?inline';
 import sizeCSS from '../styles/size.css?inline';
 import colorCSS from '../styles/color.css?inline';
+import fieldLabelCSS from '../styles/components/field-label.css?inline';
 
 class RadioGroup extends AeicoField {
   protected fieldElement: HTMLInputElement | null = null;
@@ -37,7 +38,7 @@ class RadioGroup extends AeicoField {
   declare size?: ButtonSize;
   declare allowEmpty?: boolean;
 
-  protected static styles = [variables, sizeCSS, colorCSS, style];
+  protected static styles = [variables, sizeCSS, colorCSS, fieldLabelCSS, style];
 
   constructor() {
     super();
@@ -137,7 +138,9 @@ class RadioGroup extends AeicoField {
     const current = this.value ?? '';
 
     return html(({ div, slot }) => {
-      div({ className: 'rg-container' }, () => {
+      const id = this.getFieldId();
+      this.renderLabel(id);
+      div({ id, role: 'group', className: 'rg-container field-body' }, () => {
         if (mode === 'default') {
           this._renderRadio(opts, current);
         } else {
@@ -153,6 +156,9 @@ class RadioGroup extends AeicoField {
         style: { display: 'none' },
         '@slotchange': () => this._onSlotChange(),
       });
+
+      this.renderHelperText();
+      this.renderError();
     });
   }
 
@@ -171,6 +177,7 @@ class RadioGroup extends AeicoField {
           name: this._groupName,
           value: opt.value,
           disabled: Boolean(this.disabled) || Boolean(opt.disabled),
+          required: Boolean(this.required),
           '@click': this._boundOnRadioClick,
         });
         // Sync DOM property directly — setAttribute('checked') doesn't work

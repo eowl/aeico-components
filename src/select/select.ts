@@ -12,6 +12,7 @@ import type {
 import style from '../styles/components/select.css?inline';
 import variables from '../styles/variables.css?inline';
 import sizeCSS from '../styles/size.css?inline';
+import fieldLabelCSS from '../styles/components/field-label.css?inline';
 import SelectOptionElement from './select-option';
 import '../tag/tag';
 import { prop } from 'aeico';
@@ -28,7 +29,7 @@ import { prop } from 'aeico';
  *
  */
 class Select extends AeicoField<SelectOptionValue | SelectMultiValue> {
-  protected fieldElement = null;
+  protected fieldElement: HTMLInputElement | null = null;
   private _isOpen = false;
   private _triggerEl: HTMLElement | null = null;
   private _dropdownEl: HTMLElement | null = null;
@@ -101,7 +102,7 @@ class Select extends AeicoField<SelectOptionValue | SelectMultiValue> {
   })
   override defaultValue: SelectOptionValue | SelectMultiValue | undefined = undefined;
 
-  protected static styles = [variables, sizeCSS, style];
+  protected static styles = [variables, sizeCSS, fieldLabelCSS, style];
 
   protected writeValue(_value: SelectOptionValue | SelectMultiValue): void {
     // Reactive re-render via this.value prop change handles the display update
@@ -124,7 +125,8 @@ class Select extends AeicoField<SelectOptionValue | SelectMultiValue> {
     // disabled is a reactive prop — render() already picks it up automatically
   }
 
-  protected onUpdated(_changedProps: Map<string, unknown>): void {
+  protected onUpdated(changedProps: Map<string, unknown>): void {
+    super.onUpdated(changedProps);
     if (!this.multiple || this.expandable) {
       if (this._expanded) this._expanded = false;
       return;
@@ -261,74 +263,113 @@ class Select extends AeicoField<SelectOptionValue | SelectMultiValue> {
     this._syncSlotOptionsSelected();
 
     return html(({ div, span, slot }) => {
-      div({ className: 'container' }, () => {
-        this._triggerEl = div(
-          {
-            className: `trigger${this._isOpen ? ' open' : ''}${isDisabled ? ' disabled' : ''}`,
-            '@click': () => {
-              if (isDisabled) return;
+      const id = this.getFieldId();
+      this.renderLabel(id);
+      div(
+        {
+          id,
+          'aria-labelledby': this.label ? `${id}-label` : undefined,
+          className: 'container field-body',
+        },
+        () => {
+          this._triggerEl = div(
+            {
+              className: `trigger${this._isOpen ? ' open' : ''}${isDisabled ? ' disabled' : ''}`,
+              '@click': () => {
+                if (isDisabled) return;
 
-              this._toggleDropdown();
+                this._toggleDropdown();
+              },
             },
-          },
-          () => {
-            if (this.multiple) {
-              if (hasMultiSelection) {
-                this._selectedListEl = div(
-                  {
-                    className: `selected-list${!this.expandable ? ' selected-list--clipped' : ''}`,
-                  },
-                  () => {
-                    for (const v of multiValues) {
-                      const lbl = this._findLabel(v);
-                      tags.aeTag({
-                        key: `sel-${v}`,
-                        color: 'default',
-                        variant: 'faint',
-                        dismissible: true,
-                        disabled: isDisabled,
-                        textContent: lbl,
-                        '@dismiss': (e: Event) => {
-                          e.stopPropagation();
-                          if (isDisabled) return;
+            () => {
+              if (this.multiple) {
+                if (hasMultiSelection) {
+                  this._selectedListEl = div(
+                    {
+                      className: `selected-list${!this.expandable ? ' selected-list--clipped' : ''}`,
+                    },
+                    () => {
+                      for (const v of multiValues) {
+                        const lbl = this._findLabel(v);
+                        tags.aeTag({
+                          key: `sel-${v}`,
+                          color: 'default',
+                          variant: 'faint',
+                          dismissible: true,
+                          disabled: isDisabled,
+                          textContent: lbl,
+                          '@dismiss': (e: Event) => {
+                            e.stopPropagation();
+                            if (isDisabled) return;
 
-                          const next = multiValues.filter((item) => String(item) !== String(v));
-                          this.setValue(next, { silent: false, action: 'change' });
-                        },
-                      });
-                    }
-                  },
-                );
-                if (!this.expandable && this._expanded) {
-                  span({ className: 'overflow-indicator', textContent: '…' });
+                            const next = multiValues.filter((item) => String(item) !== String(v));
+                            this.setValue(next, { silent: false, action: 'change' });
+                          },
+                        });
+                      }
+                    },
+                  );
+                  if (!this.expandable && this._expanded) {
+                    span({ className: 'overflow-indicator', textContent: '…' });
+                  }
+                } else {
+                  span({ className: 'value placeholder', textContent: this.placeholder || '' });
                 }
               } else {
-                span({ className: 'value placeholder', textContent: this.placeholder || '' });
+                if (selectedLabel) {
+                  span({ className: 'value', textContent: selectedLabel });
+                } else {
+                  span({ className: 'value placeholder', textContent: this.placeholder || '' });
+                }
               }
-            } else {
-              if (selectedLabel) {
-                span({ className: 'value', textContent: selectedLabel });
-              } else {
-                span({ className: 'value placeholder', textContent: this.placeholder || '' });
-              }
-            }
-            span({ className: 'arrow', textContent: '▾' });
-          },
-        );
+              span({ className: 'arrow', textContent: '▾' });
+            },
+          );
 
-        this._dropdownEl = div(
-          {
-            className: `dropdown position-${position}${this._isOpen ? ' open' : ''}`,
-          },
-          () => {
-            this._renderProgrammaticOptions();
-            this._slotEl = slot({
-              '@slotchange': () => this._onSlotChange(),
-            });
-          },
-        );
+          this._dropdownEl = div(
+            {
+              className: `dropdown position-${position}${this._isOpen ? ' open' : ''}`,
+            },
+            () => {
+              this._renderProgrammaticOptions();
+              this._slotEl = slot({
+                '@slotchange': () => this._onSlotChange(),
+              });
+            },
+          );
 
-        this.renderActionButtons();
+          this.renderActionButtons();
+        },
+      );
+      this.renderHelperText();
+      this.renderError();
+
+      // Visually-hidden input so native form constraint validation works for `required`.
+      // type="text" (not "hidden") is required — type="hidden" is exempt from constraint validation.
+      const currentValue =
+        this.value != null &&
+        this.value !== '' &&
+        !(Array.isArray(this.value) && this.value.length === 0)
+          ? String(this.value)
+          : '';
+      this.fieldElement = tags.input({
+        key: 'validation-input',
+        type: 'text',
+        'aria-hidden': 'true',
+        tabIndex: -1,
+        required: Boolean(this.required),
+        value: currentValue,
+        style: {
+          position: 'absolute',
+          width: '0',
+          height: '0',
+          opacity: '0',
+          margin: '0',
+          padding: '0',
+          border: '0',
+          pointerEvents: 'none',
+          overflow: 'hidden',
+        },
       });
     });
   }

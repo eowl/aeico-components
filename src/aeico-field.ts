@@ -29,6 +29,11 @@ class AeicoField<TValue = string> extends AeicoComponent {
     clearText: { type: String },
     size: { type: String },
     disabled: { type: Boolean },
+    label: { type: String },
+    labelPlacement: { type: String },
+    required: { type: Boolean },
+    helperText: { type: String },
+    error: { type: String },
   };
 
   /**
@@ -36,7 +41,16 @@ class AeicoField<TValue = string> extends AeicoComponent {
    */
   static watchers: Watchers = {
     disabled: 'onDisabledChanged',
+    error: 'onErrorChanged',
   };
+
+  private static _fieldIdCounter = 0;
+  private readonly _fieldId: string;
+
+  constructor() {
+    super();
+    this._fieldId = `ae-field-${++AeicoField._fieldIdCounter}`;
+  }
 
   /**
    * The underlying form control element (input, select, etc.)
@@ -62,6 +76,11 @@ class AeicoField<TValue = string> extends AeicoComponent {
   declare clearText?: string;
   declare size?: string;
   declare disabled?: boolean;
+  declare label?: string;
+  declare labelPlacement?: 'top' | 'left';
+  declare required?: boolean;
+  declare helperText?: string;
+  declare error?: string;
 
   /**
    * Lifecycle: Component connected to DOM
@@ -113,12 +132,108 @@ class AeicoField<TValue = string> extends AeicoComponent {
   }
 
   /**
+   * Returns a stable unique ID for this field instance,
+   * used to associate <label htmlFor> with the underlying input.
+   */
+  protected getFieldId(): string {
+    return this._fieldId;
+  }
+
+  /**
+   * Renders a <label> element when the `label` prop is set.
+   * Call this as the first statement inside the render() html() callback.
+   * @param fieldId - The id to set on the underlying form control element (pass to input via id prop)
+   */
+  protected renderLabel(fieldId: string): void {
+    if (!this.label) return;
+    const { span } = tags;
+    tags.label({ id: `${fieldId}-label`, className: 'field-label', for: fieldId }, () => {
+      span({ textContent: this.label! });
+      if (this.required) {
+        span({ className: 'field-required', 'aria-hidden': 'true', textContent: ' *' });
+      }
+    });
+  }
+
+  /**
+   * Renders helper text below the field. Hidden when `error` is set.
+   * Call this after the field-body div in render().
+   */
+  protected renderHelperText(): void {
+    if (!this.helperText || this.error) return;
+    const { span } = tags;
+    span({ className: 'field-helper', textContent: this.helperText });
+  }
+
+  /**
+   * Renders an error message below the field when `error` is set.
+   * Call this after renderHelperText() in render().
+   */
+  protected renderError(): void {
+    if (!this.error) return;
+    const { span } = tags;
+    span({ className: 'field-error', textContent: this.error });
+  }
+
+  /**
    * Watcher for disabled property
    */
   protected onDisabledChanged(newValue: boolean) {
     if (this.fieldElement) {
       (this.fieldElement as HTMLInputElement | HTMLSelectElement).disabled = Boolean(newValue);
     }
+  }
+
+  /**
+   * Watcher for error property — syncs aria-invalid on the field element
+   */
+  protected onErrorChanged(newValue: string | undefined): void {
+    if (this.fieldElement) {
+      if (newValue) {
+        this.fieldElement.setAttribute('aria-invalid', 'true');
+      } else {
+        this.fieldElement.removeAttribute('aria-invalid');
+      }
+    }
+  }
+
+  /**
+   * Lifecycle: called after every render update.
+   * Keeps aria-invalid on fieldElement in sync regardless of watcher timing.
+   */
+  protected onUpdated(_changedProps: Map<string, unknown>): void {
+    if (!this.fieldElement) return;
+    if (this.error) {
+      this.fieldElement.setAttribute('aria-invalid', 'true');
+    } else {
+      this.fieldElement.removeAttribute('aria-invalid');
+    }
+  }
+
+  /**
+   * Returns true if the field passes constraint validation.
+   * Delegates to the underlying fieldElement when available;
+   * falls back to a manual required-check otherwise.
+   */
+  public checkValidity(): boolean {
+    if (this.fieldElement) {
+      return this.fieldElement.checkValidity();
+    }
+    if (this.required) {
+      const v = this.value;
+      return v !== undefined && v !== '' && v !== null;
+    }
+    return true;
+  }
+
+  /**
+   * Reports validity, showing the browser's built-in validation UI when possible.
+   */
+  public reportValidity(): boolean {
+    if (this.fieldElement) {
+      return this.fieldElement.reportValidity();
+    }
+    return this.checkValidity();
   }
 
   /**

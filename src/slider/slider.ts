@@ -6,6 +6,7 @@ import style from '../styles/components/slider.css?inline';
 import variables from '../styles/variables.css?inline';
 import sizeCSS from '../styles/size.css?inline';
 import colorCSS from '../styles/color.css?inline';
+import fieldLabelCSS from '../styles/components/field-label.css?inline';
 import { prop } from 'aeico';
 
 class Slider extends AeicoField {
@@ -55,7 +56,7 @@ class Slider extends AeicoField {
   })
   accessor marks: SliderMarks | undefined;
 
-  protected static styles = [variables, sizeCSS, colorCSS, style];
+  protected static styles = [variables, sizeCSS, colorCSS, fieldLabelCSS, style];
 
   constructor() {
     super();
@@ -243,11 +244,14 @@ class Slider extends AeicoField {
     const attrs = this._getRangeAttrs(normalized);
 
     return html(({ div, input, span }) => {
-      div({ className: 'range-container' }, () => {
+      const id = this.getFieldId();
+      this.renderLabel(id);
+      div({ className: 'range-container field-body' }, () => {
         // Wrap range + optional marks in a column so marks don't push siblings
         div({ key: 'range-wrapper', className: 'range-wrapper' }, () => {
           this.fieldElement = input({
             key: 'range',
+            id,
             type: 'range',
             min: attrs.min,
             max: attrs.max,
@@ -303,6 +307,8 @@ class Slider extends AeicoField {
       });
 
       if (this.value != null) this.writeValue(this.value);
+      this.renderHelperText();
+      this.renderError();
     });
   }
 

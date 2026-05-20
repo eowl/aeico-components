@@ -1,0 +1,58 @@
+:host {
+  --field-label-gap: 4px;
+  --field-label-col-gap: 8px;
+  --field-label-width: 100px;
+  --field-label-font-size: 0.875em;
+  --field-label-color: inherit;
+  --field-required-color: var(--red, #dc3545);
+  --field-helper-color: var(--color-text-muted, #6e6e6e);
+  --field-error-color: var(--red, #dc3545);
+}
+
+:host([label]) {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--field-label-gap);
+}
+
+:host([label][label-placement="left"]) {
+  display: grid;
+  grid-template-columns: var(--field-label-width) 1fr;
+  column-gap: var(--field-label-col-gap);
+  row-gap: var(--field-label-gap);
+  align-items: start;
+}
+
+:host([label][label-placement="left"]) .field-label {
+  align-self: center;
+}
+
+:host([label][label-placement="left"]) .field-helper,
+:host([label][label-placement="left"]) .field-error {
+  grid-column: 2;
+}
+
+.field-label {
+  font-size: var(--field-label-font-size);
+  color: var(--field-label-color);
+  user-select: none;
+  line-height: 1.4;
+}
+
+.field-required {
+  color: var(--field-required-color);
+  margin-left: 2px;
+}
+
+.field-helper {
+  font-size: 0.8em;
+  color: var(--field-helper-color);
+  line-height: 1.4;
+}
+
+.field-error {
+  font-size: 0.8em;
+  color: var(--field-error-color);
+  line-height: 1.4;
+}
