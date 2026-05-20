@@ -4,6 +4,7 @@ import { html } from 'aeico';
 import styleVariables from '../styles/variables.css?inline';
 import sizeCSS from '../styles/size.css?inline';
 import colorCSS from '../styles/color.css?inline';
+import fieldLabelCSS from '../styles/components/field-label.css?inline';
 import styles from '../styles/components/checkbox.css?inline';
 import { CheckboxVariant } from './defines';
 
@@ -22,7 +23,7 @@ class Checkbox extends AeicoField<boolean> {
   declare defaultChecked?: boolean;
   declare variant?: CheckboxVariant;
 
-  protected static styles = [styleVariables, sizeCSS, colorCSS, styles];
+  protected static styles = [styleVariables, sizeCSS, colorCSS, fieldLabelCSS, styles];
 
   protected getValue(): boolean {
     return this.fieldElement?.checked ?? false;
@@ -62,18 +63,24 @@ class Checkbox extends AeicoField<boolean> {
 
   render() {
     return html(({ div, input }) => {
-      div({ className: 'checkbox-container', variant: this.variant }, () => {
+      const id = this.getFieldId();
+      this.renderLabel(id);
+      div({ className: 'checkbox-container field-body', variant: this.variant }, () => {
         div({ className: 'checkbox-wrapper' }, () => {
           this.fieldElement = input({
+            id,
             type: 'checkbox',
             className: 'field-input',
             checked: Boolean(this.checked),
             disabled: Boolean(this.disabled),
+            required: Boolean(this.required),
             '@change': this.boundOnChange,
           });
         });
         this.renderActionButtons();
       });
+      this.renderHelperText();
+      this.renderError();
     });
   }
 }

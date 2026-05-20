@@ -357,3 +357,24 @@ document.querySelectorAll<any>('.dropdown-demo').forEach(el => {
   el.addEventListener('open', () => appendLog('dropdown open'))
   el.addEventListener('close', () => appendLog('dropdown close'))
 })
+
+// --- Field Label demos ---
+const labelDemoSelect = document.querySelector<any>('#label-demo-select')
+if (labelDemoSelect) labelDemoSelect.options = FRUIT_OPTIONS
+
+const labelDemoSelectLeft = document.querySelector<any>('#label-demo-select-left')
+if (labelDemoSelectLeft) labelDemoSelectLeft.options = COLOR_OPTIONS
+
+const tierOptions = [
+  { label: 'Free', value: 'free' },
+  { label: 'Pro', value: 'pro' },
+  { label: 'Enterprise', value: 'enterprise' },
+]
+const labelDemoRg = document.querySelector<any>('#label-demo-rg')
+if (labelDemoRg) labelDemoRg.options = tierOptions
+
+const labelDemoRgLeft = document.querySelector<any>('#label-demo-rg-left')
+if (labelDemoRgLeft) {
+  labelDemoRgLeft.options = tierOptions
+  labelDemoRgLeft.mode = 'button-group'
+}

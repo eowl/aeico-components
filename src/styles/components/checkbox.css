@@ -49,6 +49,12 @@
   cursor: not-allowed;
 }
 
+/* Error state */
+:host([error]) .field-input {
+  outline: 2px solid var(--field-error-color, var(--red));
+  outline-offset: 1px;
+}
+
 /* action buttons */
 .reset-btn,
 .clear-btn {

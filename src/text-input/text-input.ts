@@ -3,6 +3,7 @@ import type { InferProps, Props } from 'aeico';
 import { html } from 'aeico';
 import variables from '../styles/variables.css?inline';
 import sizeCSS from '../styles/size.css?inline';
+import fieldLabelCSS from '../styles/components/field-label.css?inline';
 import style from '../styles/components/text-input.css?inline';
 
 class TextInput extends AeicoField {
@@ -18,19 +19,25 @@ class TextInput extends AeicoField {
   declare placeholder?: string;
   declare type?: string;
 
-  protected static styles = [variables, sizeCSS, style];
+  protected static styles = [variables, sizeCSS, fieldLabelCSS, style];
 
   render() {
     return html(({ div, input }) => {
-      div({ className: 'input-container' }, () => {
+      const id = this.getFieldId();
+      this.renderLabel(id);
+      div({ className: 'input-container field-body' }, () => {
         this.fieldElement = input({
+          id,
           type: this.type || 'text',
           placeholder: this.placeholder || '',
+          required: Boolean(this.required),
           '@input': this.boundOnChange,
         });
 
         this.renderActionButtons();
       });
+      this.renderHelperText();
+      this.renderError();
 
       if (this.fieldElement && this.value != null) {
         this.fieldElement.value = String(this.value);
