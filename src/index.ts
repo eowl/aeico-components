@@ -59,6 +59,7 @@ export { default as Card } from './card';
 export { default as Navbar } from './navbar';
 export { default as Detail } from './detail';
 export { default as ProgressBar } from './progress-bar';
+export { Menu, MenuItem } from './menu';
 
 // Component types
 export type { SelectProps, SelectOption, SelectOptions, SelectOptionValue } from './select';
@@ -87,3 +88,11 @@ export type { DividerProps } from './divider';
 export type { CardProps, CardVariant, CardColor } from './card';
 export type { NavbarProps, NavbarColor, NavbarAppearance } from './navbar';
 export type { DetailProps, DetailVariant, DetailColor } from './detail';
+export type {
+  MenuProps,
+  MenuItemProps,
+  MenuMode,
+  MenuOrientation,
+  MenuTrigger,
+  MenuSelectDetail,
+} from './menu';
