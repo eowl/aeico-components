@@ -3,19 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>(function(){if(localStorage.getItem("aeico-demo-theme")==="dark")document.documentElement.setAttribute("theme","dark")})()</script>
   <title>TextInput — Aeico Components</title>
   <link rel="stylesheet" href="../demo.css">
   <script type="module" src="../shared.ts"></script>
 </head>
 <body>
-  <ae-navbar color="dark" appearance="block" sticky>
-    <a slot="brand" href="/">← All Components</a>
-    <ae-button slot="end" id="theme-toggle" size="sm" color="light" variant="text">🌙 Dark</ae-button>
-    <ae-button-group slot="end" compact>
-      <ae-button id="lang-en" size="sm" color="primary">EN</ae-button>
-      <ae-button id="lang-zh" size="sm">中文</ae-button>
-    </ae-button-group>
-  </ae-navbar>
   <div class="content">
     <div class="section">
       <h2>TextInput</h2>
