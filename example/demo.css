@@ -129,6 +129,8 @@
       color: #a5f3fc;
     }
 
+    /* Hide own navbar when embedded inside the shell iframe */
+
     #event-log:empty::before {
       content: 'Events will appear here...';
       color: var(--text-secondary);

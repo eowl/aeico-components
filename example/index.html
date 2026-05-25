@@ -7,76 +7,191 @@
   <link rel="stylesheet" href="demo.css">
   <script type="module" src="shared.ts"></script>
   <style>
-    .comp-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-    .comp-card {
+    body {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1.25rem 1rem;
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      text-decoration: none;
-      color: var(--text-primary);
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: border-color 0.15s, box-shadow 0.15s;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
     }
-    .comp-card:hover {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 2px rgba(99,102,241,0.15);
+
+    .app-shell {
+      flex: 1;
+      display: flex;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .sidebar {
+      width: 220px;
+      flex-shrink: 0;
+      overflow-y: auto;
+      border-right: 1px solid var(--border-color);
+      background: var(--card-bg);
+    }
+
+    .sidebar ae-menu {
+      --menu-item-height: 2.25rem;
+      --menu-item-font-size: 0.875rem;
+    }
+
+    #content-frame {
+      flex: 1;
+      border: none;
+      min-width: 0;
+      height: 100%;
+      display: block;
     }
   </style>
 </head>
 <body>
-  <ae-navbar color="dark" appearance="block" sticky>
-    <a slot="brand" href="/">Aeico Components</a>
+  <ae-navbar color="dark" appearance="block">
+    <span slot="brand">Aeico Components</span>
     <ae-button slot="end" id="theme-toggle" size="sm" color="light" variant="text">🌙 Dark</ae-button>
     <ae-button-group slot="end" compact>
       <ae-button id="lang-en" size="sm" color="primary">EN</ae-button>
       <ae-button id="lang-zh" size="sm">中文</ae-button>
     </ae-button-group>
   </ae-navbar>
-  <div class="content">
-    <div class="page-header">
-      <div>
-        <h1>Aeico Components</h1>
-        <p class="subtitle">Web Components UI library — select a component to view demos</p>
-      </div>
-    </div>
-    <div class="comp-grid">
-      <a class="comp-card" href="pages/text-input.html">TextInput</a>
-      <a class="comp-card" href="pages/checkbox.html">Checkbox</a>
-      <a class="comp-card" href="pages/switch.html">Switch</a>
-      <a class="comp-card" href="pages/slider.html">Slider</a>
-      <a class="comp-card" href="pages/select.html">Select</a>
-      <a class="comp-card" href="pages/button.html">Button</a>
-      <a class="comp-card" href="pages/button-group.html">Button Group</a>
-      <a class="comp-card" href="pages/dropdown.html">Dropdown</a>
-      <a class="comp-card" href="pages/dropdown-button.html">DropdownButton</a>
-      <a class="comp-card" href="pages/radio-group.html">RadioGroup</a>
-      <a class="comp-card" href="pages/alert.html">Alert</a>
-      <a class="comp-card" href="pages/divider.html">Divider</a>
-      <a class="comp-card" href="pages/card.html">Card</a>
-      <a class="comp-card" href="pages/icon.html">Icon</a>
-      <a class="comp-card" href="pages/icon-button.html">IconButton</a>
-      <a class="comp-card" href="pages/dialog.html">Dialog</a>
-      <a class="comp-card" href="pages/tabs.html">Tabs</a>
-      <a class="comp-card" href="pages/badge.html">Badge</a>
-      <a class="comp-card" href="pages/tag.html">Tag</a>
-      <a class="comp-card" href="pages/breadcrumb.html">Breadcrumb</a>
-      <a class="comp-card" href="pages/navbar.html">Navbar</a>
-      <a class="comp-card" href="pages/detail.html">Detail</a>
-      <a class="comp-card" href="pages/progress-bar.html">ProgressBar</a>
-      <a class="comp-card" href="pages/layout.html">Layout Utilities</a>
-      <a class="comp-card" href="pages/field-label.html">Field Label</a>
-      <a class="comp-card" href="pages/textarea.html">Textarea</a>
-    </div>
+
+  <div class="app-shell">
+    <aside class="sidebar">
+      <ae-menu id="nav-menu" orientation="vertical" mode="inline">
+
+        <ae-menu-item key="form" label="Form Controls">
+          <ae-menu-item key="text-input">TextInput</ae-menu-item>
+          <ae-menu-item key="textarea">Textarea</ae-menu-item>
+          <ae-menu-item key="checkbox">Checkbox</ae-menu-item>
+          <ae-menu-item key="switch">Switch</ae-menu-item>
+          <ae-menu-item key="slider">Slider</ae-menu-item>
+          <ae-menu-item key="select">Select</ae-menu-item>
+          <ae-menu-item key="radio-group">RadioGroup</ae-menu-item>
+          <ae-menu-item key="field-label">Field Label</ae-menu-item>
+        </ae-menu-item>
+
+        <ae-menu-item key="actions" label="Button & Action">
+          <ae-menu-item key="button">Button</ae-menu-item>
+          <ae-menu-item key="button-group">Button Group</ae-menu-item>
+          <ae-menu-item key="dropdown">Dropdown</ae-menu-item>
+          <ae-menu-item key="dropdown-button">DropdownButton</ae-menu-item>
+        </ae-menu-item>
+
+        <ae-menu-item key="navigation" label="Navigation">
+          <ae-menu-item key="navbar">Navbar</ae-menu-item>
+          <ae-menu-item key="menu">Menu</ae-menu-item>
+          <ae-menu-item key="tabs">Tabs</ae-menu-item>
+          <ae-menu-item key="breadcrumb">Breadcrumb</ae-menu-item>
+        </ae-menu-item>
+
+        <ae-menu-item key="feedback" label="Feedback">
+          <ae-menu-item key="alert">Alert</ae-menu-item>
+          <ae-menu-item key="dialog">Dialog</ae-menu-item>
+          <ae-menu-item key="badge">Badge</ae-menu-item>
+          <ae-menu-item key="tag">Tag</ae-menu-item>
+          <ae-menu-item key="progress-bar">ProgressBar</ae-menu-item>
+        </ae-menu-item>
+
+        <ae-menu-item key="display" label="Data Display">
+          <ae-menu-item key="card">Card</ae-menu-item>
+          <ae-menu-item key="detail">Detail</ae-menu-item>
+          <ae-menu-item key="icon">Icon</ae-menu-item>
+          <ae-menu-item key="icon-button">IconButton</ae-menu-item>
+          <ae-menu-item key="divider">Divider</ae-menu-item>
+        </ae-menu-item>
+
+        <ae-menu-item key="layout-group" label="Layout">
+          <ae-menu-item key="layout">Layout Utilities</ae-menu-item>
+        </ae-menu-item>
+
+      </ae-menu>
+    </aside>
+
+    <iframe id="content-frame" src="" title="Component Demo"></iframe>
   </div>
+
+  <script type="module">
+    const PAGES = {
+      'text-input':      'pages/text-input.html',
+      'textarea':        'pages/textarea.html',
+      'checkbox':        'pages/checkbox.html',
+      'switch':          'pages/switch.html',
+      'slider':          'pages/slider.html',
+      'select':          'pages/select.html',
+      'radio-group':     'pages/radio-group.html',
+      'field-label':     'pages/field-label.html',
+      'button':          'pages/button.html',
+      'button-group':    'pages/button-group.html',
+      'dropdown':        'pages/dropdown.html',
+      'dropdown-button': 'pages/dropdown-button.html',
+      'navbar':          'pages/navbar.html',
+      'menu':            'pages/menu.html',
+      'tabs':            'pages/tabs.html',
+      'breadcrumb':      'pages/breadcrumb.html',
+      'alert':           'pages/alert.html',
+      'dialog':          'pages/dialog.html',
+      'badge':           'pages/badge.html',
+      'tag':             'pages/tag.html',
+      'progress-bar':    'pages/progress-bar.html',
+      'card':            'pages/card.html',
+      'detail':          'pages/detail.html',
+      'icon':            'pages/icon.html',
+      'icon-button':     'pages/icon-button.html',
+      'divider':         'pages/divider.html',
+      'layout':          'pages/layout.html',
+    };
+
+    const DEFAULT_KEY = 'button';
+    const menu = document.getElementById('nav-menu');
+    const frame = document.getElementById('content-frame');
+
+    /** Set active item and open its parent group without firing select event. */
+    function activatePage(key) {
+      if (!PAGES[key]) return;
+
+      const targetUrl = new URL(PAGES[key], location.href).href;
+      if (frame.src !== targetUrl) {
+        frame.src = PAGES[key];
+      }
+      history.replaceState(null, '', '#' + key);
+
+      // Clear all selections, then select the matching leaf item
+      menu.querySelectorAll('ae-menu-item').forEach(el => { el.selected = false; });
+      const targetItem = menu.querySelector(`ae-menu-item[key="${key}"]`);
+      if (targetItem && !targetItem.hasAttribute('label')) {
+        targetItem.selected = true;
+        // Open the parent group (inline accordion)
+        const parentGroup = targetItem.parentElement?.closest('ae-menu-item');
+        if (parentGroup) parentGroup.open = true;
+      }
+    }
+
+    // Menu click → update iframe; menu already handles visual selection internally
+    menu.addEventListener('select', (e) => {
+      const { key } = e.detail;
+      if (PAGES[key]) {
+        frame.src = PAGES[key];
+        history.replaceState(null, '', '#' + key);
+      }
+    });
+
+    // After each load: hide the inner navbar and sync theme
+    frame.addEventListener('load', () => {
+      // Inject CSS to hide only the shell navbar (sticky) — keeps demo navbars visible
+      const style = frame.contentDocument.createElement('style');
+      style.textContent = 'ae-navbar[sticky] { display: none !important; }';
+      frame.contentDocument.head.appendChild(style);
+      // Sync current theme
+      const isDark = document.documentElement.hasAttribute('theme');
+      frame.contentWindow?.postMessage({ type: 'aeico-theme', dark: isDark }, '*');
+    });
+
+    // Restore from URL hash or default
+    const initialKey = location.hash.slice(1) || DEFAULT_KEY;
+    activatePage(initialKey);
+
+    // Handle browser back/forward
+    window.addEventListener('hashchange', () => {
+      activatePage(location.hash.slice(1) || DEFAULT_KEY);
+    });
+  </script>
 </body>
 </html>

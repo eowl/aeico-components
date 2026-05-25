@@ -23,9 +23,11 @@ import {
   Detail,
   ProgressBar,
   Textarea,
+  Menu,
+  MenuItem,
 } from '../src/index'
 import '../src/styles/layout.css'
-void [TextInput, Select, Slider, Checkbox, RadioGroup, Icon, Switch, Tabs, Tab, TabPanel, Dialog, Divider, Card, Badge, Tag, Breadcrumb, BreadcrumbItem, Navbar, Dropdown, DropdownItem, Detail, ProgressBar, Textarea]
+void [TextInput, Select, Slider, Checkbox, RadioGroup, Icon, Switch, Tabs, Tab, TabPanel, Dialog, Divider, Card, Badge, Tag, Breadcrumb, BreadcrumbItem, Navbar, Dropdown, DropdownItem, Detail, ProgressBar, Textarea, Menu, MenuItem]
 import { locale } from 'aeico-localize'
 
 // --- Localization setup ---
@@ -115,10 +117,11 @@ export const POSITION_OPTIONS = [
 
 
 // --- Event logging ---
-const log = document.getElementById('event-log')!
-const clearBtn = document.getElementById('clear-log')!
+const log = document.getElementById('event-log')
+const clearBtn = document.getElementById('clear-log')
 
 function appendLog(msg: string) {
+  if (!log) return
   const line = document.createElement('div')
   line.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`
   log.prepend(line)
@@ -126,7 +129,7 @@ function appendLog(msg: string) {
   while (log.children.length > 50) log.lastChild?.remove()
 }
 
-clearBtn.addEventListener('click', () => { log.innerHTML = '' })
+clearBtn?.addEventListener('click', () => { if (log) log.innerHTML = '' })
 
 // Listen for component events on body (they bubble)
 const events = ['change', 'field-change', 'field-reset', 'field-clear', 'button-click', 'alert-close', 'dialog-open', 'dialog-close', 'tab-change', 'open', 'close']
@@ -149,9 +152,9 @@ events.forEach(eventName => {
 
 // --- Theme switching ---
 
-let isDark = false
+let isDark = localStorage.getItem('aeico-demo-theme') === 'dark'
 
-function applyTheme() {
+function applyTheme(silent = false) {
   const btn = document.getElementById('theme-toggle')
   if (isDark) {
     document.documentElement.setAttribute('theme', 'dark')
@@ -160,13 +163,28 @@ function applyTheme() {
     document.documentElement.removeAttribute('theme')
     if (btn) btn.textContent = '🌙 Dark'
   }
-  appendLog(`theme → ${isDark ? 'dark' : 'light'}`)
+  if (!silent) appendLog(`theme → ${isDark ? 'dark' : 'light'}`)
+  // Sync theme to embedded iframe (when acting as shell)
+  const frame = document.getElementById('content-frame') as HTMLIFrameElement | null
+  frame?.contentWindow?.postMessage({ type: 'aeico-theme', dark: isDark }, '*')
 }
 
 document.getElementById('theme-toggle')?.addEventListener('click', () => {
   isDark = !isDark
+  localStorage.setItem('aeico-demo-theme', isDark ? 'dark' : 'light')
   applyTheme()
 })
+
+// Sync theme from parent shell when running inside an iframe
+window.addEventListener('message', (e: MessageEvent) => {
+  if (e.data?.type === 'aeico-theme') {
+    isDark = Boolean(e.data.dark)
+    applyTheme(true)
+  }
+})
+
+// Apply persisted theme on startup (silent — no event log entry)
+if (isDark) applyTheme(true)
 
 // --- Language switching ---
 

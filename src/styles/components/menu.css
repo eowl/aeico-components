@@ -1,0 +1,17 @@
+:host {
+  display: block;
+}
+
+.menu-list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  gap: 0;
+}
+
+.menu-list--horizontal {
+  flex-direction: row;
+  align-items: stretch;
+}
