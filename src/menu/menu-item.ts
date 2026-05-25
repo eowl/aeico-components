@@ -3,7 +3,7 @@ import type { InferProps } from 'aeico';
 import { html, prop } from 'aeico';
 import style from '../styles/components/menu-item.css?inline';
 import variables from '../styles/variables.css?inline';
-import type { MenuMode, MenuOrientation, MenuTrigger } from './defines';
+import type { MenuMode, MenuOrientation, MenuTrigger, ParentMenuLike } from './defines';
 
 /**
  * Menu item — used as a direct child of `<ae-menu>` or nested inside another
@@ -55,7 +55,7 @@ class MenuItem extends AeicoComponent {
       if (!this.open) return;
       if (!e.composedPath().includes(this)) this.open = false;
     };
-    
+
     document.addEventListener('click', this._outsideClickHandler);
 
     // Close own submenu when a leaf inside it is selected (flyout)
@@ -74,20 +74,20 @@ class MenuItem extends AeicoComponent {
     }
   }
 
-  private get _parentMenu(): AeicoComponent | null {
-    return (this.closest('ae-menu') ?? null) as AeicoComponent | null;
+  private get _parentMenu(): ParentMenuLike | null {
+    return this.closest<ParentMenuLike>('ae-menu');
   }
 
   private get _mode(): MenuMode {
-    return ((this._parentMenu as any)?.mode as MenuMode) ?? 'flyout';
+    return this._parentMenu?.mode ?? 'flyout';
   }
 
   private get _orientation(): MenuOrientation {
-    return ((this._parentMenu as any)?.orientation as MenuOrientation) ?? 'horizontal';
+    return this._parentMenu?.orientation ?? 'horizontal';
   }
 
   private get _trigger(): MenuTrigger {
-    return ((this._parentMenu as any)?.trigger as MenuTrigger) ?? 'click';
+    return this._parentMenu?.trigger ?? 'click';
   }
 
   private get _isParent(): boolean {
@@ -203,7 +203,7 @@ class MenuItem extends AeicoComponent {
               'aria-haspopup': 'menu',
               'aria-expanded': String(this.open),
               '@click': this._handleParentClick,
-              '@keydown': this._handleKeydown as EventListener,
+              '@keydown': this._handleKeydown,
             },
             () => {
               span({ text: this.label });
@@ -243,7 +243,7 @@ class MenuItem extends AeicoComponent {
           className: { item: true, 'item--leaf-in-panel': isNested },
           role: 'menuitem',
           '@click': this._handleLeafClick,
-          '@keydown': this._handleKeydown as EventListener,
+          '@keydown': this._handleKeydown,
         };
 
         if (this.href) {

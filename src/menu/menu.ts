@@ -45,7 +45,7 @@ class Menu extends AeicoComponent {
     const { key, label, keyPath } = e.detail;
     // Update visual selection on all leaf items
     this.querySelectorAll('ae-menu-item').forEach((el) => {
-      const item = el as any;
+      const item = el;
       item.selected = item.key === key && !item.label; // only leaf items
     });
     this.selectedKey = key;
