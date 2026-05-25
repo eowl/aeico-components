@@ -9,6 +9,7 @@ import style from '../styles/components/icon.css?inline';
 import type { IconSize, IconColor } from './defines';
 import { defaultViewBox } from './defines';
 import IconRegistry from './registry';
+import './built-in-icons';
 
 class Icon extends AeicoComponent {
   static tagName = 'icon';

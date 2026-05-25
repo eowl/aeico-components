@@ -32,6 +32,7 @@ export default defineConfig({
         tabs:           'src/tabs/index.ts',
         tag:            'src/tag/index.ts',
         'text-input':   'src/text-input/index.ts',
+        pagination:     'src/pagination/index.ts',
       },
     },
     rollupOptions: {
