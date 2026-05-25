@@ -60,6 +60,7 @@ export { default as Navbar } from './navbar';
 export { default as Detail } from './detail';
 export { default as ProgressBar } from './progress-bar';
 export { Menu, MenuItem } from './menu';
+export { default as Tooltip } from './tooltip';
 
 // Component types
 export type { SelectProps, SelectOption, SelectOptions, SelectOptionValue } from './select';
@@ -96,3 +97,4 @@ export type {
   MenuTrigger,
   MenuSelectDetail,
 } from './menu';
+export type { TooltipProps, TooltipPlacement, TooltipTrigger } from './tooltip';

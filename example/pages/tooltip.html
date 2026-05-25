@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>(function(){if(localStorage.getItem("aeico-demo-theme")==="dark")document.documentElement.setAttribute("theme","dark")})()</script>
+  <title>Tooltip — Aeico Components</title>
+  <link rel="stylesheet" href="../demo.css">
+  <script type="module" src="../shared.ts"></script>
+</head>
+<body>
+  <div class="content">
+    <div class="section">
+      <h2>Tooltip</h2>
+      <span class="tag">&lt;ae-tooltip&gt;</span>
+
+      <!-- ─── Basic placements ──────────────────────────────────────── -->
+      <div class="demo-group">
+        <label>Placement — top / bottom / left / right</label>
+        <div class="demo-row" style="gap: 2rem; padding: 3rem 2rem;">
+          <ae-tooltip content="Tooltip on top" placement="top">
+            <ae-button>Top</ae-button>
+          </ae-tooltip>
+          <ae-tooltip content="Tooltip on bottom" placement="bottom">
+            <ae-button>Bottom</ae-button>
+          </ae-tooltip>
+          <ae-tooltip content="Tooltip on left" placement="left">
+            <ae-button>Left</ae-button>
+          </ae-tooltip>
+          <ae-tooltip content="Tooltip on right" placement="right">
+            <ae-button>Right</ae-button>
+          </ae-tooltip>
+        </div>
+      </div>
+
+      <!-- ─── Start / end variants ─────────────────────────────────── -->
+      <div class="demo-group">
+        <label>Placement — start / end variants</label>
+        <div class="demo-row" style="gap: 2rem; padding: 3rem 2rem;">
+          <ae-tooltip content="top-start" placement="top-start">
+            <ae-button>top-start</ae-button>
+          </ae-tooltip>
+          <ae-tooltip content="top-end" placement="top-end">
+            <ae-button>top-end</ae-button>
+          </ae-tooltip>
+          <ae-tooltip content="bottom-start" placement="bottom-start">
+            <ae-button>bottom-start</ae-button>
+          </ae-tooltip>
+          <ae-tooltip content="bottom-end" placement="bottom-end">
+            <ae-button>bottom-end</ae-button>
+          </ae-tooltip>
+        </div>
+      </div>
+
+      <!-- ─── Rich HTML content via slot ───────────────────────────── -->
+      <div class="demo-group">
+        <label>Rich content via <code>slot="tooltip"</code></label>
+        <div class="demo-row" style="gap: 2rem; padding: 3rem 2rem;">
+          <ae-tooltip placement="top">
+            <span slot="tooltip">
+              <strong>Rich tooltip</strong><br>
+              Supports <em>HTML</em> content
+            </span>
+            <ae-button color="primary">Hover me</ae-button>
+          </ae-tooltip>
+        </div>
+      </div>
+
+      <!-- ─── Trigger modes ─────────────────────────────────────────── -->
+      <div class="demo-group">
+        <label>Trigger — hover (default) vs click</label>
+        <div class="demo-row" style="gap: 2rem; padding: 3rem 2rem;">
+          <ae-tooltip content="I appear on hover" placement="top">
+            <ae-button>Hover</ae-button>
+          </ae-tooltip>
+          <ae-tooltip content="I appear on click" placement="top" trigger="click">
+            <ae-button>Click me</ae-button>
+          </ae-tooltip>
+        </div>
+      </div>
+
+      <!-- ─── Disabled ──────────────────────────────────────────────── -->
+      <div class="demo-group">
+        <label>Disabled tooltip</label>
+        <div class="demo-row" style="gap: 2rem; padding: 3rem 2rem;">
+          <ae-tooltip content="This tooltip is disabled" disabled>
+            <ae-button>No tooltip</ae-button>
+          </ae-tooltip>
+        </div>
+      </div>
+
+      <!-- ─── Wrapping various elements ────────────────────────────── -->
+      <div class="demo-group">
+        <label>Works with any element</label>
+        <div class="demo-row" style="gap: 2rem; padding: 3rem 2rem; align-items: center;">
+          <ae-tooltip content="Icon button tooltip" placement="top">
+            <ae-icon-button name="info-circle"></ae-icon-button>
+          </ae-tooltip>
+          <ae-tooltip content="Link tooltip" placement="bottom">
+            <a href="#" onclick="return false" style="color: var(--blue-500)">Hover link</a>
+          </ae-tooltip>
+          <ae-tooltip content="Badge tooltip" placement="right">
+            <ae-badge color="primary">New</ae-badge>
+          </ae-tooltip>
+        </div>
+      </div>
+
+      <!-- ─── Custom styles via CSS vars ───────────────────────────── -->
+      <div class="demo-group">
+        <label>Custom style via CSS variables</label>
+        <div class="demo-row" style="gap: 2rem; padding: 3rem 2rem;">
+          <ae-tooltip
+            id="custom-tooltip"
+            content="Custom styled tooltip"
+            placement="top"
+            style="--ae-tooltip-bg: var(--blue-600); --ae-tooltip-border-radius: 8px; --ae-tooltip-padding: 0.5rem 1rem;"
+          >
+            <ae-button color="primary" variant="outlined">Custom</ae-button>
+          </ae-tooltip>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
