@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>(function(){if(localStorage.getItem("aeico-demo-theme")==="dark")document.documentElement.setAttribute("theme","dark")})()</script>
+  <title>Pagination — Aeico Components</title>
+  <link rel="stylesheet" href="../demo.css">
+  <script type="module" src="../shared.ts"></script>
+  <style>
+    .demo-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <div class="section">
+      <h2>Pagination</h2>
+      <span class="tag">&lt;ae-pagination&gt;</span>
+
+      <div class="demo-group">
+        <label>Basic — total &amp; page-size</label>
+        <ae-pagination id="basic" total="100" page-size="10"></ae-pagination>
+      </div>
+
+      <div class="demo-group">
+        <label>Explicit page-count (no total needed)</label>
+        <ae-pagination page-count="20" page="5"></ae-pagination>
+      </div>
+
+      <div class="demo-group">
+        <label>siblingCount — controls how many pages show on each side of current</label>
+        <div class="demo-row">
+          <span style="color: var(--color-text-muted); font-size: 0.85em;">siblingCount=0</span>
+          <ae-pagination total="200" page-size="10" page="6" sibling-count="0"></ae-pagination>
+        </div>
+        <div class="demo-row">
+          <span style="color: var(--color-text-muted); font-size: 0.85em;">siblingCount=1 (default)</span>
+          <ae-pagination total="200" page-size="10" page="6" sibling-count="1"></ae-pagination>
+        </div>
+        <div class="demo-row">
+          <span style="color: var(--color-text-muted); font-size: 0.85em;">siblingCount=2</span>
+          <ae-pagination total="200" page-size="10" page="6" sibling-count="2"></ae-pagination>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>showFirstLast — first &amp; last page jump buttons</label>
+        <ae-pagination total="100" page-size="10" page="5" show-first-last></ae-pagination>
+      </div>
+
+      <div class="demo-group">
+        <label>Simple mode — page input instead of numbered buttons</label>
+        <ae-pagination total="100" page-size="10" simple></ae-pagination>
+        <ae-pagination total="100" page-size="10" simple show-first-last></ae-pagination>
+      </div>
+
+      <div class="demo-group">
+        <label>Size variants</label>
+        <div class="demo-row">
+          <span style="color: var(--color-text-muted); font-size: 0.85em; min-width: 2em;">xs</span>
+          <ae-pagination total="100" page-size="10" page="3" size="xs"></ae-pagination>
+        </div>
+        <div class="demo-row">
+          <span style="color: var(--color-text-muted); font-size: 0.85em; min-width: 2em;">sm</span>
+          <ae-pagination total="100" page-size="10" page="3" size="sm"></ae-pagination>
+        </div>
+        <div class="demo-row">
+          <span style="color: var(--color-text-muted); font-size: 0.85em; min-width: 2em;">md</span>
+          <ae-pagination total="100" page-size="10" page="3" size="md"></ae-pagination>
+        </div>
+        <div class="demo-row">
+          <span style="color: var(--color-text-muted); font-size: 0.85em; min-width: 2em;">lg</span>
+          <ae-pagination total="100" page-size="10" page="3" size="lg"></ae-pagination>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>Disabled</label>
+        <ae-pagination total="100" page-size="10" page="3" disabled></ae-pagination>
+        <ae-pagination total="100" page-size="10" page="3" simple disabled></ae-pagination>
+      </div>
+
+      <div class="demo-group">
+        <label>Borderless</label>
+        <ae-pagination total="100" page-size="10" page="3" variant="borderless"></ae-pagination>
+        <ae-pagination total="100" page-size="10" page="3" show-first-last variant="borderless"></ae-pagination>
+        <ae-pagination total="100" page-size="10" page="3" simple variant="borderless"></ae-pagination>
+      </div>
+
+      <div class="demo-group">
+        <label>Link</label>
+        <ae-pagination total="100" page-size="10" page="3" variant="link"></ae-pagination>
+        <ae-pagination total="100" page-size="10" page="3" show-first-last variant="link"></ae-pagination>
+        <ae-pagination total="100" page-size="10" page="3" simple variant="link"></ae-pagination>
+      </div>
+
+      <div class="demo-group">
+        <label>Edge cases</label>
+        <div class="demo-row">
+          <span style="color: var(--color-text-muted); font-size: 0.85em; min-width: 6em;">1 page</span>
+          <ae-pagination page-count="1"></ae-pagination>
+        </div>
+        <div class="demo-row">
+          <span style="color: var(--color-text-muted); font-size: 0.85em; min-width: 6em;">2 pages</span>
+          <ae-pagination page-count="2"></ae-pagination>
+        </div>
+        <div class="demo-row">
+          <span style="color: var(--color-text-muted); font-size: 0.85em; min-width: 6em;">first page</span>
+          <ae-pagination page-count="10" page="1"></ae-pagination>
+        </div>
+        <div class="demo-row">
+          <span style="color: var(--color-text-muted); font-size: 0.85em; min-width: 6em;">last page</span>
+          <ae-pagination page-count="10" page="10"></ae-pagination>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>Custom slot icons (text-based override)</label>
+        <ae-pagination total="50" page-size="10" show-first-last>
+          <span slot="first">«</span>
+          <span slot="prev">‹</span>
+          <span slot="next">›</span>
+          <span slot="last">»</span>
+        </ae-pagination>
+      </div>
+
+      <div class="demo-group">
+        <label>Interactive — listen for <code>change</code> event</label>
+        <ae-pagination id="interactive" total="300" page-size="15" page="1"></ae-pagination>
+        <p id="page-display" style="color: var(--color-text-muted); font-size: 0.875rem; margin: 6px 0 0;">Current page: 1</p>
+      </div>
+    </div>
+  </div>
+
+  <footer id="log-footer">
+    <div id="log-footer-header">
+      Event Log
+      <span class="clear-log" id="clear-log">[clear]</span>
+    </div>
+    <div id="event-log"></div>
+  </footer>
+
+  <script type="module">
+    // Log all change events from any ae-pagination on the page
+    document.querySelectorAll('ae-pagination').forEach(el => {
+      el.addEventListener('change', (e) => {
+        const log = document.getElementById('event-log');
+        const entry = document.createElement('div');
+        entry.textContent = `change → page: ${e.detail.page}`;
+        log.prepend(entry);
+      });
+    });
+
+    // Update the interactive display
+    const interactive = document.getElementById('interactive');
+    const display = document.getElementById('page-display');
+    interactive.addEventListener('change', (e) => {
+      display.textContent = `Current page: ${e.detail.page}`;
+    });
+  </script>
+</body>
+</html>

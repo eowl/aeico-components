@@ -227,5 +227,67 @@ describe('Icon', () => {
       expect(def?.strokeWidth).to.equal(2)
       expect(def?.path).to.equal(STROKE_PATH)
     })
+
+    describe('addBuiltIn', () => {
+      // Unique path used as a sentinel value across built-in tests
+      const BUILTIN_PATH = 'M0 0h24v24H0z'
+
+      it('registers an icon that can be retrieved', () => {
+        IconRegistry.addBuiltIn({ 'test-bi-basic': BUILTIN_PATH })
+        expect(IconRegistry.get('test-bi-basic')).to.exist
+        expect(IconRegistry.get('test-bi-basic')?.path).to.equal(BUILTIN_PATH)
+      })
+
+      it('has() returns true for a built-in icon', () => {
+        IconRegistry.addBuiltIn({ 'test-bi-has': BUILTIN_PATH })
+        expect(IconRegistry.has('test-bi-has')).to.be.true
+      })
+
+      it('normalises string shorthand to IconDefinition with defaultViewBox', () => {
+        IconRegistry.addBuiltIn({ 'test-bi-shorthand': BUILTIN_PATH })
+        expect(IconRegistry.get('test-bi-shorthand')).to.deep.equal({
+          path: BUILTIN_PATH,
+          viewBox: '0 0 24 24',
+        })
+      })
+
+      it('stores object definition as-is', () => {
+        IconRegistry.addBuiltIn({ 'test-bi-obj': { path: BUILTIN_PATH, stroke: true, strokeWidth: 1.5 } })
+        const def = IconRegistry.get('test-bi-obj')
+        expect(def?.stroke).to.be.true
+        expect(def?.strokeWidth).to.equal(1.5)
+        expect(def?.path).to.equal(BUILTIN_PATH)
+      })
+
+      it('does NOT overwrite an icon previously registered via add()', () => {
+        const userPath = 'M1 1h22v22H1z'
+        IconRegistry.add({ 'test-bi-priority': userPath })
+        IconRegistry.addBuiltIn({ 'test-bi-priority': BUILTIN_PATH })
+        expect(IconRegistry.get('test-bi-priority')?.path).to.equal(userPath)
+      })
+
+      it('a subsequent add() call overwrites a built-in icon', () => {
+        const userPath = 'M2 2h20v20H2z'
+        IconRegistry.addBuiltIn({ 'test-bi-override': BUILTIN_PATH })
+        IconRegistry.add({ 'test-bi-override': userPath })
+        expect(IconRegistry.get('test-bi-override')?.path).to.equal(userPath)
+      })
+
+      it('add() then addBuiltIn() does not restore the built-in value', () => {
+        const userPath = 'M3 3h18v18H3z'
+        IconRegistry.addBuiltIn({ 'test-bi-no-restore': BUILTIN_PATH })
+        IconRegistry.add({ 'test-bi-no-restore': userPath })
+        // After user add(), addBuiltIn() must not clobber the user value
+        IconRegistry.addBuiltIn({ 'test-bi-no-restore': BUILTIN_PATH })
+        expect(IconRegistry.get('test-bi-no-restore')?.path).to.equal(userPath)
+      })
+
+      it('a second addBuiltIn() call updates the same built-in key', () => {
+        const updatedPath = 'M4 4h16v16H4z'
+        IconRegistry.addBuiltIn({ 'test-bi-update': BUILTIN_PATH })
+        IconRegistry.addBuiltIn({ 'test-bi-update': updatedPath })
+        expect(IconRegistry.get('test-bi-update')?.path).to.equal(updatedPath)
+      })
+    })
   })
 })

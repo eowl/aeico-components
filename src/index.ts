@@ -61,6 +61,7 @@ export { default as Detail } from './detail';
 export { default as ProgressBar } from './progress-bar';
 export { Menu, MenuItem } from './menu';
 export { default as Tooltip } from './tooltip';
+export { default as Pagination } from './pagination';
 
 // Component types
 export type { SelectProps, SelectOption, SelectOptions, SelectOptionValue } from './select';
@@ -78,6 +79,7 @@ export type { TextInputProps } from './text-input';
 export type { TextareaProps } from './textarea';
 export type { ButtonProps, ButtonColor, ButtonSize, ButtonVariant } from './button';
 export type { ButtonGroupProps } from './button-group';
+export type { PaginationProps, PaginationSize } from './pagination';
 export type { AlertProps, AlertColor, AlertSize, AlertVariant } from './alert';
 export type { BadgeProps, BadgeColor, BadgeSize, BadgeVariant } from './badge';
 export type { TagProps, TagColor, TagSize, TagVariant } from './tag';
