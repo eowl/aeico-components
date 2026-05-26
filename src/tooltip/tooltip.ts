@@ -95,6 +95,63 @@ class Tooltip extends AeicoComponent {
     this.open = !this.open;
   };
 
+  private _updatePosition() {
+    const panel = this.shadowRoot?.querySelector<HTMLElement>('.tooltip-panel');
+    if (!panel) return;
+
+    const host = this.getBoundingClientRect();
+    const panelRect = panel.getBoundingClientRect();
+    const gap = 6; // Match --ae-tooltip-gap: 6px
+    const pw = panelRect.width;
+    const ph = panelRect.height;
+
+    let top: number;
+    let left: number;
+
+    switch (this.placement) {
+      case 'top-start':
+        top = host.top - ph - gap;
+        left = host.left;
+        break;
+      case 'top-end':
+        top = host.top - ph - gap;
+        left = host.right - pw;
+        break;
+      case 'bottom':
+        top = host.bottom + gap;
+        left = host.left + host.width / 2 - pw / 2;
+        break;
+      case 'bottom-start':
+        top = host.bottom + gap;
+        left = host.left;
+        break;
+      case 'bottom-end':
+        top = host.bottom + gap;
+        left = host.right - pw;
+        break;
+      case 'left':
+        top = host.top + host.height / 2 - ph / 2;
+        left = host.left - pw - gap;
+        break;
+      case 'right':
+        top = host.top + host.height / 2 - ph / 2;
+        left = host.right + gap;
+        break;
+      default: // 'top'
+        top = host.top - ph - gap;
+        left = host.left + host.width / 2 - pw / 2;
+    }
+
+    panel.style.top = `${top}px`;
+    panel.style.left = `${left}px`;
+  }
+
+  protected onUpdated(changedProps: Map<string, unknown>) {
+    if (changedProps.has('open') && this.open) {
+      this._updatePosition();
+    }
+  }
+
   protected render() {
     return html(({ div, span, slot }) => {
       slot();

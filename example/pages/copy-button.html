@@ -99,7 +99,72 @@
           <ae-copy-button text="Quick feedback" color="success" duration="500" title="Reverts in 500ms"></ae-copy-button>
         </div>
       </div>
+
+      <div class="demo-group">
+        <label>copying ae-card content</label>
+        <div class="demo-row" style="flex-wrap: wrap; gap: 16px; align-items: flex-start;">
+
+          <!-- API key card -->
+          <ae-card variant="outlined" style="width: 320px;">
+            <div slot="header" style="display:flex; align-items:center; justify-content:space-between; width:100%; gap:8px;">
+              <span>API Key</span>
+              <ae-copy-button
+                text="sk-aeico-0x4f8b2c1d9e3a7f60"
+                size="sm"
+                variant="text"
+                tooltip="Copy API key"
+                tooltip-copied="Copied!"
+              ></ae-copy-button>
+            </div>
+            <code style="font-family:monospace; font-size:0.85em; word-break:break-all;">sk-aeico-0x4f8b2c1d9e3a7f60</code>
+          </ae-card>
+
+          <!-- Install command card -->
+          <ae-card variant="subtle" color="secondary" style="width: 280px;">
+            <div slot="header" style="display:flex; align-items:center; justify-content:space-between; width:100%; gap:8px;">
+              <span>Install</span>
+              <ae-copy-button
+                text="npm install aeico-components"
+                size="sm"
+                variant="text"
+                color="secondary"
+                tooltip="Copy command"
+              ></ae-copy-button>
+            </div>
+            <code style="font-family:monospace; font-size:0.9em;">npm install aeico-components</code>
+          </ae-card>
+
+          <!-- Multi-line snippet card -->
+          <ae-card variant="outlined" color="primary" style="width: 340px;">
+            <div slot="header" style="display:flex; align-items:center; justify-content:space-between; width:100%; gap:8px;">
+              <span>Usage snippet</span>
+              <ae-copy-button
+                id="snippet-copy"
+                size="sm"
+                variant="text"
+                color="primary"
+                tooltip="Copy snippet"
+              ></ae-copy-button>
+            </div>
+            <pre id="snippet-content" style="margin:0; font-size:0.8em; line-height:1.5;">import 'aeico-components';
+
+const btn = document.querySelector('ae-copy-button');
+btn.text = 'Hello, world!';</pre>
+          </ae-card>
+        </div>
+      </div>
     </div>
   </div>
+
+  <script type="module">
+    // Wire the snippet copy button to copy the <pre> content via text attribute
+    customElements.whenDefined('ae-copy-button').then(() => {
+      const pre = document.getElementById('snippet-content');
+      const copyBtn = document.getElementById('snippet-copy');
+      if (pre && copyBtn) {
+        copyBtn.text = pre.textContent.trim();
+      }
+    });
+  </script>
 </body>
 </html>
