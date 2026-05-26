@@ -62,6 +62,7 @@ export { default as ProgressBar } from './progress-bar';
 export { Menu, MenuItem } from './menu';
 export { default as Tooltip } from './tooltip';
 export { default as Pagination } from './pagination';
+export { Tree, TreeItem } from './tree';
 
 // Component types
 export type { SelectProps, SelectOption, SelectOptions, SelectOptionValue } from './select';
@@ -100,3 +101,10 @@ export type {
   MenuSelectDetail,
 } from './menu';
 export type { TooltipProps, TooltipPlacement, TooltipTrigger } from './tooltip';
+export type {
+  TreeProps,
+  TreeItemProps,
+  TreeSelectDetail,
+  TreeExpandDetail,
+  TreeCheckDetail,
+} from './tree';
