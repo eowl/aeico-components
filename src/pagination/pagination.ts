@@ -167,14 +167,81 @@ class Pagination extends AeicoComponent {
     if (!isNaN(val)) {
       this._goToPage(val);
     }
-    // Sync input to actual current page (handles out-of-range values)
+
     input.value = String(this._currentPage);
   };
 
   protected onUpdated(): void {
-    // Keep the simple-mode input in sync with the page prop
     if (this._simpleInput) {
       this._simpleInput.value = String(this._currentPage);
+    }
+  }
+
+  private _renderNavBtn(
+    name: 'first' | 'prev' | 'next' | 'last',
+    iconName: string,
+    label: string,
+    disabled: boolean,
+    onClick: () => void,
+  ): void {
+    const { button, slot, aeIcon } = tags;
+
+    button(
+      {
+        key: name,
+        part: name,
+        className: 'nav-btn',
+        disabled,
+        'aria-label': label,
+        '@click': onClick,
+      },
+      () => {
+        slot({ name }, () => {
+          aeIcon({ name: iconName });
+        });
+      },
+    );
+  }
+
+  private _renderSimpleMode(page: number, count: number, disabled: boolean): void {
+    this._simpleInput = tags.input({
+      key: 'page-input',
+      part: 'page-input',
+      type: 'number',
+      min: '1',
+      max: String(count),
+      value: String(page),
+      disabled,
+      'aria-label': 'Page number',
+      '@change': this._handleSimpleInputChange,
+    });
+    tags.span({ key: 'page-total', part: 'page-total', textContent: `/ ${count}` });
+  }
+
+  private _renderPageItems(page: number, disabled: boolean): void {
+    for (const item of this._getPageItems()) {
+      if (item === 'ellipsis-start' || item === 'ellipsis-end') {
+        tags.span({
+          key: item,
+          part: 'ellipsis',
+          className: 'ellipsis',
+          'aria-hidden': 'true',
+          textContent: '…',
+        });
+      } else {
+        const isActive = item === page;
+        tags.button({
+          key: `item-${item}`,
+          part: isActive ? 'item item-active' : 'item',
+          className: isActive ? 'item active' : 'item',
+          disabled,
+          'aria-current': isActive ? 'page' : undefined,
+          'aria-label': `Page ${item}`,
+          'data-page': String(item),
+          textContent: String(item),
+          '@click': this._handleItemClick,
+        });
+      }
     }
   }
 
@@ -185,129 +252,47 @@ class Pagination extends AeicoComponent {
     const isFirst = page <= 1;
     const isLast = page >= count;
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const icon = tags as any;
-
-    return html(({ nav, button, span, slot, input }) => {
+    return html(({ nav }) => {
       nav({ part: 'root', role: 'navigation', 'aria-label': 'Pagination' }, () => {
-        // First page button
-        if (this.showFirstLast) {
-          button(
-            {
-              key: 'first',
-              part: 'first',
-              className: 'nav-btn',
-              disabled: disabled || isFirst,
-              'aria-label': 'First page',
-              '@click': this._handleFirstClick,
-            },
-            () => {
-              slot({ name: 'first' }, () => {
-                icon['ae-icon']({ name: 'chevrons-left' });
-              });
-            },
+        if (this.showFirstLast)
+          this._renderNavBtn(
+            'first',
+            'chevrons-left',
+            'First page',
+            disabled || isFirst,
+            this._handleFirstClick,
           );
-        }
 
-        // Prev button
-        button(
-          {
-            key: 'prev',
-            part: 'prev',
-            className: 'nav-btn',
-            disabled: disabled || isFirst,
-            'aria-label': 'Previous page',
-            '@click': this._handlePrevClick,
-          },
-          () => {
-            slot({ name: 'prev' }, () => {
-              icon['ae-icon']({ name: 'chevron-left' });
-            });
-          },
+        this._renderNavBtn(
+          'prev',
+          'chevron-left',
+          'Previous page',
+          disabled || isFirst,
+          this._handlePrevClick,
         );
 
         if (this.simple) {
-          // Simple mode: input + "/ N" label
-          this._simpleInput = input({
-            key: 'page-input',
-            part: 'page-input',
-            type: 'number',
-            min: '1',
-            max: String(count),
-            value: String(page),
-            disabled,
-            'aria-label': 'Page number',
-            '@change': this._handleSimpleInputChange,
-          });
-          span({
-            key: 'page-total',
-            part: 'page-total',
-            textContent: `/ ${count}`,
-          });
+          this._renderSimpleMode(page, count, disabled);
         } else {
-          // Full mode: page number buttons with optional ellipsis
-          const items = this._getPageItems();
-          for (const item of items) {
-            if (item === 'ellipsis-start' || item === 'ellipsis-end') {
-              tags.span({
-                key: item,
-                part: 'ellipsis',
-                className: 'ellipsis',
-                'aria-hidden': 'true',
-                textContent: '…',
-              });
-            } else {
-              const isActive = item === page;
-              tags.button({
-                key: `item-${item}`,
-                part: isActive ? 'item item-active' : 'item',
-                className: isActive ? 'item active' : 'item',
-                disabled,
-                'aria-current': isActive ? 'page' : undefined,
-                'aria-label': `Page ${item}`,
-                'data-page': String(item),
-                textContent: String(item),
-                '@click': this._handleItemClick,
-              });
-            }
-          }
+          this._renderPageItems(page, disabled);
         }
 
-        // Next button
-        button(
-          {
-            key: 'next',
-            part: 'next',
-            className: 'nav-btn',
-            disabled: disabled || isLast,
-            'aria-label': 'Next page',
-            '@click': this._handleNextClick,
-          },
-          () => {
-            slot({ name: 'next' }, () => {
-              icon['ae-icon']({ name: 'chevron-right' });
-            });
-          },
+        this._renderNavBtn(
+          'next',
+          'chevron-right',
+          'Next page',
+          disabled || isLast,
+          this._handleNextClick,
         );
 
-        // Last page button
-        if (this.showFirstLast) {
-          button(
-            {
-              key: 'last',
-              part: 'last',
-              className: 'nav-btn',
-              disabled: disabled || isLast,
-              'aria-label': 'Last page',
-              '@click': this._handleLastClick,
-            },
-            () => {
-              slot({ name: 'last' }, () => {
-                icon['ae-icon']({ name: 'chevrons-right' });
-              });
-            },
+        if (this.showFirstLast)
+          this._renderNavBtn(
+            'last',
+            'chevrons-right',
+            'Last page',
+            disabled || isLast,
+            this._handleLastClick,
           );
-        }
       });
     });
   }
