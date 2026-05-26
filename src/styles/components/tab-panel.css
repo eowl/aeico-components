@@ -1,6 +1,6 @@
 :host {
   display: none;
-  padding: 16px 0;
+  padding: var(--ae-tab-panel-padding, 16px 0);
 }
 
 :host([active]) {
