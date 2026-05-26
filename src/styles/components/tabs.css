@@ -1,6 +1,7 @@
 :host {
   display: flex;
   flex-direction: column;
+  gap: var(--ae-tabs-gap, 0);
   overflow: hidden;
 }
 
