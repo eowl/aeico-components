@@ -16,6 +16,7 @@ export default defineConfig({
         breadcrumb:     'src/breadcrumb/index.ts',
         button:         'src/button/index.ts',
         'button-group': 'src/button-group/index.ts',
+        'copy-button':  'src/copy-button/index.ts',
         card:           'src/card/index.ts',
         checkbox:       'src/checkbox/index.ts',
         detail:         'src/detail/index.ts',
