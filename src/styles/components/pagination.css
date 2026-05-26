@@ -130,26 +130,76 @@ input[part="page-input"]:disabled {
   line-height: 2em;
 }
 
-:host([borderless]) button {
+/* ── Borderless variant ──────────────────────────────────────────────── */
+:host([variant='borderless']) button {
   border-color: transparent;
 }
 
-:host([borderless]) button:hover:not(:disabled) {
+:host([variant='borderless']) button:hover:not(:disabled) {
   border-color: transparent;
 }
 
-:host([borderless]) button.active {
+:host([variant='borderless']) button.active {
   border-color: transparent;
 }
 
-:host([borderless]) input[part="page-input"] {
+:host([variant='borderless']) input[part='page-input'] {
   border-color: transparent;
 }
 
-:host([borderless]) input[part="page-input"]:hover:not(:disabled) {
+:host([variant='borderless']) input[part='page-input']:hover:not(:disabled) {
   border-color: transparent;
 }
 
-:host([borderless]) input[part="page-input"]:focus {
+:host([variant='borderless']) input[part='page-input']:focus {
   border-color: var(--border-focus);
+}
+
+/* ── Link variant ────────────────────────────────────────────────────── */
+:host([variant='link']) button {
+  border-color: transparent;
+  background: transparent;
+}
+
+:host([variant='link']) button:hover:not(:disabled) {
+  border-color: transparent;
+  background: transparent;
+  color: var(--color-primary);
+}
+
+:host([variant='link']) button:active:not(:disabled) {
+  background: transparent;
+}
+
+:host([variant='link']) button:focus-visible {
+  border-color: transparent;
+}
+
+:host([variant='link']) button.active {
+  background: transparent;
+  border-color: transparent;
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+:host([variant='link']) button.active:hover:not(:disabled) {
+  background: transparent;
+  color: var(--color-primary);
+}
+
+:host([variant='link']) input[part='page-input'] {
+  border-color: transparent;
+  border-bottom-color: var(--border-subtle);
+  border-radius: 0;
+}
+
+:host([variant='link']) input[part='page-input']:hover:not(:disabled) {
+  border-color: transparent;
+  border-bottom-color: var(--border-default);
+}
+
+:host([variant='link']) input[part='page-input']:focus {
+  border-color: transparent;
+  border-bottom-color: var(--border-focus);
+  box-shadow: none;
 }

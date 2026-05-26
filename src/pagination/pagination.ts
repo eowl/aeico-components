@@ -4,7 +4,7 @@ import AeicoComponent from '../aeico-component';
 import styleVariables from '../styles/variables.css?inline';
 import sizeCSS from '../styles/size.css?inline';
 import paginationStyle from '../styles/components/pagination.css?inline';
-import type { PaginationSize } from './defines';
+import type { PaginationSize, PaginationVariant } from './defines';
 import '../icon/icon';
 
 type PageItem = number | 'ellipsis-start' | 'ellipsis-end';
@@ -21,7 +21,7 @@ type PageItem = number | 'ellipsis-start' | 'ellipsis-end';
  * @prop {boolean} disabled - Disables all interactive controls.
  * @prop {boolean} simple - Simple mode: shows only prev/next buttons and a page number input.
  * @prop {boolean} showFirstLast - Show dedicated first-page and last-page jump buttons.
- * @prop {boolean} borderless - Removes the border from all buttons and the page input.
+ * @prop {'borderless'|'link'} variant - Visual variant. `borderless` removes borders; `link` renders page numbers as plain text links with no borders or backgrounds.
  *
  * @event {CustomEvent<{page: number}>} change - Fired when the page changes.
  *
@@ -77,8 +77,8 @@ class Pagination extends AeicoComponent {
   @prop({ type: Boolean })
   accessor showFirstLast: boolean = false;
 
-  @prop({ type: Boolean })
-  accessor borderless: boolean = false;
+  @prop({ type: String })
+  accessor variant: PaginationVariant | undefined;
 
   private _simpleInput: HTMLInputElement | null = null;
 
