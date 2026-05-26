@@ -1,0 +1,10 @@
+:host {
+  display: block;
+}
+
+.tree {
+  display: block;
+  padding: 0.25rem;
+  box-sizing: border-box;
+  user-select: none;
+}
