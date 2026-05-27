@@ -50,8 +50,8 @@
     "components",
     "aeico"
   ],
-  "author": "",
-  "license": "ISC",
+  "author": "Eowl",
+  "license": "MIT",
   "peerDependencies": {
     "aeico": "^0.1.5",
     "aeico-localize": "^0.1.1"
