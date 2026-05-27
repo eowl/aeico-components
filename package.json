@@ -24,6 +24,7 @@
     "src"
   ],
   "sideEffects": [
+    "./src/icon/built-in-icons.ts",
     "./dist/*.js",
     "./dist/*.cjs",
     "./dist/chunks/*.js",
