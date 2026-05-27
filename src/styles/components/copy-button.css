@@ -1,0 +1,119 @@
+:host {
+  display: inline-block;
+  --btn-solid-bg:          var(--color-solid);
+  --btn-solid-bg-hover:    var(--color-solid-hover);
+  --btn-solid-bg-active:   var(--color-solid-active);
+  --btn-solid-color:       var(--color-on-solid);
+  --btn-solid-color-hover: var(--color-on-solid-hover);
+  --btn-border:            var(--color-border);
+  --btn-border-hover:      var(--color-border-hover);
+  --btn-accent:            var(--color-accent);
+  --btn-accent-hover:      var(--color-accent-hover);
+  --btn-subtle-bg:         var(--color-subtle);
+  --btn-subtle-bg-hover:   var(--color-subtle-hover);
+}
+
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: inherit;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  outline: none;
+  position: relative;
+  padding: 0.429em 0.571em;
+  font-size: 1em;
+  line-height: 1.5;
+  border-radius: 4px;
+  height: 2.286em;
+  width: 2.286em;
+  min-width: unset;
+
+  background:  var(--btn-solid-bg);
+  border: 1px solid var(--btn-solid-bg);
+  color:       var(--btn-solid-color);
+}
+
+button:focus  { outline: none; }
+button:active { transform: translateY(1px); }
+
+button:hover:not(:disabled) {
+  background:   var(--btn-solid-bg-hover);
+  border-color: var(--btn-border-hover);
+  color:        var(--btn-solid-color-hover, var(--btn-solid-color));
+}
+
+button:active:not(:disabled) { background: var(--btn-solid-bg-active); }
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Hide the fallback-text slot */
+slot { display: none; }
+
+/* Icon visibility */
+.icon-copy,
+.icon-check {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.icon-copy  { opacity: 1; transform: scale(1); }
+.icon-check { opacity: 0; transform: scale(0.6); }
+
+:host([copied]) .icon-copy  { opacity: 0; transform: scale(0.6); }
+:host([copied]) .icon-check { opacity: 1; transform: scale(1); }
+
+/* Variants */
+:host([variant="outlined"]) button {
+  background: transparent;
+  border-color: var(--btn-border);
+  color: var(--btn-accent);
+}
+:host([variant="outlined"]) button:hover:not(:disabled) {
+  background: var(--btn-subtle-bg);
+  border-color: var(--btn-border-hover);
+  color: var(--btn-accent-hover);
+}
+
+:host([variant="faint"]) button {
+  background: var(--btn-subtle-bg);
+  border-color: transparent;
+  color: var(--btn-accent);
+}
+:host([variant="faint"]) button:hover:not(:disabled) {
+  background: var(--btn-subtle-bg-hover);
+  color: var(--btn-accent-hover);
+}
+
+:host([variant="subtle"]) button {
+  background: transparent;
+  border-color: transparent;
+  color: var(--btn-accent);
+}
+:host([variant="subtle"]) button:hover:not(:disabled) {
+  background: var(--btn-subtle-bg);
+  color: var(--btn-accent-hover);
+}
+
+:host([variant="text"]) button {
+  background: transparent;
+  border-color: transparent;
+  color: var(--btn-accent);
+}
+:host([variant="text"]) button:hover:not(:disabled) {
+  color: var(--btn-accent-hover);
+}

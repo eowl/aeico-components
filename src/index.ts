@@ -44,6 +44,7 @@ export { default as Switch } from './switch';
 // UI components
 export { default as Breadcrumb, BreadcrumbItem } from './breadcrumb';
 export { default as Button } from './button';
+export { default as CopyButton } from './copy-button';
 export { default as Dropdown, DropdownItem, DropdownButton } from './dropdown';
 export { default as ButtonGroup } from './button-group';
 export { default as Badge } from './badge';
