@@ -62,7 +62,7 @@ class CopyButton extends AeicoComponent {
 
     const textToCopy = this._getTextToCopy();
 
-    navigator.clipboard.writeText(textToCopy).then(() => {
+    void navigator.clipboard.writeText(textToCopy).then(() => {
       this.setAttribute('copied', '');
 
       if (this._tooltipEl) {
@@ -144,4 +144,3 @@ declare global {
 
 export default CopyButton;
 export type CopyButtonProps = InferProps<typeof CopyButton>;
-
