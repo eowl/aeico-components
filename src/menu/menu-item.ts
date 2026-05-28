@@ -50,9 +50,10 @@ class MenuItem extends AeicoComponent {
     this.listen('mouseenter', this._handleMouseEnter);
     this.listen('mouseleave', this._handleMouseLeave);
 
-    // Outside-click to close flyout panel
+    // Outside-click to close flyout panel (not applicable in inline mode)
     this._outsideClickHandler = (e: MouseEvent) => {
       if (!this.open) return;
+      if (this._mode === 'inline') return;
       if (!e.composedPath().includes(this)) this.open = false;
     };
 
