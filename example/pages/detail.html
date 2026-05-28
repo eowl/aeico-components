@@ -68,6 +68,22 @@
       </div>
 
       <div class="demo-group">
+        <label>Icon placement</label>
+        <div class="demo-group" style="max-width: 480px;">
+          <ae-detail summary="end (default)" variant="outlined">
+            <ae-icon name="chevron-down" slot="expand"></ae-icon>
+            <ae-icon name="chevron-up" slot="collapse"></ae-icon>
+            Icon placement defaults to <code>end</code> — the toggle icon sits on the right.
+          </ae-detail>
+          <ae-detail summary="start" variant="outlined" icon-placement="start">
+            <ae-icon name="chevron-right" slot="expand"></ae-icon>
+            <ae-icon name="chevron-down" slot="collapse"></ae-icon>
+            With <code>icon-placement="start"</code> the icon moves to the left of the summary text.
+          </ae-detail>
+        </div>
+      </div>
+
+      <div class="demo-group">
         <label>Programmatic control</label>
         <div class="demo-row">
           <ae-button id="detail-open-btn" size="sm" color="primary">open()</ae-button>
