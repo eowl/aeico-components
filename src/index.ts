@@ -60,6 +60,7 @@ export { default as Card } from './card';
 export { default as Navbar } from './navbar';
 export { default as Spinner } from './spinner';
 export { default as Detail } from './detail';
+export { default as DetailGroup } from './detail-group';
 export { default as ProgressBar } from './progress-bar';
 export { Menu, MenuItem } from './menu';
 export { default as Tooltip } from './tooltip';

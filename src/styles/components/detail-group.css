@@ -1,0 +1,10 @@
+:host {
+  display: block;
+}
+
+/* Raise hovered/focused item so its border shows above neighbours */
+::slotted(ae-detail:hover),
+::slotted(ae-detail:focus-within) {
+  position: relative;
+  z-index: 1;
+}

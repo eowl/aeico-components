@@ -5,7 +5,7 @@ import detailStyle from '../styles/components/detail.css?inline';
 import AeicoComponent from '../aeico-component';
 import { html } from 'aeico';
 import { prop } from 'aeico';
-import type { DetailColor, DetailVariant } from './defines';
+import type { DetailColor, DetailVariant, DetailIconPlacement } from './defines';
 
 /**
  * Detail component that can be used to show/hide additional content.
@@ -34,6 +34,9 @@ class Detail extends AeicoComponent {
 
   @prop({ type: Boolean })
   accessor disabled: boolean = false;
+
+  @prop({ type: String })
+  accessor iconPlacement: DetailIconPlacement = 'end';
 
   private _open: boolean = false;
 
@@ -120,3 +123,4 @@ declare global {
 
 export default Detail;
 export type DetailProps = InferProps<typeof Detail>;
+export type { DetailIconPlacement };
