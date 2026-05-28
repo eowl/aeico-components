@@ -58,6 +58,7 @@ export { Tabs, Tab, TabPanel } from './tabs';
 export { default as Divider } from './divider';
 export { default as Card } from './card';
 export { default as Navbar } from './navbar';
+export { default as Spinner } from './spinner';
 export { default as Detail } from './detail';
 export { default as ProgressBar } from './progress-bar';
 export { Menu, MenuItem } from './menu';

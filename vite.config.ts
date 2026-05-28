@@ -39,6 +39,7 @@ export default defineConfig({
         menu:           'src/menu/index.ts',
         'progress-bar': 'src/progress-bar/index.ts',
         pagination:     'src/pagination/index.ts',
+        spinner:        'src/spinner/index.ts',
       },
     },
     rollupOptions: {
