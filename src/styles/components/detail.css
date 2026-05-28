@@ -43,7 +43,11 @@
 
 .detail {
   border: 1px solid var(--detail-border);
-  border-radius: var(--detail-radius);
+  border-radius:
+    var(--detail-r-tl, var(--detail-radius))
+    var(--detail-r-tr, var(--detail-radius))
+    var(--detail-r-br, var(--detail-radius))
+    var(--detail-r-bl, var(--detail-radius));
   color: var(--detail-color);
   background: var(--detail-bg);
   overflow: hidden;

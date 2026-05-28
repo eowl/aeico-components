@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>(function(){if(localStorage.getItem("aeico-demo-theme")==="dark")document.documentElement.setAttribute("theme","dark")})()</script>
+  <title>Detail Group — Aeico Components</title>
+  <link rel="stylesheet" href="../demo.css">
+  <script type="module" src="../shared.ts"></script>
+</head>
+<body>
+  <div class="content">
+    <div class="section">
+      <h2>Detail Group</h2>
+      <span class="tag">&lt;ae-detail-group&gt;</span>
+
+      <div class="demo-group">
+        <label>Single open (default)</label>
+        <ae-detail-group style="max-width: 480px;">
+          <ae-detail summary="What is Aeico?">
+            Aeico is a lightweight Web Components framework for building UI libraries without heavy dependencies.
+          </ae-detail>
+          <ae-detail summary="How do I install it?">
+            Run <code>npm install aeico</code> then import the components you need from the package.
+          </ae-detail>
+          <ae-detail summary="Is it framework-agnostic?">
+            Yes. Web Components work in any framework — React, Vue, Angular, Svelte — or plain HTML.
+          </ae-detail>
+        </ae-detail-group>
+      </div>
+
+      <div class="demo-group">
+        <label>Multiple open</label>
+        <ae-detail-group multiple style="max-width: 480px;">
+          <ae-detail summary="Feature A">
+            Multiple sections can be expanded at the same time when the <code>multiple</code> attribute is set.
+          </ae-detail>
+          <ae-detail summary="Feature B">
+            Each <code>ae-detail</code> retains its own open/close state independently.
+          </ae-detail>
+          <ae-detail summary="Feature C">
+            You can still close individual panels by clicking their header.
+          </ae-detail>
+        </ae-detail-group>
+      </div>
+
+      <div class="demo-group">
+        <label>Outlined variant</label>
+        <ae-detail-group style="max-width: 480px;">
+          <ae-detail summary="Section 1" variant="outlined">
+            Content inside an outlined detail group.
+          </ae-detail>
+          <ae-detail summary="Section 2" variant="outlined">
+            All items share the same visual border chain.
+          </ae-detail>
+          <ae-detail summary="Section 3" variant="outlined">
+            The outer corners stay rounded while inner edges meet flush.
+          </ae-detail>
+        </ae-detail-group>
+      </div>
+
+      <div class="demo-group">
+        <label>With color</label>
+        <ae-detail-group style="max-width: 480px;">
+          <ae-detail summary="Primary header" color="primary">
+            <ae-icon name="square-plus" slot="expand"></ae-icon>
+            <ae-icon name="square-minus" slot="collapse"></ae-icon>
+            Each item can still carry its own color independently.
+          </ae-detail>
+          <ae-detail summary="Danger section" color="danger">
+            <ae-icon name="square-plus" slot="expand"></ae-icon>
+            <ae-icon name="square-minus" slot="collapse"></ae-icon>
+            Mix and match colors per item as needed.
+          </ae-detail>
+          <ae-detail summary="Default section">
+            <ae-icon name="square-plus" slot="expand"></ae-icon>
+            <ae-icon name="square-minus" slot="collapse"></ae-icon>
+            Falls back to the default style.
+          </ae-detail>
+        </ae-detail-group>
+      </div>
+
+      <div class="demo-group">
+        <label>Single item (full radius preserved)</label>
+        <ae-detail-group style="max-width: 480px;">
+          <ae-detail summary="Only child">
+            When there is only one item the full border radius is kept on all four corners.
+          </ae-detail>
+        </ae-detail-group>
+      </div>
+
+    </div>
+  </div>
+  <footer id="log-footer">
+    <div id="log-footer-header">
+      Event Log
+      <span class="clear-log" id="clear-log">[clear]</span>
+    </div>
+    <div id="event-log"></div>
+  </footer>
+</body>
+</html>
