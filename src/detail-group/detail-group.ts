@@ -4,6 +4,7 @@ import detailGroupStyle from '../styles/components/detail-group.css?inline';
 import AeicoComponent from '../aeico-component';
 import { html } from 'aeico';
 import type Detail from '../detail/detail';
+import type { DetailColor, DetailVariant } from '../detail/defines';
 
 /**
  * DetailGroup component — wraps multiple `ae-detail` elements into an
@@ -24,11 +25,15 @@ class DetailGroup extends AeicoComponent {
 
   static props: Props = {
     multiple: { type: Boolean },
+    variant: { type: String },
+    color: { type: String },
   };
 
   protected static styles = [styleVariables, detailGroupStyle];
 
   declare multiple?: boolean;
+  declare variant?: DetailVariant;
+  declare color?: DetailColor;
 
   private slotEl: HTMLSlotElement | null = null;
 
@@ -62,6 +67,10 @@ class DetailGroup extends AeicoComponent {
       detail.style.setProperty('--detail-r-tr', isFirst ? `${r}px` : '0');
       detail.style.setProperty('--detail-r-br', isLast ? `${r}px` : '0');
       detail.style.setProperty('--detail-r-bl', isLast ? `${r}px` : '0');
+
+      // Propagate variant / color only when explicitly set on the group
+      if (this.variant !== undefined) detail.variant = this.variant;
+      if (this.color !== undefined) detail.color = this.color;
     });
   }
 

@@ -81,6 +81,19 @@
       </div>
 
       <div class="demo-group">
+        <label>Group-level variant &amp; color</label>
+        <ae-detail-group variant="outlined" style="max-width: 480px;">
+          <ae-detail summary="Section 1">All items inherit <code>variant="outlined"</code> from the group.</ae-detail>
+          <ae-detail summary="Section 2">No need to set variant on each child individually.</ae-detail>
+          <ae-detail summary="Section 3">Per-item overrides still work when the group has no setting.</ae-detail>
+        </ae-detail-group>
+        <ae-detail-group variant="faint" color="primary" style="max-width: 480px; margin-top: 0.75rem;">
+          <ae-detail summary="Primary faint A">Group sets both <code>variant="faint"</code> and <code>color="primary"</code>.</ae-detail>
+          <ae-detail summary="Primary faint B">Every child receives the same visual treatment.</ae-detail>
+        </ae-detail-group>
+      </div>
+
+      <div class="demo-group">
         <label>Single item (full radius preserved)</label>
         <ae-detail-group style="max-width: 480px;">
           <ae-detail summary="Only child">
