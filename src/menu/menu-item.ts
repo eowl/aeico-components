@@ -3,7 +3,13 @@ import type { InferProps } from 'aeico';
 import { html, prop } from 'aeico';
 import style from '../styles/components/menu-item.css?inline';
 import variables from '../styles/variables.css?inline';
-import type { MenuMode, MenuOrientation, MenuTrigger, ParentMenuLike, MenuIconPlacement } from './defines';
+import type {
+  MenuMode,
+  MenuOrientation,
+  MenuTrigger,
+  ParentMenuLike,
+  MenuIconPlacement,
+} from './defines';
 
 /**
  * Menu item — used as a direct child of `<ae-menu>` or nested inside another
