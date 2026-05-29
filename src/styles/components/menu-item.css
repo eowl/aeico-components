@@ -78,9 +78,7 @@
   display: inline-block;
   width: 0;
   height: 0;
-  margin-left: auto;
   flex-shrink: 0;
-  transition: transform 0.2s;
 }
 
 .item-arrow--right {
@@ -97,6 +95,37 @@
 
 .item--open .item-arrow--right {
   transform: rotate(90deg);
+}
+
+slot[name="expand"],
+slot[name="collapse"] {
+  display: inline-flex;
+  align-items: center;
+  margin-inline-start: auto;
+  flex-shrink: 0;
+}
+
+slot[name="collapse"] {
+  display: none;
+}
+
+.item--open slot[name="expand"] {
+  display: none;
+}
+
+.item--open slot[name="collapse"] {
+  display: inline-flex;
+  align-items: center;
+}
+
+slot[name="collapse"] .item-arrow--right {
+  transform: rotate(90deg);
+}
+
+:host([icon-placement="start"]) slot[name="expand"],
+:host([icon-placement="start"]) slot[name="collapse"] {
+  order: -1;
+  margin-inline-start: 0;
 }
 
 .submenu-panel {

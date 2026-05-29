@@ -106,6 +106,52 @@
         </div>
       </div>
 
+      <!-- ─── Custom expand / collapse icons ───────────────────────────── -->
+      <div class="demo-group">
+        <label>Inline mode — custom expand/collapse icons (icon-placement="end", default)</label>
+        <div class="demo-row">
+          <div style="width: 220px; border: 1px solid var(--border-color, #e0e0e0); border-radius: 6px; overflow: hidden;">
+          <ae-menu mode="inline" orientation="vertical">
+            <ae-menu-item key="settings" label="Settings">
+              <ae-icon name="chevron-right" slot="expand"></ae-icon>
+              <ae-icon name="chevron-down" slot="collapse"></ae-icon>
+              <ae-menu-item key="profile">Profile</ae-menu-item>
+              <ae-menu-item key="security">Security</ae-menu-item>
+            </ae-menu-item>
+            <ae-menu-item key="help" label="Help">
+              <ae-icon name="plus" slot="expand"></ae-icon>
+              <ae-icon name="minus" slot="collapse"></ae-icon>
+              <ae-menu-item key="docs">Docs</ae-menu-item>
+              <ae-menu-item key="faq">FAQ</ae-menu-item>
+            </ae-menu-item>
+          </ae-menu>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── Custom icons — icon-placement="start" ──────────────────── -->
+      <div class="demo-group">
+        <label>Inline mode — custom expand/collapse icons (icon-placement="start")</label>
+        <div class="demo-row">
+          <div style="width: 220px; border: 1px solid var(--border-color, #e0e0e0); border-radius: 6px; overflow: hidden;">
+          <ae-menu mode="inline" orientation="vertical">
+            <ae-menu-item key="account" label="Account" icon-placement="start">
+              <ae-icon name="chevron-right" slot="expand"></ae-icon>
+              <ae-icon name="chevron-down" slot="collapse"></ae-icon>
+              <ae-menu-item key="profile">Profile</ae-menu-item>
+              <ae-menu-item key="billing">Billing</ae-menu-item>
+            </ae-menu-item>
+            <ae-menu-item key="tools" label="Tools" icon-placement="start">
+              <ae-icon name="chevron-right" slot="expand"></ae-icon>
+              <ae-icon name="chevron-down" slot="collapse"></ae-icon>
+              <ae-menu-item key="editor">Editor</ae-menu-item>
+              <ae-menu-item key="terminal">Terminal</ae-menu-item>
+            </ae-menu-item>
+          </ae-menu>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
