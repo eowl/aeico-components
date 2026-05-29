@@ -3,7 +3,7 @@ import type { InferProps } from 'aeico';
 import { html, prop } from 'aeico';
 import style from '../styles/components/menu-item.css?inline';
 import variables from '../styles/variables.css?inline';
-import type { MenuMode, MenuOrientation, MenuTrigger, ParentMenuLike } from './defines';
+import type { MenuMode, MenuOrientation, MenuTrigger, ParentMenuLike, MenuIconPlacement } from './defines';
 
 /**
  * Menu item — used as a direct child of `<ae-menu>` or nested inside another
@@ -12,6 +12,19 @@ import type { MenuMode, MenuOrientation, MenuTrigger, ParentMenuLike } from './d
  * - **Leaf item**: omit `label`; slot contains the item text.
  * - **Parent item**: set `label` to the trigger text; slot children are
  *   `<ae-menu-item>` elements that appear in the submenu panel/section.
+ *
+ * **Slots (parent items only)**
+ * - `expand`  — icon shown when the submenu is closed (default: CSS triangle).
+ * - `collapse` — icon shown when the submenu is open (default: rotated CSS triangle).
+ *
+ * @example
+ * ```html
+ * <ae-menu-item label="Settings" icon-placement="start">
+ *   <ae-icon name="chevron-right" slot="expand"></ae-icon>
+ *   <ae-icon name="chevron-down" slot="collapse"></ae-icon>
+ *   <ae-menu-item key="profile">Profile</ae-menu-item>
+ * </ae-menu-item>
+ * ```
  */
 class MenuItem extends AeicoComponent {
   static tagName = 'menu-item';
@@ -35,6 +48,9 @@ class MenuItem extends AeicoComponent {
 
   @prop({ type: Boolean })
   accessor open: boolean = false;
+
+  @prop({ type: String })
+  accessor iconPlacement: MenuIconPlacement = 'end';
 
   private _outsideClickHandler: ((e: MouseEvent) => void) | null = null;
   private _closeTimer: ReturnType<typeof setTimeout> | null = null;
@@ -208,7 +224,12 @@ class MenuItem extends AeicoComponent {
             },
             () => {
               span({ text: this.label });
-              span({ className: `item-arrow item-arrow--${arrowDir}`, 'aria-hidden': 'true' });
+              slot({ name: 'expand' }, () => {
+                span({ className: `item-arrow item-arrow--${arrowDir}`, 'aria-hidden': 'true' });
+              });
+              slot({ name: 'collapse' }, () => {
+                span({ className: `item-arrow item-arrow--${arrowDir}`, 'aria-hidden': 'true' });
+              });
             },
           );
 
@@ -285,3 +306,4 @@ declare global {
 
 export default MenuItem;
 export type MenuItemProps = InferProps<typeof MenuItem>;
+export type { MenuIconPlacement };
