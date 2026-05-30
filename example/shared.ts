@@ -98,6 +98,12 @@ IconRegistry.add({
   'user':    { path: 'M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2 M12 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8z', stroke: true, strokeWidth: 2 },
   'trash':   { path: 'M3 6h18 M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2 M10 11v6 M14 11v6', stroke: true, strokeWidth: 2 },
   'eye':     { path: 'M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z', stroke: true, strokeWidth: 2 },
+  'moon':     { path: 'M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z', stroke: true, strokeWidth: 2 },
+  'sun':      { path: 'M12 2v4 M12 18v4 M4.93 4.93l2.83 2.83 M16.24 16.24l2.83 2.83 M2 12h4 M18 12h4 M4.93 19.07l2.83-2.83 M16.24 7.76l2.83-2.83 M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z', stroke: true, strokeWidth: 2 },
+  'bell':     { path: 'M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9 M13.73 21a2 2 0 0 1-3.46 0', stroke: true, strokeWidth: 2 },
+  'bell-off': { path: 'M13.73 21a2 2 0 0 1-3.46 0 M18.63 13A17.89 17.89 0 0 1 18 8 M6.26 6.26A5.86 5.86 0 0 0 6 8c0 7-3 9-3 9h14 M18 8a6 6 0 0 0-9.33-4.97 M1 1l22 22', stroke: true, strokeWidth: 2 },
+  'volume-x': { path: 'M11 5L6 9H2v6h4l5 4V5z M23 9l-6 6 M17 9l6 6', stroke: true, strokeWidth: 2 },
+  'volume-2': { path: 'M11 5L6 9H2v6h4l5 4V5z M19.07 4.93a10 10 0 0 1 0 14.14 M15.54 8.46a5 5 0 0 1 0 7.07', stroke: true, strokeWidth: 2 },
 })
 
 // ── Exported option arrays (used by per-page scripts) ─────────────────
