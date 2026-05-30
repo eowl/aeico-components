@@ -84,7 +84,8 @@ class Switch extends AeicoField<boolean> {
           });
           const hasIcon = this.icon || this.iconChecked;
           const placement = this.iconPlacement ?? 'knob';
-          span({ className: 'toggle-slider' }, hasIcon ? () => {
+          span({ className: 'toggle-slider' }, () => {
+            if (!hasIcon) return;
             if (placement === 'track') {
               span({ className: 'track-icon track-icon-left' }, () => {
                 aeIcon({ name: this.iconChecked ?? this.icon! });
@@ -106,7 +107,7 @@ class Switch extends AeicoField<boolean> {
                 });
               }
             }
-          } : undefined);
+          });
         });
         this.renderActionButtons();
       });
