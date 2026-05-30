@@ -88,6 +88,83 @@
   pointer-events: auto;
 }
 
+/* ===== Icon size override ===== */
+/* ae-icon shadow DOM sets :host { font-size: 20px }, external styles beat it.
+   Font-size on the CONTAINER span must NOT be set here — doing so causes
+   double-multiplying (container 0.72× then ae-icon 0.72× again = tiny icons).
+   Only the ae-icon element itself is targeted. */
+.toggle-knob-icon ae-icon,
+.track-icon ae-icon {
+  font-size: var(--toggle-icon-size, calc(var(--toggle-slider-size) * 0.72));
+  width: 1em;
+  height: 1em;
+}
+
+/* ===== Knob icons ===== */
+.toggle-knob-icon {
+  position: absolute;
+  height: var(--toggle-slider-size);
+  width: var(--toggle-slider-size);
+  left: var(--toggle-gap);
+  top: var(--toggle-gap);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  color: var(--toggle-knob-icon-color, rgba(0, 0, 0, 0.6));
+  transition: var(--toggle-transition);
+}
+
+.field-input:checked + .toggle-slider .toggle-knob-icon {
+  transform: translateX(calc(var(--toggle-width) - var(--toggle-height)));
+}
+
+.toggle-knob-icon.icon-checked {
+  opacity: 0;
+}
+
+.field-input:checked + .toggle-slider .toggle-knob-icon.icon-checked {
+  opacity: 1;
+}
+
+.field-input:checked + .toggle-slider .toggle-knob-icon.icon-unchecked {
+  opacity: 0;
+}
+
+/* ===== Track icons ===== */
+/* Positioned at the same location as the knob in each state (the circular ends),
+   so the icon appears to live inside the circle, not on the flat track sides. */
+.track-icon {
+  position: absolute;
+  top: var(--toggle-gap);
+  width: var(--toggle-slider-size);
+  height: var(--toggle-slider-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  color: var(--toggle-track-icon-color, white);
+  transition: opacity var(--toggle-transition);
+}
+
+.track-icon-left {
+  left: var(--toggle-gap);
+  opacity: 0;
+}
+
+.track-icon-right {
+  right: var(--toggle-gap);
+  opacity: 1;
+}
+
+.field-input:checked + .toggle-slider .track-icon-left {
+  opacity: 1;
+}
+
+.field-input:checked + .toggle-slider .track-icon-right {
+  opacity: 0;
+}
+
 /* action buttons */
 .reset-btn,
 .clear-btn {

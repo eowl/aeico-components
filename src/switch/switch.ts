@@ -1,6 +1,8 @@
 ﻿import AeicoField, { type FieldAction } from '../aeico-field';
-import type { InferProps, Props } from 'aeico';
-import { html } from 'aeico';
+import type { InferProps } from 'aeico';
+import { html, prop } from 'aeico';
+import type { SwitchIconPlacement } from './defines';
+import '../icon/icon';
 import styleVariables from '../styles/variables.css?inline';
 import sizeCSS from '../styles/size.css?inline';
 import colorCSS from '../styles/color.css?inline';
@@ -12,13 +14,20 @@ class Switch extends AeicoField<boolean> {
 
   static tagName = 'switch';
 
-  static props: Props = {
-    checked: { type: Boolean },
-    defaultChecked: { type: Boolean },
-  };
+  @prop({ type: Boolean })
+  accessor checked: boolean | undefined;
 
-  declare checked?: boolean;
-  declare defaultChecked?: boolean;
+  @prop({ type: Boolean })
+  accessor defaultChecked: boolean | undefined;
+
+  @prop({ type: String })
+  accessor icon: string | undefined;
+
+  @prop({ type: String })
+  accessor iconChecked: string | undefined;
+
+  @prop({ type: String })
+  accessor iconPlacement: SwitchIconPlacement | undefined;
 
   protected static styles = [styleVariables, sizeCSS, colorCSS, fieldLabelCSS, styles];
 
@@ -59,7 +68,7 @@ class Switch extends AeicoField<boolean> {
   }
 
   render() {
-    return html(({ div, input, span }) => {
+    return html(({ div, input, span, aeIcon }) => {
       const id = this.getFieldId();
       this.renderLabel(id);
       div({ className: 'switch-container field-body' }, () => {
@@ -73,7 +82,32 @@ class Switch extends AeicoField<boolean> {
             required: Boolean(this.required),
             '@change': this.boundOnChange,
           });
-          span({ className: 'toggle-slider' });
+          const hasIcon = this.icon || this.iconChecked;
+          const placement = this.iconPlacement ?? 'knob';
+          span({ className: 'toggle-slider' }, () => {
+            if (!hasIcon) return;
+            if (placement === 'track') {
+              span({ className: 'track-icon track-icon-left' }, () => {
+                aeIcon({ name: this.iconChecked ?? this.icon! });
+              });
+              span({ className: 'track-icon track-icon-right' }, () => {
+                aeIcon({ name: this.icon ?? this.iconChecked! });
+              });
+            } else {
+              if (this.icon && this.iconChecked) {
+                span({ className: 'toggle-knob-icon icon-unchecked' }, () => {
+                  aeIcon({ name: this.icon! });
+                });
+                span({ className: 'toggle-knob-icon icon-checked' }, () => {
+                  aeIcon({ name: this.iconChecked! });
+                });
+              } else {
+                span({ className: 'toggle-knob-icon' }, () => {
+                  aeIcon({ name: (this.icon ?? this.iconChecked)! });
+                });
+              }
+            }
+          });
         });
         this.renderActionButtons();
       });
