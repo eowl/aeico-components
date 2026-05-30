@@ -1,6 +1,6 @@
 ﻿import AeicoField, { type FieldAction } from '../aeico-field';
-import type { InferProps, Props } from 'aeico';
-import { html } from 'aeico';
+import type { InferProps } from 'aeico';
+import { html, prop } from 'aeico';
 import type { SwitchIconPlacement } from './defines';
 import '../icon/icon';
 import styleVariables from '../styles/variables.css?inline';
@@ -14,19 +14,20 @@ class Switch extends AeicoField<boolean> {
 
   static tagName = 'switch';
 
-  static props: Props = {
-    checked: { type: Boolean },
-    defaultChecked: { type: Boolean },
-    icon: { type: String },
-    iconChecked: { type: String },
-    iconPlacement: { type: String },
-  };
+  @prop({ type: Boolean })
+  accessor checked: boolean | undefined;
 
-  declare checked?: boolean;
-  declare defaultChecked?: boolean;
-  declare icon?: string;
-  declare iconChecked?: string;
-  declare iconPlacement?: SwitchIconPlacement;
+  @prop({ type: Boolean })
+  accessor defaultChecked: boolean | undefined;
+
+  @prop({ type: String })
+  accessor icon: string | undefined;
+
+  @prop({ type: String })
+  accessor iconChecked: string | undefined;
+
+  @prop({ type: String })
+  accessor iconPlacement: SwitchIconPlacement | undefined;
 
   protected static styles = [styleVariables, sizeCSS, colorCSS, fieldLabelCSS, styles];
 
