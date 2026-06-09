@@ -11,6 +11,7 @@ import {
   Tab,
   TabPanel,
   Dialog,
+  Drawer,
   Divider,
   Card,
   Badge,
@@ -31,7 +32,7 @@ import {
   CopyButton,
 } from '../src/index'
 import '../src/styles/layout.css'
-void [TextInput, Select, Slider, Checkbox, RadioGroup, Icon, Switch, Tabs, Tab, TabPanel, Dialog, Divider, Card, Badge, Tag, Breadcrumb, BreadcrumbItem, Navbar, Dropdown, DropdownItem, Detail, ProgressBar, Textarea, Menu, MenuItem, Pagination, Tree, TreeItem, CopyButton]
+void [TextInput, Select, Slider, Checkbox, RadioGroup, Icon, Switch, Tabs, Tab, TabPanel, Dialog, Drawer, Divider, Card, Badge, Tag, Breadcrumb, BreadcrumbItem, Navbar, Dropdown, DropdownItem, Detail, ProgressBar, Textarea, Menu, MenuItem, Pagination, Tree, TreeItem, CopyButton]
 import { locale } from 'aeico-localize'
 
 // --- Localization setup ---
