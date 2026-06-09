@@ -1,0 +1,161 @@
+/**
+ * :host is placed in the light DOM. Setting position:fixed on it guarantees
+ * viewport-level coverage regardless of any z-index stacking inside the page.
+ */
+:host {
+  display: none;
+}
+
+:host([data-open]) {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: var(--ae-drawer-z-index, 1000);
+  /* Host covers the viewport but passes pointer events through by default.
+     Backdrop and panel re-enable them selectively. */
+  pointer-events: none;
+}
+
+/* ── Backdrop ────────────────────────────────────────────────────── */
+.backdrop {
+  position: absolute;
+  inset: 0;
+  background: var(--color-overlay);
+  animation: drawer-backdrop-in 0.2s ease;
+  pointer-events: auto;
+}
+
+/* ── Panel ───────────────────────────────────────────────────────── */
+.panel {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface-overlay);
+  color: var(--color-text-main);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  pointer-events: auto;
+  outline: none;
+}
+
+/* ── Placements ──────────────────────────────────────────────────── */
+.panel.placement-right {
+  inset: 0 0 0 auto;
+  width: var(--ae-drawer-size, 320px);
+  max-width: 100%;
+  border-radius: 8px 0 0 8px;
+  animation: drawer-slide-in-right 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.panel.placement-left {
+  inset: 0 auto 0 0;
+  width: var(--ae-drawer-size, 320px);
+  max-width: 100%;
+  border-radius: 0 8px 8px 0;
+  animation: drawer-slide-in-left 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.panel.placement-top {
+  inset: 0 0 auto 0;
+  height: var(--ae-drawer-size, 320px);
+  max-height: 100%;
+  border-radius: 0 0 8px 8px;
+  animation: drawer-slide-in-top 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.panel.placement-bottom {
+  inset: auto 0 0 0;
+  height: var(--ae-drawer-size, 320px);
+  max-height: 100%;
+  border-radius: 8px 8px 0 0;
+  animation: drawer-slide-in-bottom 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Keyframes ───────────────────────────────────────────────────── */
+@keyframes drawer-backdrop-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes drawer-slide-in-right {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+
+@keyframes drawer-slide-in-left {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(0); }
+}
+
+@keyframes drawer-slide-in-top {
+  from { transform: translateY(-100%); }
+  to   { transform: translateY(0); }
+}
+
+@keyframes drawer-slide-in-bottom {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+/* ── Header ──────────────────────────────────────────────────────── */
+header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+}
+
+.label {
+  flex: 1;
+  font-size: var(--size-m, 1rem);
+  font-weight: 500;
+  margin: 0;
+  color: var(--color-text-main);
+}
+
+.close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.close-btn:hover {
+  background: var(--border-subtle);
+  color: var(--color-text-main);
+}
+
+/* ── Body ────────────────────────────────────────────────────────── */
+.body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+/* ── Footer ──────────────────────────────────────────────────────── */
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 12px 20px;
+  border-top: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+}
+
+::slotted([data-align-left]) {
+  margin-right: auto;
+}

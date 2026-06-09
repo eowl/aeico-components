@@ -21,6 +21,7 @@ export default defineConfig({
         checkbox:       'src/checkbox/index.ts',
         detail:         'src/detail/index.ts',
         dialog:         'src/dialog/index.ts',
+        drawer:         'src/drawer/index.ts',
         divider:        'src/divider/index.ts',
         dropdown:       'src/dropdown/index.ts',
         icon:           'src/icon/index.ts',
