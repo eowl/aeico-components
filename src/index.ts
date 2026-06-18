@@ -33,6 +33,7 @@
 
 // Field components
 export { default as TextInput } from './text-input';
+export { default as NumberInput } from './number-input';
 export { default as Textarea, type TextareaResize } from './textarea';
 export { default as Select } from './select';
 export { default as Slider } from './slider';
@@ -81,6 +82,7 @@ export type {
 export type { RadioProps } from './radio-group';
 export type { SwitchProps } from './switch';
 export type { TextInputProps } from './text-input';
+export type { NumberInputProps } from './number-input';
 export type { TextareaProps } from './textarea';
 export type { ButtonProps, ButtonColor, ButtonSize, ButtonVariant } from './button';
 export type { ButtonGroupProps } from './button-group';

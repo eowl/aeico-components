@@ -1,5 +1,6 @@
 import {
   TextInput,
+  NumberInput,
   Select,
   Slider,
   Checkbox,
@@ -26,7 +27,7 @@ import {
   Pagination,
 } from '../src/index'
 import '../src/styles/layout.css'
-void [TextInput, Select, Slider, Checkbox, RadioGroup, Icon, Switch, Tabs, Tab, TabPanel, Dialog, Divider, Card, Badge, Tag, Breadcrumb, BreadcrumbItem, Navbar, Dropdown, DropdownItem, Detail, ProgressBar, Textarea, Pagination]
+void [TextInput, NumberInput, Select, Slider, Checkbox, RadioGroup, Icon, Switch, Tabs, Tab, TabPanel, Dialog, Divider, Card, Badge, Tag, Breadcrumb, BreadcrumbItem, Navbar, Dropdown, DropdownItem, Detail, ProgressBar, Textarea, Pagination]
 import { locale } from 'aeico-localize'
 
 // --- Localization setup ---
