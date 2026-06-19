@@ -120,7 +120,7 @@ describe('NumberInput', () => {
       expect(buttons.length).to.equal(2)
       // + on top, − on bottom
       expect(buttons[0]!.textContent).to.equal('+')
-      expect(buttons[1]!.textContent).to.equal('−')
+      expect(buttons[1]!.textContent).to.equal('-')
     })
 
     it('does not render stepper buttons without controls', async () => {
