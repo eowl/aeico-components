@@ -25,7 +25,8 @@
 
 .input-container {
   display: flex;
-  align-items: stretch;
+  align-items: center;
+  gap: var(--input-field-gap);
   width: 100%;
 }
 
@@ -40,6 +41,7 @@ input {
   color: var(--input-color);
   transition: var(--input-transition);
   -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 /* Hide number spinner arrows in WebKit browsers */
@@ -74,7 +76,7 @@ input:disabled {
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  margin-left: calc(-1 * var(--input-border-width));
+  margin-left: calc(-1 * var(--input-field-gap) - 1px);
   border: var(--input-border-width) solid var(--input-border-color);
   border-radius: 0 var(--input-border-radius) var(--input-border-radius) 0;
   overflow: hidden;
@@ -83,6 +85,7 @@ input:disabled {
   background: var(--input-bg);
   position: relative;
   z-index: 1;
+  align-self: stretch;
 }
 
 .number-btn {
