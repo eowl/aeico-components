@@ -55,7 +55,7 @@ class NumberInput extends AeicoField<number> {
             });
             button({
               className: 'number-btn number-btn-decrement',
-              textContent: '−',
+              textContent: '-',
               disabled: Boolean(this.disabled),
               '@click': this.boundOnDecrement,
             });
