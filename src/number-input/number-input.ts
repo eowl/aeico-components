@@ -44,7 +44,6 @@ class NumberInput extends AeicoField<number> {
           '@input': this.boundOnChange,
         });
 
-        // Stepper buttons (right side, integrated)
         if (this.controls) {
           div({ className: 'number-controls' }, () => {
             button({
@@ -74,9 +73,6 @@ class NumberInput extends AeicoField<number> {
     });
   }
 
-  /**
-   * Increment value by step
-   */
   protected readonly boundOnIncrement = () => {
     const current = this.getValue() || 0;
     const step = this.step ?? 1;
@@ -87,9 +83,6 @@ class NumberInput extends AeicoField<number> {
     this.setValue(next, { silent: false, action: 'change' });
   };
 
-  /**
-   * Decrement value by step
-   */
   protected readonly boundOnDecrement = () => {
     const current = this.getValue() || 0;
     const step = this.step ?? 1;
