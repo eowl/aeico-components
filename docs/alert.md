@@ -80,6 +80,7 @@ Use `invisible` to hide the alert initially, then call `.show()` / `.hide()` in 
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Controls padding and font size. |
 | `dismissible` | `boolean` | `false` | Shows a close (×) button. |
 | `invisible` | `boolean` | `false` | Hides the alert. Use `.show()` / `.hide()` to control visibility. |
+| `closeText` | `string` | — | Custom text for the close button's `title` attribute. Defaults to "Close alert". |
 
 ## Slots
 

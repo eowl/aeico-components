@@ -2,7 +2,6 @@
 import type { InferProps, Props } from 'aeico';
 import { html, tags } from 'aeico';
 import type { ButtonColor, ButtonVariant, ButtonSize } from '../button';
-import { t } from 'aeico-localize';
 import type { RadioGroupMode, RadioGroupOption, RadioGroupOptions } from './defines';
 import Radio from './radio';
 import style from '../styles/components/radio-group.css?inline';
@@ -48,7 +47,7 @@ class RadioGroup extends AeicoField {
 
   private _optLabel(opt: RadioGroupOption): string {
     if (opt !== null && typeof opt === 'object') {
-      return t(String(opt.label), String(opt.label));
+      return String(opt.label);
     }
     return String(opt);
   }

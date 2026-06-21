@@ -53,8 +53,7 @@
   "author": "Eowl",
   "license": "MIT",
   "peerDependencies": {
-    "aeico": "^0.1.5",
-    "aeico-localize": "^0.1.1"
+    "aeico": "^0.1.5"
   },
   "devDependencies": {
     "aeico": "^0.1.5",

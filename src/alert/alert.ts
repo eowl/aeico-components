@@ -4,7 +4,6 @@ import colorCSS from '../styles/color.css?inline';
 import alertStyle from '../styles/components/alert.css?inline';
 import AeicoComponent from '../aeico-component';
 import { html } from 'aeico';
-import { t } from 'aeico-localize';
 import type { AlertColor, AlertSize, AlertVariant } from './defines';
 
 /**
@@ -39,6 +38,7 @@ class Alert extends AeicoComponent {
     size: { type: String },
     dismissible: { type: Boolean },
     invisible: { type: Boolean },
+    closeText: { type: String },
   };
 
   protected static useStyles = ['alert'];
@@ -49,6 +49,7 @@ class Alert extends AeicoComponent {
   declare size?: AlertSize;
   declare dismissible?: boolean;
   declare invisible?: boolean;
+  declare closeText?: string;
 
   protected render() {
     return html(({ div, slot, button, span }) => {
@@ -67,7 +68,7 @@ class Alert extends AeicoComponent {
               {
                 className: 'alert-close',
                 '@click': () => this._handleClose(),
-                title: t('alert.close', 'Close alert'),
+                title: this.closeText || 'Close alert',
               },
               () => {
                 span({ 'aria-hidden': 'true', textContent: '\u00d7' });

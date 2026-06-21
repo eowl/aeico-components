@@ -1,7 +1,6 @@
 ﻿import AeicoField from '../aeico-field';
 import type { InferProps } from 'aeico';
 import { html, tags } from 'aeico';
-import { t } from 'aeico-localize';
 import type {
   SelectOptionValue,
   SelectOption,
@@ -143,7 +142,7 @@ class Select extends AeicoField<SelectOptionValue | SelectMultiValue> {
     if (Array.isArray(this.options)) {
       for (const opt of this.options) {
         if (this._isSelectOption(opt)) {
-          if (String(opt.value) === strVal) return t(opt.label, opt.label);
+          if (String(opt.value) === strVal) return opt.label;
         } else {
           if (String(opt) === strVal) return strVal;
         }
@@ -389,7 +388,7 @@ class Select extends AeicoField<SelectOptionValue | SelectMultiValue> {
           key: `opt-${opt.value}`,
           value: String(opt.value),
           label: opt.label,
-          textContent: t(opt.label, opt.label),
+          textContent: opt.label,
           selected: isSelected ? true : undefined,
         });
       } else {

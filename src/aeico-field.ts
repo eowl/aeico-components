@@ -1,7 +1,6 @@
 ﻿import type { InferProps, Props, Watchers } from 'aeico';
 import { tags } from 'aeico';
 import AeicoComponent from './aeico-component';
-import { t } from 'aeico-localize';
 
 export type FieldAction = 'clear' | 'reset' | 'change';
 export type FieldElement = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
@@ -26,8 +25,10 @@ class AeicoField<TValue = string> extends AeicoComponent {
     defaultValue: { type: String },
     resettable: { type: Boolean },
     resetText: { type: String },
+    resetTitle: { type: String },
     clearable: { type: Boolean },
     clearText: { type: String },
+    clearTitle: { type: String },
     actionButtonStyle: { type: String },
     size: { type: String },
     disabled: { type: Boolean },
@@ -74,8 +75,10 @@ class AeicoField<TValue = string> extends AeicoComponent {
   declare defaultValue?: TValue | string;
   declare resettable?: boolean;
   declare resetText?: string;
+  declare resetTitle?: string;
   declare clearable?: boolean;
   declare clearText?: string;
+  declare clearTitle?: string;
   declare actionButtonStyle?: ActionButtonStyle;
   declare size?: string;
   declare disabled?: boolean;
@@ -127,7 +130,7 @@ class AeicoField<TValue = string> extends AeicoComponent {
       this.resetBtn = button({
         className,
         textContent: this.resetText || '↺',
-        title: t('buttons.reset', '↺'),
+        title: this.resetTitle || '↺',
         '@click': this.boundOnReset,
       });
     }
@@ -142,7 +145,7 @@ class AeicoField<TValue = string> extends AeicoComponent {
       this.clearBtn = button({
         className,
         textContent: this.clearText || '✕',
-        title: t('buttons.clear', '✕'),
+        title: this.clearTitle || '✕',
         '@click': this.boundOnClear,
       });
     }
