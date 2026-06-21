@@ -4,6 +4,7 @@ import { html } from 'aeico';
 import variables from '../styles/variables.css?inline';
 import sizeCSS from '../styles/size.css?inline';
 import fieldLabelCSS from '../styles/components/field-label.css?inline';
+import actionButtonCSS from '../styles/components/action-button.css?inline';
 import style from '../styles/components/text-input.css?inline';
 
 class TextInput extends AeicoField {
@@ -19,7 +20,7 @@ class TextInput extends AeicoField {
   declare placeholder?: string;
   declare type?: string;
 
-  protected static styles = [variables, sizeCSS, fieldLabelCSS, style];
+  protected static styles = [variables, sizeCSS, fieldLabelCSS, actionButtonCSS, style];
 
   render() {
     return html(({ div, input }) => {
@@ -42,18 +43,7 @@ class TextInput extends AeicoField {
       if (this.fieldElement && this.value != null) {
         this.fieldElement.value = String(this.value);
       }
-      this.updateClearButtonVisibility();
     });
-  }
-
-  /**
-   * Update clear button visibility based on input value
-   */
-  private updateClearButtonVisibility() {
-    if (this.clearBtn && this.fieldElement) {
-      const hasValue = this.fieldElement.value.length > 0;
-      this.clearBtn.style.display = hasValue ? '' : 'none';
-    }
   }
 
   /**
@@ -65,8 +55,6 @@ class TextInput extends AeicoField {
     if (this.fieldElement) {
       this.fieldElement.value = strValue;
     }
-
-    this.updateClearButtonVisibility();
   }
 }
 

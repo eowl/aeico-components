@@ -5,6 +5,7 @@ import { t } from 'aeico-localize';
 
 export type FieldAction = 'clear' | 'reset' | 'change';
 export type FieldElement = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+export type ActionButtonStyle = 'standalone' | 'integrated';
 
 /**
  * Base class for form field components
@@ -27,6 +28,7 @@ class AeicoField<TValue = string> extends AeicoComponent {
     resetText: { type: String },
     clearable: { type: Boolean },
     clearText: { type: String },
+    actionButtonStyle: { type: String },
     size: { type: String },
     disabled: { type: Boolean },
     label: { type: String },
@@ -74,6 +76,7 @@ class AeicoField<TValue = string> extends AeicoComponent {
   declare resetText?: string;
   declare clearable?: boolean;
   declare clearText?: string;
+  declare actionButtonStyle?: ActionButtonStyle;
   declare size?: string;
   declare disabled?: boolean;
   declare label?: string;
@@ -101,16 +104,28 @@ class AeicoField<TValue = string> extends AeicoComponent {
    * Must be called from within a build() callback.
    */
   protected renderActionButtons(force: boolean = false) {
-    this.renderClearButton(force);
-    this.renderResetButton(force);
+    const style = this.actionButtonStyle || 'integrated';
+    const hasActions = force || this.clearable || this.resettable;
+
+    if (hasActions && style === 'integrated') {
+      tags.div({ className: 'action-controls' }, () => {
+        this.renderClearButton(force);
+        this.renderResetButton(force);
+      });
+    } else {
+      this.renderClearButton(force);
+      this.renderResetButton(force);
+    }
   }
 
   protected renderResetButton(force: boolean = false) {
     const { button } = tags;
+    const style = this.actionButtonStyle || 'integrated';
 
     if (force || this.resettable) {
+      const className = style === 'integrated' ? 'reset-btn action-btn' : 'reset-btn';
       this.resetBtn = button({
-        className: 'reset-btn',
+        className,
         textContent: this.resetText || '↺',
         title: t('buttons.reset', '↺'),
         '@click': this.boundOnReset,
@@ -120,10 +135,12 @@ class AeicoField<TValue = string> extends AeicoComponent {
 
   protected renderClearButton(force: boolean = false) {
     const { button } = tags;
+    const style = this.actionButtonStyle || 'integrated';
 
     if (force || this.clearable) {
+      const className = style === 'integrated' ? 'clear-btn action-btn' : 'clear-btn';
       this.clearBtn = button({
-        className: 'clear-btn',
+        className,
         textContent: this.clearText || '✕',
         title: t('buttons.clear', '✕'),
         '@click': this.boundOnClear,

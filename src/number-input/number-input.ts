@@ -4,6 +4,7 @@ import { html } from 'aeico';
 import variables from '../styles/variables.css?inline';
 import sizeCSS from '../styles/size.css?inline';
 import fieldLabelCSS from '../styles/components/field-label.css?inline';
+import actionButtonCSS from '../styles/components/action-button.css?inline';
 import style from '../styles/components/number-input.css?inline';
 
 class NumberInput extends AeicoField<number> {
@@ -25,7 +26,7 @@ class NumberInput extends AeicoField<number> {
   declare step?: number;
   declare controls?: boolean;
 
-  protected static styles = [variables, sizeCSS, fieldLabelCSS, style];
+  protected static styles = [variables, sizeCSS, fieldLabelCSS, actionButtonCSS, style];
 
   render() {
     return html(({ div, input, button }) => {
@@ -69,7 +70,6 @@ class NumberInput extends AeicoField<number> {
       if (this.fieldElement && this.value != null) {
         this.fieldElement.value = String(this.value);
       }
-      this.updateClearButtonVisibility();
     });
   }
 
@@ -94,16 +94,6 @@ class NumberInput extends AeicoField<number> {
   };
 
   /**
-   * Update clear button visibility based on input value
-   */
-  private updateClearButtonVisibility() {
-    if (this.clearBtn && this.fieldElement) {
-      const hasValue = this.fieldElement.value.length > 0;
-      this.clearBtn.style.display = hasValue ? '' : 'none';
-    }
-  }
-
-  /**
    * Get current value as number
    */
   protected getValue(): number {
@@ -121,8 +111,6 @@ class NumberInput extends AeicoField<number> {
     if (this.fieldElement) {
       this.fieldElement.value = value != null ? String(value) : '';
     }
-
-    this.updateClearButtonVisibility();
   }
 
   /**

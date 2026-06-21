@@ -115,27 +115,48 @@ input:disabled {
   cursor: not-allowed;
 }
 
-/* Separator between + and − */
 .number-btn-increment {
   border-right: var(--input-border-width) solid var(--input-border-color);
 }
 
-/* When input is focused, sync control border color */
 .input-container:has(input:focus) .number-controls {
   border-color: var(--input-border-color-focus);
 }
 
-/* When input is hovered, sync control border color */
 .input-container:has(input:hover:not(:focus)) .number-controls {
   border-color: var(--input-border-color-hover);
 }
 
-/* Remove right border-radius from input when controls are present */
 :host(:has(.number-controls)) input {
   border-radius: var(--input-border-radius) 0 0 var(--input-border-radius);
 }
 
-/* Error state */
+:host(:has(.action-controls)) input {
+  border-radius: var(--input-border-radius) 0 0 var(--input-border-radius);
+}
+
+.number-controls ~ .action-controls {
+  margin-left: calc(-1 * var(--input-field-gap) - 1px);
+}
+
+.input-container:has(.number-controls):has(.action-controls) .number-controls {
+  border-right: none;
+  border-radius: 0;
+}
+
+.input-container:has(.number-controls) ~ .action-controls,
+.input-container:has(.action-controls) .number-controls {
+  border-radius: 0;
+}
+
+.input-container:has(.number-controls) input {
+  border-radius: var(--input-border-radius) 0 0 var(--input-border-radius);
+}
+
+.input-container:has(.action-controls) input {
+  border-radius: var(--input-border-radius) 0 0 var(--input-border-radius);
+}
+
 :host([error]) input {
   border-color: var(--field-error-color, var(--red));
 }
@@ -143,48 +164,4 @@ input:disabled {
 :host([error]) input:hover:not(:focus),
 :host([error]) input:focus {
   border-color: var(--field-error-color, var(--red));
-}
-
-/* Clear button styles */
-.clear-btn {
-  width: 1.333em;
-  height: 1.333em;
-  border: none;
-  border-radius: var(--clear-btn-border-radius);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--clear-btn-bg);
-  color: var(--clear-btn-color);
-  transition: var(--clear-btn-transition);
-  flex-shrink: 0;
-  line-height: 1;
-}
-
-.clear-btn:hover {
-  background: var(--clear-btn-bg-hover);
-  color: var(--clear-btn-color-hover);
-}
-
-/* Reset button styles */
-.reset-btn {
-  width: 1.333em;
-  height: 1.333em;
-  border: none;
-  border-radius: var(--reset-btn-border-radius);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--reset-btn-bg);
-  color: var(--reset-btn-color);
-  transition: var(--reset-btn-transition);
-  flex-shrink: 0;
-  line-height: 1;
-}
-
-.reset-btn:hover {
-  background: var(--reset-btn-bg-hover);
-  color: var(--reset-btn-color-hover);
 }

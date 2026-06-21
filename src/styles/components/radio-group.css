@@ -243,29 +243,6 @@ slot {
   color:        var(--rg-solid-color);
 }
 
-.reset-btn,
-.clear-btn {
-  display:        inline-flex;
-  align-items:    center;
-  justify-content: center;
-  cursor:         pointer;
-  transition:     var(--reset-btn-transition);
-  flex-shrink:    0;
-  line-height:    1;
-  font-family:    inherit;
-  padding:        0;
-
-  width:          1.333em;
-  height:         1.333em;
-  border-radius:  var(--reset-btn-border-radius);
-  border:         none;
-  background:     var(--reset-btn-bg);
-  color:          var(--reset-btn-color);
-}
-
-.reset-btn:hover { background: var(--reset-btn-bg-hover); color: var(--reset-btn-color-hover); }
-.clear-btn:hover  { background: var(--clear-btn-bg-hover);  color: var(--clear-btn-color-hover); }
-
 :host([mode="button"]) .reset-btn,
 :host([mode="button"]) .clear-btn,
 :host([mode="button-group"]) .reset-btn,

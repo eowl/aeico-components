@@ -92,15 +92,14 @@ describe('NumberInput', () => {
       await updated()
       const clearBtn = el.shadowRoot!.querySelector('.clear-btn') as HTMLElement
       expect(clearBtn).to.exist
-      expect(clearBtn.style.display).to.not.equal('none')
     })
 
-    it('hides clear button when value is empty', async () => {
+    it('clear button is always visible when clearable is set', async () => {
       const el = await mount<NumberInput>(`<${TAG_NAME} clearable></${TAG_NAME}>`)
       await updated()
       const clearBtn = el.shadowRoot!.querySelector('.clear-btn') as HTMLElement
       expect(clearBtn).to.exist
-      expect(clearBtn.style.display).to.equal('none')
+      expect(clearBtn.style.display).to.not.equal('none')
     })
   })
 

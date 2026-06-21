@@ -72,6 +72,16 @@ import 'aeico-components';
 </ae-text-input>
 ```
 
+### `actionButtonStyle` — action button display style
+
+```html
+<!-- Integrated (default): buttons are attached to the input as one piece -->
+<ae-text-input label="Integrated" clearable value="Hello" action-button-style="integrated"></ae-text-input>
+
+<!-- Standalone: buttons are separate rounded icons -->
+<ae-text-input label="Standalone" clearable value="Hello" action-button-style="standalone"></ae-text-input>
+```
+
 ### Listening to `change`
 
 ```html
@@ -96,6 +106,9 @@ import 'aeico-components';
 | `defaultValue` | `string` | — | Uncontrolled initial value. |
 | `disabled` | `boolean` | `false` | Disables the input. |
 | `required` | `boolean` | `false` | Marks the field as required in a form. |
+| `clearable` | `boolean` | `false` | Shows a clear button when the input has a value. |
+| `resettable` | `boolean` | `false` | Shows a reset button to restore the default value. |
+| `actionButtonStyle` | `'integrated' \| 'standalone'` | `'integrated'` | Display style for clear/reset buttons. `integrated` attaches them to the input; `standalone` shows them as separate rounded icons. |
 
 ## Events
 

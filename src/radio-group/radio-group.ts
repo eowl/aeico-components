@@ -10,6 +10,7 @@ import variables from '../styles/variables.css?inline';
 import sizeCSS from '../styles/size.css?inline';
 import colorCSS from '../styles/color.css?inline';
 import fieldLabelCSS from '../styles/components/field-label.css?inline';
+import actionButtonCSS from '../styles/components/action-button.css?inline';
 
 class RadioGroup extends AeicoField {
   protected fieldElement: HTMLInputElement | null = null;
@@ -38,7 +39,7 @@ class RadioGroup extends AeicoField {
   declare size?: ButtonSize;
   declare allowEmpty?: boolean;
 
-  protected static styles = [variables, sizeCSS, colorCSS, fieldLabelCSS, style];
+  protected static styles = [variables, sizeCSS, colorCSS, fieldLabelCSS, actionButtonCSS, style];
 
   constructor() {
     super();

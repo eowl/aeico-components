@@ -3,11 +3,7 @@
   flex: 1;
   min-width: 0;
   font-size: var(--size-base);
-
-  /* Layout variables */
   --input-field-gap: 4px;
-  
-  /* Input element variables */
   --input-font-size: 1em;
   --input-padding: 0.333em 0.583em;
   --input-border-width: 1px;
@@ -62,7 +58,6 @@ input:disabled {
   cursor: not-allowed;
 }
 
-/* Error state */
 :host([error]) input {
   border-color: var(--field-error-color, var(--red));
 }
@@ -72,49 +67,6 @@ input:disabled {
   border-color: var(--field-error-color, var(--red));
 }
 
-/* Clear button styles */
-.clear-btn {
-  width: 1.333em;
-  height: 1.333em;
-  border: none;
-  border-radius: var(--clear-btn-border-radius);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--clear-btn-bg);
-  color: var(--clear-btn-color);
-  transition: var(--clear-btn-transition);
-  flex-shrink: 0;
-  line-height: 1;
+.input-container:has(.action-controls) input {
+  border-radius: var(--input-border-radius) 0 0 var(--input-border-radius);
 }
-
-.clear-btn:hover {
-  background: var(--clear-btn-bg-hover);
-  color: var(--clear-btn-color-hover);
-}
-
-/* Reset button styles */
-.reset-btn {
-  width: 1.333em;
-  height: 1.333em;
-  border: none;
-  border-radius: var(--reset-btn-border-radius);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--reset-btn-bg);
-  color: var(--reset-btn-color);
-  transition: var(--reset-btn-transition);
-  flex-shrink: 0;
-  line-height: 1;
-}
-
-.reset-btn:hover {
-  background: var(--reset-btn-bg-hover);
-  color: var(--reset-btn-color-hover);
-}
-
-
-

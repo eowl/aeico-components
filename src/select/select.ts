@@ -13,6 +13,7 @@ import style from '../styles/components/select.css?inline';
 import variables from '../styles/variables.css?inline';
 import sizeCSS from '../styles/size.css?inline';
 import fieldLabelCSS from '../styles/components/field-label.css?inline';
+import actionButtonCSS from '../styles/components/action-button.css?inline';
 import SelectOptionElement from './select-option';
 import '../tag/tag';
 import { prop } from 'aeico';
@@ -102,7 +103,7 @@ class Select extends AeicoField<SelectOptionValue | SelectMultiValue> {
   })
   override defaultValue: SelectOptionValue | SelectMultiValue | undefined = undefined;
 
-  protected static styles = [variables, sizeCSS, fieldLabelCSS, style];
+  protected static styles = [variables, sizeCSS, fieldLabelCSS, actionButtonCSS, style];
 
   protected writeValue(_value: SelectOptionValue | SelectMultiValue): void {
     // Reactive re-render via this.value prop change handles the display update

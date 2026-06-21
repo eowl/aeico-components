@@ -190,43 +190,6 @@
   margin-left: 2px;
 }
 
-.clear-btn {
-  width: 1.333em;
-  height: 1.333em;
-  border: none;
-  border-radius: var(--clear-btn-border-radius);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--clear-btn-bg);
-  color: var(--clear-btn-color);
-  transition: var(--clear-btn-transition);
-  flex-shrink: 0;
-  line-height: 1;
-}
-
-.clear-btn:hover {
-  background: var(--clear-btn-bg-hover);
-  color: var(--clear-btn-color-hover);
-}
-
-.reset-btn {
-  width: 1.333em;
-  height: 1.333em;
-  border: none;
-  border-radius: var(--reset-btn-border-radius);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--reset-btn-bg);
-  color: var(--reset-btn-color);
-  transition: var(--reset-btn-transition);
-  flex-shrink: 0;
-}
-
-.reset-btn:hover {
-  background: var(--reset-btn-bg-hover);
-  color: var(--reset-btn-color-hover);
+.container:has(.action-controls) .trigger {
+  border-radius: var(--select-border-radius) 0 0 var(--select-border-radius);
 }
