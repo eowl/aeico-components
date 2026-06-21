@@ -7,6 +7,7 @@ import styleVariables from '../styles/variables.css?inline';
 import sizeCSS from '../styles/size.css?inline';
 import colorCSS from '../styles/color.css?inline';
 import fieldLabelCSS from '../styles/components/field-label.css?inline';
+import actionButtonCSS from '../styles/components/action-button.css?inline';
 import styles from '../styles/components/switch.css?inline';
 
 class Switch extends AeicoField<boolean> {
@@ -29,7 +30,7 @@ class Switch extends AeicoField<boolean> {
   @prop({ type: String })
   accessor iconPlacement: SwitchIconPlacement | undefined;
 
-  protected static styles = [styleVariables, sizeCSS, colorCSS, fieldLabelCSS, styles];
+  protected static styles = [styleVariables, sizeCSS, colorCSS, fieldLabelCSS, actionButtonCSS, styles];
 
   protected getValue(): boolean {
     return this.fieldElement?.checked ?? false;

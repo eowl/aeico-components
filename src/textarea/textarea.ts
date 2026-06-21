@@ -4,6 +4,7 @@ import { html, prop } from 'aeico';
 import variables from '../styles/variables.css?inline';
 import sizeCSS from '../styles/size.css?inline';
 import fieldLabelCSS from '../styles/components/field-label.css?inline';
+import actionButtonCSS from '../styles/components/action-button.css?inline';
 import style from '../styles/components/textarea.css?inline';
 
 export type TextareaResize = 'none' | 'vertical' | 'horizontal' | 'both';
@@ -31,7 +32,7 @@ class Textarea extends AeicoField {
   @prop({ type: Boolean })
   accessor autoResize: boolean = false;
 
-  protected static styles = [variables, sizeCSS, fieldLabelCSS, style];
+  protected static styles = [variables, sizeCSS, fieldLabelCSS, actionButtonCSS, style];
 
   private readonly _boundOnInput = () => {
     if (this.autoResize && this.fieldElement) {

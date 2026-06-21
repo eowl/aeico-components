@@ -4,6 +4,7 @@ import { html } from 'aeico';
 import variables from '../styles/variables.css?inline';
 import sizeCSS from '../styles/size.css?inline';
 import fieldLabelCSS from '../styles/components/field-label.css?inline';
+import actionButtonCSS from '../styles/components/action-button.css?inline';
 import style from '../styles/components/text-input.css?inline';
 
 class TextInput extends AeicoField {
@@ -19,7 +20,7 @@ class TextInput extends AeicoField {
   declare placeholder?: string;
   declare type?: string;
 
-  protected static styles = [variables, sizeCSS, fieldLabelCSS, style];
+  protected static styles = [variables, sizeCSS, fieldLabelCSS, actionButtonCSS, style];
 
   render() {
     return html(({ div, input }) => {

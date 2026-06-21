@@ -4,6 +4,7 @@ import { html } from 'aeico';
 import variables from '../styles/variables.css?inline';
 import sizeCSS from '../styles/size.css?inline';
 import fieldLabelCSS from '../styles/components/field-label.css?inline';
+import actionButtonCSS from '../styles/components/action-button.css?inline';
 import style from '../styles/components/number-input.css?inline';
 
 class NumberInput extends AeicoField<number> {
@@ -25,7 +26,7 @@ class NumberInput extends AeicoField<number> {
   declare step?: number;
   declare controls?: boolean;
 
-  protected static styles = [variables, sizeCSS, fieldLabelCSS, style];
+  protected static styles = [variables, sizeCSS, fieldLabelCSS, actionButtonCSS, style];
 
   render() {
     return html(({ div, input, button }) => {

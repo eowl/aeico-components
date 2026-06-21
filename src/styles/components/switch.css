@@ -164,31 +164,3 @@
 .field-input:checked + .toggle-slider .track-icon-right {
   opacity: 0;
 }
-
-/* action buttons */
-.reset-btn,
-.clear-btn {
-  width: 1.333em;
-  height: 1.333em;
-  border: none;
-  border-radius: var(--reset-btn-border-radius);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--reset-btn-bg);
-  color: var(--reset-btn-color);
-  transition: var(--reset-btn-transition);
-  flex-shrink: 0;
-  line-height: 1;
-}
-
-.reset-btn:hover {
-  background: var(--reset-btn-bg-hover);
-  color: var(--reset-btn-color-hover);
-}
-
-.clear-btn:hover {
-  background: var(--clear-btn-bg-hover);
-  color: var(--clear-btn-color-hover);
-}

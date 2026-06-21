@@ -1,0 +1,37 @@
+/* Action button base styles — shared by clear-btn and reset-btn (standalone mode) */
+.clear-btn:not(.action-btn),
+.reset-btn:not(.action-btn) {
+  width: 1.333em;
+  height: 1.333em;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.clear-btn:not(.action-btn) {
+  border-radius: var(--clear-btn-border-radius);
+  background: var(--clear-btn-bg);
+  color: var(--clear-btn-color);
+  transition: var(--clear-btn-transition);
+}
+
+.reset-btn:not(.action-btn) {
+  border-radius: var(--reset-btn-border-radius);
+  background: var(--reset-btn-bg);
+  color: var(--reset-btn-color);
+  transition: var(--reset-btn-transition);
+}
+
+.clear-btn:not(.action-btn):hover {
+  background: var(--clear-btn-bg-hover);
+  color: var(--clear-btn-color-hover);
+}
+
+.reset-btn:not(.action-btn):hover {
+  background: var(--reset-btn-bg-hover);
+  color: var(--reset-btn-color-hover);
+}
