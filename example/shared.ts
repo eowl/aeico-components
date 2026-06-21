@@ -34,32 +34,25 @@ import {
 } from '../src/index'
 import '../src/styles/layout.css'
 void [TextInput, NumberInput, Select, Slider, Checkbox, RadioGroup, Icon, Switch, Tabs, Tab, TabPanel, Dialog, Drawer, Divider, Card, Badge, Tag, Breadcrumb, BreadcrumbItem, Navbar, Dropdown, DropdownItem, Detail, ProgressBar, Textarea, Menu, MenuItem, Pagination, Tree, TreeItem, CopyButton]
-import { locale } from 'aeico-localize'
 
 // --- Localization setup ---
 
-type LocaleData = { [key: string]: string | LocaleData }
+type LocaleMessages = {
+  resetTitle: string
+  clearTitle: string
+  closeText: string
+}
 
-const LOCALES: Record<string, LocaleData> = {
+const LOCALES: Record<string, LocaleMessages> = {
   en: {
-    buttons: {
-      reset: 'Reset',
-      clear: 'Clear',
-      cancel: 'Cancel',
-    },
-    alert: {
-      close: 'Close alert',
-    },
+    resetTitle: 'Reset',
+    clearTitle: 'Clear',
+    closeText: 'Close alert',
   },
   zh: {
-    buttons: {
-      reset: '重置',
-      clear: '清除',
-      cancel: '取消',
-    },
-    alert: {
-      close: '关闭提示',
-    },
+    resetTitle: '重置',
+    clearTitle: '清除',
+    closeText: '关闭提示',
   },
 }
 
@@ -73,7 +66,22 @@ function detectLang(): SupportedLang {
 }
 
 let currentLang = detectLang()
-locale.update(currentLang, LOCALES[currentLang])
+
+// Expose for shell iframe sync
+;(window as any).__aeicoLang = currentLang
+
+// Apply locale text to all field components
+function applyLocaleToFields(messages: LocaleMessages) {
+  document.querySelectorAll<any>('ae-text-input, ae-number-input, ae-textarea, ae-select, ae-slider, ae-checkbox, ae-radio-group').forEach(el => {
+    if (el.resettable) el.resetTitle = messages.resetTitle
+    if (el.clearable) el.clearTitle = messages.clearTitle
+  })
+  document.querySelectorAll<any>('ae-alert[dismissible]').forEach(el => {
+    el.closeText = messages.closeText
+  })
+}
+
+applyLocaleToFields(LOCALES[currentLang])
 
 
 // Register icons
@@ -196,6 +204,14 @@ window.addEventListener('message', (e: MessageEvent) => {
     isDark = Boolean(e.data.dark)
     applyTheme(true)
   }
+  if (e.data?.type === 'aeico-lang' && e.data.lang) {
+    const lang = e.data.lang as SupportedLang
+    if (lang !== currentLang) {
+      currentLang = lang
+      applyLocaleToFields(LOCALES[lang])
+      syncLangButtons()
+    }
+  }
 })
 
 // Apply persisted theme on startup (silent — no event log entry)
@@ -213,9 +229,13 @@ function syncLangButtons() {
 function switchLang(lang: SupportedLang) {
   if (lang === currentLang) return
   currentLang = lang
-  locale.update(lang, LOCALES[lang])
+  ;(window as any).__aeicoLang = lang
+  applyLocaleToFields(LOCALES[lang])
   syncLangButtons()
   appendLog(`language switched → ${lang}`)
+  // Sync language to embedded iframe (when acting as shell)
+  const frame = document.getElementById('content-frame') as HTMLIFrameElement | null
+  frame?.contentWindow?.postMessage({ type: 'aeico-lang', lang }, '*')
 }
 
 document.getElementById('lang-en')?.addEventListener('click', () => switchLang('en'))

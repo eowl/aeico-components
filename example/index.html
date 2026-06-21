@@ -198,6 +198,9 @@
       // Sync current theme
       const isDark = document.documentElement.hasAttribute('theme');
       frame.contentWindow?.postMessage({ type: 'aeico-theme', dark: isDark }, '*');
+      // Sync current language
+      const lang = window.__aeicoLang;
+      if (lang) frame.contentWindow?.postMessage({ type: 'aeico-lang', lang }, '*');
     });
 
     // Restore from URL hash or default
