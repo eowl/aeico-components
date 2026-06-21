@@ -3,11 +3,7 @@
   flex: 1;
   min-width: 0;
   font-size: var(--size-base);
-
-  /* Layout variables */
   --input-field-gap: 4px;
-  
-  /* Input element variables */
   --input-font-size: 1em;
   --input-padding: 0.333em 0.583em;
   --input-border-width: 1px;
@@ -62,7 +58,6 @@ input:disabled {
   cursor: not-allowed;
 }
 
-/* Error state */
 :host([error]) input {
   border-color: var(--field-error-color, var(--red));
 }
@@ -72,8 +67,7 @@ input:disabled {
   border-color: var(--field-error-color, var(--red));
 }
 
-/* Clear button styles */
-.clear-btn {
+.clear-btn:not(.action-btn) {
   width: 1.333em;
   height: 1.333em;
   border: none;
@@ -89,13 +83,12 @@ input:disabled {
   line-height: 1;
 }
 
-.clear-btn:hover {
+.clear-btn:not(.action-btn):hover {
   background: var(--clear-btn-bg-hover);
   color: var(--clear-btn-color-hover);
 }
 
-/* Reset button styles */
-.reset-btn {
+.reset-btn:not(.action-btn) {
   width: 1.333em;
   height: 1.333em;
   border: none;
@@ -111,10 +104,11 @@ input:disabled {
   line-height: 1;
 }
 
-.reset-btn:hover {
+.reset-btn:not(.action-btn):hover {
   background: var(--reset-btn-bg-hover);
   color: var(--reset-btn-color-hover);
 }
 
-
-
+.input-container:has(.action-controls) input {
+  border-radius: var(--input-border-radius) 0 0 var(--input-border-radius);
+}

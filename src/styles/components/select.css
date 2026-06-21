@@ -190,7 +190,7 @@
   margin-left: 2px;
 }
 
-.clear-btn {
+.clear-btn:not(.action-btn) {
   width: 1.333em;
   height: 1.333em;
   border: none;
@@ -206,12 +206,12 @@
   line-height: 1;
 }
 
-.clear-btn:hover {
+.clear-btn:not(.action-btn):hover {
   background: var(--clear-btn-bg-hover);
   color: var(--clear-btn-color-hover);
 }
 
-.reset-btn {
+.reset-btn:not(.action-btn) {
   width: 1.333em;
   height: 1.333em;
   border: none;
@@ -226,7 +226,11 @@
   flex-shrink: 0;
 }
 
-.reset-btn:hover {
+.reset-btn:not(.action-btn):hover {
   background: var(--reset-btn-bg-hover);
   color: var(--reset-btn-color-hover);
+}
+
+.container:has(.action-controls) .trigger {
+  border-radius: var(--select-border-radius) 0 0 var(--select-border-radius);
 }

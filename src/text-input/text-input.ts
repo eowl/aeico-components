@@ -42,18 +42,7 @@ class TextInput extends AeicoField {
       if (this.fieldElement && this.value != null) {
         this.fieldElement.value = String(this.value);
       }
-      this.updateClearButtonVisibility();
     });
-  }
-
-  /**
-   * Update clear button visibility based on input value
-   */
-  private updateClearButtonVisibility() {
-    if (this.clearBtn && this.fieldElement) {
-      const hasValue = this.fieldElement.value.length > 0;
-      this.clearBtn.style.display = hasValue ? '' : 'none';
-    }
   }
 
   /**
@@ -65,8 +54,6 @@ class TextInput extends AeicoField {
     if (this.fieldElement) {
       this.fieldElement.value = strValue;
     }
-
-    this.updateClearButtonVisibility();
   }
 }
 

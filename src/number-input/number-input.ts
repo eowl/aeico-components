@@ -69,7 +69,6 @@ class NumberInput extends AeicoField<number> {
       if (this.fieldElement && this.value != null) {
         this.fieldElement.value = String(this.value);
       }
-      this.updateClearButtonVisibility();
     });
   }
 
@@ -94,16 +93,6 @@ class NumberInput extends AeicoField<number> {
   };
 
   /**
-   * Update clear button visibility based on input value
-   */
-  private updateClearButtonVisibility() {
-    if (this.clearBtn && this.fieldElement) {
-      const hasValue = this.fieldElement.value.length > 0;
-      this.clearBtn.style.display = hasValue ? '' : 'none';
-    }
-  }
-
-  /**
    * Get current value as number
    */
   protected getValue(): number {
@@ -121,8 +110,6 @@ class NumberInput extends AeicoField<number> {
     if (this.fieldElement) {
       this.fieldElement.value = value != null ? String(value) : '';
     }
-
-    this.updateClearButtonVisibility();
   }
 
   /**
