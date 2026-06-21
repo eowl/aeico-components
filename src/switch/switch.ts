@@ -30,7 +30,14 @@ class Switch extends AeicoField<boolean> {
   @prop({ type: String })
   accessor iconPlacement: SwitchIconPlacement | undefined;
 
-  protected static styles = [styleVariables, sizeCSS, colorCSS, fieldLabelCSS, actionButtonCSS, styles];
+  protected static styles = [
+    styleVariables,
+    sizeCSS,
+    colorCSS,
+    fieldLabelCSS,
+    actionButtonCSS,
+    styles,
+  ];
 
   protected getValue(): boolean {
     return this.fieldElement?.checked ?? false;

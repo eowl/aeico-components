@@ -24,7 +24,14 @@ class Checkbox extends AeicoField<boolean> {
   declare defaultChecked?: boolean;
   declare variant?: CheckboxVariant;
 
-  protected static styles = [styleVariables, sizeCSS, colorCSS, fieldLabelCSS, actionButtonCSS, styles];
+  protected static styles = [
+    styleVariables,
+    sizeCSS,
+    colorCSS,
+    fieldLabelCSS,
+    actionButtonCSS,
+    styles,
+  ];
 
   protected getValue(): boolean {
     return this.fieldElement?.checked ?? false;
