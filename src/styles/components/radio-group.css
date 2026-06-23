@@ -3,17 +3,6 @@
   align-items: center;
   gap: var(--rg-gap, 0.286em);
   font-size: var(--ae-size-m);
-  --rg-solid-bg:          var(--ae-color-solid);
-  --rg-solid-bg-hover:    var(--ae-color-solid-hover);
-  --rg-solid-bg-active:   var(--ae-color-solid-active);
-  --rg-solid-color:       var(--ae-color-on-solid);
-  --rg-solid-color-hover: var(--ae-color-on-solid-hover, var(--ae-color-on-solid));
-  --rg-border:            var(--ae-color-border);
-  --rg-border-hover:      var(--ae-color-border-hover);
-  --rg-accent:            var(--ae-color-accent);
-  --rg-accent-hover:      var(--ae-color-accent-hover);
-  --rg-subtle-bg:         var(--ae-color-subtle);
-  --rg-subtle-bg-hover:   var(--ae-color-subtle-hover);
 
   --rg-font-size:    1em;
   --rg-height:       2.286em;
@@ -21,9 +10,6 @@
   --rg-min-width:    4.571em;
   --rg-radius:       4px;
   --rg-font-weight:  400;
-
-  --color-unselected:       var(--ae-surface-base);
-  --color-unselected-hover: var(--color-gray-lighter);
 }
 
 :host([size="xs"]) { --rg-radius: 3px; }
@@ -53,7 +39,7 @@ slot {
 .rg-radio-input {
   width: 14px;
   height: 14px;
-  accent-color: var(--rg-solid-bg, var(--ae-color-primary));
+  accent-color: var(--ae-color-solid, var(--ae-color-primary));
   cursor: pointer;
   margin: 0;
   flex-shrink: 0;
@@ -80,32 +66,32 @@ slot {
   outline: none;
   border-radius: var(--rg-radius);
 
-  background:   var(--color-unselected);
-  border:       1px solid var(--color-gray-light);
+  background:   var(--ae-surface-base);
+  border:       1px solid var(--ae-color-gray-light);
   color:        var(--ae-color-text-muted);
 }
 
 .rg-btn:hover:not(:disabled):not(.selected) {
-  background:   var(--color-unselected-hover);
-  border-color: var(--color-gray-light);
+  background:   var(--ae-surface-base-hover);
+  border-color: var(--ae-color-gray-light);
   color:        var(--ae-color-text-main);
 }
 
 .rg-btn.selected {
-  background:   var(--rg-solid-bg);
-  border-color: var(--rg-solid-bg);
-  color:        var(--rg-solid-color);
+  background:   var(--ae-color-solid);
+  border-color: var(--ae-color-solid);
+  color:        var(--ae-color-on-solid);
   font-weight:  500;
   box-shadow:   0 1px 4px rgb(from black r g b / 0.22);
 }
 
 .rg-btn.selected:hover:not(:disabled) {
-  background:   var(--rg-solid-bg-hover);
-  border-color: var(--rg-solid-bg-hover);
+  background:   var(--ae-color-solid-hover);
+  border-color: var(--ae-color-solid-hover);
 }
 
 .rg-btn:active:not(:disabled):not(.selected) {
-  background: var(--rg-subtle-bg-hover);
+  background: var(--ae-color-subtle-hover);
   transform: translateY(1px);
 }
 
@@ -117,34 +103,34 @@ slot {
 
 :host([variant="outlined"]) .rg-btn {
   background:   transparent;
-  border-color: var(--rg-border);
-  color:        var(--rg-accent);
+  border-color: var(--ae-color-border);
+  color:        var(--ae-color-accent);
 }
 :host([variant="outlined"]) .rg-btn:hover:not(:disabled):not(.selected) {
-  background:   var(--rg-subtle-bg);
-  border-color: var(--rg-accent);
-  color:        var(--rg-accent-hover);
+  background:   var(--ae-color-subtle);
+  border-color: var(--ae-color-accent);
+  color:        var(--ae-color-accent-hover);
 }
 :host([variant="outlined"]) .rg-btn.selected {
-  background:   var(--rg-solid-bg);
-  border-color: var(--rg-solid-bg);
-  color:        var(--rg-solid-color);
+  background:   var(--ae-color-solid);
+  border-color: var(--ae-color-solid);
+  color:        var(--ae-color-on-solid);
 }
 
 :host([variant="subtle"]) .rg-btn {
   background:   transparent;
   border-color: transparent;
-  color:        var(--rg-accent);
+  color:        var(--ae-color-accent);
 }
 :host([variant="subtle"]) .rg-btn:hover:not(:disabled):not(.selected) {
-  background:   var(--rg-subtle-bg);
+  background:   var(--ae-color-subtle);
   border-color: transparent;
-  color:        var(--rg-accent-hover);
+  color:        var(--ae-color-accent-hover);
 }
 :host([variant="subtle"]) .rg-btn.selected {
-  background:   var(--rg-subtle-bg-hover);
+  background:   var(--ae-color-subtle-hover);
   border-color: transparent;
-  color:        var(--rg-accent-hover);
+  color:        var(--ae-color-accent-hover);
   font-weight:  600;
   box-shadow:   none;
 }
@@ -212,35 +198,35 @@ slot {
 }
 
 :host([mode="segmented"]) .rg-btn:hover:not(:disabled):not(.selected) {
-  background:   var(--rg-subtle-bg);
+  background:   var(--ae-color-subtle);
   border-color: transparent;
   color:        var(--ae-color-text-secondary, var(--ae-color-text-main));
 }
 
 :host([mode="segmented"]) .rg-btn.selected {
-  background:   var(--rg-solid-bg);
+  background:   var(--ae-color-solid);
   border-color: transparent;
-  color:        var(--rg-solid-color);
+  color:        var(--ae-color-on-solid);
   font-weight:  500;
   box-shadow:   0 1px 4px rgb(from black r g b / 0.35);
 }
 
 :host([mode="segmented"]) .rg-btn.selected:hover:not(:disabled) {
-  background: var(--rg-solid-bg-hover);
+  background: var(--ae-color-solid-hover);
 }
 
 :host([mode="segmented"]:not([color])) .rg-btn.selected {
-  background: var(--color-gray-lighter);
+  background: var(--ae-color-gray-lighter);
   color:      var(--ae-color-text-main);
 }
 
 :host([mode="segmented"][variant="outlined"]) .rg-container {
-  border-color: var(--rg-border);
+  border-color: var(--ae-color-border);
 }
 :host([mode="segmented"][variant="outlined"]) .rg-btn.selected {
-  background:   var(--rg-solid-bg);
+  background:   var(--ae-color-solid);
   border-color: transparent;
-  color:        var(--rg-solid-color);
+  color:        var(--ae-color-on-solid);
 }
 
 :host([mode="button"]) .reset-btn,
@@ -262,7 +248,7 @@ slot {
 :host([mode="segmented"]) .reset-btn,
 :host([mode="segmented"]) .clear-btn {
   background:   transparent;
-  border:       1px solid var(--color-gray-light);
+  border:       1px solid var(--ae-color-gray-light);
   color:        var(--ae-color-text-muted);
 }
 
@@ -270,7 +256,7 @@ slot {
 :host([mode="button-group"]) .reset-btn:hover,
 :host([mode="segmented"]) .reset-btn:hover {
   background:   var(--ae-border-subtle);
-  border-color: var(--color-gray-lighter);
+  border-color: var(--ae-color-gray-lighter);
   color:        var(--ae-color-text-main);
 }
 
@@ -278,7 +264,7 @@ slot {
 :host([mode="button-group"]) .clear-btn:hover,
 :host([mode="segmented"]) .clear-btn:hover {
   background:   rgb(from var(--ae-red) r g b / 0.10);
-  border-color: var(--color-gray-lighter);
+  border-color: var(--ae-color-gray-lighter);
   color:        var(--ae-color-danger);
 }
 
@@ -289,23 +275,23 @@ slot {
 :host([variant="outlined"][mode="segmented"]) .reset-btn,
 :host([variant="outlined"][mode="segmented"]) .clear-btn {
   background:   transparent;
-  border-color: var(--rg-border);
-  color:        var(--rg-accent);
+  border-color: var(--ae-color-border);
+  color:        var(--ae-color-accent);
 }
 
 :host([variant="outlined"][mode="button"]) .reset-btn:hover,
 :host([variant="outlined"][mode="button-group"]) .reset-btn:hover,
 :host([variant="outlined"][mode="segmented"]) .reset-btn:hover {
   background:   var(--ae-border-subtle);
-  border-color: var(--rg-border-hover);
-  color:        var(--rg-accent-hover);
+  border-color: var(--ae-color-border-hover);
+  color:        var(--ae-color-accent-hover);
 }
 
 :host([variant="outlined"][mode="button"]) .clear-btn:hover,
 :host([variant="outlined"][mode="button-group"]) .clear-btn:hover,
 :host([variant="outlined"][mode="segmented"]) .clear-btn:hover {
   background:   rgb(from var(--ae-red) r g b / 0.10);
-  border-color: var(--rg-border-hover);
+  border-color: var(--ae-color-border-hover);
   color:        var(--ae-color-danger);
 }
 
@@ -317,7 +303,7 @@ slot {
 :host([variant="subtle"][mode="segmented"]) .clear-btn {
   background:   transparent;
   border-color: transparent;
-  color:        var(--rg-accent);
+  color:        var(--ae-color-accent);
 }
 
 :host([variant="subtle"][mode="button"]) .reset-btn:hover,
@@ -325,7 +311,7 @@ slot {
 :host([variant="subtle"][mode="segmented"]) .reset-btn:hover {
   background:   var(--ae-border-subtle);
   border-color: transparent;
-  color:        var(--rg-accent-hover);
+  color:        var(--ae-color-accent-hover);
 }
 
 :host([variant="subtle"][mode="button"]) .clear-btn:hover,

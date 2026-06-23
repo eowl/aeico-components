@@ -1,7 +1,6 @@
 :host {
   display: block;
   --progress-height: 8px;
-  --color-solid: var(--ae-color-primary);
 }
 
 .progress-track {

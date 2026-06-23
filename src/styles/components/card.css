@@ -1,45 +1,51 @@
 :host {
   display: block;
-
-  --card-bg:      var(--ae-color-bg-subtle);
-  --card-color:   var(--ae-color-text-subtle);
-  --card-border:  var(--ae-color-border-subtle);
-  --card-divider: var(--ae-color-border-subtle);
-}
-
-:host([variant="faint"]) {
-  --card-bg:      var(--ae-color-bg-subtle);
-  --card-color:   var(--ae-color-text-subtle);
-  --card-border:  var(--ae-color-border-subtle);
-  --card-divider: var(--ae-color-border-subtle);
-}
-
-:host([variant="subtle"]) {
-  --card-border:  transparent;
-  --card-divider: transparent;
-}
-
-:host([variant="filled"]) {
-  --card-bg:      var(--ae-color-solid);
-  --card-color:   var(--ae-color-on-solid);
-  --card-border:  var(--ae-color-solid);
-  --card-divider: color-mix(in srgb, var(--ae-color-solid), black 15%);
-}
-
-:host([variant="outlined"]) {
-  --card-bg:      transparent;
-  --card-color:   var(--ae-color-text-subtle);
-  --card-border:  var(--ae-color-border);
-  --card-divider: var(--ae-color-border-subtle);
 }
 
 .card {
-  border: 1px solid var(--card-border);
+  border: 1px solid var(--ae-color-border-subtle);
   border-radius: var(--ae-border-radius, var(--ae-radius-lg));
-  background: var(--card-bg);
-  color: var(--card-color);
+  background: var(--ae-color-bg-subtle);
+  color: var(--ae-color-text-subtle);
   overflow: hidden;
 }
+
+/* variant overrides */
+:host([variant="faint"]) .card {
+  border-color: var(--ae-color-border-subtle);
+  background: var(--ae-color-bg-subtle);
+  color: var(--ae-color-text-subtle);
+}
+
+:host([variant="subtle"]) .card {
+  border-color: transparent;
+}
+
+:host([variant="subtle"]) .header { border-bottom-color: transparent; }
+:host([variant="subtle"]) .footer { border-top-color: transparent; }
+
+:host([variant="filled"]) .card {
+  border-color: var(--ae-color-solid);
+  background: var(--ae-color-solid);
+  color: var(--ae-color-on-solid);
+}
+
+:host([variant="filled"]) .header {
+  border-bottom-color: color-mix(in srgb, var(--ae-color-solid), black 15%);
+}
+
+:host([variant="filled"]) .footer {
+  border-top-color: color-mix(in srgb, var(--ae-color-solid), black 15%);
+}
+
+:host([variant="outlined"]) .card {
+  border-color: var(--ae-color-border);
+  background: transparent;
+  color: var(--ae-color-text-subtle);
+}
+
+:host([variant="outlined"]) .header { border-bottom-color: var(--ae-color-border-subtle); }
+:host([variant="outlined"]) .footer { border-top-color: var(--ae-color-border-subtle); }
 
 .header,
 .footer {
@@ -51,12 +57,12 @@
 
 :host([has-header]) .header {
   display: block;
-  border-bottom: 1px solid var(--card-divider);
+  border-bottom: 1px solid var(--ae-color-border-subtle);
 }
 
 :host([has-footer]) .footer {
   display: block;
-  border-top: 1px solid var(--card-divider);
+  border-top: 1px solid var(--ae-color-border-subtle);
 }
 
 .body {

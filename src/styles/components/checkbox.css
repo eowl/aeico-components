@@ -12,10 +12,6 @@
   --checkbox-border-width: 1px;
   --checkbox-border-color: var(--ae-border-subtle);
   --checkbox-bg: var(--ae-surface-base);
-  --checkbox-accent-color: var(--ae-color-solid);
-
-  /* Default color when no [color] attribute — overridden by color.css :host([color=...]) */
-  --color-solid: var(--ae-color-primary);
 }
 
 .checkbox-container {
@@ -38,7 +34,7 @@
   border: var(--checkbox-border-width) solid var(--checkbox-border-color);
   border-radius: var(--ae-border-radius, var(--ae-radius-xs));
   background: var(--checkbox-bg);
-  accent-color: var(--checkbox-accent-color);
+  accent-color: var(--ae-color-solid);
   margin: 0;
   flex-shrink: 0;
 }

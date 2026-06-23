@@ -131,12 +131,12 @@ import 'aeico-components';
 | `--input-padding` | Input internal padding. |
 | `--input-border-width` | Border thickness. |
 | `--input-border-radius` | Corner radius. |
-| `--input-border-color` | Default border colour. |
-| `--input-border-color-hover` | Border colour on hover. |
-| `--input-border-color-focus` | Border colour when focused. |
-| `--input-bg` | Background colour. |
-| `--input-bg-hover` | Background colour on hover. |
-| `--input-bg-focus` | Background colour when focused. |
-| `--input-color` | Text colour. |
-| `--input-placeholder-color` | Placeholder text colour. |
+| `--ae-border-subtle` | Default border colour. |
+| `--ae-border-default` | Border colour on hover. |
+| `--ae-border-focus` | Border colour when focused. |
+| `--ae-surface-base` | Background colour. |
+| `--ae-surface-raised` | Background colour on hover. |
+| `--ae-surface-raised` | Background colour when focused. |
+| `--ae-color-text-muted` | Text colour. |
+| `--ae-color-text-disabled` | Placeholder text colour. |
 | `--input-transition` | CSS transition applied to border and background. |

@@ -3,9 +3,6 @@
   flex: 1;
   min-width: 0;
   font-size: var(--ae-size-base);
-
-  /* Default color when no [color] attribute — overridden by color.css :host([color=...]) */
-  --color-solid: var(--ae-color-primary);
 }
 
 .range-container {

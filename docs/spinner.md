@@ -45,8 +45,8 @@ import { Spinner } from 'aeico-components';
 |-----------------------|-----------|----------------------------------------------|
 | `--spinner-size`      | `1.75em`  | Diameter of the spinner track.               |
 | `--spinner-thickness` | `0.15em`  | Border width (border variant only).          |
-| `--spinner-color`     | *(from color token)* | Foreground / active colour.        |
-| `--spinner-track-color` | *(from color token)* | Background track colour (border variant). |
+| `--ae-color-solid`    | *(color token)* | Foreground / active colour.          |
+| `--ae-color-bg-subtle`| *(color token)* | Background track colour (border variant). |
 | `--spinner-speed`     | `0.75s`   | Animation duration. Also writable via the `speed` prop. |
 
 ## CSS Parts

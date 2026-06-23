@@ -75,8 +75,8 @@ import 'aeico-components';
   placeholder="Custom styled"
   style="
     --textarea-border-radius: 12px;
-    --textarea-border-color: #9333ea;
-    --textarea-border-color-focus: #7c3aed;
+    --ae-border-subtle: #9333ea;
+    --ae-border-focus: #7c3aed;
   ">
 </ae-textarea>
 ```
@@ -122,12 +122,12 @@ import 'aeico-components';
 | `--textarea-padding` | Internal padding. |
 | `--textarea-border-width` | Border thickness. |
 | `--textarea-border-radius` | Corner radius. |
-| `--textarea-border-color` | Default border colour. |
-| `--textarea-border-color-hover` | Border colour on hover. |
-| `--textarea-border-color-focus` | Border colour when focused. |
-| `--textarea-bg` | Background colour. |
-| `--textarea-bg-hover` | Background colour on hover. |
-| `--textarea-bg-focus` | Background colour when focused. |
-| `--textarea-color` | Text colour. |
-| `--textarea-placeholder-color` | Placeholder text colour. |
+| `--ae-border-subtle` | Default border colour. |
+| `--ae-border-default` | Border colour on hover. |
+| `--ae-border-focus` | Border colour when focused. |
+| `--ae-surface-base` | Background colour. |
+| `--ae-surface-raised` | Background colour on hover. |
+| `--ae-surface-raised` | Background colour when focused. |
+| `--ae-color-text-muted` | Text colour. |
+| `--ae-color-text-disabled` | Placeholder text colour. |
 | `--textarea-transition` | CSS transition applied to border and background. |

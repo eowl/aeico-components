@@ -1,57 +1,55 @@
 :host {
   display: block;
 
-  --detail-bg:         var(--ae-color-solid);
-  --detail-color:      var(--ae-color-on-solid);
-  --detail-border:     var(--ae-color-solid);
-  --detail-header-bg:  color-mix(in srgb, var(--ae-color-solid), black 10%);
   --detail-radius:     6px;
 }
 
-:host([variant="faint"]) {
-  --detail-bg:         var(--ae-color-bg-subtle);
-  --detail-color:      var(--ae-color-text-subtle);
-  --detail-border:     var(--ae-color-border-subtle);
-  --detail-header-bg:  var(--ae-color-bg-subtle);
-}
-
-:host([variant="subtle"]) {
-  --detail-bg:         transparent;
-  --detail-color:      var(--ae-color-text-main);
-  --detail-border:     transparent;
-  --detail-header-bg:  transparent;
-}
-
-:host([variant="filled"]) {
-  --detail-bg:         var(--ae-color-solid);
-  --detail-color:      var(--ae-color-on-solid);
-  --detail-border:     var(--ae-color-solid);
-  --detail-header-bg:  color-mix(in srgb, var(--ae-color-solid), black 10%);
-}
-
-:host([variant="outlined"]) {
-  --detail-bg:         transparent;
-  --detail-color:      var(--ae-color-text-subtle);
-  --detail-border:     var(--ae-color-border);
-  --detail-header-bg:  transparent;
-}
-
-:host([disabled]) {
-  opacity: 0.5;
-  pointer-events: none;
-}
-
 .detail {
-  border: 1px solid var(--detail-border);
+  border: 1px solid var(--ae-color-solid);
   border-radius:
     var(--detail-r-tl, var(--detail-radius))
     var(--detail-r-tr, var(--detail-radius))
     var(--detail-r-br, var(--detail-radius))
     var(--detail-r-bl, var(--detail-radius));
-  color: var(--detail-color);
-  background: var(--detail-bg);
+  color: var(--ae-color-on-solid);
+  background: var(--ae-color-solid);
   overflow: hidden;
 }
+
+/* variant overrides */
+:host([variant="faint"]) .detail {
+  border-color: var(--ae-color-border-subtle);
+  background: var(--ae-color-bg-subtle);
+  color: var(--ae-color-text-subtle);
+}
+
+:host([variant="faint"]) .summary { background: var(--ae-color-bg-subtle); }
+
+:host([variant="subtle"]) .detail {
+  border-color: transparent;
+  background: transparent;
+  color: var(--ae-color-text-main);
+}
+
+:host([variant="subtle"]) .summary { background: transparent; }
+
+:host([variant="filled"]) .detail {
+  border-color: var(--ae-color-solid);
+  background: var(--ae-color-solid);
+  color: var(--ae-color-on-solid);
+}
+
+:host([variant="filled"]) .summary {
+  background: color-mix(in srgb, var(--ae-color-solid), black 10%);
+}
+
+:host([variant="outlined"]) .detail {
+  border-color: var(--ae-color-border);
+  background: transparent;
+  color: var(--ae-color-text-subtle);
+}
+
+:host([variant="outlined"]) .summary { background: transparent; }
 
 .summary {
   display: flex;
@@ -59,7 +57,7 @@
   gap: 6px;
   width: 100%;
   padding: 10px 14px;
-  background: var(--detail-header-bg);
+  background: color-mix(in srgb, var(--ae-color-solid), black 10%);
   color: inherit;
   font-size: inherit;
   font-family: inherit;

@@ -79,7 +79,7 @@ Use `label` as a shorthand when no rich HTML is needed in the label.
 
 ```html
 <ae-checkbox
-  style="--checkbox-accent-color: #9333ea; --checkbox-size: 20px;"
+  style="--ae-color-solid: #9333ea; --checkbox-size: 20px;"
   checked
 >
   Purple checkbox
@@ -118,5 +118,5 @@ Use `label` as a shorthand when no rich HTML is needed in the label.
 | `--checkbox-border-radius` | Corner radius of the checkbox indicator. |
 | `--checkbox-border-color` | Border colour when unchecked. |
 | `--checkbox-bg` | Background colour when unchecked. |
-| `--checkbox-accent-color` | Fill colour when checked. |
+| `--ae-color-solid` | Fill/accent colour when checked. |
 | `--checkbox-field-gap` | Gap between the checkbox indicator and the label. |

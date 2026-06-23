@@ -98,9 +98,9 @@ Use `invisible` to hide the alert initially, then call `.show()` / `.hide()` in 
 
 | Variable | Description |
 |----------|-------------|
-| `--alert-solid-bg` | Background color for `filled` variant (defaults to `--color-solid`). |
+| `--ae-color-solid` | Background color for `filled` variant. |
 | `--alert-solid-color` | Text color for `filled` variant (defaults to `--color-on-solid`). |
-| `--alert-border` | Border color for `outlined` variant (defaults to `--color-border`). |
+| `--ae-color-border` | Border color for `outlined` variant. |
 | `--alert-subtle-bg` | Background color for `subtle` / `faint` variants. |
 | `--alert-subtle-color` | Text color for `subtle` / `faint` variants. |
 | `--alert-subtle-border` | Border color for `faint` variant. |

@@ -114,10 +114,11 @@ import 'aeico-components';
 
 ## CSS Custom Properties
 
-| Property | Description |
-|----------|-------------|
-| `--detail-bg` | Body background colour. |
-| `--detail-color` | Body text colour. |
-| `--detail-border` | Border colour. |
-| `--detail-header-bg` | Summary bar background colour. |
-| `--detail-radius` | Border radius. |
+Detail appearance is driven by global `--ae-color-*` tokens (vary by `variant`). Override on `<ae-detail>`:
+
+| Token | Controls |
+|-------|----------|
+| `--ae-color-solid` | Body background (`filled` variant). |
+| `--ae-color-on-solid` | Body text colour (`filled` variant). |
+| `--ae-color-border` | Border colour (`outlined` variant). |
+| `--detail-radius` | Border radius (default: `6px`). |

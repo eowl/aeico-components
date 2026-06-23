@@ -6,8 +6,6 @@
   vertical-align: middle;
   --spinner-size: 1.75em;
   --spinner-thickness: 0.15em;
-  --spinner-color: var(--ae-color-solid);
-  --spinner-track-color: var(--ae-color-bg-subtle, rgba(0, 0, 0, 0.08));
   --spinner-speed: 0.75s;
 }
 
@@ -21,8 +19,8 @@
   width: var(--spinner-size);
   height: var(--spinner-size);
   border-radius: var(--ae-radius-circle);
-  border: var(--spinner-thickness) solid var(--spinner-track-color);
-  border-top-color: var(--spinner-color);
+  border: var(--spinner-thickness) solid var(--ae-color-bg-subtle, rgba(0, 0, 0, 0.08));
+  border-top-color: var(--ae-color-solid);
   animation: ae-spin var(--spinner-speed) linear infinite;
   box-sizing: border-box;
 }
@@ -45,7 +43,7 @@
   width: calc(var(--spinner-size) * 0.28);
   height: calc(var(--spinner-size) * 0.28);
   border-radius: var(--ae-radius-circle);
-  background: var(--spinner-color);
+  background: var(--ae-color-solid);
   animation: ae-bounce var(--spinner-speed) ease-in-out infinite;
 }
 
@@ -69,7 +67,7 @@
 @media (prefers-reduced-motion: reduce) {
   .track {
     animation: none;
-    border-top-color: var(--spinner-color);
+    border-top-color: var(--ae-color-solid);
     opacity: 0.6;
   }
 

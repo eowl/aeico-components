@@ -9,13 +9,10 @@
   --toggle-slider-size: 1em;
   --toggle-gap:         calc((var(--toggle-height) - var(--toggle-slider-size)) / 2);
   --toggle-border-radius: calc(var(--toggle-height) / 2);
-  --toggle-bg:          var(--color-gray);
+  --toggle-bg:          var(--ae-color-gray);
   --toggle-bg-checked:  var(--ae-color-solid);
   --toggle-slider-bg:   white;
   --toggle-transition:  0.2s;
-
-  /* Default color when no [color] attribute — overridden by color.css :host([color=...]) */
-  --color-solid: var(--ae-color-primary);
 }
 
 .switch-container {
@@ -88,11 +85,6 @@
   pointer-events: auto;
 }
 
-/* ===== Icon size override ===== */
-/* ae-icon shadow DOM sets :host { font-size: 20px }, external styles beat it.
-   Font-size on the CONTAINER span must NOT be set here — doing so causes
-   double-multiplying (container 0.72× then ae-icon 0.72× again = tiny icons).
-   Only the ae-icon element itself is targeted. */
 .toggle-knob-icon ae-icon,
 .track-icon ae-icon {
   font-size: var(--toggle-icon-size, calc(var(--toggle-slider-size) * 0.72));
@@ -100,7 +92,6 @@
   height: 1em;
 }
 
-/* ===== Knob icons ===== */
 .toggle-knob-icon {
   position: absolute;
   height: var(--toggle-slider-size);
@@ -131,9 +122,6 @@
   opacity: 0;
 }
 
-/* ===== Track icons ===== */
-/* Positioned at the same location as the knob in each state (the circular ends),
-   so the icon appears to live inside the circle, not on the flat track sides. */
 .track-icon {
   position: absolute;
   top: var(--toggle-gap);

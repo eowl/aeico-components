@@ -1,9 +1,9 @@
 :host {
-  --ae-color-solid:           var(--color-gray);
+  --ae-color-solid:           var(--ae-color-gray);
   --ae-color-solid-hover:     color-mix(in srgb, var(--ae-color-solid), var(--ae-color-mix-hover));
   --ae-color-solid-active:    color-mix(in srgb, var(--ae-color-solid), var(--ae-color-mix-active));
   --ae-color-on-solid:        var(--ae-color-text-main);
-  --ae-color-border:          var(--color-gray);
+  --ae-color-border:          var(--ae-color-gray);
   --ae-color-border-hover:    color-mix(in srgb, var(--ae-color-border), var(--ae-color-mix-hover));
   --ae-color-accent:          var(--ae-color-text-muted);
   --ae-color-accent-hover:    var(--ae-color-text-main);

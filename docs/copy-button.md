@@ -115,19 +115,20 @@ When `text` is not set, the content of the default slot is copied.
 
 ## CSS Custom Properties
 
-| Property | Description |
-|----------|-------------|
-| `--btn-solid-bg` | Background colour for `filled` variant. |
-| `--btn-solid-bg-hover` | Background on hover (`filled`). |
-| `--btn-solid-bg-active` | Background when pressed (`filled`). |
-| `--btn-solid-color` | Text colour for `filled` variant. |
-| `--btn-solid-color-hover` | Text colour on hover (`filled`). |
-| `--btn-border` | Border colour for `outlined` variant. |
-| `--btn-border-hover` | Border colour on hover (`outlined`). |
-| `--btn-accent` | Accent colour for `faint` and `text` variants. |
-| `--btn-accent-hover` | Accent colour on hover. |
-| `--btn-subtle-bg` | Background for `subtle` / `faint` variants. |
-| `--btn-subtle-bg-hover` | Background on hover for `subtle` / `faint` variants. |
+Copy-button uses the same global `--ae-color-*` design tokens as `<ae-button>`. Override them on `<ae-copy-button>` to customise:
+
+| Token | Controls |
+|-------|----------|
+| `--ae-color-solid` | Background for `filled` variant. |
+| `--ae-color-solid-hover` | Background on hover (`filled`). |
+| `--ae-color-solid-active` | Background when pressed (`filled`). |
+| `--ae-color-on-solid` | Text colour for `filled` variant. |
+| `--ae-color-border` | Border colour for `outlined` variant. |
+| `--ae-color-border-hover` | Border colour on hover (`outlined`). |
+| `--ae-color-accent` | Accent colour for `faint` and `text` variants. |
+| `--ae-color-accent-hover` | Accent colour on hover. |
+| `--ae-color-subtle` | Background for `subtle` / `faint` variants. |
+| `--ae-color-subtle-hover` | Background on hover for `subtle` / `faint` variants. |
 
 ## CSS Parts
 

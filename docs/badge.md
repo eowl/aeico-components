@@ -95,12 +95,14 @@ import 'aeico-components';
 
 ## CSS Custom Properties
 
-| Property | Description |
-|----------|-------------|
-| `--badge-solid-bg` | Background colour for `filled` variant. |
-| `--badge-solid-color` | Text colour for `filled` variant. |
-| `--badge-border` | Border colour for `outlined` variant. |
-| `--badge-accent` | Accent colour (e.g. dot indicators). |
-| `--badge-subtle-bg` | Background for `subtle` / `faint` variants. |
-| `--badge-subtle-color` | Text colour for `subtle` / `faint` variants. |
-| `--badge-subtle-border` | Border colour for `faint` / `outlined` variants. |
+Badge uses the global `--ae-color-*` design tokens. Override on `<ae-badge>`:
+
+| Token | Controls |
+|-------|----------|
+| `--ae-color-solid` | Background for `filled` variant. |
+| `--ae-color-on-solid` | Text colour for `filled` variant. |
+| `--ae-color-border` | Border colour for `outlined` variant. |
+| `--ae-color-accent` | Accent colour (e.g. dot indicators). |
+| `--ae-color-bg-subtle` | Background for `subtle` / `faint` variants. |
+| `--ae-color-text-subtle` | Text colour for `subtle` / `faint` variants. |
+| `--ae-color-border-subtle` | Border colour for `faint` / `outlined` variants. |

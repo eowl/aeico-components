@@ -7,14 +7,6 @@
   --textarea-font-size: 1em;
   --textarea-padding: 0.333em 0.583em;
   --textarea-border-width: 1px;
-  --textarea-border-color: var(--ae-border-subtle);
-  --textarea-border-color-hover: var(--ae-border-default);
-  --textarea-border-color-focus: var(--ae-border-focus);
-  --textarea-bg: var(--ae-surface-base);
-  --textarea-bg-hover: var(--ae-surface-raised);
-  --textarea-bg-focus: var(--ae-surface-raised);
-  --textarea-color: var(--ae-color-text-muted);
-  --textarea-placeholder-color: var(--ae-color-text-disabled);
   --textarea-transition: border-color 0.12s, background 0.12s;
 }
 
@@ -34,27 +26,27 @@ textarea {
   font-family: inherit;
   line-height: 1.5;
   padding: var(--textarea-padding);
-  border: var(--textarea-border-width) solid var(--textarea-border-color);
+  border: var(--textarea-border-width) solid var(--ae-border-subtle);
   border-radius: var(--ae-border-radius, var(--ae-radius-xs));
-  background: var(--textarea-bg);
-  color: var(--textarea-color);
+  background: var(--ae-surface-base);
+  color: var(--ae-color-text-muted);
   transition: var(--textarea-transition);
   resize: vertical;
 }
 
 textarea::placeholder {
-  color: var(--textarea-placeholder-color);
+  color: var(--ae-color-text-disabled);
 }
 
 textarea:focus {
   outline: none;
-  border-color: var(--textarea-border-color-focus);
-  background: var(--textarea-bg-focus);
+  border-color: var(--ae-border-focus);
+  background: var(--ae-surface-raised);
 }
 
 textarea:hover:not(:focus) {
-  border-color: var(--textarea-border-color-hover);
-  background: var(--textarea-bg-hover);
+  border-color: var(--ae-border-default);
+  background: var(--ae-surface-raised);
 }
 
 textarea:disabled {
