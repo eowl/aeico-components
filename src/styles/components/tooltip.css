@@ -8,7 +8,6 @@
   --ae-tooltip-color: #fff;
   --ae-tooltip-padding: 0.3125rem 0.625rem;
   --ae-tooltip-font-size: 0.8125rem;
-  --ae-tooltip-border-radius: var(--ae-radius-sm);
   --ae-tooltip-arrow-size: 5px;
   --ae-tooltip-gap: 6px;
   --ae-tooltip-max-width: 20rem;
@@ -28,7 +27,7 @@
   padding: var(--ae-tooltip-padding);
   font-size: var(--ae-tooltip-font-size);
   font-family: inherit;
-  border-radius: var(--ae-tooltip-border-radius);
+  border-radius: var(--ae-border-radius, var(--ae-radius-sm));
   line-height: 1.4;
   white-space: nowrap;
   max-width: var(--ae-tooltip-max-width);

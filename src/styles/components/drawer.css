@@ -1,7 +1,3 @@
-/**
- * :host is placed in the light DOM. Setting position:fixed on it guarantees
- * viewport-level coverage regardless of any z-index stacking inside the page.
- */
 :host {
   display: none;
 }
@@ -11,12 +7,9 @@
   position: fixed;
   inset: 0;
   z-index: var(--ae-drawer-z-index, 1000);
-  /* Host covers the viewport but passes pointer events through by default.
-     Backdrop and panel re-enable them selectively. */
   pointer-events: none;
 }
 
-/* ── Backdrop ────────────────────────────────────────────────────── */
 .backdrop {
   position: absolute;
   inset: 0;
@@ -25,7 +18,6 @@
   pointer-events: auto;
 }
 
-/* ── Panel ───────────────────────────────────────────────────────── */
 .panel {
   position: absolute;
   display: flex;
@@ -38,12 +30,11 @@
   outline: none;
 }
 
-/* ── Placements ──────────────────────────────────────────────────── */
 .panel.placement-right {
   inset: 0 0 0 auto;
   width: var(--ae-drawer-size, 320px);
   max-width: 100%;
-  border-radius: var(--ae-radius-lg) 0 0 var(--ae-radius-lg);
+  border-radius: var(--ae-border-radius, var(--ae-border-radius)) 0 0 var(--ae-border-radius, var(--ae-border-radius));
   animation: drawer-slide-in-right 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -51,7 +42,7 @@
   inset: 0 auto 0 0;
   width: var(--ae-drawer-size, 320px);
   max-width: 100%;
-  border-radius: 0 var(--ae-radius-lg) var(--ae-radius-lg) 0;
+  border-radius: 0 var(--ae-border-radius, var(--ae-border-radius)) var(--ae-border-radius, var(--ae-border-radius)) 0;
   animation: drawer-slide-in-left 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -59,7 +50,7 @@
   inset: 0 0 auto 0;
   height: var(--ae-drawer-size, 320px);
   max-height: 100%;
-  border-radius: 0 0 var(--ae-radius-lg) var(--ae-radius-lg);
+  border-radius: 0 0 var(--ae-border-radius, var(--ae-border-radius)) var(--ae-border-radius, var(--ae-border-radius));
   animation: drawer-slide-in-top 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -67,7 +58,7 @@
   inset: auto 0 0 0;
   height: var(--ae-drawer-size, 320px);
   max-height: 100%;
-  border-radius: var(--ae-radius-lg) var(--ae-radius-lg) 0 0;
+  border-radius: var(--ae-border-radius, var(--ae-border-radius)) var(--ae-border-radius, var(--ae-border-radius)) 0 0;
   animation: drawer-slide-in-bottom 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -124,7 +115,7 @@ header {
   height: 28px;
   padding: 0;
   border: none;
-  border-radius: var(--ae-radius-sm);
+  border-radius: var(--ae-border-radius, var(--ae-border-radius));
   background: transparent;
   color: var(--color-text-muted);
   font-size: 18px;

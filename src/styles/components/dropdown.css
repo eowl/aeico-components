@@ -5,7 +5,6 @@
   --dropdown-z-index: 1000;
   --dropdown-bg: var(--surface-overlay, #fff);
   --dropdown-border: 1px solid var(--color-border, rgba(0, 0, 0, 0.12));
-  --dropdown-border-radius: var(--ae-radius-md, 6px);
   --dropdown-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
   --dropdown-min-width: 10rem;
   --dropdown-padding: 0.25rem 0;
@@ -86,7 +85,7 @@
   z-index: var(--dropdown-z-index);
   background: var(--dropdown-bg);
   border: var(--dropdown-border);
-  border-radius: var(--dropdown-border-radius);
+  border-radius: var(--ae-border-radius, var(--ae-radius-md));
   box-shadow: var(--dropdown-shadow);
   min-width: var(--dropdown-min-width);
   padding: var(--dropdown-padding);

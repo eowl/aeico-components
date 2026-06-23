@@ -2,7 +2,7 @@
   position: relative;
   padding: 12px 16px;
   margin-bottom: 12px;
-  border-radius: var(--ae-radius-sm);
+  border-radius: var(--ae-border-radius, var(--ae-radius-sm));
   font-size: 12px;
   line-height: 1.6;
   background-color: var(--alert-solid-bg);
