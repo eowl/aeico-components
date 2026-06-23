@@ -11,7 +11,7 @@
   --input-font-size: 1em;
   --input-padding: 0.333em 0.583em;
   --input-border-width: 1px;
-  --input-border-radius: 2px;
+  --input-border-radius: var(--ae-radius-xs);
   --input-border-color: var(--border-subtle);
   --input-border-color-hover: var(--border-default);
   --input-border-color-focus: var(--border-focus);
@@ -141,12 +141,12 @@ input:disabled {
 
 .input-container:has(.number-controls):has(.action-controls) .number-controls {
   border-right: none;
-  border-radius: 0;
+  border-radius: var(--ae-radius-square);
 }
 
 .input-container:has(.number-controls) ~ .action-controls,
 .input-container:has(.action-controls) .number-controls {
-  border-radius: 0;
+  border-radius: var(--ae-radius-square);
 }
 
 .input-container:has(.number-controls) input {

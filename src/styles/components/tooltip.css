@@ -8,7 +8,7 @@
   --ae-tooltip-color: #fff;
   --ae-tooltip-padding: 0.3125rem 0.625rem;
   --ae-tooltip-font-size: 0.8125rem;
-  --ae-tooltip-border-radius: 4px;
+  --ae-tooltip-border-radius: var(--ae-radius-sm);
   --ae-tooltip-arrow-size: 5px;
   --ae-tooltip-gap: 6px;
   --ae-tooltip-max-width: 20rem;

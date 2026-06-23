@@ -116,7 +116,7 @@
   padding: 0;
   background: none;
   border: none;
-  border-radius: 4px;
+  border-radius: var(--ae-radius-sm);
   cursor: pointer;
   color: var(--ae-navbar-hamburger-color, inherit);
 }
@@ -226,7 +226,7 @@
     height: auto;
     width: 100%;
     padding: 0.75rem var(--ae-navbar-link-padding-x);
-    border-radius: 0;
+    border-radius: var(--ae-radius-square);
   }
 
   /* show hamburger */

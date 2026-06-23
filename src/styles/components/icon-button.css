@@ -23,7 +23,7 @@ button {
   padding: 0;
   font-size: 1em;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: var(--ae-radius-sm);
   transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
   outline: none;
   user-select: none;
@@ -53,7 +53,7 @@ button:disabled {
 }
 
 :host([size="xs"]) button,
-:host([size="sm"]) button { border-radius: 3px; }
+:host([size="sm"]) button { border-radius: var(--ae-radius-xs); }
 
 :host([variant="outlined"]) button {
   background:   transparent;

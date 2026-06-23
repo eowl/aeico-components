@@ -31,7 +31,7 @@ button {
   padding: 0.429em 1.071em;
   font-size: 1em;
   line-height: 1.5;
-  border-radius: var(--_btn-r-tl, 4px) var(--_btn-r-tr, 4px) var(--_btn-r-br, 4px) var(--_btn-r-bl, 4px);
+  border-radius: var(--_btn-r-tl, var(--ae-radius-sm)) var(--_btn-r-tr, var(--ae-radius-sm)) var(--_btn-r-br, var(--ae-radius-sm)) var(--_btn-r-bl, var(--ae-radius-sm));
   min-width: 4.571em;
   height: 2.286em;
   width: 100%;
@@ -57,8 +57,8 @@ button:disabled {
   cursor: not-allowed;
 }
 
-:host([size="xs"]) button { border-radius: var(--_btn-r-tl, 3px) var(--_btn-r-tr, 3px) var(--_btn-r-br, 3px) var(--_btn-r-bl, 3px); }
-:host([size="sm"]) button { border-radius: var(--_btn-r-tl, 3px) var(--_btn-r-tr, 3px) var(--_btn-r-br, 3px) var(--_btn-r-bl, 3px); }
+:host([size="xs"]) button { border-radius: var(--_btn-r-tl, var(--ae-radius-xs)) var(--_btn-r-tr, var(--ae-radius-xs)) var(--_btn-r-br, var(--ae-radius-xs)) var(--_btn-r-bl, var(--ae-radius-xs)); }
+:host([size="sm"]) button { border-radius: var(--_btn-r-tl, var(--ae-radius-xs)) var(--_btn-r-tr, var(--ae-radius-xs)) var(--_btn-r-br, var(--ae-radius-xs)) var(--_btn-r-bl, var(--ae-radius-xs)); }
 
 /* --- Variants --- */
 
@@ -162,7 +162,7 @@ button:disabled {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
+  border-radius: var(--ae-radius-sm);
 }
 
 .btn-icon.btn-lg {
@@ -171,7 +171,7 @@ button:disabled {
 }
 
 .btn-circle {
-  border-radius: 50%;
+  border-radius: var(--ae-radius-circle);
 }
 
 :host([block]) {
@@ -191,7 +191,7 @@ button.btn-loading::before {
   height: 1em;
   border: 2px solid currentColor;
   border-top-color: transparent;
-  border-radius: 50%;
+  border-radius: var(--ae-radius-circle);
   animation: btn-spin 0.6s linear infinite;
   color: currentColor;
   opacity: 0.8;

@@ -10,7 +10,7 @@
   /* Checkbox */
   --checkbox-size: 1.167em;
   --checkbox-border-width: 1px;
-  --checkbox-border-radius: 2px;
+  --checkbox-border-radius: var(--ae-radius-xs);
   --checkbox-border-color: var(--border-subtle);
   --checkbox-bg: var(--surface-base);
   --checkbox-accent-color: var(--color-solid);

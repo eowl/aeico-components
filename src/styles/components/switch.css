@@ -42,7 +42,7 @@
   margin: 0;
   z-index: 1;
   border: none;
-  border-radius: 0;
+  border-radius: var(--ae-radius-square);
   background: none;
   accent-color: unset;
 }
@@ -71,7 +71,7 @@
   left: var(--toggle-gap);
   top: var(--toggle-gap);
   background: var(--toggle-slider-bg);
-  border-radius: 50%;
+  border-radius: var(--ae-radius-circle);
   transition: var(--toggle-transition);
 }
 
