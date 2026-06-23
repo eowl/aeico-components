@@ -160,11 +160,6 @@
   --ae-color-secondary-hover:  color-mix(in srgb, var(--ae-color-secondary), var(--ae-color-mix-hover));
   --ae-color-secondary-active: color-mix(in srgb, var(--ae-color-secondary), var(--ae-color-mix-active));
   --ae-color-secondary-text:   var(--ae-slate-700);
-
-  /* On-solid — text color on filled (saturated) backgrounds.
-     Fixed white: blue/green/red/cyan buttons always have white text.
-     Does NOT follow --ae-color-text-main. */
-  --ae-color-on-solid: white;
 }
 
 

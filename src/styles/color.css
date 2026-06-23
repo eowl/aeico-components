@@ -96,11 +96,11 @@
   --ae-color-solid:           var(--ae-light);
   --ae-color-on-solid:        var(--ae-gray-900);
   --ae-color-border:          var(--ae-border-hover);
-  --ae-color-subtle:          var(--color-light-bg-subtle);
-  --ae-color-subtle-hover:    var(--color-light-border-subtle);
-  --ae-color-bg-subtle:       var(--color-light-bg-subtle);
+  --ae-color-subtle:          var(--ae-color-light-bg-subtle);
+  --ae-color-subtle-hover:    var(--ae-color-light-border-subtle);
+  --ae-color-bg-subtle:       var(--ae-color-light-bg-subtle);
   --ae-color-text-subtle:     var(--ae-color-text-muted);
-  --ae-color-border-subtle:   var(--color-light-border-subtle);
+  --ae-color-border-subtle:   var(--ae-color-light-border-subtle);
 }
 
 :host([color="dark"]) {
@@ -109,9 +109,9 @@
   --ae-color-border:          var(--ae-dark-500);
   --ae-color-accent:          var(--ae-color-text-main);
   --ae-color-accent-hover:    var(--ae-color-text-main);
-  --ae-color-subtle:          var(--color-dark-bg-subtle);
-  --ae-color-subtle-hover:    var(--color-dark-border-subtle);
-  --ae-color-bg-subtle:       var(--color-dark-bg-subtle);
+  --ae-color-subtle:          var(--ae-color-dark-bg-subtle);
+  --ae-color-subtle-hover:    var(--ae-color-dark-border-subtle);
+  --ae-color-bg-subtle:       var(--ae-color-dark-bg-subtle);
   --ae-color-text-subtle:     var(--ae-color-text-main);
-  --ae-color-border-subtle:   var(--color-dark-border-subtle);
+  --ae-color-border-subtle:   var(--ae-color-dark-border-subtle);
 }
