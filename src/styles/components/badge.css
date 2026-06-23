@@ -21,7 +21,7 @@
   line-height: 1.2;
   font-size: 1em;
   padding: 0.15em 0.6em;
-  border-radius: 4px;
+  border-radius: var(--ae-border-radius, var(--ae-radius-sm));
   border: 1px solid var(--badge-solid-bg);
   background: var(--badge-solid-bg);
   color: var(--badge-solid-color);
@@ -58,7 +58,7 @@
 }
 
 :host([pill]) .badge {
-  border-radius: 999px;
+  border-radius: var(--ae-radius-pill);
 }
 
 /* Icon slots */

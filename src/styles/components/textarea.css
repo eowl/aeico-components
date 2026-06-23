@@ -7,7 +7,6 @@
   --textarea-font-size: 1em;
   --textarea-padding: 0.333em 0.583em;
   --textarea-border-width: 1px;
-  --textarea-border-radius: 2px;
   --textarea-border-color: var(--border-subtle);
   --textarea-border-color-hover: var(--border-default);
   --textarea-border-color-focus: var(--border-focus);
@@ -36,7 +35,7 @@ textarea {
   line-height: 1.5;
   padding: var(--textarea-padding);
   border: var(--textarea-border-width) solid var(--textarea-border-color);
-  border-radius: var(--textarea-border-radius);
+  border-radius: var(--ae-border-radius, var(--ae-radius-xs));
   background: var(--textarea-bg);
   color: var(--textarea-color);
   transition: var(--textarea-transition);

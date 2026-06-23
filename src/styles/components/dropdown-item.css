@@ -10,7 +10,6 @@
   --dropdown-item-font-size: 0.9375rem;
   --dropdown-item-gap: 0.5rem;
   --dropdown-item-transition: background 0.1s;
-  --dropdown-item-border-radius: var(--ae-radius-sm, 4px);
 }
 
 .item {
@@ -24,7 +23,7 @@
   color: var(--dropdown-item-color);
   background: var(--dropdown-item-bg);
   border: none;
-  border-radius: var(--dropdown-item-border-radius);
+  border-radius: var(--ae-border-radius, var(--ae-radius-sm));
   text-align: left;
   text-decoration: none;
   cursor: pointer;

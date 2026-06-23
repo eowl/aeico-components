@@ -33,6 +33,7 @@ import {
   CopyButton,
 } from '../src/index'
 import '../src/styles/layout.css'
+import '../src/styles/radius.css'
 void [TextInput, NumberInput, Select, Slider, Checkbox, RadioGroup, Icon, Switch, Tabs, Tab, TabPanel, Dialog, Drawer, Divider, Card, Badge, Tag, Breadcrumb, BreadcrumbItem, Navbar, Dropdown, DropdownItem, Detail, ProgressBar, Textarea, Menu, MenuItem, Pagination, Tree, TreeItem, CopyButton]
 
 // --- Localization setup ---
@@ -212,10 +213,111 @@ window.addEventListener('message', (e: MessageEvent) => {
       syncLangButtons()
     }
   }
+  if (e.data?.type === 'aeico-radius' && e.data.value !== undefined) {
+    applyRadius(e.data.value)
+  }
 })
 
 // Apply persisted theme on startup (silent — no event log entry)
 if (isDark) applyTheme(true)
+
+// --- Radius applying (used from postMessage by shell) ---
+
+// All possible radius class names
+const RADIUS_CLASSES = [
+  'ae-radius-square',
+  'ae-radius-xs',
+  'ae-radius-sm',
+  'ae-radius-md',
+  'ae-radius-lg',
+  'ae-radius-xl',
+  'ae-radius-pill',
+  'ae-radius-circle',
+] as const
+
+// Detect whether we're running inside an iframe (demo page) or as the shell.
+// In the shell we only sync to the iframe; in the iframe we apply to our own <html>.
+const isIframe = window !== window.parent
+
+// Map radius size names to the CSS value used to override all --ae-radius-* variables
+const RADIUS_VALUE_MAP: Record<string, string | null> = {
+  square: '0',
+  xs:     '2px',
+  sm:     null,  // default — remove overrides
+  md:     '6px',
+  lg:     '8px',
+  xl:     '12px',
+  pill:   '999px',
+  circle: '50%',
+}
+
+const RADIUS_VARS = [
+  '--ae-radius-square', '--ae-radius-xs', '--ae-radius-sm',
+  '--ae-radius-md', '--ae-radius-lg', '--ae-radius-xl',
+  '--ae-radius-pill', '--ae-radius-circle',
+] as const
+
+function applyRadius(value: string) {
+  ;(window as any).__aeicoRadius = value
+
+  // Only apply to our own document when running as a demo page inside the iframe
+  if (isIframe) {
+    const targetClass = `ae-radius-${value}`
+    const root = document.documentElement
+    const size = RADIUS_VALUE_MAP[value]
+
+    // 1. Toggle ae-radius-* class on <html> (affects light DOM via radius.css)
+    RADIUS_CLASSES.forEach(c => root.classList.remove(c))
+    if (value !== 'sm') {
+      root.classList.add(targetClass)
+    }
+
+    // 2. Override --ae-radius-* on :root (legacy, may not penetrate :host)
+    if (size === null) {
+      RADIUS_VARS.forEach(v => root.style.removeProperty(v))
+    } else {
+      RADIUS_VARS.forEach(v => root.style.setProperty(v, size))
+    }
+
+    // 3. Override --ae-radius-* on every custom element host via inline style.
+    //    This is necessary because :host definitions in shadow DOM block
+    //    inheritance from :root. Inline style on the host element has the
+    //    highest priority and will be seen by the shadow DOM.
+    const setOrRemove = (el: HTMLElement, v: string) => {
+      if (size === null) {
+        RADIUS_VARS.forEach(p => el.style.removeProperty(p))
+      } else {
+        RADIUS_VARS.forEach(p => el.style.setProperty(p, size))
+      }
+    }
+    document.querySelectorAll('*').forEach(el => {
+      if (el instanceof HTMLElement && el.tagName.includes('-')) {
+        setOrRemove(el, size!)
+      }
+    })
+  }
+
+  // When acting as shell, sync to the embedded iframe
+  const frame = document.getElementById('content-frame') as HTMLIFrameElement | null
+  if (frame?.contentWindow) {
+    frame.contentWindow.postMessage({ type: 'aeico-radius', value }, '*')
+  }
+
+  appendLog(`radius → ${value}`)
+}
+
+// Handle radius dropdown select
+let currentRadius = 'sm'
+;(window as any).__aeicoRadius = currentRadius
+
+document.getElementById('radius-dropdown')?.addEventListener('select', (e: Event) => {
+  const detail = (e as CustomEvent).detail
+  const value = detail?.value as string | undefined
+  if (value && RADIUS_CLASSES.includes(`ae-radius-${value}` as typeof RADIUS_CLASSES[number])) {
+    currentRadius = value
+    applyRadius(value)
+  }
+})
 
 // --- Language switching ---
 

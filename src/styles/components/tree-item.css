@@ -23,7 +23,7 @@
   color: var(--tree-item-color);
   cursor: pointer;
   user-select: none;
-  border-radius: var(--ae-radius-sm, 4px);
+  border-radius: var(--ae-border-radius, var(--ae-radius-sm));
   transition: background 0.1s, color 0.1s;
   box-sizing: border-box;
 }
@@ -44,7 +44,7 @@
   background: transparent;
   color: inherit;
   cursor: pointer;
-  border-radius: var(--ae-radius-sm, 4px);
+  border-radius: var(--ae-border-radius, var(--ae-radius-sm));
   transition: transform 0.18s;
   outline: none;
   -webkit-appearance: none;
@@ -120,7 +120,7 @@
 .tree-item-label:focus-visible {
   outline: 2px solid var(--color-primary, #0e639c);
   outline-offset: -2px;
-  border-radius: var(--ae-radius-sm, 4px);
+  border-radius: var(--ae-border-radius, var(--ae-radius-sm));
 }
 
 :host([selected]) .tree-item-content {

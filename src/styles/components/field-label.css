@@ -64,7 +64,7 @@
   align-items: stretch;
   margin-left: calc(-1 * var(--field-action-gap, 4px) - 1px);
   border: var(--field-action-border-width, 1px) solid var(--field-action-border-color, var(--border-subtle));
-  border-radius: 0 var(--field-action-border-radius, 2px) var(--field-action-border-radius, 2px) 0;
+  border-radius: 0 var(--field-action-border-radius, var(--ae-radius-xs)) var(--field-action-border-radius, var(--ae-radius-xs)) 0;
   overflow: hidden;
   flex-shrink: 0;
   transition: border-color 0.12s;

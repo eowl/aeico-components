@@ -20,7 +20,7 @@
   display: inline-block;
   width: var(--spinner-size);
   height: var(--spinner-size);
-  border-radius: 50%;
+  border-radius: var(--ae-radius-circle);
   border: var(--spinner-thickness) solid var(--spinner-track-color);
   border-top-color: var(--spinner-color);
   animation: ae-spin var(--spinner-speed) linear infinite;
@@ -35,7 +35,7 @@
   width: auto;
   height: var(--spinner-size);
   border: none;
-  border-radius: 0;
+  border-radius: var(--ae-radius-square);
   animation: none;
   background: transparent;
 }
@@ -44,7 +44,7 @@
   display: inline-block;
   width: calc(var(--spinner-size) * 0.28);
   height: calc(var(--spinner-size) * 0.28);
-  border-radius: 50%;
+  border-radius: var(--ae-radius-circle);
   background: var(--spinner-color);
   animation: ae-bounce var(--spinner-speed) ease-in-out infinite;
 }

@@ -51,6 +51,17 @@
       <ae-button id="lang-en" size="sm" color="primary">EN</ae-button>
       <ae-button id="lang-zh" size="sm">中文</ae-button>
     </ae-button-group>
+    <ae-dropdown-button slot="end" id="radius-dropdown" placement="bottom-end">
+      <span slot="label">Radius</span>
+      <ae-dropdown-item value="square">Square (0)</ae-dropdown-item>
+      <ae-dropdown-item value="xs">XS (2px)</ae-dropdown-item>
+      <ae-dropdown-item value="sm" selected>SM (4px)</ae-dropdown-item>
+      <ae-dropdown-item value="md">MD (6px)</ae-dropdown-item>
+      <ae-dropdown-item value="lg">LG (8px)</ae-dropdown-item>
+      <ae-dropdown-item value="xl">XL (12px)</ae-dropdown-item>
+      <ae-dropdown-item value="pill">Pill (999px)</ae-dropdown-item>
+      <ae-dropdown-item value="circle">Circle (50%)</ae-dropdown-item>
+    </ae-dropdown-button>
   </ae-navbar>
 
   <div class="app-shell">
@@ -201,6 +212,9 @@
       // Sync current language
       const lang = window.__aeicoLang;
       if (lang) frame.contentWindow?.postMessage({ type: 'aeico-lang', lang }, '*');
+      // Sync current radius
+      const radius = window.__aeicoRadius || 'sm';
+      frame.contentWindow?.postMessage({ type: 'aeico-radius', value: radius }, '*');
     });
 
     // Restore from URL hash or default

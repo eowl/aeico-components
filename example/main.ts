@@ -337,6 +337,46 @@ document.getElementById('theme-toggle')?.addEventListener('click', () => {
   applyTheme()
 })
 
+// --- Radius switching ---
+
+// All possible radius class names
+const RADIUS_CLASSES = [
+  'ae-radius-square',
+  'ae-radius-xs',
+  'ae-radius-sm',
+  'ae-radius-md',
+  'ae-radius-lg',
+  'ae-radius-xl',
+  'ae-radius-pill',
+  'ae-radius-circle',
+] as const
+
+let currentRadius = 'sm'
+;(window as any).__aeicoRadius = currentRadius
+
+function applyRadius(value: string) {
+  ;(window as any).__aeicoRadius = value
+
+  // Only sync to the iframe — the shell itself never changes radius
+  const frame = document.getElementById('content-frame') as HTMLIFrameElement | null
+  if (frame?.contentWindow) {
+    frame.contentWindow.postMessage({ type: 'aeico-radius', value }, '*')
+  }
+
+  appendLog(`radius → ${value}`)
+}
+
+// Handle dropdown select
+const radiusDropdown = document.getElementById('radius-dropdown')
+radiusDropdown?.addEventListener('select', (e: Event) => {
+  const detail = (e as CustomEvent).detail
+  const value = detail?.value as string | undefined
+  if (value && RADIUS_CLASSES.includes(`ae-radius-${value}` as typeof RADIUS_CLASSES[number])) {
+    currentRadius = value
+    applyRadius(value)
+  }
+})
+
 // --- Language switching ---
 
 function syncLangButtons() {

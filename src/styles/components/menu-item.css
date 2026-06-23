@@ -15,7 +15,6 @@
   --submenu-z-index: 1001;
   --submenu-bg: var(--surface-overlay, #fff);
   --submenu-border: 1px solid var(--border-default);
-  --submenu-border-radius: var(--ae-radius-md, 6px);
   --submenu-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
   --submenu-min-width: 10rem;
   --submenu-padding: 0.25rem 0;
@@ -134,7 +133,7 @@ slot[name="collapse"] .item-arrow--right {
   z-index: var(--submenu-z-index);
   background: var(--submenu-bg);
   border: var(--submenu-border);
-  border-radius: var(--submenu-border-radius);
+  border-radius: var(--ae-border-radius, var(--ae-radius-md));
   box-shadow: var(--submenu-shadow);
   min-width: var(--submenu-min-width);
   padding: var(--submenu-padding);

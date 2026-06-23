@@ -7,7 +7,6 @@
   --input-font-size: 1em;
   --input-padding: 0.333em 0.583em;
   --input-border-width: 1px;
-  --input-border-radius: 2px;
   --input-border-color: var(--border-subtle);
   --input-border-color-hover: var(--border-default);
   --input-border-color-focus: var(--border-focus);
@@ -32,7 +31,7 @@ input {
   font-size: var(--input-font-size);
   padding: var(--input-padding);
   border: var(--input-border-width) solid var(--input-border-color);
-  border-radius: var(--input-border-radius);
+  border-radius: var(--ae-border-radius, var(--ae-radius-xs));
   background: var(--input-bg);
   color: var(--input-color);
   transition: var(--input-transition);
@@ -68,5 +67,5 @@ input:disabled {
 }
 
 .input-container:has(.action-controls) input {
-  border-radius: var(--input-border-radius) 0 0 var(--input-border-radius);
+  border-radius: var(--ae-border-radius, var(--ae-radius-xs)) 0 0 var(--ae-border-radius, var(--ae-radius-xs));
 }

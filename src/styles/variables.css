@@ -248,14 +248,14 @@
   --clear-btn-bg-hover:     var(--color-danger);
   --clear-btn-color-hover:  white;
 
-  --reset-btn-border-radius: 2px;
+  --reset-btn-border-radius: var(--ae-radius-xs);
   --reset-btn-bg:            var(--action-btn-bg);
   --reset-btn-bg-hover:      var(--action-btn-bg-hover);
   --reset-btn-color:         var(--action-btn-color);
   --reset-btn-color-hover:   var(--action-btn-color-hover);
   --reset-btn-transition:    all 0.12s;
 
-  --clear-btn-border-radius: 2px;
+  --clear-btn-border-radius: var(--ae-radius-xs);
   --clear-btn-bg:            var(--action-btn-bg);
   --clear-btn-color:         var(--action-btn-color);
   --clear-btn-transition:    all 0.12s;
@@ -272,6 +272,35 @@
   --size-xs:    round(calc(var(--size-s) / 1.125), 1px);           /* 12px */
   --size-2xs:   round(calc(var(--size-xs) / 1.125), 1px);          /* 11px */
   --size-3xs:   round(calc(var(--size-2xs) / 1.125), 1px);         /* 10px */
+}
+
+/* Border-radius tokens — shared across all components */
+:root,
+:host {
+  /**
+   * Unified border-radius hook for all components.
+   *
+   * Not set by default — each component falls back to its own --ae-radius-*
+   * token (e.g. button → sm, card → lg, input → xs).
+   *
+   * Usage:
+   *   :root { --ae-border-radius: 0; }       // global: all components square
+   *   :root { --ae-border-radius: 999px; }   // global: all components pill
+   *   ae-button { --ae-border-radius: 50%; } // scoped: only buttons circular
+   *   .sidebar { --ae-border-radius: 8px; }  // scoped: everything inside .sidebar
+   *
+   * To restore a component to its own default:
+   *   ae-card { --ae-border-radius: initial; }
+   */
+
+  --ae-radius-square:  0;
+  --ae-radius-xs:      2px;
+  --ae-radius-sm:      4px;
+  --ae-radius-md:      6px;
+  --ae-radius-lg:      8px;
+  --ae-radius-xl:      12px;
+  --ae-radius-pill:    999px;
+  --ae-radius-circle:  50%;
 }
 
 /* Layout tokens — defined on :root so all light DOM elements can use them */

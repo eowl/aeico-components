@@ -177,7 +177,7 @@ slot {
   border-radius: var(--rg-radius) 0 0 var(--rg-radius);
 }
 :host([mode="button-group"]) .rg-btn.inner {
-  border-radius: 0;
+  border-radius: var(--ae-radius-square);
 }
 :host([mode="button-group"]) .rg-btn.last {
   border-radius: 0 var(--rg-radius) var(--rg-radius) 0;

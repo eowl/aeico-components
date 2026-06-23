@@ -35,7 +35,7 @@
 
 .card {
   border: 1px solid var(--card-border);
-  border-radius: 8px;
+  border-radius: var(--ae-border-radius, var(--ae-radius-lg));
   background: var(--card-bg);
   color: var(--card-color);
   overflow: hidden;

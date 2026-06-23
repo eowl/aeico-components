@@ -28,7 +28,7 @@
   --ae-navbar-link-color: inherit;
   --ae-navbar-link-font-size: inherit;
   --ae-navbar-link-padding-x: 0.75rem;  /* horizontal padding only; height fills vertically */
-  --ae-navbar-link-radius: 0;
+  --ae-navbar-link-radius: var(--ae-border-radius, var(--ae-radius-sm));
   --ae-navbar-link-hover-color: var(--color-text-link-hover);
   --ae-navbar-link-hover-bg: transparent;
   --ae-navbar-link-active-color: var(--color-text-link);
@@ -116,7 +116,7 @@
   padding: 0;
   background: none;
   border: none;
-  border-radius: 4px;
+  border-radius: var(--ae-border-radius, var(--ae-radius-sm));
   cursor: pointer;
   color: var(--ae-navbar-hamburger-color, inherit);
 }
@@ -226,7 +226,7 @@
     height: auto;
     width: 100%;
     padding: 0.75rem var(--ae-navbar-link-padding-x);
-    border-radius: 0;
+    border-radius: var(--ae-border-radius, var(--ae-radius-sm));
   }
 
   /* show hamburger */
