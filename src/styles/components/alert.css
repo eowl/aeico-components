@@ -5,54 +5,48 @@
   border-radius: var(--ae-border-radius, var(--ae-radius-sm));
   font-size: 12px;
   line-height: 1.6;
-  background-color: var(--alert-solid-bg);
-  color:            var(--alert-solid-color);
-  border: 1px solid var(--alert-solid-bg);
+  background-color: var(--ae-color-solid);
+  color:            var(--ae-color-on-solid);
+  border: 1px solid var(--ae-color-solid);
 }
 
 .alert:last-child {
   margin-bottom: 0;
 }
 
-:host {
-  --color-solid:           var(--color-primary);
-  --color-on-solid:        var(--color-text-main);
-  --color-border:          var(--color-primary);
-  --color-bg-subtle:       var(--color-primary-bg-subtle);
-  --color-text-subtle:     var(--color-primary-text-emphasis);
-  --color-border-subtle:   var(--color-primary-border-subtle);
-
-  --alert-solid-bg:     var(--color-solid);
-  --alert-solid-color:  var(--color-on-solid);
-  --alert-border:       var(--color-border);
-  --alert-subtle-bg:    var(--color-bg-subtle);
-  --alert-subtle-color: var(--color-text-subtle);
-  --alert-subtle-border:var(--color-border-subtle);
+/* default color (no [color] attribute) — primary */
+:host(:not([color])) {
+  --ae-color-solid:           var(--ae-color-primary);
+  --ae-color-on-solid:        var(--ae-color-text-main);
+  --ae-color-border:          var(--ae-color-primary);
+  --ae-color-bg-subtle:       var(--ae-color-primary-bg-subtle);
+  --ae-color-text-subtle:     var(--ae-color-primary-text-emphasis);
+  --ae-color-border-subtle:   var(--ae-color-primary-border-subtle);
 }
 
 
 :host([variant="faint"]) .alert {
-  background-color: var(--alert-subtle-bg);
-  color:            var(--alert-subtle-color);
-  border-color:     var(--alert-subtle-border);
+  background-color: var(--ae-color-bg-subtle);
+  color:            var(--ae-color-text-subtle);
+  border-color:     var(--ae-color-border-subtle);
 }
 
 :host([variant="subtle"]) .alert {
-  background-color: var(--alert-subtle-bg);
-  color:            var(--alert-subtle-color);
+  background-color: var(--ae-color-bg-subtle);
+  color:            var(--ae-color-text-subtle);
   border-color:     transparent;
 }
 
 :host([variant="filled"]) .alert {
-  background-color: var(--alert-solid-bg);
-  color:            var(--alert-solid-color);
-  border-color:     var(--alert-solid-bg);
+  background-color: var(--ae-color-solid);
+  color:            var(--ae-color-on-solid);
+  border-color:     var(--ae-color-solid);
 }
 
 :host([variant="outlined"]) .alert {
   background-color: transparent;
-  color:            var(--alert-subtle-color);
-  border-color:     var(--alert-border);
+  color:            var(--ae-color-text-subtle);
+  border-color:     var(--ae-color-border);
 }
 
 :host([dismissible]) .alert {

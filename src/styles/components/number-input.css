@@ -2,7 +2,7 @@
   display: block;
   flex: 1;
   min-width: 0;
-  font-size: var(--size-base);
+  font-size: var(--ae-size-base);
 
   /* Layout variables */
   --input-field-gap: 4px;
@@ -11,14 +11,6 @@
   --input-font-size: 1em;
   --input-padding: 0.333em 0.583em;
   --input-border-width: 1px;
-  --input-border-color: var(--border-subtle);
-  --input-border-color-hover: var(--border-default);
-  --input-border-color-focus: var(--border-focus);
-  --input-bg: var(--surface-base);
-  --input-bg-hover: var(--surface-raised);
-  --input-bg-focus: var(--surface-raised);
-  --input-color: var(--color-text-muted);
-  --input-placeholder-color: var(--color-text-disabled);
   --input-transition: border-color 0.12s, background 0.12s;
 }
 
@@ -34,10 +26,10 @@ input {
   min-width: 0;
   font-size: var(--input-font-size);
   padding: var(--input-padding);
-  border: var(--input-border-width) solid var(--input-border-color);
+  border: var(--input-border-width) solid var(--ae-border-subtle);
   border-radius: var(--ae-border-radius, var(--ae-radius-xs));
-  background: var(--input-bg);
-  color: var(--input-color);
+  background: var(--ae-surface-base);
+  color: var(--ae-color-text-muted);
   transition: var(--input-transition);
   -moz-appearance: textfield;
   appearance: textfield;
@@ -51,18 +43,18 @@ input::-webkit-inner-spin-button {
 }
 
 input::placeholder {
-  color: var(--input-placeholder-color);
+  color: var(--ae-color-text-disabled);
 }
 
 input:focus {
   outline: none;
-  border-color: var(--input-border-color-focus);
-  background: var(--input-bg-focus);
+  border-color: var(--ae-border-focus);
+  background: var(--ae-surface-raised);
 }
 
 input:hover:not(:focus) {
-  border-color: var(--input-border-color-hover);
-  background: var(--input-bg-hover);
+  border-color: var(--ae-border-default);
+  background: var(--ae-surface-raised);
 }
 
 input:disabled {
@@ -76,12 +68,12 @@ input:disabled {
   flex-direction: row;
   align-items: stretch;
   margin-left: calc(-1 * var(--input-field-gap) - 1px);
-  border: var(--input-border-width) solid var(--input-border-color);
+  border: var(--input-border-width) solid var(--ae-border-subtle);
   border-radius: 0 var(--ae-border-radius, var(--ae-radius-xs)) var(--ae-border-radius, var(--ae-radius-xs)) 0;
   overflow: hidden;
   flex-shrink: 0;
   transition: var(--input-transition);
-  background: var(--input-bg);
+  background: var(--ae-surface-base);
   position: relative;
   z-index: 1;
   align-self: stretch;
@@ -90,7 +82,7 @@ input:disabled {
 .number-btn {
   border: none;
   background: transparent;
-  color: var(--input-color);
+  color: var(--ae-color-text-muted);
   font-size: 0.875em;
   line-height: 1;
   cursor: pointer;
@@ -102,11 +94,11 @@ input:disabled {
 }
 
 .number-btn:hover:not(:disabled) {
-  background: var(--input-bg-hover);
+  background: var(--ae-surface-raised);
 }
 
 .number-btn:active:not(:disabled) {
-  background: var(--input-bg-focus);
+  background: var(--ae-surface-raised);
 }
 
 .number-btn:disabled {
@@ -115,15 +107,15 @@ input:disabled {
 }
 
 .number-btn-increment {
-  border-right: var(--input-border-width) solid var(--input-border-color);
+  border-right: var(--input-border-width) solid var(--ae-border-subtle);
 }
 
 .input-container:has(input:focus) .number-controls {
-  border-color: var(--input-border-color-focus);
+  border-color: var(--ae-border-focus);
 }
 
 .input-container:has(input:hover:not(:focus)) .number-controls {
-  border-color: var(--input-border-color-hover);
+  border-color: var(--ae-border-default);
 }
 
 :host(:has(.number-controls)) input {
@@ -157,10 +149,10 @@ input:disabled {
 }
 
 :host([error]) input {
-  border-color: var(--field-error-color, var(--red));
+  border-color: var(--field-error-color, var(--ae-red));
 }
 
 :host([error]) input:hover:not(:focus),
 :host([error]) input:focus {
-  border-color: var(--field-error-color, var(--red));
+  border-color: var(--field-error-color, var(--ae-red));
 }

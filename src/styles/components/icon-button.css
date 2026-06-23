@@ -2,18 +2,7 @@
 
 :host {
   display: inline-flex;
-  font-size: var(--size-m);
-  --btn-solid-bg:          var(--color-solid);
-  --btn-solid-bg-hover:    var(--color-solid-hover);
-  --btn-solid-bg-active:   var(--color-solid-active);
-  --btn-solid-color:       var(--color-on-solid);
-  --btn-solid-color-hover: var(--color-on-solid-hover);
-  --btn-border:            var(--color-border);
-  --btn-border-hover:      var(--color-border-hover);
-  --btn-accent:            var(--color-accent);
-  --btn-accent-hover:      var(--color-accent-hover);
-  --btn-subtle-bg:         var(--color-subtle);
-  --btn-subtle-bg-hover:   var(--color-subtle-hover);
+  font-size: var(--ae-size-m);
 }
 
 button {
@@ -31,21 +20,21 @@ button {
   width:  2.286em;
   height: 2.286em;
   --ib-icon-size: 1.286em;
-  background:  var(--btn-solid-bg);
-  border: 1px solid var(--btn-border);
-  color:       var(--btn-solid-color);
+  background:  var(--ae-color-solid);
+  border: 1px solid var(--ae-color-border);
+  color:       var(--ae-color-on-solid);
 }
 
 button:focus  { outline: none; }
 button:active { transform: translateY(1px); }
 
 button:hover:not(:disabled) {
-  background:   var(--btn-solid-bg-hover);
-  border-color: var(--btn-border-hover);
-  color:        var(--btn-solid-color-hover, var(--btn-solid-color));
+  background:   var(--ae-color-solid-hover);
+  border-color: var(--ae-color-border-hover);
+  color:        var(--ae-color-on-solid-hover, var(--ae-color-on-solid));
 }
 
-button:active:not(:disabled) { background: var(--btn-solid-bg-active); }
+button:active:not(:disabled) { background: var(--ae-color-solid-active); }
 
 button:disabled {
   opacity: 0.5;
@@ -57,48 +46,48 @@ button:disabled {
 
 :host([variant="outlined"]) button {
   background:   transparent;
-  border-color: var(--btn-border);
-  color:        var(--btn-accent);
+  border-color: var(--ae-color-border);
+  color:        var(--ae-color-accent);
 }
 
 :host([variant="outlined"]) button:hover:not(:disabled) {
-  background:   var(--btn-subtle-bg);
-  border-color: var(--btn-border-hover);
-  color:        var(--btn-accent-hover);
+  background:   var(--ae-color-subtle);
+  border-color: var(--ae-color-border-hover);
+  color:        var(--ae-color-accent-hover);
 }
 
 :host([variant="outlined"]) button:active:not(:disabled) {
-  background: var(--btn-subtle-bg-hover);
+  background: var(--ae-color-subtle-hover);
 }
 
 :host([variant="subtle"]) button {
-  background:   var(--btn-subtle-bg);
+  background:   var(--ae-color-subtle);
   border-color: transparent;
-  color:        var(--btn-accent);
+  color:        var(--ae-color-accent);
 }
 
 :host([variant="subtle"]) button:hover:not(:disabled) {
-  background: var(--btn-subtle-bg-hover);
-  color:      var(--btn-accent-hover);
+  background: var(--ae-color-subtle-hover);
+  color:      var(--ae-color-accent-hover);
 }
 
 :host([variant="subtle"]) button:active:not(:disabled) {
-  background: var(--btn-subtle-bg-hover);
+  background: var(--ae-color-subtle-hover);
 }
 
 :host([variant="text"]) button {
   background:   transparent;
   border-color: transparent;
-  color:        var(--btn-accent);
+  color:        var(--ae-color-accent);
 }
 
 :host([variant="text"]) button:hover:not(:disabled) {
-  background: var(--btn-subtle-bg);
-  color:      var(--btn-accent-hover);
+  background: var(--ae-color-subtle);
+  color:      var(--ae-color-accent-hover);
 }
 
 :host([variant="text"]) button:active:not(:disabled) {
-  background: var(--btn-subtle-bg-hover);
+  background: var(--ae-color-subtle-hover);
 }
 
 .icon-svg {

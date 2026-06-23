@@ -24,17 +24,17 @@ button {
 }
 
 button:hover {
-  color: var(--ae-tab-hover-color, var(--color-primary));
+  color: var(--ae-tab-hover-color, var(--ae-color-primary));
 }
 
 button:focus-visible {
-  outline: 2px solid var(--color-primary);
+  outline: 2px solid var(--ae-color-primary);
   outline-offset: -2px;
 }
 
 :host([active]) button {
-  color: var(--ae-tab-active-color, var(--color-primary));
-  border-bottom-color: var(--ae-tab-active-color, var(--color-primary));
+  color: var(--ae-tab-active-color, var(--ae-color-primary));
+  border-bottom-color: var(--ae-tab-active-color, var(--ae-color-primary));
 }
 
 :host([disabled]) button {

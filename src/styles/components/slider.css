@@ -2,10 +2,7 @@
   display: block;
   flex: 1;
   min-width: 0;
-  font-size: var(--size-base);
-
-  /* Default color when no [color] attribute — overridden by color.css :host([color=...]) */
-  --color-solid: var(--color-primary);
+  font-size: var(--ae-size-base);
 }
 
 .range-container {
@@ -29,7 +26,7 @@ input[type="range"] {
   width: 100%;
   height: 0.333em;
   border-radius: var(--ae-radius-xs);
-  background: var(--border-subtle);
+  background: var(--ae-border-subtle);
   outline: none;
   cursor: pointer;
   margin: 0;
@@ -47,7 +44,7 @@ input[type="range"]::-webkit-slider-thumb {
   width: 1.167em;
   height: 1.167em;
   border-radius: var(--ae-radius-circle);
-  background: var(--color-solid);
+  background: var(--ae-color-solid);
   cursor: pointer;
   transition: background 0.12s, transform 0.12s;
 }
@@ -55,21 +52,21 @@ input[type="range"]::-webkit-slider-thumb {
 .input-range::-webkit-slider-thumb:hover,
 .slider-input::-webkit-slider-thumb:hover,
 input[type="range"]:hover::-webkit-slider-thumb {
-  background: var(--color-solid-hover);
+  background: var(--ae-color-solid-hover);
   transform: scale(1.1);
 }
 
 .input-range::-webkit-slider-thumb:active,
 .slider-input::-webkit-slider-thumb:active,
 input[type="range"]:active::-webkit-slider-thumb {
-  background: var(--color-solid-hover);
+  background: var(--ae-color-solid-hover);
   transform: scale(1.2);
 }
 
 .input-range:focus::-webkit-slider-thumb,
 .slider-input:focus::-webkit-slider-thumb,
 input[type="range"]:focus::-webkit-slider-thumb {
-  background: var(--color-solid);
+  background: var(--ae-color-solid);
   outline: none;
   box-shadow: none;
 }
@@ -77,7 +74,7 @@ input[type="range"]:focus::-webkit-slider-thumb {
 .input-range:focus:hover::-webkit-slider-thumb,
 .slider-input:focus:hover::-webkit-slider-thumb,
 input[type="range"]:focus:hover::-webkit-slider-thumb {
-  background: var(--color-solid-hover);
+  background: var(--ae-color-solid-hover);
   outline: none;
   box-shadow: none;
 }
@@ -85,7 +82,7 @@ input[type="range"]:focus:hover::-webkit-slider-thumb {
 .input-range:focus:active::-webkit-slider-thumb,
 .slider-input:focus:active::-webkit-slider-thumb,
 input[type="range"]:focus:active::-webkit-slider-thumb {
-  background: var(--color-solid-hover);
+  background: var(--ae-color-solid-hover);
   outline: none;
   box-shadow: none;
 }
@@ -97,7 +94,7 @@ input[type="range"]::-moz-range-thumb {
   height: 1.167em;
   border: none;
   border-radius: var(--ae-radius-circle);
-  background: var(--color-solid);
+  background: var(--ae-color-solid);
   cursor: pointer;
   transition: background 0.12s, transform 0.12s;
 }
@@ -105,21 +102,21 @@ input[type="range"]::-moz-range-thumb {
 .input-range::-moz-range-thumb:hover,
 .slider-input::-moz-range-thumb:hover,
 input[type="range"]:hover::-moz-range-thumb {
-  background: var(--color-solid-hover);
+  background: var(--ae-color-solid-hover);
   transform: scale(1.1);
 }
 
 .input-range::-moz-range-thumb:active,
 .slider-input::-moz-range-thumb:active,
 input[type="range"]:active::-moz-range-thumb {
-  background: var(--color-solid-hover);
+  background: var(--ae-color-solid-hover);
   transform: scale(1.2);
 }
 
 .input-range:focus::-moz-range-thumb,
 .slider-input:focus::-moz-range-thumb,
 input[type="range"]:focus::-moz-range-thumb {
-  background: var(--color-solid);
+  background: var(--ae-color-solid);
   outline: none;
   box-shadow: none;
 }
@@ -127,7 +124,7 @@ input[type="range"]:focus::-moz-range-thumb {
 .input-range:focus:hover::-moz-range-thumb,
 .slider-input:focus:hover::-moz-range-thumb,
 input[type="range"]:focus:hover::-moz-range-thumb {
-  background: var(--color-solid-hover);
+  background: var(--ae-color-solid-hover);
   outline: none;
   box-shadow: none;
 }
@@ -135,7 +132,7 @@ input[type="range"]:focus:hover::-moz-range-thumb {
 .input-range:focus:active::-moz-range-thumb,
 .slider-input:focus:active::-moz-range-thumb,
 input[type="range"]:focus:active::-moz-range-thumb {
-  background: var(--color-solid-hover);
+  background: var(--ae-color-solid-hover);
   outline: none;
   box-shadow: none;
 }
@@ -163,7 +160,7 @@ input[type="range"]:disabled::-moz-range-thumb {
   min-width: 14px;
   text-align: center;
   font-size: 12px;
-  color: var(--color-text-muted);
+  color: var(--ae-color-text-muted);
   font-weight: 500;
   font-variant-numeric: tabular-nums;
   pointer-events: none;
@@ -198,10 +195,10 @@ input[type="range"]::-moz-range-thumb {
   width: 56px;
   padding: 0 4px;
   height: 22px;
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--ae-border-subtle);
   border-radius: var(--ae-radius-sm);
   background: transparent;
-  color: var(--color-text);
+  color: var(--ae-color-text);
   font-size: 12px;
   text-align: center;
   outline: none;
@@ -209,7 +206,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .value-input:focus {
-  border-color: var(--color-solid);
+  border-color: var(--ae-color-solid);
 }
 
 .value-input:disabled {
@@ -222,8 +219,8 @@ input[type="range"]::-moz-range-thumb {
 :host([tracked]) input[type="range"] {
   background: linear-gradient(
     to right,
-    var(--color-solid) var(--fill-pct, 0%),
-    var(--border-subtle) var(--fill-pct, 0%)
+    var(--ae-color-solid) var(--fill-pct, 0%),
+    var(--ae-border-subtle) var(--fill-pct, 0%)
   );
 }
 
@@ -267,13 +264,13 @@ input[type="range"]::-moz-range-thumb {
   display: block;
   width: 1px;
   height: 4px;
-  background: var(--border-default, var(--border-subtle));
+  background: var(--ae-border-default, var(--ae-border-subtle));
   border-radius: 1px;
 }
 
 .mark-label {
   font-size: 10px;
-  color: var(--color-text-muted);
+  color: var(--ae-color-text-muted);
   white-space: nowrap;
 }
 

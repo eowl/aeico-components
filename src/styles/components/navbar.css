@@ -9,9 +9,9 @@
   border-radius: var(--ae-navbar-radius, 0);
 
   /* color */
-  background: var(--ae-navbar-bg, var(--surface-base));
-  color: var(--ae-navbar-color, var(--color-text-main));
-  border-bottom: var(--ae-navbar-border-width, 1px) solid var(--ae-navbar-border-color, var(--border-default));
+  background: var(--ae-navbar-bg, var(--ae-surface-base));
+  color: var(--ae-navbar-color, var(--ae-color-text-main));
+  border-bottom: var(--ae-navbar-border-width, 1px) solid var(--ae-navbar-border-color, var(--ae-border-default));
   box-shadow: var(--ae-navbar-shadow, none);
 
   /* layout tokens — declared here so they are clearly part of the public API */
@@ -29,9 +29,9 @@
   --ae-navbar-link-font-size: inherit;
   --ae-navbar-link-padding-x: 0.75rem;  /* horizontal padding only; height fills vertically */
   --ae-navbar-link-radius: var(--ae-border-radius, var(--ae-radius-sm));
-  --ae-navbar-link-hover-color: var(--color-text-link-hover);
+  --ae-navbar-link-hover-color: var(--ae-color-text-link-hover);
   --ae-navbar-link-hover-bg: transparent;
-  --ae-navbar-link-active-color: var(--color-text-link);
+  --ae-navbar-link-active-color: var(--ae-color-text-link);
   --ae-navbar-link-active-font-weight: 600;
 }
 
@@ -41,23 +41,23 @@
 }
 
 :host([color]) {
-  --ae-navbar-bg: var(--color-solid);
-  --ae-navbar-color: var(--color-on-solid);
+  --ae-navbar-bg: var(--ae-color-solid);
+  --ae-navbar-color: var(--ae-color-on-solid);
   --ae-navbar-border-color: transparent;
-  --ae-navbar-link-hover-color: var(--color-on-solid);
-  --ae-navbar-link-active-color: var(--color-on-solid);
+  --ae-navbar-link-hover-color: var(--ae-color-on-solid);
+  --ae-navbar-link-active-color: var(--ae-color-on-solid);
 }
 
 /* block preset: hover shows a subtle filled block */
 :host([appearance="block"]) {
-  --ae-navbar-link-hover-bg: var(--color-bg-subtle);
+  --ae-navbar-link-hover-bg: var(--ae-color-bg-subtle);
   --ae-navbar-link-hover-color: inherit;
 }
 
 /* block preset on colored navbar: use semi-transparent white */
 :host([color][appearance="block"]) {
   --ae-navbar-link-hover-bg: rgba(255, 255, 255, 0.15);
-  --ae-navbar-link-hover-color: var(--color-on-solid);
+  --ae-navbar-link-hover-color: var(--ae-color-on-solid);
 }
 
 .inner {
@@ -199,8 +199,8 @@
     align-items: stretch;
     gap: 0;
     padding: 0.5rem 0;
-    background: var(--ae-navbar-mobile-bg, var(--ae-navbar-bg, var(--surface-base)));
-    border-bottom: 1px solid var(--ae-navbar-border-color, var(--border-default));
+    background: var(--ae-navbar-mobile-bg, var(--ae-navbar-bg, var(--ae-surface-base)));
+    border-bottom: 1px solid var(--ae-navbar-border-color, var(--ae-border-default));
     box-shadow: var(--ae-navbar-mobile-shadow, 0 4px 12px rgba(0, 0, 0, 0.1));
     z-index: 1;
   }

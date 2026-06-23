@@ -56,7 +56,7 @@ import 'aeico-components';
 ### Custom background via CSS variables
 
 ```html
-<ae-card style="--card-bg: #1e1e2e; --card-color: #cdd6f4; --card-border: #313244;">
+<ae-card style="--ae-color-bg-subtle: #1e1e2e; --ae-color-text-subtle: #cdd6f4; --ae-color-border-subtle: #313244;">
   Dark themed card
 </ae-card>
 ```
@@ -78,12 +78,13 @@ import 'aeico-components';
 
 ## CSS Custom Properties
 
-| Property | Description |
-|----------|-------------|
-| `--card-bg` | Card background colour. |
-| `--card-color` | Card text colour. |
-| `--card-border` | Card border colour. |
-| `--card-divider` | Colour of the line between header / body / footer. |
+Card appearance is driven by global `--ae-color-*` design tokens (vary by `variant`). Override on `<ae-card>`:
+
+| Token | Controls (default `subtle` variant) |
+|-------|--------------------------------------|
+| `--ae-color-bg-subtle` | Card background. |
+| `--ae-color-text-subtle` | Card text colour. |
+| `--ae-color-border-subtle` | Card border colour. |
 
 ## CSS Parts
 

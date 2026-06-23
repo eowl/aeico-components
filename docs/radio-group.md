@@ -140,19 +140,20 @@ Slot-based `<ae-radio>` elements are merged with the `options` prop.
 
 Apply to `button` and `button-group` modes.
 
+Colour tokens (derived from the global `--ae-color-*` tokens, overridable on `<ae-radio-group>`):
+
+| Token | Controls |
+|-------|----------|
+| `--ae-color-solid` | Background for the selected button. |
+| `--ae-color-on-solid` | Text colour for selected button. |
+| `--ae-color-border` | Border colour for `outlined` variant. |
+| `--ae-color-accent` | Accent colour for `faint` / `text` variants. |
+| `--ae-color-subtle` | Background for `subtle` / `faint` variants. |
+
+Layout tokens (component-specific):
+
 | Property | Description |
 |----------|-------------|
-| `--rg-solid-bg` | Background for the selected button (`filled` variant). |
-| `--rg-solid-bg-hover` | Background on hover (`filled`). |
-| `--rg-solid-bg-active` | Background when pressed (`filled`). |
-| `--rg-solid-color` | Text colour for `filled` selected button. |
-| `--rg-solid-color-hover` | Text colour on hover (`filled`). |
-| `--rg-border` | Border colour for `outlined` variant. |
-| `--rg-border-hover` | Border colour on hover (`outlined`). |
-| `--rg-accent` | Accent colour for `faint` / `text` variants. |
-| `--rg-accent-hover` | Accent colour on hover. |
-| `--rg-subtle-bg` | Background for `subtle` / `faint` variants. |
-| `--rg-subtle-bg-hover` | Background on hover for `subtle` / `faint` variants. |
 | `--rg-font-size` | Button font size (default `1em`). |
 | `--rg-height` | Button height (default `2.286em`). |
 | `--rg-padding` | Button padding (default `0.429em 1.071em`). |

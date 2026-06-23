@@ -12,7 +12,7 @@
 }
 
 :host([color]) {
-  color: var(--color-solid);
+  color: var(--ae-color-solid);
 }
 
 .icon-svg {

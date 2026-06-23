@@ -13,7 +13,7 @@
 .sep {
   display: inline-flex;
   align-items: center;
-  color: var(--color-text-muted);
+  color: var(--ae-color-text-muted);
   padding: 0 0.35em;
   user-select: none;
   pointer-events: none;
@@ -30,30 +30,30 @@
 .label {
   display: inline-flex;
   align-items: center;
-  color: var(--color-text-muted);
+  color: var(--ae-color-text-muted);
 }
 
 /* Current page — last item */
 :host([aria-current="page"]) .label {
-  color: var(--color-text-main);
+  color: var(--ae-color-text-main);
   font-weight: 500;
   cursor: default;
 }
 
 /* Link items */
 .label a {
-  color: var(--color-accent, var(--color-text-link));
+  color: var(--ae-color-accent, var(--ae-color-text-link));
   text-decoration: none;
   outline: none;
 }
 
 .label a:hover {
-  color: var(--color-accent-hover, var(--color-text-link-hover));
+  color: var(--ae-color-accent-hover, var(--ae-color-text-link-hover));
   text-decoration: underline;
 }
 
 .label a:focus-visible {
-  outline: 2px solid var(--color-accent, var(--focus-ring-color));
+  outline: 2px solid var(--ae-color-accent, var(--ae-focus-ring-color));
   outline-offset: 2px;
   border-radius: var(--ae-radius-xs);
 }

@@ -4,10 +4,10 @@
   height: var(--thickness, 1px);
   flex-shrink: 0;
 
-  /* Override colorCSS default --color-border from gray to the subtle border token */
-  --color-border: var(--border-default);
+  /* Override color.css default — divider uses the subtle border token when no [color] is set */
+  --ae-color-border: var(--ae-border-default);
 
-  background: var(--color-border);
+  background: var(--ae-color-border);
 }
 
 :host([vertical]) {

@@ -1,13 +1,6 @@
 :host {
   display: inline-flex;
   align-items: center;
-  --badge-solid-bg:       var(--color-solid);
-  --badge-solid-color:    var(--color-on-solid);
-  --badge-border:         var(--color-border);
-  --badge-accent:         var(--color-accent);
-  --badge-subtle-bg:      var(--color-bg-subtle);
-  --badge-subtle-color:   var(--color-text-subtle);
-  --badge-subtle-border:  var(--color-border-subtle);
 }
 
 .badge {
@@ -22,9 +15,9 @@
   font-size: 1em;
   padding: 0.15em 0.6em;
   border-radius: var(--ae-border-radius, var(--ae-radius-sm));
-  border: 1px solid var(--badge-solid-bg);
-  background: var(--badge-solid-bg);
-  color: var(--badge-solid-color);
+  border: 1px solid var(--ae-color-solid);
+  background: var(--ae-color-solid);
+  color: var(--ae-color-on-solid);
 }
 
 /* Default (no [variant]) = filled */
@@ -33,26 +26,26 @@
 
 :host([variant="outlined"]) .badge {
   background:   transparent;
-  border-color: var(--badge-border);
-  color:        var(--badge-accent);
+  border-color: var(--ae-color-border);
+  color:        var(--ae-color-accent);
 }
 
 :host([variant="faint"]) .badge {
-  background:   var(--badge-subtle-bg);
-  border-color: var(--badge-subtle-border);
-  color:        var(--badge-subtle-color);
+  background:   var(--ae-color-bg-subtle);
+  border-color: var(--ae-color-border-subtle);
+  color:        var(--ae-color-text-subtle);
 }
 
 :host([variant="subtle"]) .badge {
-  background:   var(--badge-subtle-bg);
+  background:   var(--ae-color-bg-subtle);
   border-color: transparent;
-  color:        var(--badge-subtle-color);
+  color:        var(--ae-color-text-subtle);
 }
 
 :host([variant="text"]) .badge {
   background:   transparent;
   border-color: transparent;
-  color:        var(--badge-accent);
+  color:        var(--ae-color-accent);
   padding-left:  0;
   padding-right: 0;
 }

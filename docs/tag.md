@@ -125,10 +125,10 @@ import 'aeico-components';
 
 | Property | Description |
 |----------|-------------|
-| `--tag-solid-bg` | Background colour for `filled` variant. |
-| `--tag-solid-color` | Text colour for `filled` variant. |
-| `--tag-border` | Border colour for `outlined` variant. |
-| `--tag-accent` | Accent colour for `faint` / `text` variants. |
+| `--ae-color-solid` | Background for `filled` variant. |
+| `--ae-color-on-solid` | Text colour for `filled` variant. |
+| `--ae-color-border` | Border colour for `outlined` variant. |
+| `--ae-color-accent` | Accent colour for `faint` / `text` variants. |
 | `--tag-subtle-bg` | Background for `subtle` / `faint` variants. |
 | `--tag-subtle-color` | Text colour for `subtle` / `faint` variants. |
 | `--tag-subtle-border` | Border colour for `faint` variant. |
