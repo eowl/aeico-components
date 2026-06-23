@@ -1,6 +1,6 @@
 :host {
   display: block;
-  font-size: var(--size-base);
+  font-size: var(--ae-size-base);
 
   --switch-field-gap: 4px;
 
@@ -10,12 +10,12 @@
   --toggle-gap:         calc((var(--toggle-height) - var(--toggle-slider-size)) / 2);
   --toggle-border-radius: calc(var(--toggle-height) / 2);
   --toggle-bg:          var(--color-gray);
-  --toggle-bg-checked:  var(--color-solid);
+  --toggle-bg-checked:  var(--ae-color-solid);
   --toggle-slider-bg:   white;
   --toggle-transition:  0.2s;
 
   /* Default color when no [color] attribute — overridden by color.css :host([color=...]) */
-  --color-solid: var(--color-primary);
+  --color-solid: var(--ae-color-primary);
 }
 
 .switch-container {

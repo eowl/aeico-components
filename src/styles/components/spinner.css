@@ -6,8 +6,8 @@
   vertical-align: middle;
   --spinner-size: 1.75em;
   --spinner-thickness: 0.15em;
-  --spinner-color: var(--color-solid);
-  --spinner-track-color: var(--color-bg-subtle, rgba(0, 0, 0, 0.08));
+  --spinner-color: var(--ae-color-solid);
+  --spinner-track-color: var(--ae-color-bg-subtle, rgba(0, 0, 0, 0.08));
   --spinner-speed: 0.75s;
 }
 

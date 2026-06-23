@@ -1,17 +1,17 @@
 :host {
   display: block;
 
-  --card-bg:      var(--color-bg-subtle);
-  --card-color:   var(--color-text-subtle);
-  --card-border:  var(--color-border-subtle);
-  --card-divider: var(--color-border-subtle);
+  --card-bg:      var(--ae-color-bg-subtle);
+  --card-color:   var(--ae-color-text-subtle);
+  --card-border:  var(--ae-color-border-subtle);
+  --card-divider: var(--ae-color-border-subtle);
 }
 
 :host([variant="faint"]) {
-  --card-bg:      var(--color-bg-subtle);
-  --card-color:   var(--color-text-subtle);
-  --card-border:  var(--color-border-subtle);
-  --card-divider: var(--color-border-subtle);
+  --card-bg:      var(--ae-color-bg-subtle);
+  --card-color:   var(--ae-color-text-subtle);
+  --card-border:  var(--ae-color-border-subtle);
+  --card-divider: var(--ae-color-border-subtle);
 }
 
 :host([variant="subtle"]) {
@@ -20,17 +20,17 @@
 }
 
 :host([variant="filled"]) {
-  --card-bg:      var(--color-solid);
-  --card-color:   var(--color-on-solid);
-  --card-border:  var(--color-solid);
-  --card-divider: color-mix(in srgb, var(--color-solid), black 15%);
+  --card-bg:      var(--ae-color-solid);
+  --card-color:   var(--ae-color-on-solid);
+  --card-border:  var(--ae-color-solid);
+  --card-divider: color-mix(in srgb, var(--ae-color-solid), black 15%);
 }
 
 :host([variant="outlined"]) {
   --card-bg:      transparent;
-  --card-color:   var(--color-text-subtle);
-  --card-border:  var(--color-border);
-  --card-divider: var(--color-border-subtle);
+  --card-color:   var(--ae-color-text-subtle);
+  --card-border:  var(--ae-color-border);
+  --card-divider: var(--ae-color-border-subtle);
 }
 
 .card {

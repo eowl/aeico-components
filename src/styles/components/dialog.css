@@ -10,8 +10,8 @@ dialog {
   padding: 0;
   max-width: min(90vw, 600px);
   max-height: 90vh;
-  background: var(--surface-overlay);
-  color: var(--color-text-main);
+  background: var(--ae-surface-overlay);
+  color: var(--ae-color-text-main);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   overflow: hidden;
 }
@@ -47,16 +47,16 @@ header {
   align-items: center;
   gap: 8px;
   padding: 16px 20px;
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--ae-border-subtle);
   flex-shrink: 0;
 }
 
 .label {
   flex: 1;
-  font-size: var(--size-m, 1rem);
+  font-size: var(--ae-size-m, 1rem);
   font-weight: 500;
   margin: 0;
-  color: var(--color-text-main);
+  color: var(--ae-color-text-main);
 }
 
 .close-btn {
@@ -70,7 +70,7 @@ header {
   border: none;
   border-radius: var(--ae-border-radius, var(--ae-radius-sm));
   background: transparent;
-  color: var(--color-text-muted);
+  color: var(--ae-color-text-muted);
   font-size: 18px;
   line-height: 1;
   cursor: pointer;
@@ -78,8 +78,8 @@ header {
 }
 
 .close-btn:hover {
-  background: var(--border-subtle);
-  color: var(--color-text-main);
+  background: var(--ae-border-subtle);
+  color: var(--ae-color-text-main);
 }
 
 .body {
@@ -94,7 +94,7 @@ footer {
   justify-content: flex-end;
   gap: 8px;
   padding: 12px 20px;
-  border-top: 1px solid var(--border-subtle);
+  border-top: 1px solid var(--ae-border-subtle);
   flex-shrink: 0;
 }
 

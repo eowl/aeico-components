@@ -4,9 +4,9 @@
   --field-label-width: 100px;
   --field-label-font-size: 0.875em;
   --field-label-color: inherit;
-  --field-required-color: var(--red, #dc3545);
-  --field-helper-color: var(--color-text-muted, #6e6e6e);
-  --field-error-color: var(--red, #dc3545);
+  --field-required-color: var(--ae-red, #dc3545);
+  --field-helper-color: var(--ae-color-text-muted, #6e6e6e);
+  --field-error-color: var(--ae-red, #dc3545);
 }
 
 :host([label]) {
@@ -63,12 +63,12 @@
   flex-direction: row;
   align-items: stretch;
   margin-left: calc(-1 * var(--field-action-gap, 4px) - 1px);
-  border: var(--field-action-border-width, 1px) solid var(--field-action-border-color, var(--border-subtle));
+  border: var(--field-action-border-width, 1px) solid var(--field-action-border-color, var(--ae-border-subtle));
   border-radius: 0 var(--field-action-border-radius, var(--ae-radius-xs)) var(--field-action-border-radius, var(--ae-radius-xs)) 0;
   overflow: hidden;
   flex-shrink: 0;
   transition: border-color 0.12s;
-  background: var(--field-action-bg, var(--surface-base));
+  background: var(--field-action-bg, var(--ae-surface-base));
   position: relative;
   z-index: 1;
   align-self: stretch;
@@ -77,7 +77,7 @@
 .action-controls .action-btn {
   border: none;
   background: transparent;
-  color: var(--field-action-color, var(--color-text-muted));
+  color: var(--field-action-color, var(--ae-color-text-muted));
   font-size: 0.875em;
   line-height: 1;
   cursor: pointer;
@@ -89,11 +89,11 @@
 }
 
 .action-controls .action-btn:hover:not(:disabled) {
-  background: var(--field-action-bg-hover, var(--surface-raised));
+  background: var(--field-action-bg-hover, var(--ae-surface-raised));
 }
 
 .action-controls .action-btn:active:not(:disabled) {
-  background: var(--field-action-bg-focus, var(--surface-raised));
+  background: var(--field-action-bg-focus, var(--ae-surface-raised));
 }
 
 .action-controls .action-btn:disabled {
@@ -102,19 +102,19 @@
 }
 
 .action-controls .action-btn + .action-btn {
-  border-left: var(--field-action-border-width, 1px) solid var(--field-action-border-color, var(--border-subtle));
+  border-left: var(--field-action-border-width, 1px) solid var(--field-action-border-color, var(--ae-border-subtle));
 }
 
 .input-container:has(input:focus) ~ .action-controls,
 .input-container:has(input:focus) .action-controls,
 .container:has(.trigger.open) ~ .action-controls,
 .container:has(.trigger.open) .action-controls {
-  border-color: var(--field-action-border-color-focus, var(--border-focus));
+  border-color: var(--field-action-border-color-focus, var(--ae-border-focus));
 }
 
 .input-container:has(input:hover:not(:focus)) ~ .action-controls,
 .input-container:has(input:hover:not(:focus)) .action-controls,
 .container:has(.trigger:hover:not(.disabled)) ~ .action-controls,
 .container:has(.trigger:hover:not(.disabled)) .action-controls {
-  border-color: var(--field-action-border-color-hover, var(--border-default));
+  border-color: var(--field-action-border-color-hover, var(--ae-border-default));
 }

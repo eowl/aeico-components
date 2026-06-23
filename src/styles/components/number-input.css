@@ -2,7 +2,7 @@
   display: block;
   flex: 1;
   min-width: 0;
-  font-size: var(--size-base);
+  font-size: var(--ae-size-base);
 
   /* Layout variables */
   --input-field-gap: 4px;
@@ -11,14 +11,14 @@
   --input-font-size: 1em;
   --input-padding: 0.333em 0.583em;
   --input-border-width: 1px;
-  --input-border-color: var(--border-subtle);
-  --input-border-color-hover: var(--border-default);
-  --input-border-color-focus: var(--border-focus);
-  --input-bg: var(--surface-base);
-  --input-bg-hover: var(--surface-raised);
-  --input-bg-focus: var(--surface-raised);
-  --input-color: var(--color-text-muted);
-  --input-placeholder-color: var(--color-text-disabled);
+  --input-border-color: var(--ae-border-subtle);
+  --input-border-color-hover: var(--ae-border-default);
+  --input-border-color-focus: var(--ae-border-focus);
+  --input-bg: var(--ae-surface-base);
+  --input-bg-hover: var(--ae-surface-raised);
+  --input-bg-focus: var(--ae-surface-raised);
+  --input-color: var(--ae-color-text-muted);
+  --input-placeholder-color: var(--ae-color-text-disabled);
   --input-transition: border-color 0.12s, background 0.12s;
 }
 
@@ -157,10 +157,10 @@ input:disabled {
 }
 
 :host([error]) input {
-  border-color: var(--field-error-color, var(--red));
+  border-color: var(--field-error-color, var(--ae-red));
 }
 
 :host([error]) input:hover:not(:focus),
 :host([error]) input:focus {
-  border-color: var(--field-error-color, var(--red));
+  border-color: var(--field-error-color, var(--ae-red));
 }

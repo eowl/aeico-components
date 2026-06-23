@@ -6,15 +6,15 @@
   --menu-item-padding-x: 0.875rem;
   --menu-item-font-size: 0.9375rem;
   --menu-item-color: inherit;
-  --menu-item-color-disabled: var(--color-text-disabled);
+  --menu-item-color-disabled: var(--ae-color-text-disabled);
   --menu-item-bg: transparent;
-  --menu-item-bg-hover: var(--surface-raised, rgba(0, 0, 0, 0.05));
-  --menu-item-active-color: var(--color-primary, var(--blue-500));
-  --menu-item-active-border-color: var(--color-primary, var(--blue-500));
+  --menu-item-bg-hover: var(--ae-surface-raised, rgba(0, 0, 0, 0.05));
+  --menu-item-active-color: var(--ae-color-primary, var(--ae-blue-500));
+  --menu-item-active-border-color: var(--ae-color-primary, var(--ae-blue-500));
 
   --submenu-z-index: 1001;
-  --submenu-bg: var(--surface-overlay, #fff);
-  --submenu-border: 1px solid var(--border-default);
+  --submenu-bg: var(--ae-surface-overlay, #fff);
+  --submenu-border: 1px solid var(--ae-border-default);
   --submenu-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
   --submenu-min-width: 10rem;
   --submenu-padding: 0.25rem 0;

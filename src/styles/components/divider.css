@@ -5,9 +5,9 @@
   flex-shrink: 0;
 
   /* Override colorCSS default --color-border from gray to the subtle border token */
-  --color-border: var(--border-default);
+  --color-border: var(--ae-border-default);
 
-  background: var(--color-border);
+  background: var(--ae-color-border);
 }
 
 :host([vertical]) {

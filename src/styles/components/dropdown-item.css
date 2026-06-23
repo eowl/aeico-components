@@ -3,10 +3,10 @@
 
   --dropdown-item-padding: 0.5rem 0.875rem;
   --dropdown-item-bg: transparent;
-  --dropdown-item-bg-hover: var(--surface-raised, rgba(0, 0, 0, 0.05));
-  --dropdown-item-bg-active: var(--surface-raised-active, rgba(0, 0, 0, 0.1));
-  --dropdown-item-color: var(--color-text-main, inherit);
-  --dropdown-item-color-disabled: var(--color-text-disabled, rgba(0, 0, 0, 0.35));
+  --dropdown-item-bg-hover: var(--ae-surface-raised, rgba(0, 0, 0, 0.05));
+  --dropdown-item-bg-active: var(--ae-surface-raised-active, rgba(0, 0, 0, 0.1));
+  --dropdown-item-color: var(--ae-color-text-main, inherit);
+  --dropdown-item-color-disabled: var(--ae-color-text-disabled, rgba(0, 0, 0, 0.35));
   --dropdown-item-font-size: 0.9375rem;
   --dropdown-item-gap: 0.5rem;
   --dropdown-item-transition: background 0.1s;
@@ -44,7 +44,7 @@
 
 .item:focus-visible {
   background: var(--dropdown-item-bg-hover);
-  outline: 2px solid var(--color-primary, #0e639c);
+  outline: 2px solid var(--ae-color-primary, #0e639c);
   outline-offset: -2px;
 }
 
@@ -59,7 +59,7 @@
 /* Active item — current selection, current route, etc. */
 :host([active]) .item {
   background: var(--dropdown-item-bg-selected, rgba(0, 0, 0, 0.06));
-  color: var(--dropdown-item-color-active, var(--color-primary, #0e639c));
+  color: var(--dropdown-item-color-active, var(--ae-color-primary, #0e639c));
   font-weight: 500;
 }
 

@@ -1,13 +1,13 @@
 :host {
   display: block;
   --progress-height: 8px;
-  --color-solid: var(--color-primary);
+  --color-solid: var(--ae-color-primary);
 }
 
 .progress-track {
   width: 100%;
   height: var(--progress-height);
-  background: var(--border-subtle);
+  background: var(--ae-border-subtle);
   border-radius: calc(var(--progress-height) / 2);
   overflow: hidden;
 }
@@ -16,7 +16,7 @@
   display: block;
   height: 100%;
   border-radius: inherit;
-  background: var(--progress-bar-color, var(--color-solid));
+  background: var(--progress-bar-color, var(--ae-color-solid));
   width: 0%;
   transition: width 0.35s ease;
   position: relative;

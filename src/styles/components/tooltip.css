@@ -4,7 +4,7 @@
   vertical-align: middle;
 
   --ae-tooltip-z-index: 1000;
-  --ae-tooltip-bg: var(--dark, #343a40);
+  --ae-tooltip-bg: var(--ae-dark, #343a40);
   --ae-tooltip-color: #fff;
   --ae-tooltip-padding: 0.3125rem 0.625rem;
   --ae-tooltip-font-size: 0.8125rem;
@@ -14,8 +14,8 @@
 }
 
 :host-context([theme="dark"]) {
-  --ae-tooltip-bg: var(--light, #f8f9fa);
-  --ae-tooltip-color: var(--dark, #343a40);
+  --ae-tooltip-bg: var(--ae-light, #f8f9fa);
+  --ae-tooltip-color: var(--ae-dark, #343a40);
 }
 
 .tooltip-panel {

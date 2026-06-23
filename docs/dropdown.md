@@ -29,7 +29,7 @@ import 'aeico-components';
   <ae-button slot="trigger">Actions ▾</ae-button>
   <ae-dropdown-item value="edit">Edit</ae-dropdown-item>
   <ae-dropdown-item value="duplicate">Duplicate</ae-dropdown-item>
-  <ae-dropdown-item value="delete" style="--dropdown-item-color: var(--color-danger)">Delete</ae-dropdown-item>
+  <ae-dropdown-item value="delete" style="--dropdown-item-color: var(--ae-color-danger)">Delete</ae-dropdown-item>
 </ae-dropdown>
 ```
 
@@ -196,7 +196,7 @@ import 'aeico-components';
 ### Custom item colour
 
 ```html
-<ae-dropdown-item value="delete" style="--dropdown-item-color: var(--color-danger)">
+<ae-dropdown-item value="delete" style="--dropdown-item-color: var(--ae-color-danger)">
   <ae-icon name="trash"></ae-icon>
   Delete
 </ae-dropdown-item>
@@ -223,7 +223,7 @@ import 'aeico-components';
 
 | Property | Description |
 |----------|-------------|
-| `--dropdown-item-color` | Text colour override (e.g. set to `var(--color-danger)` for destructive actions). |
+| `--dropdown-item-color` | Text colour override (e.g. set to `var(--ae-color-danger)` for destructive actions). |
 | `--dropdown-item-color-disabled` | Text colour for disabled items. |
 | `--dropdown-item-bg` | Item background colour. |
 | `--dropdown-item-bg-hover` | Background colour on hover. |

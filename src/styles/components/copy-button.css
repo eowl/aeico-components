@@ -1,16 +1,16 @@
 :host {
   display: inline-block;
-  --btn-solid-bg:          var(--color-solid);
-  --btn-solid-bg-hover:    var(--color-solid-hover);
-  --btn-solid-bg-active:   var(--color-solid-active);
-  --btn-solid-color:       var(--color-on-solid);
-  --btn-solid-color-hover: var(--color-on-solid-hover);
-  --btn-border:            var(--color-border);
-  --btn-border-hover:      var(--color-border-hover);
-  --btn-accent:            var(--color-accent);
-  --btn-accent-hover:      var(--color-accent-hover);
-  --btn-subtle-bg:         var(--color-subtle);
-  --btn-subtle-bg-hover:   var(--color-subtle-hover);
+  --btn-solid-bg:          var(--ae-color-solid);
+  --btn-solid-bg-hover:    var(--ae-color-solid-hover);
+  --btn-solid-bg-active:   var(--ae-color-solid-active);
+  --btn-solid-color:       var(--ae-color-on-solid);
+  --btn-solid-color-hover: var(--ae-color-on-solid-hover);
+  --btn-border:            var(--ae-color-border);
+  --btn-border-hover:      var(--ae-color-border-hover);
+  --btn-accent:            var(--ae-color-accent);
+  --btn-accent-hover:      var(--ae-color-accent-hover);
+  --btn-subtle-bg:         var(--ae-color-subtle);
+  --btn-subtle-bg-hover:   var(--ae-color-subtle-hover);
 }
 
 button {

@@ -3,12 +3,12 @@
   --ae-tree-indent: 1.25rem;
   --tree-item-height: 2rem;
   --tree-item-font-size: 0.9375rem;
-  --tree-item-color: var(--color-text-main, #343a40);
-  --tree-item-color-disabled: var(--color-text-disabled, #bbb);
-  --tree-item-bg-hover: var(--surface-raised, rgba(0, 0, 0, 0.04));
-  --tree-item-bg-selected: var(--color-primary-bg-subtle, rgba(14, 99, 156, 0.08));
-  --tree-item-color-selected: var(--color-primary, #0e639c);
-  --tree-item-line-color: var(--border-default, rgba(0, 0, 0, 0.15));
+  --tree-item-color: var(--ae-color-text-main, #343a40);
+  --tree-item-color-disabled: var(--ae-color-text-disabled, #bbb);
+  --tree-item-bg-hover: var(--ae-surface-raised, rgba(0, 0, 0, 0.04));
+  --tree-item-bg-selected: var(--ae-color-primary-bg-subtle, rgba(14, 99, 156, 0.08));
+  --tree-item-color-selected: var(--ae-color-primary, #0e639c);
+  --tree-item-line-color: var(--ae-border-default, rgba(0, 0, 0, 0.15));
   --tree-item-expand-size: 1rem;
 }
 
@@ -52,7 +52,7 @@
 }
 
 .expand-btn:focus-visible {
-  outline: 2px solid var(--color-primary, #0e639c);
+  outline: 2px solid var(--ae-color-primary, #0e639c);
   outline-offset: 1px;
 }
 
@@ -92,7 +92,7 @@
   height: 0.875rem;
   margin: 0;
   cursor: pointer;
-  accent-color: var(--color-primary, #0e639c);
+  accent-color: var(--ae-color-primary, #0e639c);
 }
 
 .tree-item-label {
@@ -118,7 +118,7 @@
 }
 
 .tree-item-label:focus-visible {
-  outline: 2px solid var(--color-primary, #0e639c);
+  outline: 2px solid var(--ae-color-primary, #0e639c);
   outline-offset: -2px;
   border-radius: var(--ae-border-radius, var(--ae-radius-sm));
 }

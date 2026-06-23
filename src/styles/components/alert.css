@@ -15,19 +15,19 @@
 }
 
 :host {
-  --color-solid:           var(--color-primary);
-  --color-on-solid:        var(--color-text-main);
-  --color-border:          var(--color-primary);
-  --color-bg-subtle:       var(--color-primary-bg-subtle);
-  --color-text-subtle:     var(--color-primary-text-emphasis);
-  --color-border-subtle:   var(--color-primary-border-subtle);
+  --color-solid:           var(--ae-color-primary);
+  --color-on-solid:        var(--ae-color-text-main);
+  --color-border:          var(--ae-color-primary);
+  --color-bg-subtle:       var(--ae-color-primary-bg-subtle);
+  --color-text-subtle:     var(--ae-color-primary-text-emphasis);
+  --color-border-subtle:   var(--ae-color-primary-border-subtle);
 
-  --alert-solid-bg:     var(--color-solid);
-  --alert-solid-color:  var(--color-on-solid);
-  --alert-border:       var(--color-border);
-  --alert-subtle-bg:    var(--color-bg-subtle);
-  --alert-subtle-color: var(--color-text-subtle);
-  --alert-subtle-border:var(--color-border-subtle);
+  --alert-solid-bg:     var(--ae-color-solid);
+  --alert-solid-color:  var(--ae-color-on-solid);
+  --alert-border:       var(--ae-color-border);
+  --alert-subtle-bg:    var(--ae-color-bg-subtle);
+  --alert-subtle-color: var(--ae-color-text-subtle);
+  --alert-subtle-border:var(--ae-color-border-subtle);
 }
 
 

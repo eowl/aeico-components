@@ -1,13 +1,13 @@
 :host {
   display: inline-flex;
   align-items: center;
-  --tag-solid-bg:        var(--color-solid);
-  --tag-solid-color:     var(--color-on-solid);
-  --tag-border:          var(--color-border);
-  --tag-accent:          var(--color-accent);
-  --tag-subtle-bg:       var(--color-bg-subtle);
-  --tag-subtle-color:    var(--color-text-subtle);
-  --tag-subtle-border:   var(--color-border-subtle);
+  --tag-solid-bg:        var(--ae-color-solid);
+  --tag-solid-color:     var(--ae-color-on-solid);
+  --tag-border:          var(--ae-color-border);
+  --tag-accent:          var(--ae-color-accent);
+  --tag-subtle-bg:       var(--ae-color-bg-subtle);
+  --tag-subtle-color:    var(--ae-color-text-subtle);
+  --tag-subtle-border:   var(--ae-color-border-subtle);
 }
 
 .tag {

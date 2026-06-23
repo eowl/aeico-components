@@ -3,11 +3,11 @@
 
   --option-padding: 0.417em 0.667em;
   --option-bg: transparent;
-  --option-bg-hover: var(--surface-raised);
-  --option-bg-selected: color-mix(in srgb, var(--color-primary) 12%, transparent);
-  --option-color: var(--color-text-main);
-  --option-color-disabled: var(--color-text-disabled);
-  --option-color-selected: var(--color-primary);
+  --option-bg-hover: var(--ae-surface-raised);
+  --option-bg-selected: color-mix(in srgb, var(--ae-color-primary) 12%, transparent);
+  --option-color: var(--ae-color-text-main);
+  --option-color-disabled: var(--ae-color-text-disabled);
+  --option-color-selected: var(--ae-color-primary);
   --option-font-size: 1em;
   --option-transition: background 0.1s;
 }

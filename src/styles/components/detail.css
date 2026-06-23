@@ -1,38 +1,38 @@
 :host {
   display: block;
 
-  --detail-bg:         var(--color-solid);
-  --detail-color:      var(--color-on-solid);
-  --detail-border:     var(--color-solid);
-  --detail-header-bg:  color-mix(in srgb, var(--color-solid), black 10%);
+  --detail-bg:         var(--ae-color-solid);
+  --detail-color:      var(--ae-color-on-solid);
+  --detail-border:     var(--ae-color-solid);
+  --detail-header-bg:  color-mix(in srgb, var(--ae-color-solid), black 10%);
   --detail-radius:     6px;
 }
 
 :host([variant="faint"]) {
-  --detail-bg:         var(--color-bg-subtle);
-  --detail-color:      var(--color-text-subtle);
-  --detail-border:     var(--color-border-subtle);
-  --detail-header-bg:  var(--color-bg-subtle);
+  --detail-bg:         var(--ae-color-bg-subtle);
+  --detail-color:      var(--ae-color-text-subtle);
+  --detail-border:     var(--ae-color-border-subtle);
+  --detail-header-bg:  var(--ae-color-bg-subtle);
 }
 
 :host([variant="subtle"]) {
   --detail-bg:         transparent;
-  --detail-color:      var(--color-text-main);
+  --detail-color:      var(--ae-color-text-main);
   --detail-border:     transparent;
   --detail-header-bg:  transparent;
 }
 
 :host([variant="filled"]) {
-  --detail-bg:         var(--color-solid);
-  --detail-color:      var(--color-on-solid);
-  --detail-border:     var(--color-solid);
-  --detail-header-bg:  color-mix(in srgb, var(--color-solid), black 10%);
+  --detail-bg:         var(--ae-color-solid);
+  --detail-color:      var(--ae-color-on-solid);
+  --detail-border:     var(--ae-color-solid);
+  --detail-header-bg:  color-mix(in srgb, var(--ae-color-solid), black 10%);
 }
 
 :host([variant="outlined"]) {
   --detail-bg:         transparent;
-  --detail-color:      var(--color-text-subtle);
-  --detail-border:     var(--color-border);
+  --detail-color:      var(--ae-color-text-subtle);
+  --detail-border:     var(--ae-color-border);
   --detail-header-bg:  transparent;
 }
 
@@ -76,7 +76,7 @@
 }
 
 .summary:focus-visible {
-  outline: 2px solid var(--color-border);
+  outline: 2px solid var(--ae-color-border);
 }
 
 slot[name="summary"] {

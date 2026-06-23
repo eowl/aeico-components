@@ -1,13 +1,13 @@
 :host {
   display: inline-flex;
   align-items: center;
-  --badge-solid-bg:       var(--color-solid);
-  --badge-solid-color:    var(--color-on-solid);
-  --badge-border:         var(--color-border);
-  --badge-accent:         var(--color-accent);
-  --badge-subtle-bg:      var(--color-bg-subtle);
-  --badge-subtle-color:   var(--color-text-subtle);
-  --badge-subtle-border:  var(--color-border-subtle);
+  --badge-solid-bg:       var(--ae-color-solid);
+  --badge-solid-color:    var(--ae-color-on-solid);
+  --badge-border:         var(--ae-color-border);
+  --badge-accent:         var(--ae-color-accent);
+  --badge-subtle-bg:      var(--ae-color-bg-subtle);
+  --badge-subtle-color:   var(--ae-color-text-subtle);
+  --badge-subtle-border:  var(--ae-color-border-subtle);
 }
 
 .badge {

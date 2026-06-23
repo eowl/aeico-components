@@ -2,7 +2,7 @@
   display: block;
   flex: 1;
   min-width: 0;
-  font-size: var(--size-base);
+  font-size: var(--ae-size-base);
 
   /* Layout variables */
   --select-field-gap: 2px;
@@ -11,22 +11,22 @@
   --select-font-size: 1em;
   --select-padding: 0.333em 0.583em;
   --select-border-width: 1px;
-  --select-border-color: var(--border-subtle);
-  --select-border-color-hover: var(--border-default);
-  --select-border-color-focus: var(--border-focus);
-  --select-bg: var(--surface-base);
-  --select-bg-hover: var(--surface-raised);
-  --select-bg-focus: var(--surface-raised);
-  --select-color: var(--color-text-muted);
+  --select-border-color: var(--ae-border-subtle);
+  --select-border-color-hover: var(--ae-border-default);
+  --select-border-color-focus: var(--ae-border-focus);
+  --select-bg: var(--ae-surface-base);
+  --select-bg-hover: var(--ae-surface-raised);
+  --select-bg-focus: var(--ae-surface-raised);
+  --select-color: var(--ae-color-text-muted);
   --select-transition: border-color 0.12s, background 0.12s;
 
   /* Arrow */
-  --select-arrow-color: var(--color-text-muted);
+  --select-arrow-color: var(--ae-color-text-muted);
   --select-arrow-size: 0.75em;
 
   /* Dropdown */
-  --select-dropdown-bg: var(--surface-overlay);
-  --select-dropdown-border: var(--border-default);
+  --select-dropdown-bg: var(--ae-surface-overlay);
+  --select-dropdown-border: var(--ae-border-default);
   --select-dropdown-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   --select-dropdown-max-height: 240px;
   --select-dropdown-z-index: 1000;
@@ -78,12 +78,12 @@
 
 /* Error state */
 :host([error]) .trigger {
-  border-color: var(--field-error-color, var(--red));
+  border-color: var(--field-error-color, var(--ae-red));
 }
 
 :host([error]) .trigger:hover:not(.disabled),
 :host([error]) .trigger.open {
-  border-color: var(--field-error-color, var(--red));
+  border-color: var(--field-error-color, var(--ae-red));
 }
 
 .value {
@@ -95,7 +95,7 @@
 }
 
 .placeholder {
-  color: var(--color-text-disabled);
+  color: var(--ae-color-text-disabled);
 }
 
 .selected-list {
@@ -122,9 +122,9 @@
   flex-shrink: 0;
   align-self: center;
   padding: 1px 6px;
-  background: color-mix(in srgb, var(--color-primary) 12%, transparent);
-  color: var(--color-primary);
-  border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent);
+  background: color-mix(in srgb, var(--ae-color-primary) 12%, transparent);
+  color: var(--ae-color-primary);
+  border: 1px solid color-mix(in srgb, var(--ae-color-primary) 30%, transparent);
   border-radius: var(--ae-border-radius, var(--ae-radius-xs));
   font-size: 0.82em;
   line-height: 1.6;

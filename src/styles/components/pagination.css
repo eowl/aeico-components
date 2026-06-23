@@ -1,7 +1,7 @@
 :host {
   display: inline-flex;
   align-items: center;
-  font-size: var(--size-m);
+  font-size: var(--ae-size-m);
 }
 
 nav {
@@ -25,26 +25,26 @@ button {
   cursor: pointer;
   user-select: none;
   border-radius: var(--ae-border-radius, var(--ae-border-radius));
-  border: 1px solid var(--border-default);
+  border: 1px solid var(--ae-border-default);
   background: transparent;
-  color: var(--color-text-main);
+  color: var(--ae-color-text-main);
   transition: background 0.15s, border-color 0.15s, color 0.15s;
   outline: none;
 }
 
 button:focus-visible {
-  box-shadow: 0 0 0 2px var(--focus-ring);
-  border-color: var(--border-focus);
+  box-shadow: 0 0 0 2px var(--ae-focus-ring);
+  border-color: var(--ae-border-focus);
 }
 
 button:hover:not(:disabled) {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
-  background: var(--color-primary-bg-subtle);
+  border-color: var(--ae-color-primary);
+  color: var(--ae-color-primary);
+  background: var(--ae-color-primary-bg-subtle);
 }
 
 button:active:not(:disabled) {
-  background: color-mix(in srgb, var(--color-primary-bg-subtle), var(--color-primary) 10%);
+  background: color-mix(in srgb, var(--ae-color-primary-bg-subtle), var(--ae-color-primary) 10%);
 }
 
 button:disabled {
@@ -53,16 +53,16 @@ button:disabled {
 }
 
 button.active {
-  background: var(--color-primary);
-  border-color: var(--color-primary);
+  background: var(--ae-color-primary);
+  border-color: var(--ae-color-primary);
   color: white;
   font-weight: 600;
   cursor: default;
 }
 
 button.active:hover:not(:disabled) {
-  background: var(--color-primary-hover);
-  border-color: var(--color-primary-hover);
+  background: var(--ae-color-primary-hover);
+  border-color: var(--ae-color-primary-hover);
   color: white;
 }
 
@@ -78,7 +78,7 @@ button.nav-btn {
   justify-content: center;
   min-width: 2em;
   height: 2em;
-  color: var(--color-text-muted);
+  color: var(--ae-color-text-muted);
   user-select: none;
   letter-spacing: 0.1em;
   padding-bottom: 0.2em;
@@ -89,12 +89,12 @@ input[part="page-input"] {
   height: 2em;
   padding: 0 0.4em;
   text-align: center;
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--ae-border-subtle);
   border-radius: var(--ae-border-radius, var(--ae-border-radius));
   font-size: inherit;
   font-family: inherit;
-  color: var(--color-text-main);
-  background: var(--surface-base);
+  color: var(--ae-color-text-main);
+  background: var(--ae-surface-base);
   box-shadow: none;
   -webkit-appearance: none;
   -moz-appearance: textfield;
@@ -104,7 +104,7 @@ input[part="page-input"] {
 }
 
 input[part="page-input"]:hover:not(:disabled) {
-  border-color: var(--border-default);
+  border-color: var(--ae-border-default);
 }
 
 input[part="page-input"]::-webkit-inner-spin-button,
@@ -114,8 +114,8 @@ input[part="page-input"]::-webkit-outer-spin-button {
 }
 
 input[part="page-input"]:focus {
-  border-color: var(--border-focus);
-  box-shadow: 0 0 0 2px var(--focus-ring);
+  border-color: var(--ae-border-focus);
+  box-shadow: 0 0 0 2px var(--ae-focus-ring);
 }
 
 input[part="page-input"]:disabled {
@@ -124,7 +124,7 @@ input[part="page-input"]:disabled {
 }
 
 [part="page-total"] {
-  color: var(--color-text-muted);
+  color: var(--ae-color-text-muted);
   white-space: nowrap;
   padding: 0 0.25em;
   line-height: 2em;
@@ -152,7 +152,7 @@ input[part="page-input"]:disabled {
 }
 
 :host([variant='borderless']) input[part='page-input']:focus {
-  border-color: var(--border-focus);
+  border-color: var(--ae-border-focus);
 }
 
 /* ── Link variant ────────────────────────────────────────────────────── */
@@ -164,7 +164,7 @@ input[part="page-input"]:disabled {
 :host([variant='link']) button:hover:not(:disabled) {
   border-color: transparent;
   background: transparent;
-  color: var(--color-primary);
+  color: var(--ae-color-primary);
 }
 
 :host([variant='link']) button:active:not(:disabled) {
@@ -178,28 +178,28 @@ input[part="page-input"]:disabled {
 :host([variant='link']) button.active {
   background: transparent;
   border-color: transparent;
-  color: var(--color-primary);
+  color: var(--ae-color-primary);
   font-weight: 600;
 }
 
 :host([variant='link']) button.active:hover:not(:disabled) {
   background: transparent;
-  color: var(--color-primary);
+  color: var(--ae-color-primary);
 }
 
 :host([variant='link']) input[part='page-input'] {
   border-color: transparent;
-  border-bottom-color: var(--border-subtle);
+  border-bottom-color: var(--ae-border-subtle);
   border-radius: var(--ae-border-radius, var(--ae-radius-sm));
 }
 
 :host([variant='link']) input[part='page-input']:hover:not(:disabled) {
   border-color: transparent;
-  border-bottom-color: var(--border-default);
+  border-bottom-color: var(--ae-border-default);
 }
 
 :host([variant='link']) input[part='page-input']:focus {
   border-color: transparent;
-  border-bottom-color: var(--border-focus);
+  border-bottom-color: var(--ae-border-focus);
   box-shadow: none;
 }

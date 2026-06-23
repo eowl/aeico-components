@@ -2,7 +2,7 @@
   display: block;
   flex: 1;
   min-width: 0;
-  font-size: var(--size-base);
+  font-size: var(--ae-size-base);
 
   /* Layout */
   --checkbox-field-gap: 4px;
@@ -10,12 +10,12 @@
   /* Checkbox */
   --checkbox-size: 1.167em;
   --checkbox-border-width: 1px;
-  --checkbox-border-color: var(--border-subtle);
-  --checkbox-bg: var(--surface-base);
-  --checkbox-accent-color: var(--color-solid);
+  --checkbox-border-color: var(--ae-border-subtle);
+  --checkbox-bg: var(--ae-surface-base);
+  --checkbox-accent-color: var(--ae-color-solid);
 
   /* Default color when no [color] attribute — overridden by color.css :host([color=...]) */
-  --color-solid: var(--color-primary);
+  --color-solid: var(--ae-color-primary);
 }
 
 .checkbox-container {
@@ -50,6 +50,6 @@
 
 /* Error state */
 :host([error]) .field-input {
-  outline: 2px solid var(--field-error-color, var(--red));
+  outline: 2px solid var(--field-error-color, var(--ae-red));
   outline-offset: 1px;
 }

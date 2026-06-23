@@ -13,25 +13,25 @@
 }
 
 .clear-btn:not(.action-btn) {
-  border-radius: var(--clear-btn-border-radius);
-  background: var(--clear-btn-bg);
-  color: var(--clear-btn-color);
-  transition: var(--clear-btn-transition);
+  border-radius: var(--ae-clear-btn-border-radius);
+  background: var(--ae-clear-btn-bg);
+  color: var(--ae-clear-btn-color);
+  transition: var(--ae-clear-btn-transition);
 }
 
 .reset-btn:not(.action-btn) {
-  border-radius: var(--reset-btn-border-radius);
-  background: var(--reset-btn-bg);
-  color: var(--reset-btn-color);
-  transition: var(--reset-btn-transition);
+  border-radius: var(--ae-reset-btn-border-radius);
+  background: var(--ae-reset-btn-bg);
+  color: var(--ae-reset-btn-color);
+  transition: var(--ae-reset-btn-transition);
 }
 
 .clear-btn:not(.action-btn):hover {
-  background: var(--clear-btn-bg-hover);
-  color: var(--clear-btn-color-hover);
+  background: var(--ae-clear-btn-bg-hover);
+  color: var(--ae-clear-btn-color-hover);
 }
 
 .reset-btn:not(.action-btn):hover {
-  background: var(--reset-btn-bg-hover);
-  color: var(--reset-btn-color-hover);
+  background: var(--ae-reset-btn-bg-hover);
+  color: var(--ae-reset-btn-color-hover);
 }
