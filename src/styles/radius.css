@@ -1,0 +1,10 @@
+@layer aeico-radius {
+  .ae-radius-square  { border-radius: var(--ae-radius-square);  }
+  .ae-radius-xs      { border-radius: var(--ae-radius-xs);      }
+  .ae-radius-sm      { border-radius: var(--ae-radius-sm);      }
+  .ae-radius-md      { border-radius: var(--ae-radius-md);      }
+  .ae-radius-lg      { border-radius: var(--ae-radius-lg);      }
+  .ae-radius-xl      { border-radius: var(--ae-radius-xl);      }
+  .ae-radius-pill    { border-radius: var(--ae-radius-pill);    }
+  .ae-radius-circle  { border-radius: var(--ae-radius-circle);  }
+}
