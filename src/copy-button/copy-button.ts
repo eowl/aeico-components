@@ -124,10 +124,10 @@ class CopyButton extends AeicoComponent {
             },
             () => {
               span({ className: 'icon-copy' }, () => {
-                aeIcon({ name: 'copy' });
+                aeIcon({ name: 'copy', size: this.size });
               });
               span({ className: 'icon-check' }, () => {
-                aeIcon({ name: 'check' });
+                aeIcon({ name: 'check', size: this.size });
               });
               this._slotElement = slot();
             },
