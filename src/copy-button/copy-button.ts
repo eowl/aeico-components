@@ -49,11 +49,15 @@ class CopyButton extends AeicoComponent {
 
   private _getTextToCopy(): string {
     if (this.text != null) return this.text;
+
     const nodes = this._slotElement?.assignedNodes({ flatten: true }) ?? [];
+
     return nodes
-      .filter((n) => n.nodeType === Node.TEXT_NODE)
-      .map((n) => n.textContent ?? '')
-      .join('')
+      .reduce<string>((text, n) => {
+        if (n.nodeType === Node.TEXT_NODE) return text + (n.textContent ?? '');
+
+        return text;
+      }, '')
       .trim();
   }
 
