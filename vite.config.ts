@@ -20,6 +20,7 @@ export default defineConfig({
         card:           'src/card/index.ts',
         checkbox:       'src/checkbox/index.ts',
         detail:         'src/detail/index.ts',
+        'detail-group': 'src/detail-group/index.ts',
         dialog:         'src/dialog/index.ts',
         drawer:         'src/drawer/index.ts',
         divider:        'src/divider/index.ts',
