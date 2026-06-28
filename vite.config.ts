@@ -28,6 +28,7 @@ export default defineConfig({
         icon:           'src/icon/index.ts',
         'icon-button':  'src/icon-button/index.ts',
         navbar:         'src/navbar/index.ts',
+        'number-input': 'src/number-input/index.ts',
         'radio-group':  'src/radio-group/index.ts',
         select:         'src/select/index.ts',
         slider:         'src/slider/index.ts',
