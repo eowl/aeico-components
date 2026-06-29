@@ -47,6 +47,15 @@
 :host([variant="outlined"]) .header { border-bottom-color: var(--ae-color-border-subtle); }
 :host([variant="outlined"]) .footer { border-top-color: var(--ae-color-border-subtle); }
 
+:host([variant="text"]) .card {
+  border-color: transparent;
+  background: transparent;
+  color: var(--ae-color-text-main);
+}
+
+:host([variant="text"]) .header { border-bottom-color: transparent; color: var(--ae-color-accent); }
+:host([variant="text"]) .footer { border-top-color: transparent; color: var(--ae-color-accent); }
+
 .header,
 .footer {
   display: none;

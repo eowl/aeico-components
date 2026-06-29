@@ -50,7 +50,7 @@ describe('Card', () => {
   })
 
   describe('variant prop', () => {
-    for (const variant of ['subtle', 'filled', 'outlined'] as const) {
+    for (const variant of ['subtle', 'filled', 'outlined', 'text'] as const) {
       it(`sets variant="${variant}" via attribute`, async () => {
         const el = await mount<Card>(`<${TAG_NAME} variant="${variant}"></${TAG_NAME}>`) as Card
         await updated()
