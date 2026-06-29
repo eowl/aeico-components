@@ -1,7 +1,6 @@
 :host {
   display: inline-flex;
   cursor: pointer;
-  margin-bottom: -1px;
 }
 
 button {

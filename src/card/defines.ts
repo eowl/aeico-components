@@ -1,4 +1,4 @@
-﻿export type CardVariant = 'subtle' | 'faint' | 'filled' | 'outlined';
+﻿export type CardVariant = 'subtle' | 'faint' | 'filled' | 'outlined' | 'text';
 export type CardColor =
   | 'default'
   | 'primary'
