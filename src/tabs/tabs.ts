@@ -4,13 +4,16 @@ import tabsStyle from '../styles/components/tabs.css?inline';
 import AeicoComponent from '../aeico-component';
 import { html } from 'aeico';
 import type Tab from './tab';
+import type { TabVariant } from './defines';
 
 class Tabs extends AeicoComponent {
   static props: Props = {
     activeIndex: { type: Number },
+    variant: { type: String },
   };
 
   declare activeIndex?: number;
+  declare variant?: TabVariant;
 
   protected static styles = [styleVariables, tabsStyle];
 
@@ -77,7 +80,16 @@ class Tabs extends AeicoComponent {
   }
 
   protected onUpdated() {
+    this._syncVariant();
     this._syncActive();
+  }
+
+  private _syncVariant() {
+    const variant = this.variant ?? 'text';
+    this.setAttribute('variant', variant);
+    for (const tab of this._tabs) {
+      tab.setAttribute('variant', variant);
+    }
   }
 
   private _handleTabClick = (e: Event) => {
