@@ -145,7 +145,7 @@ describe('Detail', () => {
   })
 
   describe('variant prop', () => {
-    for (const variant of ['subtle', 'faint', 'filled', 'outlined'] as const) {
+    for (const variant of ['subtle', 'faint', 'filled', 'outlined', 'text'] as const) {
       it(`sets variant="${variant}" via attribute`, async () => {
         const el = await mount<Detail>(`<${TAG} variant="${variant}"></${TAG}>`)
         await updated()

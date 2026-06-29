@@ -17,6 +17,14 @@
 }
 
 /* variant overrides */
+:host([variant="subtle"]) .detail {
+  border-color: transparent;
+  background: var(--ae-color-bg-subtle);
+  color: var(--ae-color-text-subtle);
+}
+
+:host([variant="subtle"]) .summary { background: var(--ae-color-bg-subtle); }
+
 :host([variant="faint"]) .detail {
   border-color: var(--ae-color-border-subtle);
   background: var(--ae-color-bg-subtle);
@@ -25,13 +33,19 @@
 
 :host([variant="faint"]) .summary { background: var(--ae-color-bg-subtle); }
 
-:host([variant="subtle"]) .detail {
+:host([variant="text"]) .detail {
   border-color: transparent;
   background: transparent;
   color: var(--ae-color-text-main);
 }
 
-:host([variant="subtle"]) .summary { background: transparent; }
+:host([variant="text"]) .summary {
+  background: transparent;
+}
+
+:host([variant="text"]) .label {
+  color: var(--ae-color-accent);
+}
 
 :host([variant="filled"]) .detail {
   border-color: var(--ae-color-solid);
