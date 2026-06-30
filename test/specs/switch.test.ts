@@ -14,8 +14,8 @@ before(async () => {
   await whenDefined(TAG_NAME)
 
   IconRegistry.add({
-    'test-icon-a': { path: ICON_PATH_A, stroke: true, strokeWidth: 2 },
-    'test-icon-b': { path: ICON_PATH_B, stroke: true, strokeWidth: 2 },
+    'test-icon-a': ICON_PATH_A,
+    'test-icon-b': ICON_PATH_B,
   })
 })
 

@@ -9,7 +9,7 @@ class IconRegistry {
   static add(icons: IconRegistryData) {
     for (const [name, data] of Object.entries(icons)) {
       if (typeof data === 'string') {
-        this._icons.set(name, { path: data, viewBox: defaultViewBox });
+        this._icons.set(name, { paths: data, viewBox: defaultViewBox });
       } else {
         this._icons.set(name, data);
       }
@@ -27,7 +27,7 @@ class IconRegistry {
       // Skip if the user has already registered this icon
       if (this._icons.has(name) && !this._builtInKeys.has(name)) continue;
       if (typeof data === 'string') {
-        this._icons.set(name, { path: data, viewBox: defaultViewBox });
+        this._icons.set(name, { paths: data, viewBox: defaultViewBox });
       } else {
         this._icons.set(name, data);
       }

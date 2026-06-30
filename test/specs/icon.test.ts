@@ -8,6 +8,8 @@ const TAG_NAME = 'ae-icon'
 // A simple fill path and a stroke-flagged path for tests
 const FILL_PATH = 'M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z'
 const STROKE_PATH = 'M11 3a8 8 0 1 0 0 16 8 8 0 0 0 0-16z M21 21l-4.35-4.35'
+const MULTI_PATH_1 = 'M10 5l4-4 4 4'
+const MULTI_PATH_2 = 'M10 19l4 4 4-4'
 
 before(async () => {
   Icon.register()
@@ -15,8 +17,15 @@ before(async () => {
 
   IconRegistry.add({
     'test-star':   FILL_PATH,
-    'test-search': { path: STROKE_PATH, stroke: true, strokeWidth: 2 },
-    'test-thick':  { path: STROKE_PATH, stroke: true, strokeWidth: 3 },
+    'test-search': STROKE_PATH,
+    'test-thick':  STROKE_PATH,
+    'test-multi':  {
+      paths: [
+        { d: MULTI_PATH_1, fill: '#387eb8' },
+        { d: MULTI_PATH_2, fill: '#ffe052' },
+      ],
+      viewBox: '0 0 24 24',
+    },
   })
 })
 
@@ -81,7 +90,7 @@ describe('Icon', () => {
     })
 
     it('uses custom viewBox from registry entry', async () => {
-      IconRegistry.add({ 'test-custom-vb': { path: FILL_PATH, viewBox: '0 0 32 32' } })
+      IconRegistry.add({ 'test-custom-vb': { paths: FILL_PATH, viewBox: '0 0 32 32' } })
       const el = await mount<Icon>(`<${TAG_NAME} name="test-custom-vb"></${TAG_NAME}>`)
       const svg = el.shadowRoot?.querySelector('svg.icon-svg')
       expect(svg!.getAttribute('viewBox')).to.equal('0 0 32 32')
@@ -147,55 +156,65 @@ describe('Icon', () => {
     })
   })
 
-  describe('stroke — registry default', () => {
+  describe('stroke — component prop', () => {
     it('fill icon has no --icon-fill CSS var set', async () => {
       const el = await mount<Icon>(`<${TAG_NAME} name="test-star"></${TAG_NAME}>`)
       expect(el.style.getPropertyValue('--icon-fill')).to.equal('')
     })
 
-    it('stroke registry icon sets --icon-fill to none', async () => {
-      const el = await mount<Icon>(`<${TAG_NAME} name="test-search"></${TAG_NAME}>`)
+    it('stroke prop sets --icon-fill to none', async () => {
+      const el = await mount<Icon>(`<${TAG_NAME} name="test-search" stroke></${TAG_NAME}>`)
       expect(el.style.getPropertyValue('--icon-fill')).to.equal('none')
     })
 
-    it('stroke registry icon sets --icon-stroke to currentColor', async () => {
-      const el = await mount<Icon>(`<${TAG_NAME} name="test-search"></${TAG_NAME}>`)
-      expect(el.style.getPropertyValue('--icon-stroke')).to.equal('currentColor')
-    })
-
-    it('stroke registry icon sets --icon-stroke-width from registry', async () => {
-      const el = await mount<Icon>(`<${TAG_NAME} name="test-thick"></${TAG_NAME}>`)
-      expect(el.style.getPropertyValue('--icon-stroke-width')).to.equal('3')
-    })
-  })
-
-  describe('stroke prop — component override', () => {
-    it('forces stroke on a fill icon (stroke attr)', async () => {
-      const el = await mount<Icon>(`<${TAG_NAME} name="test-star" stroke></${TAG_NAME}>`)
-      expect(el.style.getPropertyValue('--icon-fill')).to.equal('none')
+    it('stroke prop sets --icon-stroke to currentColor', async () => {
+      const el = await mount<Icon>(`<${TAG_NAME} name="test-search" stroke></${TAG_NAME}>`)
       expect(el.style.getPropertyValue('--icon-stroke')).to.equal('currentColor')
     })
 
     it('defaults strokeWidth to 2 when not specified', async () => {
-      const el = await mount<Icon>(`<${TAG_NAME} name="test-star" stroke></${TAG_NAME}>`)
+      const el = await mount<Icon>(`<${TAG_NAME} name="test-search" stroke></${TAG_NAME}>`)
       expect(el.style.getPropertyValue('--icon-stroke-width')).to.equal('2')
     })
 
-    it('component strokeWidth overrides registry strokeWidth', async () => {
-      // test-thick has strokeWidth=3 in registry; component stroke-width=1.5 should win
-      const el = await mount<Icon>(`<${TAG_NAME} name="test-thick" stroke-width="1.5"></${TAG_NAME}>`)
+    it('strokeWidth prop sets --icon-stroke-width', async () => {
+      const el = await mount<Icon>(`<${TAG_NAME} name="test-star" stroke stroke-width="1.5"></${TAG_NAME}>`)
       expect(el.style.getPropertyValue('--icon-stroke-width')).to.equal('1.5')
-    })
-
-    it('component stroke=true overrides fill registry icon', async () => {
-      const el = await mount<Icon>(`<${TAG_NAME} name="test-star" stroke></${TAG_NAME}>`)
-      expect(el.style.getPropertyValue('--icon-fill')).to.equal('none')
     })
 
     it('removes stroke CSS vars when stroke is removed', async () => {
       const el = await mount<Icon>(`<${TAG_NAME} name="test-star" stroke></${TAG_NAME}>`)
       el.removeAttribute('stroke')
       await updated()
+      expect(el.style.getPropertyValue('--icon-fill')).to.equal('')
+      expect(el.style.getPropertyValue('--icon-stroke')).to.equal('')
+    })
+  })
+
+  describe('multi-path (IconPathDef[])', () => {
+    it('renders multiple <path> elements', async () => {
+      const el = await mount<Icon>(`<${TAG_NAME} name="test-multi"></${TAG_NAME}>`)
+      const paths = el.shadowRoot?.querySelectorAll('svg.icon-svg path')
+      expect(paths?.length).to.equal(2)
+    })
+
+    it('each path has correct d attribute', async () => {
+      const el = await mount<Icon>(`<${TAG_NAME} name="test-multi"></${TAG_NAME}>`)
+      const paths = el.shadowRoot?.querySelectorAll('svg.icon-svg path')
+      expect(paths![0].getAttribute('d')).to.equal(MULTI_PATH_1)
+      expect(paths![1].getAttribute('d')).to.equal(MULTI_PATH_2)
+    })
+
+    it('applies inline fill from IconPathDef', async () => {
+      const el = await mount<Icon>(`<${TAG_NAME} name="test-multi"></${TAG_NAME}>`)
+      const paths = el.shadowRoot?.querySelectorAll<SVGPathElement>('svg.icon-svg path')
+      expect(paths![0].style.fill).to.equal('rgb(56, 126, 184)')
+      expect(paths![1].style.fill).to.equal('rgb(255, 224, 82)')
+    })
+
+    it('clears stroke CSS vars in multi-path mode', async () => {
+      const el = await mount<Icon>(`<${TAG_NAME} name="test-multi" stroke></${TAG_NAME}>`)
+      // stroke prop on component is ignored for multi-path icons
       expect(el.style.getPropertyValue('--icon-fill')).to.equal('')
       expect(el.style.getPropertyValue('--icon-stroke')).to.equal('')
     })
@@ -218,14 +237,17 @@ describe('Icon', () => {
     it('string shorthand is normalised to IconDefinition with defaultViewBox', () => {
       IconRegistry.add({ 'test-shorthand': FILL_PATH })
       const def = IconRegistry.get('test-shorthand')
-      expect(def).to.deep.equal({ path: FILL_PATH, viewBox: '0 0 24 24' })
+      expect(def).to.deep.equal({ paths: FILL_PATH, viewBox: '0 0 24 24' })
     })
 
-    it('object definition is stored as-is', () => {
-      const def = IconRegistry.get('test-search')
-      expect(def?.stroke).to.be.true
-      expect(def?.strokeWidth).to.equal(2)
-      expect(def?.path).to.equal(STROKE_PATH)
+    it('object definition is stored as-is (multi-path)', () => {
+      const def = IconRegistry.get('test-multi')
+      expect(Array.isArray(def?.paths)).to.be.true
+      const paths = def!.paths as Array<{ d: string; fill?: string }>
+      expect(paths[0].d).to.equal(MULTI_PATH_1)
+      expect(paths[0].fill).to.equal('#387eb8')
+      expect(paths[1].d).to.equal(MULTI_PATH_2)
+      expect(paths[1].fill).to.equal('#ffe052')
     })
 
     describe('addBuiltIn', () => {
@@ -235,7 +257,7 @@ describe('Icon', () => {
       it('registers an icon that can be retrieved', () => {
         IconRegistry.addBuiltIn({ 'test-bi-basic': BUILTIN_PATH })
         expect(IconRegistry.get('test-bi-basic')).to.exist
-        expect(IconRegistry.get('test-bi-basic')?.path).to.equal(BUILTIN_PATH)
+        expect(IconRegistry.get('test-bi-basic')?.paths).to.equal(BUILTIN_PATH)
       })
 
       it('has() returns true for a built-in icon', () => {
@@ -246,31 +268,34 @@ describe('Icon', () => {
       it('normalises string shorthand to IconDefinition with defaultViewBox', () => {
         IconRegistry.addBuiltIn({ 'test-bi-shorthand': BUILTIN_PATH })
         expect(IconRegistry.get('test-bi-shorthand')).to.deep.equal({
-          path: BUILTIN_PATH,
+          paths: BUILTIN_PATH,
           viewBox: '0 0 24 24',
         })
       })
 
       it('stores object definition as-is', () => {
-        IconRegistry.addBuiltIn({ 'test-bi-obj': { path: BUILTIN_PATH, stroke: true, strokeWidth: 1.5 } })
+        IconRegistry.addBuiltIn({
+          'test-bi-obj': { paths: [{ d: BUILTIN_PATH, fill: '#ff0000' }] },
+        })
         const def = IconRegistry.get('test-bi-obj')
-        expect(def?.stroke).to.be.true
-        expect(def?.strokeWidth).to.equal(1.5)
-        expect(def?.path).to.equal(BUILTIN_PATH)
+        const paths = def!.paths as Array<{ d: string; fill?: string }>
+        expect(Array.isArray(paths)).to.be.true
+        expect(paths[0].d).to.equal(BUILTIN_PATH)
+        expect(paths[0].fill).to.equal('#ff0000')
       })
 
       it('does NOT overwrite an icon previously registered via add()', () => {
         const userPath = 'M1 1h22v22H1z'
         IconRegistry.add({ 'test-bi-priority': userPath })
         IconRegistry.addBuiltIn({ 'test-bi-priority': BUILTIN_PATH })
-        expect(IconRegistry.get('test-bi-priority')?.path).to.equal(userPath)
+        expect(IconRegistry.get('test-bi-priority')?.paths).to.equal(userPath)
       })
 
       it('a subsequent add() call overwrites a built-in icon', () => {
         const userPath = 'M2 2h20v20H2z'
         IconRegistry.addBuiltIn({ 'test-bi-override': BUILTIN_PATH })
         IconRegistry.add({ 'test-bi-override': userPath })
-        expect(IconRegistry.get('test-bi-override')?.path).to.equal(userPath)
+        expect(IconRegistry.get('test-bi-override')?.paths).to.equal(userPath)
       })
 
       it('add() then addBuiltIn() does not restore the built-in value', () => {
@@ -279,14 +304,14 @@ describe('Icon', () => {
         IconRegistry.add({ 'test-bi-no-restore': userPath })
         // After user add(), addBuiltIn() must not clobber the user value
         IconRegistry.addBuiltIn({ 'test-bi-no-restore': BUILTIN_PATH })
-        expect(IconRegistry.get('test-bi-no-restore')?.path).to.equal(userPath)
+        expect(IconRegistry.get('test-bi-no-restore')?.paths).to.equal(userPath)
       })
 
       it('a second addBuiltIn() call updates the same built-in key', () => {
         const updatedPath = 'M4 4h16v16H4z'
         IconRegistry.addBuiltIn({ 'test-bi-update': BUILTIN_PATH })
         IconRegistry.addBuiltIn({ 'test-bi-update': updatedPath })
-        expect(IconRegistry.get('test-bi-update')?.path).to.equal(updatedPath)
+        expect(IconRegistry.get('test-bi-update')?.paths).to.equal(updatedPath)
       })
     })
   })

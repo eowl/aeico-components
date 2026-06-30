@@ -41,21 +41,30 @@ class Icon extends AeicoComponent {
       this.style.removeProperty('font-size');
     }
 
-    // Resolve stroke: component prop takes priority over registry definition
-    const useStroke = this.stroke ?? def?.stroke ?? false;
-    const useStrokeWidth = this.strokeWidth ?? def?.strokeWidth ?? 2;
+    if (!def) return;
 
-    if (useStroke) {
-      this.style.setProperty('--icon-fill', 'none');
-      this.style.setProperty('--icon-stroke', 'currentColor');
-      this.style.setProperty('--icon-stroke-width', String(useStrokeWidth));
+    const { paths } = def;
+    const isMultiPath = Array.isArray(paths);
+
+    // Stroke CSS variables only apply in single-path mode (component props)
+    if (!isMultiPath) {
+      const useStroke = this.stroke ?? false;
+      const useStrokeWidth = this.strokeWidth ?? 2;
+
+      if (useStroke) {
+        this.style.setProperty('--icon-fill', 'none');
+        this.style.setProperty('--icon-stroke', 'currentColor');
+        this.style.setProperty('--icon-stroke-width', String(useStrokeWidth));
+      } else {
+        this.style.removeProperty('--icon-fill');
+        this.style.removeProperty('--icon-stroke');
+        this.style.removeProperty('--icon-stroke-width');
+      }
     } else {
       this.style.removeProperty('--icon-fill');
       this.style.removeProperty('--icon-stroke');
       this.style.removeProperty('--icon-stroke-width');
     }
-
-    if (!def) return;
 
     return html(({ svg, path }) => {
       svg(
@@ -66,7 +75,15 @@ class Icon extends AeicoComponent {
           xmlns: SVG_NS,
         },
         () => {
-          path({ d: def.path });
+          if (typeof paths === 'string') {
+            path({ d: paths });
+          } else {
+            for (const p of paths) {
+              const attrs: Record<string, unknown> = { d: p.d };
+              if (p.fill) attrs.style = { fill: p.fill };
+              path(attrs);
+            }
+          }
         },
       );
     });
