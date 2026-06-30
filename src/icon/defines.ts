@@ -9,11 +9,14 @@ export type IconColor =
   | 'warning'
   | 'info';
 
+export interface IconPathDef {
+  d: string;
+  fill?: string;
+}
+
 export interface IconDefinition {
-  path: string;
+  paths: string | IconPathDef[];
   viewBox?: string;
-  stroke?: boolean;
-  strokeWidth?: number;
 }
 
 export const defaultViewBox = '0 0 24 24';
