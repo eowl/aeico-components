@@ -17,6 +17,8 @@ export interface IconPathDef {
 export interface IconDefinition {
   paths: string | IconPathDef[];
   viewBox?: string;
+  stroke?: boolean;
+  strokeWidth?: number;
 }
 
 export const defaultViewBox = '0 0 24 24';
