@@ -48,8 +48,9 @@ class Icon extends AeicoComponent {
 
     // Stroke CSS variables only apply in single-path mode (component props)
     if (!isMultiPath) {
-      const useStroke = this.stroke ?? false;
-      const useStrokeWidth = this.strokeWidth ?? 2;
+      const useStroke =
+        this.stroke ?? (this.strokeWidth !== undefined ? true : (def.stroke ?? false));
+      const useStrokeWidth = this.strokeWidth ?? def.strokeWidth ?? 2;
 
       if (useStroke) {
         this.style.setProperty('--icon-fill', 'none');
