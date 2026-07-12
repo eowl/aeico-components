@@ -8,6 +8,7 @@ export interface ParentMenuLike extends Element {
   mode?: MenuMode;
   orientation?: MenuOrientation;
   trigger?: MenuTrigger;
+  wrapText?: boolean;
 }
 
 export interface MenuSelectDetail {

@@ -93,6 +93,22 @@ import 'aeico-components';
 </ae-menu>
 ```
 
+### `wrap-text` — allow text to wrap
+
+When the menu has a constrained width, long item text causes a horizontal scrollbar by default
+(items use `white-space: nowrap`). Add the `wrap-text` attribute to let text wrap to the next line.
+
+```html
+<ae-menu orientation="vertical" wrap-text>
+  <ae-menu-item key="short">Short</ae-menu-item>
+  <ae-menu-item key="long">This is a very long menu item text that will wrap</ae-menu-item>
+  <ae-menu-item key="products" label="Products">
+    <ae-menu-item key="web">Web Frontend Development</ae-menu-item>
+    <ae-menu-item key="mobile">Mobile App Development</ae-menu-item>
+  </ae-menu-item>
+</ae-menu>
+```
+
 ### Listening to `select`
 
 ```html
@@ -121,6 +137,7 @@ import 'aeico-components';
 | `orientation` | `'horizontal' \| 'vertical'` | `'vertical'` | Root menu direction. |
 | `trigger` | `'click' \| 'hover'` | `'hover'` | How sub-menus are opened. |
 | `selectedKey` | `string` | — | Key of the currently selected/highlighted item. |
+| `wrapText` | `boolean` | `false` | When `true`, long item text wraps to the next line instead of overflowing with a horizontal scrollbar. |
 
 ## `ae-menu` Slots
 

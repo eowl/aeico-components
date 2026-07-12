@@ -113,6 +113,10 @@ class MenuItem extends AeicoComponent {
     return this._parentMenu?.trigger ?? 'click';
   }
 
+  private get _wrapText(): boolean {
+    return this._parentMenu?.wrapText ?? false;
+  }
+
   private get _isParent(): boolean {
     return this.label != null && this.label !== '';
   }
@@ -212,6 +216,7 @@ class MenuItem extends AeicoComponent {
     // Arrow direction: inline always shows ► (rotates to ▼ on open)
     // flyout-bottom shows ▼; flyout-right shows ►
     const arrowDir = !isInline && panelPlacement === 'bottom' ? 'bottom' : 'right';
+    const wrapText = this._wrapText;
     // Leaf items inside a submenu panel (depth > 0) need different padding
     const isNested = !!this.parentElement?.closest('ae-menu-item');
 
@@ -221,7 +226,7 @@ class MenuItem extends AeicoComponent {
           button(
             {
               type: 'button',
-              className: { item: true, 'item--parent': true, 'item--open': this.open },
+              className: { item: true, 'item--parent': true, 'item--open': this.open, 'item--wrap': wrapText },
               disabled: this.disabled,
               'aria-haspopup': 'menu',
               'aria-expanded': String(this.open),
@@ -268,7 +273,7 @@ class MenuItem extends AeicoComponent {
       } else {
         // Leaf item
         const sharedProps = {
-          className: { item: true, 'item--leaf-in-panel': isNested },
+          className: { item: true, 'item--leaf-in-panel': isNested, 'item--wrap': wrapText },
           role: 'menuitem',
           '@click': this._handleLeafClick,
           '@keydown': this._handleKeydown,
