@@ -36,6 +36,9 @@ class Menu extends AeicoComponent {
   @prop({ type: String })
   accessor selectedKey: string | undefined;
 
+  @prop({ type: Boolean })
+  accessor wrapText: boolean = false;
+
   connectedCallback() {
     super.connectedCallback();
     this.listen('_menu-item-select', this._handleItemSelect as EventListener);

@@ -51,6 +51,12 @@
   border-bottom: none;
 }
 
+.item--wrap {
+  white-space: normal;
+  height: auto;
+  min-height: var(--menu-item-height);
+}
+
 .item:hover:not(:disabled) {
   background: var(--menu-item-bg-hover);
 }
