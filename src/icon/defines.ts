@@ -12,6 +12,8 @@ export type IconColor =
 export interface IconPathDef {
   d: string;
   fill?: string;
+  stroke?: boolean;
+  strokeWidth?: number;
 }
 
 export interface IconDefinition {
