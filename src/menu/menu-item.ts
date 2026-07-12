@@ -226,7 +226,12 @@ class MenuItem extends AeicoComponent {
           button(
             {
               type: 'button',
-              className: { item: true, 'item--parent': true, 'item--open': this.open, 'item--wrap': wrapText },
+              className: {
+                item: true,
+                'item--parent': true,
+                'item--open': this.open,
+                'item--wrap': wrapText,
+              },
               disabled: this.disabled,
               'aria-haspopup': 'menu',
               'aria-expanded': String(this.open),
