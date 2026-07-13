@@ -2,8 +2,9 @@ import type { InferProps } from 'aeico';
 import styleVariables from '../styles/variables.css?inline';
 import style from '../styles/components/drawer.css?inline';
 import AeicoComponent from '../aeico-component';
-import { html, prop } from 'aeico';
+import { html, prop, tags } from 'aeico';
 import type { DrawerPlacement } from './defines';
+import '../icon/icon';
 
 class Drawer extends AeicoComponent {
   protected static styles = [styleVariables, style];
@@ -63,11 +64,17 @@ class Drawer extends AeicoComponent {
                 span({ className: 'label', textContent: this.label || '' });
               });
               if (this.closable) {
-                button({
-                  className: 'close-btn',
-                  textContent: '×',
-                  '@click': () => this.close(),
-                });
+                const { aeIcon } = tags;
+                button(
+                  {
+                    className: 'close-btn',
+                    'aria-label': 'close',
+                    '@click': () => this.close(),
+                  },
+                  () => {
+                    aeIcon({ name: 'close' });
+                  },
+                );
               }
             });
           }
@@ -119,7 +126,11 @@ class Drawer extends AeicoComponent {
     }
   };
 
+  private _closeTimeout: ReturnType<typeof setTimeout> | null = null;
+
   open() {
+    clearTimeout(this._closeTimeout!);
+    this.removeAttribute('data-closing');
     this.setAttribute('data-open', '');
     document.addEventListener('keydown', this._handleKeydown);
     requestAnimationFrame(() => {
@@ -130,17 +141,23 @@ class Drawer extends AeicoComponent {
   }
 
   close() {
-    this.removeAttribute('data-open');
+    if (this.hasAttribute('data-closing')) return;
+    this.setAttribute('data-closing', '');
     document.removeEventListener('keydown', this._handleKeydown);
-    this.emit('close', { detail: { target: this } });
+    this._closeTimeout = setTimeout(() => {
+      this.removeAttribute('data-open');
+      this.removeAttribute('data-closing');
+      this.emit('close', { detail: { target: this } });
+    }, 220);
   }
 
   isOpen(): boolean {
-    return this.hasAttribute('data-open');
+    return this.hasAttribute('data-open') && !this.hasAttribute('data-closing');
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
+    clearTimeout(this._closeTimeout!);
     document.removeEventListener('keydown', this._handleKeydown);
   }
 }
