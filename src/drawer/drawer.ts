@@ -65,13 +65,16 @@ class Drawer extends AeicoComponent {
               });
               if (this.closable) {
                 const { aeIcon } = tags;
-                button({
-                  className: 'close-btn',
-                  'aria-label': 'close',
-                  '@click': () => this.close(),
-                }, () => {
-                  aeIcon({ name: 'close' });
-                });
+                button(
+                  {
+                    className: 'close-btn',
+                    'aria-label': 'close',
+                    '@click': () => this.close(),
+                  },
+                  () => {
+                    aeIcon({ name: 'close' });
+                  },
+                );
               }
             });
           }
