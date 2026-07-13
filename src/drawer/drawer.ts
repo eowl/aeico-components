@@ -152,7 +152,7 @@ class Drawer extends AeicoComponent {
   }
 
   isOpen(): boolean {
-    return this.hasAttribute('data-open');
+    return this.hasAttribute('data-open') && !this.hasAttribute('data-closing');
   }
 
   disconnectedCallback() {
