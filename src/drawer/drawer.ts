@@ -119,7 +119,11 @@ class Drawer extends AeicoComponent {
     }
   };
 
+  private _closeTimeout: ReturnType<typeof setTimeout> | null = null;
+
   open() {
+    clearTimeout(this._closeTimeout!);
+    this.removeAttribute('data-closing');
     this.setAttribute('data-open', '');
     document.addEventListener('keydown', this._handleKeydown);
     requestAnimationFrame(() => {
@@ -130,9 +134,14 @@ class Drawer extends AeicoComponent {
   }
 
   close() {
-    this.removeAttribute('data-open');
+    if (this.hasAttribute('data-closing')) return;
+    this.setAttribute('data-closing', '');
     document.removeEventListener('keydown', this._handleKeydown);
-    this.emit('close', { detail: { target: this } });
+    this._closeTimeout = setTimeout(() => {
+      this.removeAttribute('data-open');
+      this.removeAttribute('data-closing');
+      this.emit('close', { detail: { target: this } });
+    }, 220);
   }
 
   isOpen(): boolean {
@@ -141,6 +150,7 @@ class Drawer extends AeicoComponent {
 
   disconnectedCallback() {
     super.disconnectedCallback();
+    clearTimeout(this._closeTimeout!);
     document.removeEventListener('keydown', this._handleKeydown);
   }
 }
