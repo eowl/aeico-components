@@ -6,7 +6,7 @@ dialog {
   display: none;
   flex-direction: column;
   border: none;
-  border-radius: var(--ae-border-radius, var(--ae-border-radius));
+  border-radius: var(--ae-border-radius, var(--ae-radius-lg));
   padding: 0;
   max-width: min(90vw, 600px);
   max-height: 90vh;
