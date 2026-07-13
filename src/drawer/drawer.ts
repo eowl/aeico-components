@@ -2,8 +2,9 @@ import type { InferProps } from 'aeico';
 import styleVariables from '../styles/variables.css?inline';
 import style from '../styles/components/drawer.css?inline';
 import AeicoComponent from '../aeico-component';
-import { html, prop } from 'aeico';
+import { html, prop, tags } from 'aeico';
 import type { DrawerPlacement } from './defines';
+import '../icon/icon';
 
 class Drawer extends AeicoComponent {
   protected static styles = [styleVariables, style];
@@ -63,10 +64,13 @@ class Drawer extends AeicoComponent {
                 span({ className: 'label', textContent: this.label || '' });
               });
               if (this.closable) {
+                const { aeIcon } = tags;
                 button({
                   className: 'close-btn',
-                  textContent: '×',
+                  'aria-label': 'close',
                   '@click': () => this.close(),
+                }, () => {
+                  aeIcon({ name: 'close' });
                 });
               }
             });
