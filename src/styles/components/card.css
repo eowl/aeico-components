@@ -56,6 +56,22 @@
   border-top: 1px solid var(--ae-color-border-subtle);
 }
 
+:host([variant="faint"][has-header]) .header {
+  border-bottom-color: var(--ae-color-border-subtle);
+}
+
+:host([variant="faint"][has-footer]) .footer {
+  border-top-color: var(--ae-color-border-subtle);
+}
+
+:host([variant="subtle"][has-header]) .header {
+  border-bottom-color: var(--ae-color-border-subtle);
+}
+
+:host([variant="subtle"][has-footer]) .footer {
+  border-top-color: var(--ae-color-border-subtle);
+}
+
 :host([variant="filled"][has-header]) .header {
   border-bottom-color: rgba(0, 0, 0, 0.15);
 }
@@ -81,9 +97,6 @@
   border-top-color: transparent;
   color: var(--ae-color-accent);
 }
-
-:host([variant="subtle"]) .header,
-:host([variant="subtle"]) .footer { display: none; }
 
 .body {
   padding: 16px;
