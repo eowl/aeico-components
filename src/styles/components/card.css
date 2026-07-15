@@ -10,7 +10,6 @@
   overflow: hidden;
 }
 
-/* variant overrides */
 :host([variant="faint"]) .card {
   border-color: var(--ae-color-border-subtle);
   background: var(--ae-color-bg-subtle);
@@ -21,21 +20,10 @@
   border-color: transparent;
 }
 
-:host([variant="subtle"]) .header { border-bottom-color: transparent; }
-:host([variant="subtle"]) .footer { border-top-color: transparent; }
-
 :host([variant="filled"]) .card {
   border-color: var(--ae-color-solid);
   background: var(--ae-color-solid);
   color: var(--ae-color-on-solid);
-}
-
-:host([variant="filled"]) .header {
-  border-bottom-color: color-mix(in srgb, var(--ae-color-solid), black 15%);
-}
-
-:host([variant="filled"]) .footer {
-  border-top-color: color-mix(in srgb, var(--ae-color-solid), black 15%);
 }
 
 :host([variant="outlined"]) .card {
@@ -44,17 +32,11 @@
   color: var(--ae-color-text-subtle);
 }
 
-:host([variant="outlined"]) .header { border-bottom-color: var(--ae-color-border-subtle); }
-:host([variant="outlined"]) .footer { border-top-color: var(--ae-color-border-subtle); }
-
 :host([variant="text"]) .card {
   border-color: transparent;
   background: transparent;
   color: var(--ae-color-text-main);
 }
-
-:host([variant="text"]) .header { border-bottom-color: transparent; color: var(--ae-color-accent); }
-:host([variant="text"]) .footer { border-top-color: transparent; color: var(--ae-color-accent); }
 
 .header,
 .footer {
@@ -73,6 +55,35 @@
   display: block;
   border-top: 1px solid var(--ae-color-border-subtle);
 }
+
+:host([variant="filled"][has-header]) .header {
+  border-bottom-color: rgba(0, 0, 0, 0.15);
+}
+
+:host([variant="filled"][has-footer]) .footer {
+  border-top-color: rgba(0, 0, 0, 0.15);
+}
+
+:host([variant="outlined"][has-header]) .header {
+  border-bottom-color: var(--ae-color-border-subtle);
+}
+
+:host([variant="outlined"][has-footer]) .footer {
+  border-top-color: var(--ae-color-border-subtle);
+}
+
+:host([variant="text"][has-header]) .header {
+  border-bottom-color: transparent;
+  color: var(--ae-color-accent);
+}
+
+:host([variant="text"][has-footer]) .footer {
+  border-top-color: transparent;
+  color: var(--ae-color-accent);
+}
+
+:host([variant="subtle"]) .header,
+:host([variant="subtle"]) .footer { display: none; }
 
 .body {
   padding: 16px;
