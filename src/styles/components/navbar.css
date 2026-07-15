@@ -1,5 +1,4 @@
 :host {
-  /* layout — padding lives in .inner so document * { padding:0 } cannot override it */
   display: block;
   position: static;
   top: auto;
@@ -8,26 +7,17 @@
   height: var(--ae-navbar-height, 3.25rem);
   border-radius: var(--ae-navbar-radius, 0);
 
-  /* color */
   background: var(--ae-navbar-bg, var(--ae-surface-base));
   color: var(--ae-navbar-color, var(--ae-color-text-main));
   border-bottom: var(--ae-navbar-border-width, 1px) solid var(--ae-navbar-border-color, var(--ae-border-default));
   box-shadow: var(--ae-navbar-shadow, none);
 
-  /* layout tokens — declared here so they are clearly part of the public API */
   --ae-navbar-radius: 0;
-  /* Default padding-x references the global layout token so ae-navbar content
-     automatically aligns with .container / .container-fluid in light DOM.
-     Override with --ae-navbar-padding-x to decouple if needed. */
   --ae-navbar-padding-x: var(--container-padding-x, 1.5rem);
   --ae-navbar-gap: 0.5rem;
-
-  /* link style tokens — text mode defaults.
-     CSS custom properties inherit into slotted content, so
-     ::slotted(a[slot="start"]) can reference --ae-navbar-height. */
   --ae-navbar-link-color: inherit;
   --ae-navbar-link-font-size: inherit;
-  --ae-navbar-link-padding-x: 0.75rem;  /* horizontal padding only; height fills vertically */
+  --ae-navbar-link-padding-x: 0.75rem;
   --ae-navbar-link-radius: var(--ae-border-radius, var(--ae-radius-sm));
   --ae-navbar-link-hover-color: var(--ae-color-text-link-hover);
   --ae-navbar-link-hover-bg: transparent;
@@ -48,13 +38,11 @@
   --ae-navbar-link-active-color: var(--ae-color-on-solid);
 }
 
-/* block preset: hover shows a subtle filled block */
 :host([appearance="block"]) {
   --ae-navbar-link-hover-bg: var(--ae-color-bg-subtle);
   --ae-navbar-link-hover-color: inherit;
 }
 
-/* block preset on colored navbar: use semi-transparent white */
 :host([color][appearance="block"]) {
   --ae-navbar-link-hover-bg: rgba(255, 255, 255, 0.15);
   --ae-navbar-link-hover-color: var(--ae-color-on-solid);
@@ -75,11 +63,10 @@
   align-items: center;
 }
 
-/* nav wraps start + end; takes all remaining space */
 [part="nav"] {
   flex: 1 1 auto;
   display: flex;
-  align-self: stretch;   /* stretch to host height so children can fill it */
+  align-self: stretch;
   align-items: stretch;
   min-width: 0;
 }
@@ -92,17 +79,16 @@
 }
 
 [part="start"] {
-  align-items: stretch;  /* slotted <a> will stretch to full height */
+  align-items: stretch;
   gap: var(--ae-navbar-start-gap, 0);
 }
 
 [part="end"] {
-  align-items: center;   /* buttons / avatars stay vertically centred */
+  align-items: center;
   gap: var(--ae-navbar-end-gap, 0.5rem);
   margin-left: auto;
 }
 
-/* hamburger — hidden on desktop */
 [part="hamburger"] {
   display: none;
   flex-direction: column;
@@ -134,7 +120,6 @@
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-/* Brand link — sensible defaults, no full-height stretch */
 ::slotted(a[slot="brand"]) {
   display: inline-flex;
   align-items: center;
@@ -145,13 +130,11 @@
   white-space: nowrap;
 }
 
-/* Nav links (start / end slots) — fill full navbar height for block hover effect */
 ::slotted(a[slot="start"]),
 ::slotted(a[slot="end"]) {
   display: inline-flex;
   align-items: center;
-  height: var(--ae-navbar-height, 3.25rem);  /* full-height hover area */
-  /* !important overrides document-level * { padding: 0 } reset */
+  height: var(--ae-navbar-height, 3.25rem);
   padding: 0 var(--ae-navbar-link-padding-x) !important;
   border-radius: var(--ae-navbar-link-radius);
   color: var(--ae-navbar-link-color);
@@ -174,7 +157,6 @@
   font-weight: var(--ae-navbar-link-active-font-weight);
 }
 
-/* ae-dropdown inside navbar — map navbar tokens to dropdown trigger API */
 ::slotted(ae-dropdown) {
   align-self: stretch;
   --dropdown-trigger-height: 100%;
@@ -188,7 +170,6 @@
 }
 
 @media (max-width: 768px) {
-  /* collapse the nav container */
   [part="nav"] {
     display: none;
     position: absolute;
@@ -209,7 +190,6 @@
     display: flex;
   }
 
-  /* stack start/end vertically inside the panel */
   [part="start"],
   [part="end"] {
     flex-direction: column;
@@ -220,7 +200,6 @@
     width: 100%;
   }
 
-  /* Mobile: links revert to auto height and add vertical padding */
   ::slotted(a[slot="start"]),
   ::slotted(a[slot="end"]) {
     height: auto;
@@ -229,12 +208,10 @@
     border-radius: var(--ae-border-radius, var(--ae-radius-sm));
   }
 
-  /* show hamburger */
   [part="hamburger"] {
     display: flex;
   }
 
-  /* hamburger → × animation */
   :host([open]) [part="hamburger"] span:nth-child(1) {
     transform: translateY(7px) rotate(45deg);
   }
