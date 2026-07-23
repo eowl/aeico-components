@@ -88,7 +88,8 @@ class ButtonGroup extends AeicoComponent {
 
   private _syncChildren() {
     const buttons = this._getButtons();
-    const r = this.size === 'xs' || this.size === 'sm' ? 3 : 4;
+    const isSmall = this.size === 'xs' || this.size === 'sm';
+    const r = isSmall ? 'var(--ae-radius-xs)' : 'var(--ae-radius-sm)';
 
     buttons.forEach((btn: Button | DropdownButton, i) => {
       btn.variant = this.variant;
@@ -105,14 +106,12 @@ class ButtonGroup extends AeicoComponent {
         const isFirst = i === 0;
         const isLast = i === buttons.length - 1;
 
-        // Overlap adjacent borders by pulling non-first buttons left 1px
         btn.style.marginLeft = isFirst ? '' : '-1px';
 
-        // Shape corners: only the outer edges of the strip keep radius
-        btn.style.setProperty('--_btn-r-tl', isFirst ? `${r}px` : '0');
-        btn.style.setProperty('--_btn-r-bl', isFirst ? `${r}px` : '0');
-        btn.style.setProperty('--_btn-r-tr', isLast ? `${r}px` : '0');
-        btn.style.setProperty('--_btn-r-br', isLast ? `${r}px` : '0');
+        btn.style.setProperty('--_btn-r-tl', isFirst ? r : '0');
+        btn.style.setProperty('--_btn-r-bl', isFirst ? r : '0');
+        btn.style.setProperty('--_btn-r-tr', isLast ? r : '0');
+        btn.style.setProperty('--_btn-r-br', isLast ? r : '0');
       } else {
         btn.style.marginLeft = '';
         this._clearRadius(btn);
