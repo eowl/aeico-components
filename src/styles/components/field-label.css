@@ -21,7 +21,7 @@
   grid-template-columns: var(--field-label-width) 1fr;
   column-gap: var(--field-label-col-gap);
   row-gap: var(--field-label-gap);
-  align-items: start;
+  align-items: center;
 }
 
 :host([label][label-placement="left"]) .field-label {
