@@ -22,6 +22,25 @@
   gap: 6px;
 }
 
+:host(:not([mode])) .rg-container .action-controls,
+:host([mode="default"]) .rg-container .action-controls {
+  display: flex;
+  align-self: center;
+  margin-left: 2px;
+  border: 1px solid var(--field-action-border-color, var(--ae-border-subtle));
+  border-radius: var(--rg-radius);
+  overflow: hidden;
+  background: var(--field-action-bg, var(--ae-surface-base));
+  height: 1.333em;
+  box-sizing: border-box;
+}
+
+:host(:not([mode])) .rg-container .action-controls .action-btn,
+:host([mode="default"]) .rg-container .action-controls .action-btn {
+  padding: 0 0.35em;
+  font-size: 0.7em;
+}
+
 slot {
   display: none;
 }

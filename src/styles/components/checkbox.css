@@ -49,14 +49,14 @@
   display: flex;
   margin-left: 2px;
   border: var(--checkbox-border-width) solid var(--field-action-border-color, var(--ae-border-subtle));
-  border-radius: var(--ae-border-radius, var(--ae-radius-xs));
+  border-radius: var(--ae-radius-sm);
   overflow: hidden;
   background: var(--field-action-bg, var(--ae-surface-base));
-  height: var(--checkbox-size);
+  height: 1.333em;
   box-sizing: border-box;
 }
 
 .checkbox-container .action-controls .action-btn {
-  padding: 0 0.4em;
-  font-size: calc(var(--checkbox-size) * 0.7);
+  padding: 0 0.35em;
+  font-size: 0.7em;
 }
