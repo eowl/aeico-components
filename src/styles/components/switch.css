@@ -1,9 +1,7 @@
 :host {
   display: block;
   font-size: var(--ae-size-base);
-
   --switch-field-gap: 4px;
-
   --toggle-width:       2.667em;
   --toggle-height:      1.333em;
   --toggle-slider-size: 1em;
@@ -151,4 +149,20 @@
 
 .field-input:checked + .toggle-slider .track-icon-right {
   opacity: 0;
+}
+
+.switch-container:has(.action-controls) .switch-wrapper .toggle-slider {
+  border-radius: var(--toggle-border-radius) 0 0 var(--toggle-border-radius);
+}
+
+.switch-container .action-controls {
+  margin-left: calc(-1 * var(--switch-field-gap) - 1px);
+  border: 1px solid var(--field-action-border-color, var(--ae-border-subtle));
+  border-left: none;
+  border-radius: 0 var(--toggle-border-radius) var(--toggle-border-radius) 0;
+  overflow: hidden;
+  background: var(--field-action-bg, var(--ae-surface-base));
+  transition: border-color 0.12s;
+  height: var(--toggle-height);
+  box-sizing: border-box;
 }
