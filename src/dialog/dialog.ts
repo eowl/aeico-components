@@ -48,13 +48,16 @@ class Dialog extends AeicoComponent {
               });
               if (this.closable !== false) {
                 const { aeIcon } = tags;
-                button({
-                  className: 'close-btn',
-                  'aria-label': 'close',
-                  '@click': () => this.close(),
-                }, () => {
-                  aeIcon({ name: 'close' });
-                });
+                button(
+                  {
+                    className: 'close-btn',
+                    'aria-label': 'close',
+                    '@click': () => this.close(),
+                  },
+                  () => {
+                    aeIcon({ name: 'close' });
+                  },
+                );
               }
             });
           }
