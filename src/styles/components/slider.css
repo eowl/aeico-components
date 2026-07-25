@@ -195,6 +195,7 @@ input[type="range"]::-moz-range-thumb {
   width: 56px;
   padding: 0 4px;
   height: 22px;
+  line-height: 20px;
   border: 1px solid var(--ae-border-subtle);
   border-radius: var(--ae-radius-sm);
   background: transparent;
@@ -203,6 +204,7 @@ input[type="range"]::-moz-range-thumb {
   text-align: center;
   outline: none;
   flex-shrink: 0;
+  box-sizing: border-box;
 }
 
 .value-input:focus {
@@ -212,6 +214,31 @@ input[type="range"]::-moz-range-thumb {
 .value-input:disabled {
   opacity: 0.4;
   cursor: not-allowed;
+}
+
+.range-container .action-controls {
+  display: flex;
+  align-self: center;
+  border: 1px solid var(--field-action-border-color, var(--ae-border-subtle));
+  border-radius: var(--ae-radius-sm);
+  overflow: hidden;
+  background: var(--field-action-bg, var(--ae-surface-base));
+  height: 22px;
+  box-sizing: border-box;
+}
+
+.range-container .action-controls .action-btn {
+  padding: 0 0.35em;
+  font-size: 12px;
+}
+
+.range-container:has(.value-input) .action-controls {
+  border-radius: var(--ae-radius-sm) 0 0 var(--ae-radius-sm);
+}
+
+.range-container:has(.action-controls) .value-input {
+  margin-left: -7px;
+  border-radius: 0 var(--ae-radius-sm) var(--ae-radius-sm) 0;
 }
 
 :host([tracked]) .input-range,
@@ -229,7 +256,7 @@ input[type="range"]::-moz-range-thumb {
   min-width: 0;
   display: flex;
   flex-direction: column;
-  position: relative;  /* marks-container positions against this */
+  position: relative;
 }
 
 .range-wrapper input[type="range"] {
@@ -237,11 +264,10 @@ input[type="range"]::-moz-range-thumb {
   flex: none;
 }
 
-/* Marks are absolutely positioned so they don't affect range-wrapper's layout height */
 .marks-container {
   position: absolute;
   top: 100%;
-  left: 7px;   /* inset by half thumb so 0%/100% align with track ends */
+  left: 7px;
   right: 7px;
   height: 18px;
   margin-top: 2px;
@@ -274,8 +300,7 @@ input[type="range"]::-moz-range-thumb {
   white-space: nowrap;
 }
 
-/* When marks are active, add padding-bottom to make room for the absolute-positioned marks */
 :host([marks]) .range-container {
-  padding-bottom: 24px; /* marks-container height (18px) + margin-top (2px) + extra (4px) */
+  padding-bottom: 24px;
   height: auto;
 }

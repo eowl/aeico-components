@@ -51,6 +51,21 @@
           <ae-switch icon="bell-off" icon-checked="bell" icon-placement="track" checked></ae-switch>
           <ae-switch icon="moon" icon-checked="sun" icon-placement="track" checked color="primary"></ae-switch>
         </div>
+        <label>Label left</label>
+        <div class="demo-row">
+          <ae-switch label="Enable notifications" label-placement="left" checked></ae-switch>
+          <ae-switch label="Dark mode" label-placement="left"></ae-switch>
+        </div>
+        <label>With resettable, default-checked, Action Button Style: Integrated (default)</label>
+        <div class="demo-row">
+          <ae-switch resettable default-checked></ae-switch>
+          <ae-switch checked resettable clearable default-checked></ae-switch>
+        </div>
+        <label>With resettable, default-checked, Action Button Style: Standalone</label>
+        <div class="demo-row">
+          <ae-switch resettable default-checked action-button-style="standalone"></ae-switch>
+          <ae-switch checked resettable clearable default-checked action-button-style="standalone"></ae-switch>
+        </div>
       </div>
     </div>
 

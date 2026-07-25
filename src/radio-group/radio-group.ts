@@ -29,6 +29,7 @@ class RadioGroup extends AeicoField {
     variant: { type: String },
     size: { type: String },
     allowEmpty: { type: Boolean },
+    actionButtonStyle: { type: String },
   };
 
   declare options?: RadioGroupOptions;
@@ -143,13 +144,16 @@ class RadioGroup extends AeicoField {
       div({ id, role: 'group', className: 'rg-container field-body' }, () => {
         if (mode === 'default') {
           this._renderRadio(opts, current);
+          this.renderActionButtons();
         } else {
           this._renderButtons(opts, current, mode);
         }
       });
 
-      if (this.allowEmpty) this.renderClearButton();
-      this.renderResetButton();
+      if (mode !== 'default') {
+        if (this.allowEmpty) this.renderClearButton();
+        this.renderResetButton();
+      }
 
       // Hidden slot — captures <option> light DOM children
       this._slotEl = slot({

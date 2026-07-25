@@ -2,7 +2,8 @@
 import styleVariables from '../styles/variables.css?inline';
 import style from '../styles/components/dialog.css?inline';
 import AeicoComponent from '../aeico-component';
-import { html } from 'aeico';
+import { html, tags } from 'aeico';
+import '../icon/icon';
 
 class Dialog extends AeicoComponent {
   static props: Props = {
@@ -40,28 +41,31 @@ class Dialog extends AeicoComponent {
           },
         },
         () => {
-          // Header
           if (this.header !== false) {
             header({}, () => {
               slot({ name: 'header' }, () => {
                 span({ className: 'label', textContent: this.label || '' });
               });
               if (this.closable !== false) {
-                button({
-                  className: 'close-btn',
-                  textContent: '×',
-                  '@click': () => this.close(),
-                });
+                const { aeIcon } = tags;
+                button(
+                  {
+                    className: 'close-btn',
+                    'aria-label': 'close',
+                    '@click': () => this.close(),
+                  },
+                  () => {
+                    aeIcon({ name: 'close' });
+                  },
+                );
               }
             });
           }
 
-          // Body
           div({ className: 'body' }, () => {
             slot();
           });
 
-          // Footer — always rendered to capture slotchange, hidden when empty
           footer(
             {
               style: { display: this._hasFooter ? '' : 'none' },
@@ -79,7 +83,6 @@ class Dialog extends AeicoComponent {
     const mouseEvent = e as MouseEvent;
     const path = mouseEvent.composedPath();
 
-    // data-close: any slotted element with [data-close] closes the dialog
     for (const el of path) {
       if (el instanceof Element && el.hasAttribute('data-close')) {
         this.close();
@@ -88,7 +91,6 @@ class Dialog extends AeicoComponent {
       if (el === this._dialogEl) break;
     }
 
-    // Backdrop click (modal mode only)
     if (this.modal !== false && this.closeOnOverlayClick !== false) {
       if (mouseEvent.target === this._dialogEl) {
         const rect = this._dialogEl!.getBoundingClientRect();
@@ -129,7 +131,6 @@ class Dialog extends AeicoComponent {
 
   close() {
     this._dialogEl?.close();
-    // emit('close') is handled by _handleNativeClose via the native 'close' event
   }
 
   isOpen(): boolean {
