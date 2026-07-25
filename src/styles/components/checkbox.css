@@ -3,11 +3,7 @@
   flex: 1;
   min-width: 0;
   font-size: var(--ae-size-base);
-
-  /* Layout */
   --checkbox-field-gap: 4px;
-
-  /* Checkbox */
   --checkbox-size: 1.167em;
   --checkbox-border-width: 1px;
   --checkbox-border-color: var(--ae-border-subtle);
@@ -44,8 +40,23 @@
   cursor: not-allowed;
 }
 
-/* Error state */
 :host([error]) .field-input {
   outline: 2px solid var(--field-error-color, var(--ae-red));
   outline-offset: 1px;
+}
+
+.checkbox-container .action-controls {
+  display: flex;
+  margin-left: 2px;
+  border: var(--checkbox-border-width) solid var(--field-action-border-color, var(--ae-border-subtle));
+  border-radius: var(--ae-border-radius, var(--ae-radius-xs));
+  overflow: hidden;
+  background: var(--field-action-bg, var(--ae-surface-base));
+  height: var(--checkbox-size);
+  box-sizing: border-box;
+}
+
+.checkbox-container .action-controls .action-btn {
+  padding: 0 0.4em;
+  font-size: calc(var(--checkbox-size) * 0.7);
 }
