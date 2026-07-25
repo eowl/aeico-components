@@ -41,11 +41,13 @@
 :host([appearance="block"]) {
   --ae-navbar-link-hover-bg: var(--ae-color-bg-subtle);
   --ae-navbar-link-hover-color: inherit;
+  --ae-navbar-link-radius: 0;
 }
 
 :host([color][appearance="block"]) {
   --ae-navbar-link-hover-bg: rgba(255, 255, 255, 0.15);
   --ae-navbar-link-hover-color: var(--ae-color-on-solid);
+  --ae-navbar-link-radius: 0;
 }
 
 .inner {
