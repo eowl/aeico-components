@@ -83,7 +83,7 @@
         </div>
         <label><code>.grid.grid-cols-4</code> with custom <code>--grid-gap</code></label>
         <div class="layout-demo-wrap">
-          <div class="grid grid-cols-4" style="--grid-gap: var(--space-2)">
+          <div class="grid grid-cols-2" style="--grid-gap: var(--space-2)">
             <div class="layout-box tall">1</div>
             <div class="layout-box tall">2</div>
             <div class="layout-box tall">3</div>
@@ -92,6 +92,34 @@
             <div class="layout-box tall">6</div>
             <div class="layout-box tall">7</div>
             <div class="layout-box tall">8</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gap utilities -->
+      <div class="demo-group">
+        <label>Gap utilities — <code>.gap-x-{n}</code> / <code>.gap-y-{n}</code> control column-gap and row-gap separately</label>
+        <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 0.5rem;">
+          <div>
+            <code style="font-size:0.75rem; color:var(--text-secondary); margin-bottom:.25rem; display:block">.gap-4 (both directions, 16px)</code>
+            <div class="grid grid-cols-4 gap-4">
+              <div class="layout-box">a</div><div class="layout-box">b</div><div class="layout-box">c</div><div class="layout-box">d</div>
+              <div class="layout-box">e</div><div class="layout-box">f</div><div class="layout-box">g</div><div class="layout-box">h</div>
+            </div>
+          </div>
+          <div>
+            <code style="font-size:0.75rem; color:var(--text-secondary); margin-bottom:.25rem; display:block">.gap-x-2 .gap-y-6 (tight cols 8px, loose rows 24px)</code>
+            <div class="grid grid-cols-4 gap-x-2 gap-y-6">
+              <div class="layout-box">a</div><div class="layout-box">b</div><div class="layout-box">c</div><div class="layout-box">d</div>
+              <div class="layout-box">e</div><div class="layout-box">f</div><div class="layout-box">g</div><div class="layout-box">h</div>
+            </div>
+          </div>
+          <div>
+            <code style="font-size:0.75rem; color:var(--text-secondary); margin-bottom:.25rem; display:block">.gap-x-6 .gap-y-1 (loose cols 24px, tight rows 4px)</code>
+            <div class="grid grid-cols-4 gap-x-6 gap-y-1">
+              <div class="layout-box">a</div><div class="layout-box">b</div><div class="layout-box">c</div><div class="layout-box">d</div>
+              <div class="layout-box">e</div><div class="layout-box">f</div><div class="layout-box">g</div><div class="layout-box">h</div>
+            </div>
           </div>
         </div>
       </div>
