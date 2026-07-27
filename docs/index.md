@@ -85,6 +85,12 @@ import 'aeico-components';
 |-----------|-----|-------------|
 | [Divider](./divider.md) | `ae-divider` | Horizontal or vertical separator line. |
 
+### Styles
+
+| Resource | Type | Description |
+|----------|------|-------------|
+| [Styles](./styles.md) | CSS | Light DOM utility stylesheets — layout, spacing, border-radius, and design tokens. |
+
 ---
 
 ## Common Patterns

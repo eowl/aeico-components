@@ -1,3 +1,18 @@
+/*
+   radius.css — Light DOM border-radius utility classes
+   This file is for use in the user's light DOM (regular HTML),
+   NOT imported by any Web Component internally.
+
+   Import it once in your page:
+     import 'aeico-components/styles/radius.css'
+
+   Requires variables.css for the --ae-radius-* tokens:
+     import 'aeico-components/styles/variables.css'
+
+   All utility rules live inside @layer aeico-radius so that your own
+   un-layered (or later-layered) styles always override them without !important.
+*/
+
 @layer aeico-radius {
   .ae-radius-square  { border-radius: var(--ae-radius-square);  }
   .ae-radius-xs      { border-radius: var(--ae-radius-xs);      }

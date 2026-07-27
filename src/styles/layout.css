@@ -4,9 +4,12 @@
    NOT imported by any Web Component internally.
 
    Import it once in your page:
-     import 'aeico/styles/layout.css'
+     import 'aeico-components/styles/layout.css'
    or:
-     <link rel="stylesheet" href="path/to/layout.css">
+     <link rel="stylesheet" href="node_modules/aeico-components/src/styles/layout.css">
+
+   Requires variables.css for the --space-* and --container-* tokens:
+     import 'aeico-components/styles/variables.css'
 
    All utility rules live inside @layer aeico-layout so that your own
    un-layered (or later-layered) styles always override them without !important.

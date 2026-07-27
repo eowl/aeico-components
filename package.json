@@ -12,6 +12,9 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
+    "./styles/variables.css": "./src/styles/variables.css",
+    "./styles/layout.css": "./src/styles/layout.css",
+    "./styles/radius.css": "./src/styles/radius.css",
     "./*": {
       "types": "./dist/types/*/index.d.ts",
       "import": "./dist/*.js",
@@ -25,6 +28,9 @@
   ],
   "sideEffects": [
     "./src/icon/built-in-icons.ts",
+    "./src/styles/variables.css",
+    "./src/styles/layout.css",
+    "./src/styles/radius.css",
     "./dist/*.js",
     "./dist/*.cjs",
     "./dist/chunks/*.js",
