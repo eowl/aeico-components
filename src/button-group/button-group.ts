@@ -1,6 +1,6 @@
 ﻿import type { InferProps, Props } from 'aeico';
-import styleVariables from '../styles/variables.css?inline';
-import buttonGroupStyle from '../styles/components/button-group.css?inline';
+import styleVariables from '../styles/variables.css';
+import buttonGroupStyle from '../styles/components/button-group.css';
 import AeicoComponent from '../aeico-component';
 import { html } from 'aeico';
 import type { ButtonColor, ButtonVariant, ButtonSize } from '../button';

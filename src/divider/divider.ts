@@ -1,8 +1,8 @@
 ﻿import AeicoComponent from '../aeico-component';
 import type { InferProps } from 'aeico';
-import styleVariables from '../styles/variables.css?inline';
-import colorCSS from '../styles/color.css?inline';
-import style from '../styles/components/divider.css?inline';
+import styleVariables from '../styles/variables.css';
+import colorCSS from '../styles/color.css';
+import style from '../styles/components/divider.css';
 import { prop } from 'aeico';
 /**
  * A simple divider component that can be used to separate content. It supports both horizontal and vertical orientations, as well as customizable thickness and color.

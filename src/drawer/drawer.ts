@@ -1,6 +1,6 @@
 import type { InferProps } from 'aeico';
-import styleVariables from '../styles/variables.css?inline';
-import style from '../styles/components/drawer.css?inline';
+import styleVariables from '../styles/variables.css';
+import style from '../styles/components/drawer.css';
 import AeicoComponent from '../aeico-component';
 import { html, prop, tags } from 'aeico';
 import type { DrawerPlacement } from './defines';

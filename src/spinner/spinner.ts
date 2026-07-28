@@ -1,10 +1,10 @@
 import AeicoComponent from '../aeico-component';
 import type { InferProps } from 'aeico';
 import { html, prop } from 'aeico';
-import styleVariables from '../styles/variables.css?inline';
-import sizeCSS from '../styles/size.css?inline';
-import colorCSS from '../styles/color.css?inline';
-import style from '../styles/components/spinner.css?inline';
+import styleVariables from '../styles/variables.css';
+import sizeCSS from '../styles/size.css';
+import colorCSS from '../styles/color.css';
+import style from '../styles/components/spinner.css';
 import type { SpinnerColor, SpinnerSize, SpinnerVariant } from './defines';
 
 /**

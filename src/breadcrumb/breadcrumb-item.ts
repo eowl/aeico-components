@@ -1,6 +1,6 @@
 ﻿import type { InferProps } from 'aeico';
-import styleVariables from '../styles/variables.css?inline';
-import style from '../styles/components/breadcrumb-item.css?inline';
+import styleVariables from '../styles/variables.css';
+import style from '../styles/components/breadcrumb-item.css';
 import AeicoComponent from '../aeico-component';
 import { html } from 'aeico';
 import { prop } from 'aeico';

@@ -1,9 +1,9 @@
 import type { InferProps } from 'aeico';
 import { html, prop } from 'aeico';
 import AeicoComponent from '../aeico-component';
-import styleVariables from '../styles/variables.css?inline';
-import colorCSS from '../styles/color.css?inline';
-import style from '../styles/components/progress-bar.css?inline';
+import styleVariables from '../styles/variables.css';
+import colorCSS from '../styles/color.css';
+import style from '../styles/components/progress-bar.css';
 import type { ProgressBarColor } from './defines';
 
 /**

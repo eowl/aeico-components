@@ -4,12 +4,12 @@ import { html, tags } from 'aeico';
 import type { ButtonColor, ButtonVariant, ButtonSize } from '../button';
 import type { RadioGroupMode, RadioGroupOption, RadioGroupOptions } from './defines';
 import Radio from './radio';
-import style from '../styles/components/radio-group.css?inline';
-import variables from '../styles/variables.css?inline';
-import sizeCSS from '../styles/size.css?inline';
-import colorCSS from '../styles/color.css?inline';
-import fieldLabelCSS from '../styles/components/field-label.css?inline';
-import actionButtonCSS from '../styles/components/action-button.css?inline';
+import style from '../styles/components/radio-group.css';
+import variables from '../styles/variables.css';
+import sizeCSS from '../styles/size.css';
+import colorCSS from '../styles/color.css';
+import fieldLabelCSS from '../styles/components/field-label.css';
+import actionButtonCSS from '../styles/components/action-button.css';
 
 class RadioGroup extends AeicoField {
   protected fieldElement: HTMLInputElement | null = null;

@@ -1,6 +1,6 @@
 import type { InferProps } from 'aeico';
-import styleVariables from '../styles/variables.css?inline';
-import tooltipStyle from '../styles/components/tooltip.css?inline';
+import styleVariables from '../styles/variables.css';
+import tooltipStyle from '../styles/components/tooltip.css';
 import AeicoComponent from '../aeico-component';
 import { html, prop } from 'aeico';
 import type { TooltipPlacement, TooltipTrigger } from './defines';

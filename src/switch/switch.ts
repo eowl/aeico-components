@@ -3,12 +3,12 @@ import type { InferProps } from 'aeico';
 import { html, prop } from 'aeico';
 import type { SwitchIconPlacement } from './defines';
 import '../icon/icon';
-import styleVariables from '../styles/variables.css?inline';
-import sizeCSS from '../styles/size.css?inline';
-import colorCSS from '../styles/color.css?inline';
-import fieldLabelCSS from '../styles/components/field-label.css?inline';
-import actionButtonCSS from '../styles/components/action-button.css?inline';
-import styles from '../styles/components/switch.css?inline';
+import styleVariables from '../styles/variables.css';
+import sizeCSS from '../styles/size.css';
+import colorCSS from '../styles/color.css';
+import fieldLabelCSS from '../styles/components/field-label.css';
+import actionButtonCSS from '../styles/components/action-button.css';
+import styles from '../styles/components/switch.css';
 
 class Switch extends AeicoField<boolean> {
   protected fieldElement: HTMLInputElement | null = null;

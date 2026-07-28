@@ -1,8 +1,8 @@
 import AeicoComponent from '../aeico-component';
 import type { InferProps } from 'aeico';
 import { html, prop } from 'aeico';
-import style from '../styles/components/menu.css?inline';
-import variables from '../styles/variables.css?inline';
+import style from '../styles/components/menu.css';
+import variables from '../styles/variables.css';
 import type { MenuMode, MenuOrientation, MenuSelectDetail, MenuTrigger } from './defines';
 // Ensure ae-menu-item is registered when this module is used
 import './menu-item';

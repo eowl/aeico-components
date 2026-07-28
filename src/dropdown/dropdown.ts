@@ -2,8 +2,8 @@
 import type { InferProps } from 'aeico';
 import { html } from 'aeico';
 import { prop } from 'aeico';
-import style from '../styles/components/dropdown.css?inline';
-import variables from '../styles/variables.css?inline';
+import style from '../styles/components/dropdown.css';
+import variables from '../styles/variables.css';
 import type { DropdownPlacement } from './defines';
 // Ensure ae-dropdown-item is registered when this module is used
 import './dropdown-item';

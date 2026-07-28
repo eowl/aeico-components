@@ -1,6 +1,6 @@
 ﻿import type { Props } from 'aeico';
-import styleVariables from '../styles/variables.css?inline';
-import tabsStyle from '../styles/components/tabs.css?inline';
+import styleVariables from '../styles/variables.css';
+import tabsStyle from '../styles/components/tabs.css';
 import AeicoComponent from '../aeico-component';
 import { html } from 'aeico';
 import type Tab from './tab';

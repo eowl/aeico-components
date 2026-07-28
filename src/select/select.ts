@@ -8,11 +8,11 @@ import type {
   SelectPosition,
   SelectMultiValue,
 } from './defines';
-import style from '../styles/components/select.css?inline';
-import variables from '../styles/variables.css?inline';
-import sizeCSS from '../styles/size.css?inline';
-import fieldLabelCSS from '../styles/components/field-label.css?inline';
-import actionButtonCSS from '../styles/components/action-button.css?inline';
+import style from '../styles/components/select.css';
+import variables from '../styles/variables.css';
+import sizeCSS from '../styles/size.css';
+import fieldLabelCSS from '../styles/components/field-label.css';
+import actionButtonCSS from '../styles/components/action-button.css';
 import SelectOptionElement from './select-option';
 import '../tag/tag';
 import { prop } from 'aeico';
