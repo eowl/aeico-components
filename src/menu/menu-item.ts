@@ -1,8 +1,8 @@
 import AeicoComponent from '../aeico-component';
 import type { InferProps } from 'aeico';
 import { html, prop } from 'aeico';
-import style from '../styles/components/menu-item.css?inline';
-import variables from '../styles/variables.css?inline';
+import style from '../styles/components/menu-item.css';
+import variables from '../styles/variables.css';
 import type {
   MenuMode,
   MenuOrientation,

@@ -1,8 +1,8 @@
 ﻿import type { InferProps } from 'aeico';
-import styleVariables from '../styles/variables.css?inline';
-import sizeCSS from '../styles/size.css?inline';
-import colorCSS from '../styles/color.css?inline';
-import badgeStyle from '../styles/components/badge.css?inline';
+import styleVariables from '../styles/variables.css';
+import sizeCSS from '../styles/size.css';
+import colorCSS from '../styles/color.css';
+import badgeStyle from '../styles/components/badge.css';
 import AeicoComponent from '../aeico-component';
 import { html } from 'aeico';
 import type { BadgeColor, BadgeSize, BadgeVariant } from './defines';

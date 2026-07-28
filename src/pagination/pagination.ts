@@ -1,9 +1,9 @@
 import { html, prop, tags } from 'aeico';
 import type { InferProps } from 'aeico';
 import AeicoComponent from '../aeico-component';
-import styleVariables from '../styles/variables.css?inline';
-import sizeCSS from '../styles/size.css?inline';
-import paginationStyle from '../styles/components/pagination.css?inline';
+import styleVariables from '../styles/variables.css';
+import sizeCSS from '../styles/size.css';
+import paginationStyle from '../styles/components/pagination.css';
 import type { PaginationSize, PaginationVariant } from './defines';
 import '../icon/icon';
 

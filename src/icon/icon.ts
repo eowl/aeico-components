@@ -2,10 +2,10 @@
 import { SVG_NS } from '../utils';
 import AeicoComponent from '../aeico-component';
 import { html } from 'aeico';
-import styleVariables from '../styles/variables.css?inline';
-import sizeCSS from '../styles/size.css?inline';
-import colorCSS from '../styles/color.css?inline';
-import style from '../styles/components/icon.css?inline';
+import styleVariables from '../styles/variables.css';
+import sizeCSS from '../styles/size.css';
+import colorCSS from '../styles/color.css';
+import style from '../styles/components/icon.css';
 import type { IconSize, IconColor } from './defines';
 import { defaultViewBox } from './defines';
 import IconRegistry from './registry';

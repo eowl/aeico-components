@@ -1,4 +1,4 @@
-﻿import tabPanelStyle from '../styles/components/tab-panel.css?inline';
+﻿import tabPanelStyle from '../styles/components/tab-panel.css';
 import AeicoComponent from '../aeico-component';
 import { html } from 'aeico';
 

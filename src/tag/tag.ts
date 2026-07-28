@@ -1,8 +1,8 @@
 ﻿import type { InferProps } from 'aeico';
-import styleVariables from '../styles/variables.css?inline';
-import sizeCSS from '../styles/size.css?inline';
-import colorCSS from '../styles/color.css?inline';
-import tagStyle from '../styles/components/tag.css?inline';
+import styleVariables from '../styles/variables.css';
+import sizeCSS from '../styles/size.css';
+import colorCSS from '../styles/color.css';
+import tagStyle from '../styles/components/tag.css';
 import AeicoComponent from '../aeico-component';
 import { html } from 'aeico';
 import type { TagColor, TagSize, TagVariant } from './defines';

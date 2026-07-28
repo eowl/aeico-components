@@ -1,8 +1,8 @@
 ﻿import AeicoComponent from '../aeico-component';
 import type { InferProps } from 'aeico';
 import { html } from 'aeico';
-import style from '../styles/components/dropdown-item.css?inline';
-import variables from '../styles/variables.css?inline';
+import style from '../styles/components/dropdown-item.css';
+import variables from '../styles/variables.css';
 import { prop } from 'aeico';
 // Ensure ae-icon is registered when icons are used
 import '../icon/icon';

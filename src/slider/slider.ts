@@ -2,12 +2,12 @@
 import type { InferProps } from 'aeico';
 import { html, tags } from 'aeico';
 import type { NormalizedOption, SliderMarks, SliderOption, SliderOptions } from './defines';
-import style from '../styles/components/slider.css?inline';
-import variables from '../styles/variables.css?inline';
-import sizeCSS from '../styles/size.css?inline';
-import colorCSS from '../styles/color.css?inline';
-import fieldLabelCSS from '../styles/components/field-label.css?inline';
-import actionButtonCSS from '../styles/components/action-button.css?inline';
+import style from '../styles/components/slider.css';
+import variables from '../styles/variables.css';
+import sizeCSS from '../styles/size.css';
+import colorCSS from '../styles/color.css';
+import fieldLabelCSS from '../styles/components/field-label.css';
+import actionButtonCSS from '../styles/components/action-button.css';
 import { prop } from 'aeico';
 
 class Slider extends AeicoField {

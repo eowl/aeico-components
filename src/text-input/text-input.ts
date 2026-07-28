@@ -1,11 +1,11 @@
 ﻿import AeicoField from '../aeico-field';
 import type { InferProps, Props } from 'aeico';
 import { html } from 'aeico';
-import variables from '../styles/variables.css?inline';
-import sizeCSS from '../styles/size.css?inline';
-import fieldLabelCSS from '../styles/components/field-label.css?inline';
-import actionButtonCSS from '../styles/components/action-button.css?inline';
-import style from '../styles/components/text-input.css?inline';
+import variables from '../styles/variables.css';
+import sizeCSS from '../styles/size.css';
+import fieldLabelCSS from '../styles/components/field-label.css';
+import actionButtonCSS from '../styles/components/action-button.css';
+import style from '../styles/components/text-input.css';
 
 class TextInput extends AeicoField {
   protected fieldElement: HTMLInputElement | null = null;

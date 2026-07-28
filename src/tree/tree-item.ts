@@ -1,8 +1,8 @@
 import AeicoComponent from '../aeico-component';
 import type { InferProps } from 'aeico';
 import { html, prop } from 'aeico';
-import style from '../styles/components/tree-item.css?inline';
-import variables from '../styles/variables.css?inline';
+import style from '../styles/components/tree-item.css';
+import variables from '../styles/variables.css';
 import type { ParentTreeLike } from './defines';
 import { SVG_NS } from '../utils';
 import '../icon';

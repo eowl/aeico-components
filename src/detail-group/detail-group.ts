@@ -1,6 +1,6 @@
 import type { InferProps, Props } from 'aeico';
-import styleVariables from '../styles/variables.css?inline';
-import detailGroupStyle from '../styles/components/detail-group.css?inline';
+import styleVariables from '../styles/variables.css';
+import detailGroupStyle from '../styles/components/detail-group.css';
 import AeicoComponent from '../aeico-component';
 import { html } from 'aeico';
 import type Detail from '../detail/detail';

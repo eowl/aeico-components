@@ -1,6 +1,6 @@
 ﻿import type { InferProps, Props } from 'aeico';
-import styleVariables from '../styles/variables.css?inline';
-import style from '../styles/components/dialog.css?inline';
+import styleVariables from '../styles/variables.css';
+import style from '../styles/components/dialog.css';
 import AeicoComponent from '../aeico-component';
 import { html, tags } from 'aeico';
 import '../icon/icon';

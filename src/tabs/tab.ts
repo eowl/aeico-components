@@ -1,5 +1,5 @@
 ﻿import type { Props } from 'aeico';
-import tabStyle from '../styles/components/tab.css?inline';
+import tabStyle from '../styles/components/tab.css';
 import AeicoComponent from '../aeico-component';
 import { html } from 'aeico';
 

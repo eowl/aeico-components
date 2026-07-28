@@ -1,8 +1,8 @@
 import type { InferProps } from 'aeico';
-import styleVariables from '../styles/variables.css?inline';
-import sizeCSS from '../styles/size.css?inline';
-import colorCSS from '../styles/color.css?inline';
-import copyButtonStyle from '../styles/components/copy-button.css?inline';
+import styleVariables from '../styles/variables.css';
+import sizeCSS from '../styles/size.css';
+import colorCSS from '../styles/color.css';
+import copyButtonStyle from '../styles/components/copy-button.css';
 import AeicoComponent from '../aeico-component';
 import { html } from 'aeico';
 import { prop } from 'aeico';

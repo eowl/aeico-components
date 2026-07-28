@@ -1,7 +1,7 @@
 ﻿import type { InferProps } from 'aeico';
-import styleVariables from '../styles/variables.css?inline';
-import colorCSS from '../styles/color.css?inline';
-import cardStyle from '../styles/components/card.css?inline';
+import styleVariables from '../styles/variables.css';
+import colorCSS from '../styles/color.css';
+import cardStyle from '../styles/components/card.css';
 import AeicoComponent from '../aeico-component';
 import { html } from 'aeico';
 import type { CardVariant, CardColor } from './defines';

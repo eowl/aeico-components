@@ -1,8 +1,8 @@
 ﻿import type { InferProps } from 'aeico';
-import styleVariables from '../styles/variables.css?inline';
-import sizeCSS from '../styles/size.css?inline';
-import colorCSS from '../styles/color.css?inline';
-import buttonStyle from '../styles/components/button.css?inline';
+import styleVariables from '../styles/variables.css';
+import sizeCSS from '../styles/size.css';
+import colorCSS from '../styles/color.css';
+import buttonStyle from '../styles/components/button.css';
 import AeicoComponent from '../aeico-component';
 import { html } from 'aeico';
 import { ButtonColor, ButtonSize, ButtonVariant } from './defines';

@@ -1,7 +1,7 @@
 ﻿import type { InferProps } from 'aeico';
-import styleVariables from '../styles/variables.css?inline';
-import colorCSS from '../styles/color.css?inline';
-import detailStyle from '../styles/components/detail.css?inline';
+import styleVariables from '../styles/variables.css';
+import colorCSS from '../styles/color.css';
+import detailStyle from '../styles/components/detail.css';
 import AeicoComponent from '../aeico-component';
 import { html } from 'aeico';
 import { prop } from 'aeico';
