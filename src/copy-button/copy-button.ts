@@ -14,6 +14,7 @@ import type { TooltipPlacement } from '../tooltip/defines';
 import type { CopyButtonColor, CopyButtonSize, CopyButtonVariant } from './defines';
 
 class CopyButton extends AeicoComponent {
+  static tagName = 'copy-button';
   protected static styles = [styleVariables, sizeCSS, colorCSS, copyButtonStyle];
 
   @prop({ type: String })

@@ -32,6 +32,7 @@ import type { AlertColor, AlertSize, AlertVariant } from './defines';
  * ```
  */
 class Alert extends AeicoComponent {
+  static tagName = 'alert';
   static props: Props = {
     color: { type: String },
     variant: { type: String },

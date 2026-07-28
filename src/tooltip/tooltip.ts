@@ -25,6 +25,7 @@ import type { TooltipPlacement, TooltipTrigger } from './defines';
  * ```
  */
 class Tooltip extends AeicoComponent {
+  static tagName = 'tooltip';
   protected static styles = [styleVariables, tooltipStyle];
 
   @prop({ type: String })

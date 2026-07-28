@@ -7,6 +7,7 @@ import type { DrawerPlacement } from './defines';
 import '../icon/icon';
 
 class Drawer extends AeicoComponent {
+  static tagName = 'drawer';
   protected static styles = [styleVariables, style];
 
   @prop({ type: String })

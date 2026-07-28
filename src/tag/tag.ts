@@ -25,6 +25,7 @@ import { prop } from 'aeico';
  * ```
  */
 class Tag extends AeicoComponent {
+  static tagName = 'tag';
   protected static styles = [styleVariables, sizeCSS, colorCSS, tagStyle];
 
   @prop({ type: String })

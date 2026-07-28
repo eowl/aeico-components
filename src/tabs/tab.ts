@@ -4,6 +4,7 @@ import AeicoComponent from '../aeico-component';
 import { html } from 'aeico';
 
 class Tab extends AeicoComponent {
+  static tagName = 'tab';
   static props: Props = {
     active: { type: Boolean },
     disabled: { type: Boolean },
