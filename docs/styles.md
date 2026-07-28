@@ -1,5 +1,53 @@
 # Styles
 
+Aeico Components provides CSS files for both Light DOM and Shadow DOM usage.
+
+## Light DOM
+
+Import as a stylesheet (injected into `<style>`). Used for page-level layout utilities and theming.
+
+```js
+// Layout utilities (container, grid, spacing)
+import 'aeico-components/styles/layout.css'
+
+// Border-radius utility classes
+import 'aeico-components/styles/radius.css'
+
+// Design tokens (colors, fonts, shadows)
+import 'aeico-components/styles/variables.css'
+```
+
+Place `variables.css` before `layout.css` if using both — layout tokens reference variables.
+
+```html
+<link rel="stylesheet" href="node_modules/aeico-components/src/styles/variables.css">
+<link rel="stylesheet" href="node_modules/aeico-components/src/styles/layout.css">
+```
+
+## Shadow DOM
+
+Import as a raw CSS string for `adoptedStyleSheets` (or `static styles` in Aeico components).
+
+```js
+import layoutCSS from 'aeico-components/styles/layout'
+import variablesCSS from 'aeico-components/styles/variables'
+import radiusCSS from 'aeico-components/styles/radius'
+
+class MyComponent extends AeicoElement {
+  static styles = [variablesCSS, layoutCSS]
+}
+```
+
+These exports work with any bundler (esbuild, Rollup, Webpack, Vite) — no `?raw` or `?inline` query parameter needed.
+
+## Difference
+
+| Usage | Path | Returns |
+|---|---|---|
+| Light DOM | `aeico-components/styles/layout.css` | Injected `<style>` |
+| Shadow DOM | `aeico-components/styles/layout` | String (`export default "…"`) |
+
+
 `Utilities`
 
 Light DOM utility stylesheets for layout, spacing, border-radius, and design tokens. These are standalone CSS files — not Web Components — imported into your page's light DOM.
