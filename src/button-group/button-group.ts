@@ -38,6 +38,8 @@ import DropdownButton from '../dropdown/dropdown-button';
  * ```
  */
 class ButtonGroup extends AeicoComponent {
+  static tagName = 'button-group';
+
   static props: Props = {
     variant: { type: String },
     color: { type: String },

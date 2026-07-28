@@ -1,5 +1,4 @@
 ﻿import { AeicoElement } from 'aeico';
-import { toKebab } from './utils';
 
 const TAG_NAME_PREFIX = 'ae';
 
@@ -8,7 +7,13 @@ const TAG_NAME_PREFIX = 'ae';
  */
 class AeicoComponent extends AeicoElement {
   static register(name?: string) {
-    const tagName = name || `${TAG_NAME_PREFIX}-${this.tagName || toKebab(this.name)}`;
+    const tagName = name || (this.tagName && `${TAG_NAME_PREFIX}-${this.tagName}`);
+
+    if (!tagName) {
+      throw new Error(
+        `${this.name}: unable to determine tag name. Either call register('tag-name') or set "static tagName = '...'" on the class.`,
+      );
+    }
 
     super.register(tagName);
   }

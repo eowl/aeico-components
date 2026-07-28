@@ -7,6 +7,7 @@ import type Tab from './tab';
 import type { TabVariant } from './defines';
 
 class Tabs extends AeicoComponent {
+  static tagName = 'tabs';
   static props: Props = {
     activeIndex: { type: Number },
     variant: { type: String },

@@ -6,6 +6,7 @@ import { html, tags } from 'aeico';
 import '../icon/icon';
 
 class Dialog extends AeicoComponent {
+  static tagName = 'dialog';
   static props: Props = {
     label: { type: String },
     width: { type: String },

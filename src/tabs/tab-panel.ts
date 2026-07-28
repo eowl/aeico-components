@@ -3,6 +3,7 @@ import AeicoComponent from '../aeico-component';
 import { html } from 'aeico';
 
 class TabPanel extends AeicoComponent {
+  static tagName = 'tab-panel';
   protected static styles = [tabPanelStyle];
 
   protected render() {

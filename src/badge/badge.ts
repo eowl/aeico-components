@@ -25,6 +25,7 @@ import { prop } from 'aeico';
  * ```
  */
 class Badge extends AeicoComponent {
+  static tagName = 'badge';
   protected static styles = [styleVariables, sizeCSS, colorCSS, badgeStyle];
 
   @prop({ type: String })

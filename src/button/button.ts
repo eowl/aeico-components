@@ -32,6 +32,7 @@ import { prop } from 'aeico';
  * ```
  */
 class Button extends AeicoComponent {
+  static tagName = 'button';
   protected static styles = [styleVariables, sizeCSS, colorCSS, buttonStyle];
 
   @prop({ type: String })
