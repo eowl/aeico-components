@@ -2,12 +2,8 @@
 
 declare const __DEV__: boolean
 
-// Declare CSS module types for Vite's ?inline suffix
-declare module '*.css?inline' {
-  const content: string
-  export default content
-}
-
+// CSS module types — .css imports resolve to strings (CSS text).
+// Used by example dev server (Vite) and test runner (WTR).
 declare module '*.css' {
   const content: string
   export default content
