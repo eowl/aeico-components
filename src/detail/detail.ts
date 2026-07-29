@@ -1,4 +1,4 @@
-﻿import type { InferProps } from 'aeico';
+import type { InferProps } from 'aeico';
 import styleVariables from '../styles/variables.css';
 import colorCSS from '../styles/color.css';
 import detailStyle from '../styles/components/detail.css';
@@ -19,7 +19,6 @@ import type { DetailColor, DetailVariant, DetailIconPlacement } from './defines'
  * </ae-detail>
  */
 class Detail extends AeicoComponent {
-  static tagName = 'detail';
 
   protected static styles = [styleVariables, colorCSS, detailStyle];
 
@@ -113,7 +112,7 @@ class Detail extends AeicoComponent {
   }
 }
 
-Detail.register();
+Detail.define('detail');
 
 declare global {
   interface HTMLElementTagNameMap {

@@ -22,7 +22,6 @@ import type { SpinnerColor, SpinnerSize, SpinnerVariant } from './defines';
  * ```
  */
 class Spinner extends AeicoComponent {
-  static tagName = 'spinner';
 
   @prop({ type: String })
   accessor variant: SpinnerVariant = 'border';
@@ -69,7 +68,7 @@ class Spinner extends AeicoComponent {
   }
 }
 
-Spinner.register();
+Spinner.define('spinner');
 
 declare global {
   interface HTMLElementTagNameMap {

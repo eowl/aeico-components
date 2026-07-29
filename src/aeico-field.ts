@@ -1,4 +1,4 @@
-﻿import type { InferProps, Props, Watchers } from 'aeico';
+import type { InferProps, Props, Watchers } from 'aeico';
 import { tags } from 'aeico';
 import AeicoComponent from './aeico-component';
 

@@ -5,7 +5,7 @@ import Drawer from '../../src/drawer'
 const TAG_NAME = 'ae-drawer'
 
 before(async () => {
-  Drawer.register()
+  Drawer.define('drawer')
   await whenDefined(TAG_NAME)
 })
 

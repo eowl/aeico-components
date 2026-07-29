@@ -5,7 +5,7 @@ import CopyButton from '../../src/copy-button/copy-button.js'
 const TAG_NAME = 'ae-copy-button'
 
 before(async () => {
-  CopyButton.register()
+  CopyButton.define('copy-button')
   await whenDefined(TAG_NAME)
 })
 

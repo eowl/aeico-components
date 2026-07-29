@@ -1,4 +1,4 @@
-﻿import AeicoField, { type FieldAction } from '../aeico-field';
+import AeicoField, { type FieldAction } from '../aeico-field';
 import type { InferProps, Props } from 'aeico';
 import { html } from 'aeico';
 import styleVariables from '../styles/variables.css';
@@ -12,7 +12,6 @@ import { CheckboxVariant } from './defines';
 class Checkbox extends AeicoField<boolean> {
   protected fieldElement: HTMLInputElement | null = null;
 
-  static tagName = 'checkbox';
 
   static props: Props = {
     checked: { type: Boolean },
@@ -93,7 +92,7 @@ class Checkbox extends AeicoField<boolean> {
   }
 }
 
-Checkbox.register();
+Checkbox.define('checkbox');
 
 declare global {
   interface HTMLElementTagNameMap {

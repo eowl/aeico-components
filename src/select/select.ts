@@ -1,4 +1,4 @@
-﻿import AeicoField from '../aeico-field';
+import AeicoField from '../aeico-field';
 import type { InferProps } from 'aeico';
 import { html, tags } from 'aeico';
 import type {
@@ -37,7 +37,6 @@ class Select extends AeicoField<SelectOptionValue | SelectMultiValue> {
   private _slotOptionData: Array<{ value: string; label: string }> = [];
   private _selectedListEl: HTMLElement | null = null;
 
-  static tagName = 'select';
 
   @prop({ type: Boolean, observe: false, reflect: false })
   accessor _expanded: boolean = false;
@@ -416,7 +415,7 @@ class Select extends AeicoField<SelectOptionValue | SelectMultiValue> {
   }
 }
 
-Select.register();
+Select.define('select');
 
 declare global {
   interface HTMLElementTagNameMap {

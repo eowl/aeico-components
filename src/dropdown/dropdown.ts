@@ -1,4 +1,4 @@
-﻿import AeicoComponent from '../aeico-component';
+import AeicoComponent from '../aeico-component';
 import type { InferProps } from 'aeico';
 import { html } from 'aeico';
 import { prop } from 'aeico';
@@ -42,7 +42,6 @@ import './dropdown-item';
  * ```
  */
 class Dropdown extends AeicoComponent {
-  static tagName = 'dropdown';
 
   protected static styles = [variables, style];
 
@@ -199,7 +198,7 @@ class Dropdown extends AeicoComponent {
   }
 }
 
-Dropdown.register();
+Dropdown.define('dropdown');
 
 declare global {
   interface HTMLElementTagNameMap {

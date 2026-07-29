@@ -1,4 +1,4 @@
-﻿import type { InferProps, Props } from 'aeico';
+import type { InferProps, Props } from 'aeico';
 import AeicoComponent from '../aeico-component';
 import { html } from 'aeico';
 import type { IconColor } from '../icon/defines';
@@ -17,7 +17,6 @@ export type IconButtonSize = 'xs' | 'sm' | 'md' | 'lg';
  * ```
  */
 class IconButton extends AeicoComponent {
-  static tagName = 'icon-button';
 
   static props: Props = {
     icon: { type: String },
@@ -52,7 +51,7 @@ class IconButton extends AeicoComponent {
   }
 }
 
-IconButton.register();
+IconButton.define('icon-button');
 
 declare global {
   interface HTMLElementTagNameMap {

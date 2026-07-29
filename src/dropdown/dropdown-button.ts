@@ -1,4 +1,4 @@
-﻿import AeicoComponent from '../aeico-component';
+import AeicoComponent from '../aeico-component';
 import type { InferProps } from 'aeico';
 import { html } from 'aeico';
 import { prop } from 'aeico';
@@ -40,7 +40,6 @@ import '../button/button';
  * - `select` — `{ detail: { value, label } }` when a menu item is selected
  */
 class DropdownButton extends AeicoComponent {
-  static tagName = 'dropdown-button';
 
   // ae-button and ae-dropdown each carry their own shadow DOM styles.
   // Only the host display is set here so button-group compact layout works.
@@ -118,7 +117,7 @@ class DropdownButton extends AeicoComponent {
   }
 }
 
-DropdownButton.register();
+DropdownButton.define('dropdown-button');
 
 declare global {
   interface HTMLElementTagNameMap {

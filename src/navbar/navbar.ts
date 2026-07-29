@@ -1,4 +1,4 @@
-﻿import type { InferProps } from 'aeico';
+import type { InferProps } from 'aeico';
 import styleVariables from '../styles/variables.css';
 import colorCSS from '../styles/color.css';
 import navbarStyle from '../styles/components/navbar.css';
@@ -43,7 +43,6 @@ import type { NavbarColor, NavbarAppearance } from './defines';
  * ```
  */
 class Navbar extends AeicoComponent {
-  static tagName = 'navbar';
 
   protected static styles = [styleVariables, colorCSS, navbarStyle];
 
@@ -148,7 +147,7 @@ class Navbar extends AeicoComponent {
   }
 }
 
-Navbar.register();
+Navbar.define('navbar');
 
 declare global {
   interface HTMLElementTagNameMap {

@@ -7,7 +7,6 @@ import type { DrawerPlacement } from './defines';
 import '../icon/icon';
 
 class Drawer extends AeicoComponent {
-  static tagName = 'drawer';
   protected static styles = [styleVariables, style];
 
   @prop({ type: String })
@@ -163,7 +162,7 @@ class Drawer extends AeicoComponent {
   }
 }
 
-Drawer.register();
+Drawer.define('drawer');
 
 declare global {
   interface HTMLElementTagNameMap {

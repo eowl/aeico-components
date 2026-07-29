@@ -20,7 +20,6 @@ import './menu-item';
  * - `select` — `{ detail: { key, label, keyPath } }` when a leaf item is clicked.
  */
 class Menu extends AeicoComponent {
-  static tagName = 'menu';
 
   protected static styles = [variables, style];
 
@@ -72,7 +71,7 @@ class Menu extends AeicoComponent {
   }
 }
 
-Menu.register();
+Menu.define('menu');
 
 declare global {
   interface HTMLElementTagNameMap {

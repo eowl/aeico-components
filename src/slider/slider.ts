@@ -1,4 +1,4 @@
-﻿import AeicoField from '../aeico-field';
+import AeicoField from '../aeico-field';
 import type { InferProps } from 'aeico';
 import { html, tags } from 'aeico';
 import type { NormalizedOption, SliderMarks, SliderOption, SliderOptions } from './defines';
@@ -18,7 +18,6 @@ class Slider extends AeicoField {
   private _boundOnRangeInput: () => void;
   private _boundOnNumberInput: () => void;
 
-  static tagName = 'slider';
 
   @prop({ type: Array })
   accessor options: SliderOptions = [];
@@ -359,7 +358,7 @@ class Slider extends AeicoField {
   }
 }
 
-Slider.register();
+Slider.define('slider');
 
 declare global {
   interface HTMLElementTagNameMap {

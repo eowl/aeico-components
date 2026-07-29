@@ -25,7 +25,6 @@ import type { ProgressBarColor } from './defines';
  *   When set, takes precedence over the `color` prop entirely.
  */
 class ProgressBar extends AeicoComponent {
-  static tagName = 'progress-bar';
   protected static styles = [styleVariables, colorCSS, style];
 
   @prop({ type: Number })
@@ -68,7 +67,7 @@ class ProgressBar extends AeicoComponent {
   }
 }
 
-ProgressBar.register();
+ProgressBar.define('progress-bar');
 
 declare global {
   interface HTMLElementTagNameMap {

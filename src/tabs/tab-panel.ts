@@ -1,9 +1,8 @@
-﻿import tabPanelStyle from '../styles/components/tab-panel.css';
+import tabPanelStyle from '../styles/components/tab-panel.css';
 import AeicoComponent from '../aeico-component';
 import { html } from 'aeico';
 
 class TabPanel extends AeicoComponent {
-  static tagName = 'tab-panel';
   protected static styles = [tabPanelStyle];
 
   protected render() {
@@ -13,7 +12,7 @@ class TabPanel extends AeicoComponent {
   }
 }
 
-TabPanel.register();
+TabPanel.define('tab-panel');
 
 declare global {
   interface HTMLElementTagNameMap {

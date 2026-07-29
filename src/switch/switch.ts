@@ -1,4 +1,4 @@
-﻿import AeicoField, { type FieldAction } from '../aeico-field';
+import AeicoField, { type FieldAction } from '../aeico-field';
 import type { InferProps } from 'aeico';
 import { html, prop } from 'aeico';
 import type { SwitchIconPlacement } from './defines';
@@ -13,7 +13,6 @@ import styles from '../styles/components/switch.css';
 class Switch extends AeicoField<boolean> {
   protected fieldElement: HTMLInputElement | null = null;
 
-  static tagName = 'switch';
 
   @prop({ type: Boolean })
   accessor checked: boolean | undefined;
@@ -125,7 +124,7 @@ class Switch extends AeicoField<boolean> {
   }
 }
 
-Switch.register();
+Switch.define('switch');
 
 declare global {
   interface HTMLElementTagNameMap {

@@ -35,7 +35,6 @@ import type TreeItem from './tree-item';
  * ```
  */
 class Tree extends AeicoComponent {
-  static tagName = 'tree';
 
   protected static styles = [variables, style];
 
@@ -225,7 +224,7 @@ class Tree extends AeicoComponent {
   }
 }
 
-Tree.register();
+Tree.define('tree');
 
 declare global {
   interface HTMLElementTagNameMap {

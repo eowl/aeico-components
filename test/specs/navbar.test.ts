@@ -5,7 +5,7 @@ import Navbar from '../../src/navbar/navbar.js'
 const TAG = 'ae-navbar'
 
 before(async () => {
-  Navbar.register()
+  Navbar.define('navbar')
   await whenDefined(TAG)
 })
 

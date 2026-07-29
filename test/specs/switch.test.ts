@@ -10,7 +10,7 @@ const ICON_PATH_A = 'M12 2v20 M2 12h20'
 const ICON_PATH_B = 'M12 5a7 7 0 1 0 0 14 7 7 0 0 0 0-14z'
 
 before(async () => {
-  Switch.register()
+  Switch.define('switch')
   await whenDefined(TAG_NAME)
 
   IconRegistry.add({

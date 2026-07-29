@@ -5,7 +5,7 @@ import NumberInput from '../../src/number-input/number-input.js'
 const TAG_NAME = 'ae-number-input'
 
 before(async () => {
-  NumberInput.register()
+  NumberInput.define('number-input')
   await whenDefined(TAG_NAME)
 })
 

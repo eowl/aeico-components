@@ -5,7 +5,7 @@ import Tag from '../../src/tag/tag.js'
 const TAG_NAME = 'ae-tag'
 
 before(async () => {
-  Tag.register()
+  Tag.define('tag')
   await whenDefined(TAG_NAME)
 })
 

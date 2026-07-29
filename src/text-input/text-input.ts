@@ -1,4 +1,4 @@
-﻿import AeicoField from '../aeico-field';
+import AeicoField from '../aeico-field';
 import type { InferProps, Props } from 'aeico';
 import { html } from 'aeico';
 import variables from '../styles/variables.css';
@@ -10,7 +10,6 @@ import style from '../styles/components/text-input.css';
 class TextInput extends AeicoField {
   protected fieldElement: HTMLInputElement | null = null;
 
-  static tagName = 'text-input';
 
   static props: Props = {
     placeholder: { type: String },
@@ -58,7 +57,7 @@ class TextInput extends AeicoField {
   }
 }
 
-TextInput.register();
+TextInput.define('text-input');
 
 declare global {
   interface HTMLElementTagNameMap {

@@ -13,11 +13,11 @@ const BTN_TAG = 'ae-button'
 const GROUP_TAG = 'ae-button-group'
 
 before(async () => {
-  DropdownButton.register()
-  Dropdown.register()
-  DropdownItem.register()
-  Button.register()
-  ButtonGroup.register()
+  DropdownButton.define('button')
+  Dropdown.define('dropdown')
+  DropdownItem.define('dropdown-item')
+  Button.define('button')
+  ButtonGroup.define('button-group')
   await Promise.all([
     whenDefined(TAG),
     whenDefined(DROPDOWN_TAG),

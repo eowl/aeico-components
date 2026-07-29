@@ -46,7 +46,6 @@ type PageItem = number | 'ellipsis-start' | 'ellipsis-end';
  * ```
  */
 class Pagination extends AeicoComponent {
-  static tagName = 'pagination';
 
   protected static styles = [styleVariables, sizeCSS, paginationStyle];
 
@@ -298,7 +297,7 @@ class Pagination extends AeicoComponent {
   }
 }
 
-Pagination.register();
+Pagination.define('pagination');
 
 declare global {
   interface HTMLElementTagNameMap {

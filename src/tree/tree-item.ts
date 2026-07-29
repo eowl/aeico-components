@@ -28,7 +28,6 @@ let _autoKeyCounter = 0;
  * @slot label   - Custom label content (falls back to the `label` attribute text).
  */
 class TreeItem extends AeicoComponent {
-  static tagName = 'tree-item';
 
   protected static styles = [variables, style];
 
@@ -246,7 +245,7 @@ class TreeItem extends AeicoComponent {
   }
 }
 
-TreeItem.register();
+TreeItem.define('tree-item');
 
 declare global {
   interface HTMLElementTagNameMap {

@@ -1,4 +1,4 @@
-﻿import type { InferProps, Props } from 'aeico';
+import type { InferProps, Props } from 'aeico';
 import styleVariables from '../styles/variables.css';
 import colorCSS from '../styles/color.css';
 import alertStyle from '../styles/components/alert.css';
@@ -32,7 +32,6 @@ import type { AlertColor, AlertSize, AlertVariant } from './defines';
  * ```
  */
 class Alert extends AeicoComponent {
-  static tagName = 'alert';
   static props: Props = {
     color: { type: String },
     variant: { type: String },
@@ -97,7 +96,7 @@ class Alert extends AeicoComponent {
   };
 }
 
-Alert.register();
+Alert.define('alert');
 
 declare global {
   interface HTMLElementTagNameMap {

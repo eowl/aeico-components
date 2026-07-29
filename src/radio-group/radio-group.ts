@@ -1,4 +1,4 @@
-﻿import AeicoField from '../aeico-field';
+import AeicoField from '../aeico-field';
 import type { InferProps, Props } from 'aeico';
 import { html, tags } from 'aeico';
 import type { ButtonColor, ButtonVariant, ButtonSize } from '../button';
@@ -20,7 +20,6 @@ class RadioGroup extends AeicoField {
   private static _instanceCount = 0;
   private readonly _groupName: string;
 
-  static tagName = 'radio-group';
 
   static props: Props = {
     options: { type: Array },
@@ -226,7 +225,7 @@ class RadioGroup extends AeicoField {
   }
 }
 
-RadioGroup.register();
+RadioGroup.define('radio-group');
 
 declare global {
   interface HTMLElementTagNameMap {

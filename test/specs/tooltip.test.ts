@@ -5,7 +5,7 @@ import Tooltip from '../../src/tooltip/tooltip.js'
 const TAG_NAME = 'ae-tooltip'
 
 before(async () => {
-  Tooltip.register()
+  Tooltip.define('tooltip')
   await whenDefined(TAG_NAME)
 })
 

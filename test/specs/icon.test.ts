@@ -12,7 +12,7 @@ const MULTI_PATH_1 = 'M10 5l4-4 4 4'
 const MULTI_PATH_2 = 'M10 19l4 4 4-4'
 
 before(async () => {
-  Icon.register()
+  Icon.define('icon')
   await whenDefined(TAG_NAME)
 
   IconRegistry.add({

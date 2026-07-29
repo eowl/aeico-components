@@ -1,4 +1,4 @@
-﻿import type { InferProps } from 'aeico';
+import type { InferProps } from 'aeico';
 import styleVariables from '../styles/variables.css';
 import sizeCSS from '../styles/size.css';
 import colorCSS from '../styles/color.css';
@@ -32,7 +32,6 @@ import { prop } from 'aeico';
  * ```
  */
 class Button extends AeicoComponent {
-  static tagName = 'button';
   protected static styles = [styleVariables, sizeCSS, colorCSS, buttonStyle];
 
   @prop({ type: String })
@@ -134,7 +133,7 @@ class Button extends AeicoComponent {
   }
 }
 
-Button.register();
+Button.define('button');
 
 declare global {
   interface HTMLElementTagNameMap {

@@ -23,8 +23,8 @@ function getDropdown(el: Select): HTMLElement {
 }
 
 before(async () => {
-  Select.register()
-  SelectOption.register()
+  Select.define('select')
+  SelectOption.define('select-option')
   await Promise.all([whenDefined(TAG), whenDefined(OPT_TAG)])
 })
 

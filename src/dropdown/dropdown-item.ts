@@ -1,4 +1,4 @@
-﻿import AeicoComponent from '../aeico-component';
+import AeicoComponent from '../aeico-component';
 import type { InferProps } from 'aeico';
 import { html } from 'aeico';
 import style from '../styles/components/dropdown-item.css';
@@ -22,7 +22,6 @@ import '../icon/icon';
  * ```
  */
 class DropdownItem extends AeicoComponent {
-  static tagName = 'dropdown-item';
 
   /** Value emitted in the `select` event detail on the parent dropdown. */
   @prop({ type: String })
@@ -124,7 +123,7 @@ class DropdownItem extends AeicoComponent {
   }
 }
 
-DropdownItem.register();
+DropdownItem.define('dropdown-item');
 
 declare global {
   interface HTMLElementTagNameMap {

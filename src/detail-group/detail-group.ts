@@ -21,7 +21,6 @@ import type { DetailColor, DetailVariant } from '../detail/defines';
  * ```
  */
 class DetailGroup extends AeicoComponent {
-  static tagName = 'detail-group';
 
   static props: Props = {
     multiple: { type: Boolean },
@@ -92,7 +91,7 @@ class DetailGroup extends AeicoComponent {
   }
 }
 
-DetailGroup.register();
+DetailGroup.define('detail-group');
 
 declare global {
   interface HTMLElementTagNameMap {

@@ -1,4 +1,4 @@
-﻿import AeicoComponent from '../aeico-component';
+import AeicoComponent from '../aeico-component';
 import type { InferProps, Props } from 'aeico';
 
 /**
@@ -32,7 +32,6 @@ import type { InferProps, Props } from 'aeico';
  * ```
  */
 class Radio extends AeicoComponent {
-  static tagName = 'radio';
 
   /** No shadow DOM — this element is a transparent data/content carrier. */
   static override useShadowDOM = false;
@@ -46,7 +45,7 @@ class Radio extends AeicoComponent {
   declare disabled?: boolean;
 }
 
-Radio.register();
+Radio.define('radio');
 
 declare global {
   interface HTMLElementTagNameMap {

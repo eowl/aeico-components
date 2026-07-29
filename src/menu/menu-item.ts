@@ -33,7 +33,6 @@ import type {
  * ```
  */
 class MenuItem extends AeicoComponent {
-  static tagName = 'menu-item';
 
   protected static styles = [variables, style];
 
@@ -312,7 +311,7 @@ class MenuItem extends AeicoComponent {
   }
 }
 
-MenuItem.register();
+MenuItem.define('menu-item');
 
 declare global {
   interface HTMLElementTagNameMap {

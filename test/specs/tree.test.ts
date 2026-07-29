@@ -17,8 +17,8 @@ const BASIC_TREE = `
 `
 
 before(async () => {
-  Tree.register()
-  TreeItem.register()
+  Tree.define('tree')
+  TreeItem.define('tree-item')
   await Promise.all([whenDefined(TREE), whenDefined(ITEM)])
 })
 
