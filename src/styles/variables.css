@@ -74,7 +74,7 @@
   --ae-cyan-800: color-mix(in srgb, var(--ae-cyan) 40%, black);
   --ae-cyan-900: color-mix(in srgb, var(--ae-cyan) 20%, black);
 
-  /* Gray  (neutral — base #6e6e6e) */
+  /* Gray  (neutral - base #6e6e6e) */
   --ae-gray-100: color-mix(in srgb, var(--ae-gray) 20%, white);
   --ae-gray-200: color-mix(in srgb, var(--ae-gray) 40%, white);
   --ae-gray-300: color-mix(in srgb, var(--ae-gray) 60%, white);
@@ -85,7 +85,7 @@
   --ae-gray-800: color-mix(in srgb, var(--ae-gray) 40%, black);
   --ae-gray-900: color-mix(in srgb, var(--ae-gray) 20%, black);
 
-  /* Slate  (blue-gray — base #64748b, used for 'secondary') */
+  /* Slate  (blue-gray - base #64748b, used for 'secondary') */
   --ae-slate-100: color-mix(in srgb, var(--ae-slate) 20%, white);
   --ae-slate-200: color-mix(in srgb, var(--ae-slate) 40%, white);
   --ae-slate-300: color-mix(in srgb, var(--ae-slate) 60%, white);
@@ -121,7 +121,7 @@
 
 :root,
 :host {
-  /* Hover / active mix (light default — overridden in § 6 dark) */
+  /* Hover / active mix (light default - overridden in § 6 dark) */
   --ae-color-mix-hover:  black 10%;
   --ae-color-mix-active: black 20%;
 
@@ -155,7 +155,7 @@
   --ae-color-info-active:      color-mix(in srgb, var(--ae-color-info), var(--ae-color-mix-active));
   --ae-color-info-disabled:    color-mix(in srgb, var(--ae-cyan) 50%, var(--ae-gray-500));
 
-  /* Secondary (Slate) — base differs per theme, overridden in § 6 dark */
+  /* Secondary (Slate) - base differs per theme, overridden in § 6 dark */
   --ae-color-secondary:        var(--ae-slate-500);
   --ae-color-secondary-hover:  color-mix(in srgb, var(--ae-color-secondary), var(--ae-color-mix-hover));
   --ae-color-secondary-active: color-mix(in srgb, var(--ae-color-secondary), var(--ae-color-mix-active));
@@ -171,7 +171,7 @@
 :host {
   color-scheme: light;
 
-  /* Gray UI aliases — lighter palette steps for elements on white background */
+  /* Gray UI aliases - lighter palette steps for elements on white background */
   --ae-color-gray-dark:     var(--ae-gray-400);
   --ae-color-gray:          var(--ae-gray-300);
   --ae-color-gray-light:    var(--ae-gray-200);
@@ -203,7 +203,7 @@
   --ae-focus-ring:    rgb(from var(--ae-blue) r g b / 0.30);
   --ae-focus-ring-sm: rgb(from var(--ae-blue) r g b / 0.15);
 
-  /* Subtle intent tokens — light context */
+  /* Subtle intent tokens - light context */
   --ae-color-primary-bg-subtle:       rgb(from var(--ae-blue) r g b / 0.08);
   --ae-color-primary-border-subtle:   rgb(from var(--ae-blue) r g b / 0.40);
   --ae-color-primary-text-emphasis:   var(--ae-blue-700);
@@ -234,7 +234,7 @@
   --ae-color-dark-bg-subtle:          var(--ae-dark-100);   /* opaque on white: ~#d6d8d9 */
   --ae-color-dark-border-subtle:      var(--ae-dark-300);   /* opaque on white: ~#85898c */
 
-  /* Component tokens — light defaults */
+  /* Component tokens - light defaults */
   --ae-action-btn-bg:          var(--ae-gray-200);
   --ae-action-btn-bg-hover:    var(--ae-color-primary);
   --ae-action-btn-color:       var(--ae-gray-600);
@@ -269,14 +269,12 @@
   --ae-size-3xs:   round(calc(var(--ae-size-2xs) / 1.125), 1px);         /* 10px */
 }
 
-/* Border-radius tokens — shared across all components */
+/* Border-radius tokens - shared across all components */
 :root,
 :host {
   /**
    * Unified border-radius hook for all components.
    *
-   * Not set by default — each component falls back to its own --ae-radius-*
-   * token (e.g. button → sm, card → lg, input → xs).
    *
    * Usage:
    *   :root { --ae-border-radius: 0; }       // global: all components square
@@ -298,7 +296,7 @@
   --ae-radius-circle:  50%;
 }
 
-/* Layout tokens — defined on :root so all light DOM elements can use them */
+/* Layout tokens - defined on :root so all light DOM elements can use them */
 :root,
 :host {
   --container-max-width: 1280px;
@@ -311,18 +309,18 @@
 :host-context([theme="dark"]) {
   color-scheme: dark;
 
-  /* Hover / active — slightly gentler on dark backgrounds */
+  /* Hover / active - slightly gentler on dark backgrounds */
   --ae-color-mix-hover:  black 8%;
   --ae-color-mix-active: black 16%;
 
-  /* Gray UI aliases — darker palette steps for elements on dark background */
+  /* Gray UI aliases - darker palette steps for elements on dark background */
   --ae-color-gray-dark:     var(--ae-gray-800);
   --ae-color-gray:          var(--ae-gray-700);
   --ae-color-gray-light:    var(--ae-gray-600);
   --ae-color-gray-lighter:  var(--ae-gray-500);
   --ae-color-gray-lightest: var(--ae-gray-400);
 
-  /* Secondary — deeper base on dark background */
+  /* Secondary - deeper base on dark background */
   --ae-color-secondary:      var(--ae-slate-700);
   --ae-color-secondary-text: var(--ae-slate-300);
 
@@ -351,7 +349,7 @@
   --ae-focus-ring:    rgb(from var(--ae-blue) r g b / 0.25);
   --ae-focus-ring-sm: rgb(from var(--ae-blue) r g b / 0.10);
 
-  /* Subtle intent tokens — dark context (more alpha, lighter text-emphasis) */
+  /* Subtle intent tokens - dark context (more alpha, lighter text-emphasis) */
   --ae-color-primary-bg-subtle:       rgb(from var(--ae-blue) r g b / 0.10);
   --ae-color-primary-border-subtle:   rgb(from var(--ae-blue) r g b / 0.30);
   --ae-color-primary-text-emphasis:   var(--ae-blue-300);
@@ -382,7 +380,7 @@
   --ae-color-dark-bg-subtle:          rgb(from var(--ae-dark) r g b / 0.30);
   --ae-color-dark-border-subtle:      rgb(from var(--ae-dark) r g b / 0.50);
 
-  /* Component tokens — dark overrides */
+  /* Component tokens - dark overrides */
   --ae-action-btn-bg:          var(--ae-color-gray);
   --ae-action-btn-bg-hover:    color-mix(in srgb, var(--ae-blue) 25%, var(--ae-gray-800));
   --ae-action-btn-color:       var(--ae-gray-400);

@@ -21,25 +21,25 @@ import 'aeico-components';
 <ae-number-input label="Age" placeholder="Enter age"></ae-number-input>
 ```
 
-### `value` — controlled state
+### `value` - controlled state
 
 ```html
 <ae-number-input label="Quantity" value="10"></ae-number-input>
 ```
 
-### `defaultValue` — uncontrolled initial value
+### `defaultValue` - uncontrolled initial value
 
 ```html
 <ae-number-input label="Score" defaultValue="100"></ae-number-input>
 ```
 
-### `min` / `max` — range constraints
+### `min` / `max` - range constraints
 
 ```html
 <ae-number-input label="Percentage" min="0" max="100" placeholder="0–100"></ae-number-input>
 ```
 
-### `step` — increment step
+### `step` - increment step
 
 ```html
 <ae-number-input label="Price" min="0" step="0.01" placeholder="0.00"></ae-number-input>
@@ -60,13 +60,13 @@ import 'aeico-components';
 <ae-number-input label="Read-only" value="42" disabled></ae-number-input>
 ```
 
-### `controls` — show increment / decrement buttons
+### `controls` - show increment / decrement buttons
 
 ```html
 <ae-number-input label="Quantity" controls value="10" min="0" max="100" step="5"></ae-number-input>
 ```
 
-### `actionButtonStyle` — action button display style
+### `actionButtonStyle` - action button display style
 
 ```html
 <!-- Integrated (default): buttons are attached to the input as one piece -->
@@ -100,21 +100,21 @@ import 'aeico-components';
 
 | Attribute | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `label` | `string` | — | Field label displayed above the input. |
-| `placeholder` | `string` | — | Placeholder text shown when the input is empty. |
-| `value` | `number` | — | Controlled input value. |
-| `defaultValue` | `number` | — | Uncontrolled initial value. |
-| `min` | `number` | — | Minimum allowed value. |
-| `max` | `number` | — | Maximum allowed value. |
-| `step` | `number` | — | Increment step for the input. |
+| `label` | `string` | - | Field label displayed above the input. |
+| `placeholder` | `string` | - | Placeholder text shown when the input is empty. |
+| `value` | `number` | - | Controlled input value. |
+| `defaultValue` | `number` | - | Uncontrolled initial value. |
+| `min` | `number` | - | Minimum allowed value. |
+| `max` | `number` | - | Maximum allowed value. |
+| `step` | `number` | - | Increment step for the input. |
 | `disabled` | `boolean` | `false` | Disables the input. |
 | `required` | `boolean` | `false` | Marks the field as required in a form. |
 | `controls` | `boolean` | `false` | Shows increment / decrement stepper buttons. |
 | `clearable` | `boolean` | `false` | Shows a clear button when the input has a value. |
 | `resettable` | `boolean` | `false` | Shows a reset button to restore the default value. |
 | `actionButtonStyle` | `'integrated' \| 'standalone'` | `'integrated'` | Display style for clear/reset buttons. `integrated` attaches them to the input; `standalone` shows them as separate rounded icons. |
-| `helperText` | `string` | — | Helper text displayed below the input. |
-| `error` | `string` | — | Error message displayed below the input. |
+| `helperText` | `string` | - | Helper text displayed below the input. |
+| `error` | `string` | - | Error message displayed below the input. |
 
 ## Events
 

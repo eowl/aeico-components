@@ -8,11 +8,11 @@
  *
  * Injects two browser-side safety patches before any test module loads:
  *
- * Patch 1 — customElements.whenDefined():
+ * Patch 1 - customElements.whenDefined():
  *   Wraps the native API with a timeout so that a typo in a tag name
  *   produces a clear error instead of hanging forever.
  *
- * Patch 2 — document.createElement():
+ * Patch 2 - document.createElement():
  *   Throws immediately when given an unregistered custom-element tag name,
  *   preventing Playwright from waiting on "upgrade-pending" elements forever.
  *
@@ -26,7 +26,7 @@ export function buildTestRunnerHtml(testRunnerImport, timeoutMs = 3000) {
   <body>
     <script>
       ;(function (TIMEOUT_MS) {
-        // Patch 1: customElements.whenDefined — add timeout + clearTimeout on resolve
+        // Patch 1: customElements.whenDefined - add timeout + clearTimeout on resolve
         var _origWhenDefined = customElements.whenDefined.bind(customElements)
         customElements.whenDefined = function (name) {
           var timerId
@@ -44,7 +44,7 @@ export function buildTestRunnerHtml(testRunnerImport, timeoutMs = 3000) {
           ])
         }
 
-        // Patch 2: document.createElement — throw immediately for unregistered custom elements
+        // Patch 2: document.createElement - throw immediately for unregistered custom elements
         var _origCreate = document.createElement.bind(document)
         document.createElement = function (tagName, options) {
           if (typeof tagName === 'string' && tagName.indexOf('-') !== -1 && !customElements.get(tagName)) {

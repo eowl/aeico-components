@@ -12,7 +12,6 @@ export type TextareaResize = 'none' | 'vertical' | 'horizontal' | 'both';
 class Textarea extends AeicoField {
   protected fieldElement: HTMLTextAreaElement | null = null;
 
-
   @prop({ type: String })
   accessor placeholder: string | undefined;
 

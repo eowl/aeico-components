@@ -131,11 +131,11 @@ const POSITION_OPTIONS = [
   { label: 'Option 3', value: '3' },
 ]
 
-// Slot mode — set initial value via JS
+// Slot mode - set initial value via JS
 const selectSlotEl = document.querySelector<any>('#select-slot')
 if (selectSlotEl) selectSlotEl.value = 'banana'
 
-// Options prop — JS array with clearable + resettable + defaultValue
+// Options prop - JS array with clearable + resettable + defaultValue
 const selectOptsEl = document.querySelector<any>('#select-opts')
 if (selectOptsEl) {
   selectOptsEl.options = FRUIT_OPTIONS
@@ -143,14 +143,14 @@ if (selectOptsEl) {
   selectOptsEl.value = 'cherry'
 }
 
-// Disabled — pre-fill so the selected state is visible
+// Disabled - pre-fill so the selected state is visible
 const selectDisabledEl = document.querySelector<any>('#select-disabled')
 if (selectDisabledEl) {
   selectDisabledEl.options = FRUIT_OPTIONS
   selectDisabledEl.value = 'apple'
 }
 
-// Sizes — all share the same options
+// Sizes - all share the same options
 ;['#select-size-xs', '#select-size-sm', '#select-size-md', '#select-size-lg', '#select-size-xl'].forEach(id => {
   const el = document.querySelector<any>(id)
   if (el) el.options = FRUIT_OPTIONS
@@ -162,7 +162,7 @@ if (selectDisabledEl) {
   if (el) el.options = POSITION_OPTIONS
 })
 
-// Multiple — JS options prop, pre-selected + resettable defaultValue
+// Multiple - JS options prop, pre-selected + resettable defaultValue
 const selectMultiOptsEl = document.querySelector<any>('#select-multi-opts')
 if (selectMultiOptsEl) {
   selectMultiOptsEl.options = COLOR_OPTIONS
@@ -170,7 +170,7 @@ if (selectMultiOptsEl) {
   selectMultiOptsEl.value = ['red', 'blue']
 }
 
-// Change event — live output
+// Change event - live output
 const selectEventEl = document.querySelector<any>('#select-event')
 const selectEventOutput = document.getElementById('select-event-output')
 if (selectEventEl && selectEventOutput) {
@@ -202,7 +202,7 @@ if (rgButtonGroupOpts) rgButtonGroupOpts.options = rgDemoOptions
 const rgSegmentedOpts = document.querySelector<any>('#rg-segmented-opts')
 if (rgSegmentedOpts) rgSegmentedOpts.options = rgDemoOptions
 
-// Slider — options mode demos
+// Slider - options mode demos
 const sliderOptsNumeric = document.querySelector<any>('#slider-opts-numeric')
 if (sliderOptsNumeric) {
   sliderOptsNumeric.options = [0, 25, 50, 75, 100]
@@ -245,13 +245,13 @@ if (sliderMarksNumeric) {
   sliderMarksNumeric.value = '50'
 }
 
-// Marks — custom array (visual only, step=10 still snaps)
+// Marks - custom array (visual only, step=10 still snaps)
 const sliderMarksCustom = document.querySelector<any>('#slider-marks-custom')
 if (sliderMarksCustom) {
   sliderMarksCustom.marks = [0, 20, 40, 60, 80, 100]
 }
 
-// Marks — custom array with labels
+// Marks - custom array with labels
 const sliderMarksLabeledCustom = document.querySelector<any>('#slider-marks-labeled-custom')
 if (sliderMarksLabeledCustom) {
   sliderMarksLabeledCustom.marks = [
@@ -278,7 +278,7 @@ document.getElementById('detail-open-btn')?.addEventListener('click', () => demo
 document.getElementById('detail-close-btn')?.addEventListener('click', () => demoDetail?.close())
 document.getElementById('detail-toggle-btn')?.addEventListener('click', () => demoDetail?.toggle())
 
-// Tag dismiss demo — remove tag on dismiss
+// Tag dismiss demo - remove tag on dismiss
 document.getElementById('tag-dismissible-row')?.addEventListener('dismiss', (e: Event) => {
   ;(e.target as HTMLElement).remove()
 })
@@ -312,7 +312,7 @@ events.forEach(eventName => {
         detail = Object.keys(safe).length ? JSON.stringify(safe) : ''
       }
     } catch { /* ignore */ }
-    appendLog(`${tag} → ${eventName}${detail ? ' ' + detail : ''}`)
+    appendLog(`${tag} - ${eventName}${detail ? ' ' + detail : ''}`)
   }) as EventListener)
 })
 
@@ -329,7 +329,7 @@ function applyTheme() {
     document.documentElement.removeAttribute('theme')
     if (btn) btn.textContent = '🌙 Dark'
   }
-  appendLog(`theme → ${isDark ? 'dark' : 'light'}`)
+  appendLog(`theme - ${isDark ? 'dark' : 'light'}`)
 }
 
 document.getElementById('theme-toggle')?.addEventListener('click', () => {
@@ -357,13 +357,13 @@ let currentRadius = 'sm'
 function applyRadius(value: string) {
   ;(window as any).__aeicoRadius = value
 
-  // Only sync to the iframe — the shell itself never changes radius
+  // Only sync to the iframe - the shell itself never changes radius
   const frame = document.getElementById('content-frame') as HTMLIFrameElement | null
   if (frame?.contentWindow) {
     frame.contentWindow.postMessage({ type: 'aeico-radius', value }, '*')
   }
 
-  appendLog(`radius → ${value}`)
+  appendLog(`radius - ${value}`)
 }
 
 // Handle dropdown select
@@ -391,7 +391,7 @@ function switchLang(lang: SupportedLang) {
   currentLang = lang
   applyLocaleToFields(LOCALES[lang])
   syncLangButtons()
-  appendLog(`language switched → ${lang}`)
+  appendLog(`language switched - ${lang}`)
 }
 
 document.getElementById('lang-en')?.addEventListener('click', () => switchLang('en'))
@@ -403,7 +403,7 @@ syncLangButtons()
 // --- Dropdown events ---
 document.querySelectorAll<any>('.dropdown-demo').forEach(el => {
   el.addEventListener('select', (e: CustomEvent) => {
-    appendLog(`dropdown select → value: "${e.detail?.value}", label: "${e.detail?.label}"`)
+    appendLog(`dropdown select - value: "${e.detail?.value}", label: "${e.detail?.label}"`)
   })
   el.addEventListener('open', () => appendLog('dropdown open'))
   el.addEventListener('close', () => appendLog('dropdown close'))

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>(function(){if(localStorage.getItem("aeico-demo-theme")==="dark")document.documentElement.setAttribute("theme","dark")})()</script>
-  <title>Pagination — Aeico Components</title>
+  <title>Pagination - Aeico Components</title>
   <link rel="stylesheet" href="../demo.css">
   <script type="module" src="../shared.ts"></script>
   <style>
@@ -23,7 +23,7 @@
       <span class="tag">&lt;ae-pagination&gt;</span>
 
       <div class="demo-group">
-        <label>Basic — total &amp; page-size</label>
+        <label>Basic - total &amp; page-size</label>
         <ae-pagination id="basic" total="100" page-size="10"></ae-pagination>
       </div>
 
@@ -33,7 +33,7 @@
       </div>
 
       <div class="demo-group">
-        <label>siblingCount — controls how many pages show on each side of current</label>
+        <label>siblingCount - controls how many pages show on each side of current</label>
         <div class="demo-row">
           <span style="color: var(--ae-color-text-muted); font-size: 0.85em;">siblingCount=0</span>
           <ae-pagination total="200" page-size="10" page="6" sibling-count="0"></ae-pagination>
@@ -49,12 +49,12 @@
       </div>
 
       <div class="demo-group">
-        <label>showFirstLast — first &amp; last page jump buttons</label>
+        <label>showFirstLast - first &amp; last page jump buttons</label>
         <ae-pagination total="100" page-size="10" page="5" show-first-last></ae-pagination>
       </div>
 
       <div class="demo-group">
-        <label>Simple mode — page input instead of numbered buttons</label>
+        <label>Simple mode - page input instead of numbered buttons</label>
         <ae-pagination total="100" page-size="10" simple></ae-pagination>
         <ae-pagination total="100" page-size="10" simple show-first-last></ae-pagination>
       </div>
@@ -130,7 +130,7 @@
       </div>
 
       <div class="demo-group">
-        <label>Interactive — listen for <code>change</code> event</label>
+        <label>Interactive - listen for <code>change</code> event</label>
         <ae-pagination id="interactive" total="300" page-size="15" page="1"></ae-pagination>
         <p id="page-display" style="color: var(--ae-color-text-muted); font-size: 0.875rem; margin: 6px 0 0;">Current page: 1</p>
       </div>
@@ -151,7 +151,7 @@
       el.addEventListener('change', (e) => {
         const log = document.getElementById('event-log');
         const entry = document.createElement('div');
-        entry.textContent = `change → page: ${e.detail.page}`;
+        entry.textContent = `change - page: ${e.detail.page}`;
         log.prepend(entry);
       });
     });

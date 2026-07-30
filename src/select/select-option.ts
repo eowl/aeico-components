@@ -6,7 +6,6 @@ import variables from '../styles/variables.css';
 import { prop } from 'aeico';
 
 class SelectOption extends AeicoComponent {
-
   @prop({ type: String })
   accessor value: string | undefined;
 

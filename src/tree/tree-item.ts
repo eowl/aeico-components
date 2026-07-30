@@ -10,7 +10,7 @@ import '../icon';
 let _autoKeyCounter = 0;
 
 /**
- * Tree item — used as a direct child of `<ae-tree>` or nested inside another
+ * Tree item - used as a direct child of `<ae-tree>` or nested inside another
  * `<ae-tree-item>` to create a multi-level tree.
  *
  * - **Parent item**: nest `<ae-tree-item>` children inside; an expand toggle is shown.
@@ -28,7 +28,6 @@ let _autoKeyCounter = 0;
  * @slot label   - Custom label content (falls back to the `label` attribute text).
  */
 class TreeItem extends AeicoComponent {
-
   protected static styles = [variables, style];
 
   @prop({ type: String })
@@ -159,7 +158,7 @@ class TreeItem extends AeicoComponent {
   };
 
   protected onUpdated(): void {
-    // indeterminate/checked cannot be set correctly via HTML attribute — must set via JS property
+    // indeterminate/checked cannot be set correctly via HTML attribute - must set via JS property
     if (this._checkboxEl) {
       this._checkboxEl.checked = this.checked;
       this._checkboxEl.indeterminate = this.indeterminate;

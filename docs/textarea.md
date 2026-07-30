@@ -21,14 +21,14 @@ import 'aeico-components';
 <ae-textarea label="Message" placeholder="Write your message here…"></ae-textarea>
 ```
 
-### `rows` — initial visible height
+### `rows` - initial visible height
 
 ```html
 <ae-textarea label="Short note" rows="2" placeholder="Two rows"></ae-textarea>
 <ae-textarea label="Long text"  rows="8" placeholder="Eight rows"></ae-textarea>
 ```
 
-### `autoResize` — grows to fit content
+### `autoResize` - grows to fit content
 
 ```html
 <ae-textarea label="Bio" autoResize placeholder="It will grow as you type…"></ae-textarea>
@@ -55,7 +55,7 @@ import 'aeico-components';
 <ae-textarea label="Both directions"   resize="both"       placeholder="Both directions"></ae-textarea>
 ```
 
-### `value` — controlled state
+### `value` - controlled state
 
 ```html
 <ae-textarea label="Notes" value="Preloaded content here."></ae-textarea>
@@ -98,14 +98,14 @@ import 'aeico-components';
 
 | Attribute | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `label` | `string` | — | Field label displayed above the textarea. |
-| `placeholder` | `string` | — | Placeholder text shown when the textarea is empty. |
+| `label` | `string` | - | Field label displayed above the textarea. |
+| `placeholder` | `string` | - | Placeholder text shown when the textarea is empty. |
 | `rows` | `number` | `3` | Number of visible text rows (initial height). |
-| `maxlength` | `number` | — | Maximum number of characters allowed. |
-| `minlength` | `number` | — | Minimum number of characters required. |
+| `maxlength` | `number` | - | Maximum number of characters allowed. |
+| `minlength` | `number` | - | Minimum number of characters required. |
 | `resize` | `'none' \| 'vertical' \| 'horizontal' \| 'both'` | `'vertical'` | Controls the CSS `resize` handle. Has no effect when `autoResize` is set. |
 | `autoResize` | `boolean` | `false` | Automatically grows/shrinks the textarea to fit its content. |
-| `value` | `string` | — | Controlled textarea value. |
+| `value` | `string` | - | Controlled textarea value. |
 | `disabled` | `boolean` | `false` | Disables the textarea. |
 
 ## Events

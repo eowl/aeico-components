@@ -84,7 +84,7 @@ class Drawer extends AeicoComponent {
             slot();
           });
 
-          // Footer — always rendered to capture slotchange, hidden when empty
+          // Footer - always rendered to capture slotchange, hidden when empty
           footer({ style: { display: this._hasFooter ? '' : 'none' } }, () => {
             slot({ name: 'footer', '@slotchange': this._handleFooterSlotChange });
           });

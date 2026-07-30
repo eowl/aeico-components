@@ -17,7 +17,7 @@ import 'aeico-components/styles/radius.css'
 import 'aeico-components/styles/variables.css'
 ```
 
-Place `variables.css` before `layout.css` if using both — layout tokens reference variables.
+Place `variables.css` before `layout.css` if using both - layout tokens reference variables.
 
 ```html
 <link rel="stylesheet" href="node_modules/aeico-components/src/styles/variables.css">
@@ -38,7 +38,7 @@ class MyComponent extends AeicoElement {
 }
 ```
 
-These exports work with any bundler (esbuild, Rollup, Webpack, Vite) — no `?raw` or `?inline` query parameter needed.
+These exports work with any bundler (esbuild, Rollup, Webpack, Vite) - no `?raw` or `?inline` query parameter needed.
 
 ## Difference
 
@@ -50,7 +50,7 @@ These exports work with any bundler (esbuild, Rollup, Webpack, Vite) — no `?ra
 
 `Utilities`
 
-Light DOM utility stylesheets for layout, spacing, border-radius, and design tokens. These are standalone CSS files — not Web Components — imported into your page's light DOM.
+Light DOM utility stylesheets for layout, spacing, border-radius, and design tokens. These are standalone CSS files - not Web Components - imported into your page's light DOM.
 
 ## Import
 
@@ -69,7 +69,7 @@ import 'aeico-components/styles/radius.css'
 
 ---
 
-## variables.css — Design Tokens
+## variables.css - Design Tokens
 
 Defines all CSS custom properties on `:root` and `:host` so they are available in both light DOM and Shadow DOM. Includes:
 
@@ -105,7 +105,7 @@ The `--ae-border-radius` hook allows setting a single border-radius value that p
 
 ---
 
-## layout.css — Layout Utilities
+## layout.css - Layout Utilities
 
 All layout classes live in `@layer aeico-layout`, so your own un-layered styles always take precedence without `!important`.
 
@@ -211,7 +211,7 @@ CSS Grid with fixed or auto-responsive columns.
 
 Presets: `.grid-cols-2`, `.grid-cols-3`, `.grid-cols-4`, `.grid-cols-6`, `.grid-cols-12`
 
-**Responsive columns** — change at breakpoints:
+**Responsive columns** - change at breakpoints:
 
 ```html
 <div class="grid grid-cols-1 grid-cols-md-2 grid-cols-lg-3">
@@ -221,7 +221,7 @@ Presets: `.grid-cols-2`, `.grid-cols-3`, `.grid-cols-4`, `.grid-cols-6`, `.grid-
 
 Breakpoints: `-sm-` (≥576px), `-md-` (≥768px), `-lg-` (≥992px), `-xl-` (≥1200px)
 
-**Auto-responsive** — fills as many columns as fit:
+**Auto-responsive** - fills as many columns as fit:
 
 ```html
 <div class="grid-auto" style="--grid-min-col: 250px">
@@ -229,7 +229,7 @@ Breakpoints: `-sm-` (≥576px), `-md-` (≥768px), `-lg-` (≥992px), `-xl-` (�
 </div>
 ```
 
-**Full-width span** — child spans all columns:
+**Full-width span** - child spans all columns:
 
 ```html
 <div class="grid grid-cols-3">
@@ -262,7 +262,7 @@ Two-column layout: one side fixed/intrinsic width, the other fills remaining spa
 </div>
 ```
 
-**`.flank-end`** — last child is the flank instead of first.
+**`.flank-end`** - last child is the flank instead of first.
 
 Custom properties:
 
@@ -274,7 +274,7 @@ Custom properties:
 
 ### Split
 
-Horizontal space-between layout — ideal for toolbars, card headers, and navigation bars.
+Horizontal space-between layout - ideal for toolbars, card headers, and navigation bars.
 
 ```html
 <header class="split">
@@ -286,7 +286,7 @@ Horizontal space-between layout — ideal for toolbars, card headers, and naviga
 </header>
 ```
 
-**`.split-col`** — vertical split (flex-direction: column).
+**`.split-col`** - vertical split (flex-direction: column).
 
 Override gap:
 
@@ -351,7 +351,7 @@ Defined on `:root` by `layout.css` (mirrored in `variables.css`):
 
 ---
 
-## radius.css — Border-Radius Utilities
+## radius.css - Border-Radius Utilities
 
 Apply border-radius to any element. Lives in `@layer aeico-radius`.
 

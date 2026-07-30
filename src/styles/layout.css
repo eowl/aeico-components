@@ -1,5 +1,5 @@
 /*
-   layout.css — Light DOM utility classes
+   layout.css - Light DOM utility classes
    This file is for use in the user's light DOM (regular HTML),
    NOT imported by any Web Component internally.
 
@@ -20,7 +20,7 @@
 */
 
 /**
- * Tokens — defined on :root outside @layer so they are always resolvable,
+ * Tokens - defined on :root outside @layer so they are always resolvable,
  * even when the cascade layer order is re-arranged by the consuming app.
  */
 :root {
@@ -30,7 +30,7 @@
   --container-md-max-width:  960px;
   --container-xl-max-width: 1440px;
 
-  /* Spacing scale — numeric steps based on a 4px unit.
+  /* Spacing scale - numeric steps based on a 4px unit.
    * Usage: gap: var(--space-4);  padding: var(--space-2) var(--space-6);
    */
   --space-1:  0.25rem;  /*  4px */
@@ -45,7 +45,7 @@
 }
 
 /**
- * @layer aeico-layout — all utility rules live here.
+ * @layer aeico-layout - all utility rules live here.
  * Unlayered user styles win automatically. To override from a named layer,
  * declare the order before importing this file:
  *   @layer aeico-layout, your-layer;
@@ -122,11 +122,11 @@
     gap: var(--stack-gap, var(--space-4, 1rem));
   }
 
-  /* Reset block margins on direct children — prevents h1/p/ul from adding
+  /* Reset block margins on direct children - prevents h1/p/ul from adding
      unintended spacing on top of the flex gap. */
   .stack > * { margin-block: 0; margin-inline: 0; }
 
-  /* Default alignment — zero specificity so a single class rule overrides it. */
+  /* Default alignment - zero specificity so a single class rule overrides it. */
   :where(.stack) { align-items: stretch; }
 
   .stack-1  { --stack-gap: var(--space-1,  0.25rem); }
@@ -169,7 +169,7 @@
     gap: var(--cluster-gap, var(--space-4, 1rem));
   }
 
-  /* Defaults — override via CSS custom properties or modifier classes.
+  /* Defaults - override via CSS custom properties or modifier classes.
      :where() keeps specificity at zero so a plain class rule always wins. */
   :where(.cluster) {
     align-items: var(--cluster-align, center);
@@ -222,7 +222,7 @@
     gap: var(--grid-gap, var(--space-4, 1rem));
   }
 
-  /* Reset block margins on direct children — same rationale as .stack. */
+  /* Reset block margins on direct children - same rationale as .stack. */
   .grid > * { margin-block: 0; margin-inline: 0; }
 
   /* Fixed-column presets */
@@ -244,10 +244,10 @@
     gap: var(--grid-gap, var(--space-4, 1rem));
   }
 
-  /* .grid-span — child spans all columns */
+  /* .grid-span - child spans all columns */
   .grid-span { grid-column: 1 / -1; }
 
-  /* Responsive column modifiers — sm ≥ 576px */
+  /* Responsive column modifiers - sm ≥ 576px */
   @media (min-width: 576px) {
     .grid-cols-sm-1  { --grid-cols: 1;  }
     .grid-cols-sm-2  { --grid-cols: 2;  }
@@ -255,7 +255,7 @@
     .grid-cols-sm-4  { --grid-cols: 4;  }
   }
 
-  /* Responsive column modifiers — md ≥ 768px */
+  /* Responsive column modifiers - md ≥ 768px */
   @media (min-width: 768px) {
     .grid-cols-md-1  { --grid-cols: 1;  }
     .grid-cols-md-2  { --grid-cols: 2;  }
@@ -264,7 +264,7 @@
     .grid-cols-md-6  { --grid-cols: 6;  }
   }
 
-  /* Responsive column modifiers — lg ≥ 992px */
+  /* Responsive column modifiers - lg ≥ 992px */
   @media (min-width: 992px) {
     .grid-cols-lg-1  { --grid-cols: 1;  }
     .grid-cols-lg-2  { --grid-cols: 2;  }
@@ -274,7 +274,7 @@
     .grid-cols-lg-12 { --grid-cols: 12; }
   }
 
-  /* Responsive column modifiers — xl ≥ 1200px */
+  /* Responsive column modifiers - xl ≥ 1200px */
   @media (min-width: 1200px) {
     .grid-cols-xl-1  { --grid-cols: 1;  }
     .grid-cols-xl-2  { --grid-cols: 2;  }
@@ -330,7 +330,7 @@
     min-inline-size: var(--flank-content-min, 50%);
   }
 
-  /* .flank-end — last child becomes the flank, first child is the content */
+  /* .flank-end - last child becomes the flank, first child is the content */
   .flank-end > :last-child {
     flex-basis: var(--flank-size, auto);
     flex-grow: 1;

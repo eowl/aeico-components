@@ -17,7 +17,7 @@ import 'aeico-components';
 
 ## Examples
 
-### Basic — string options
+### Basic - string options
 
 ```html
 <ae-select options='["Apple", "Banana", "Cherry"]' placeholder="Pick a fruit"></ae-select>
@@ -46,7 +46,7 @@ import 'aeico-components';
 </ae-select>
 ```
 
-### `value` — controlled selection
+### `value` - controlled selection
 
 ```html
 <ae-select value="gb" options='[
@@ -55,7 +55,7 @@ import 'aeico-components';
 ]'></ae-select>
 ```
 
-### `defaultValue` — uncontrolled initial value
+### `defaultValue` - uncontrolled initial value
 
 ```html
 <ae-select
@@ -68,19 +68,19 @@ import 'aeico-components';
 </ae-select>
 ```
 
-### `multiple` — multi-select
+### `multiple` - multi-select
 
 ```html
 <ae-select multiple placeholder="Select tags" options='["Frontend", "Backend", "DevOps", "Design"]'></ae-select>
 ```
 
-### `multiple` with `expandable` — collapsible tag list
+### `multiple` with `expandable` - collapsible tag list
 
 ```html
 <ae-select multiple expandable placeholder="Select frameworks" options='["React", "Vue", "Angular", "Svelte"]'></ae-select>
 ```
 
-### `position` — dropdown opens upward
+### `position` - dropdown opens upward
 
 ```html
 <ae-select position="top" placeholder="Opens up" options='["A", "B", "C"]'></ae-select>
@@ -129,10 +129,10 @@ import 'aeico-components';
 
 | Attribute | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `options` | `string[] \| Array<{ value: string, label: string }>` | — | Option list. Can be a JSON string in HTML or a JS array. |
-| `placeholder` | `string` | — | Placeholder text shown when nothing is selected. |
-| `value` | `string \| string[]` | — | Controlled selected value(s). Use a JSON array string for multiple. |
-| `defaultValue` | `string \| string[]` | — | Uncontrolled initial value(s). |
+| `options` | `string[] \| Array<{ value: string, label: string }>` | - | Option list. Can be a JSON string in HTML or a JS array. |
+| `placeholder` | `string` | - | Placeholder text shown when nothing is selected. |
+| `value` | `string \| string[]` | - | Controlled selected value(s). Use a JSON array string for multiple. |
+| `defaultValue` | `string \| string[]` | - | Uncontrolled initial value(s). |
 | `multiple` | `boolean` | `false` | Enables multi-select mode. |
 | `expandable` | `boolean` | `false` | In multi-select mode, allows the selected-tag list to be collapsed/expanded. |
 | `position` | `'top' \| 'bottom'` | `'bottom'` | Direction the dropdown panel opens. |
@@ -181,8 +181,8 @@ import 'aeico-components';
 
 | Attribute | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `value` | `string` | — | The option's value, emitted in the `change` event. |
-| `label` | `string` | — | Display label in the trigger. Falls back to slot text content. |
+| `value` | `string` | - | The option's value, emitted in the `change` event. |
+| `label` | `string` | - | Display label in the trigger. Falls back to slot text content. |
 | `disabled` | `boolean` | `false` | Makes the option non-selectable. |
 
 ## `ae-select-option` Slots

@@ -8,7 +8,7 @@ import { prop } from 'aeico';
 import '../icon/icon';
 
 /**
- * Dropdown menu item — used as a direct child of `<ae-dropdown>`.
+ * Dropdown menu item - used as a direct child of `<ae-dropdown>`.
  *
  * Renders as a `<button>` by default, or as an `<a>` anchor when `href` is set.
  * Use `<ae-icon>` inside to add icons, and CSS `color` / `--dropdown-item-color`
@@ -22,12 +22,11 @@ import '../icon/icon';
  * ```
  */
 class DropdownItem extends AeicoComponent {
-
   /** Value emitted in the `select` event detail on the parent dropdown. */
   @prop({ type: String })
   accessor value: string | undefined;
 
-  /** Disables the item — it becomes non-interactive and visually dimmed. */
+  /** Disables the item - it becomes non-interactive and visually dimmed. */
   @prop({ type: Boolean })
   accessor disabled: boolean = false;
 
@@ -54,7 +53,7 @@ class DropdownItem extends AeicoComponent {
 
   /**
    * Marks the item as the currently active/selected option (e.g. current route,
-   * current sort order). Purely visual — applies a highlighted background and
+   * current sort order). Purely visual - applies a highlighted background and
    * accent colour.
    */
   @prop({ type: Boolean })

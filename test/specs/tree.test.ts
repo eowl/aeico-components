@@ -94,7 +94,7 @@ describe('Tree', () => {
     })
   })
 
-  describe('select — single', () => {
+  describe('select - single', () => {
     it('emits "select" with key and selected=true on first click', async () => {
       const el = await mount<Tree>(BASIC_TREE)
       await updated()
@@ -163,7 +163,7 @@ describe('Tree', () => {
     })
   })
 
-  describe('select — multiple', () => {
+  describe('select - multiple', () => {
     it('allows selecting multiple items', async () => {
       const el = await mount<Tree>(`
         <ae-tree multiple>

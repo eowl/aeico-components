@@ -43,7 +43,7 @@ import 'aeico-components';
 <ae-icon name="alert-triangle" color="warning"></ae-icon>
 ```
 
-### `stroke` — outline rendering
+### `stroke` - outline rendering
 
 ```html
 <ae-icon name="heart" stroke></ae-icon>
@@ -84,9 +84,9 @@ IconRegistry.register('my-logo', `
 
 | Attribute | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `name` | `string` | — | Icon identifier in the registry. |
+| `name` | `string` | - | Icon identifier in the registry. |
 | `size` | `'3xs' \| '2xs' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| number` | `'md'` | Icon size. A numeric value sets an explicit pixel size. |
-| `color` | `'default' \| 'primary' \| 'secondary' \| 'success' \| 'danger' \| 'warning' \| 'info' \| 'light' \| 'dark'` | — | Applies a theme colour to the icon. |
+| `color` | `'default' \| 'primary' \| 'secondary' \| 'success' \| 'danger' \| 'warning' \| 'info' \| 'light' \| 'dark'` | - | Applies a theme colour to the icon. |
 | `stroke` | `boolean` | `false` | Renders with stroke instead of fill. |
 | `strokeWidth` | `number` | `2` | SVG stroke width. Only applies when `stroke` is `true`. |
 

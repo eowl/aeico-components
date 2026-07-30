@@ -14,7 +14,7 @@ import fs from 'fs'
  * of the raw CSS string.
  *
  * Exceptions: `layout.css` and `radius.css` (side-effect imports in shared.ts)
- * are left alone — they should be injected as normal stylesheets.
+ * are left alone - they should be injected as normal stylesheets.
  */
 function cssStringPlugin() {
   const RAW_CSS_PATTERN = /\/src\/styles\/(variables|size|color|components\/)/
@@ -29,7 +29,7 @@ function cssStringPlugin() {
       if (SKIP_PATTERN.test(id)) return
       if (!RAW_CSS_PATTERN.test(id)) return
 
-      // Vite's CSS plugin has already processed this — `code` is the
+      // Vite's CSS plugin has already processed this - `code` is the
       // transformed JS module. We replace it with a simple default export.
       const cssText = fs.readFileSync(id, 'utf-8')
       return {

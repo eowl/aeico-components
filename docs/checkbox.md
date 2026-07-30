@@ -21,13 +21,13 @@ import 'aeico-components';
 <ae-checkbox>Accept terms and conditions</ae-checkbox>
 ```
 
-### `checked` — controlled state
+### `checked` - controlled state
 
 ```html
 <ae-checkbox checked>Pre-selected option</ae-checkbox>
 ```
 
-### `defaultChecked` — uncontrolled default
+### `defaultChecked` - uncontrolled default
 
 ```html
 <ae-checkbox defaultChecked>Default on, user can toggle</ae-checkbox>
@@ -92,8 +92,8 @@ Use `label` as a shorthand when no rich HTML is needed in the label.
 |-----------|------|---------|-------------|
 | `checked` | `boolean` | `false` | Current checked state (controlled). |
 | `defaultChecked` | `boolean` | `false` | Initial checked state (uncontrolled). |
-| `label` | `string` | — | Label text. Prefer the default slot for rich HTML labels. |
-| `variant` | `string` | — | Visual variant. |
+| `label` | `string` | - | Label text. Prefer the default slot for rich HTML labels. |
+| `variant` | `string` | - | Visual variant. |
 | `disabled` | `boolean` | `false` | Disables the checkbox. |
 | `required` | `boolean` | `false` | Marks the field as required in a form. |
 

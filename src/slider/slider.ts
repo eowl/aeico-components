@@ -18,7 +18,6 @@ class Slider extends AeicoField {
   private _boundOnRangeInput: () => void;
   private _boundOnNumberInput: () => void;
 
-
   @prop({ type: Array })
   accessor options: SliderOptions = [];
 
@@ -42,7 +41,6 @@ class Slider extends AeicoField {
 
   @prop({
     type: Array,
-    // bare attribute (<ae-slider marks>) → true; JSON array → MarkItem[]
     parser: (value: string | null) => {
       if (value === null) return undefined;
       if (value === '' || value === 'true') return true;
@@ -179,7 +177,7 @@ class Slider extends AeicoField {
 
     const marks = this.marks;
 
-    // Custom marks array — purely visual, no snapping effect
+    // Custom marks array - purely visual, no snapping effect
     if (Array.isArray(marks)) {
       const result: Array<{ value: string; label: string; pct: number }> = [];
       for (const m of marks) {
@@ -197,7 +195,7 @@ class Slider extends AeicoField {
       return result;
     }
 
-    // marks === true — auto-generate from options or free-mode endpoints
+    // marks === true - auto-generate from options or free-mode endpoints
     if (normalized) {
       return normalized.map((o) => ({
         value: o.value,
@@ -206,7 +204,7 @@ class Slider extends AeicoField {
       }));
     }
 
-    // Free mode — show min and max endpoints only
+    // Free mode - show min and max endpoints only
     return [
       { value: attrs.min, label: this.percentage ? `${minVal}%` : String(minVal), pct: 0 },
       { value: attrs.max, label: this.percentage ? `${maxVal}%` : String(maxVal), pct: 100 },

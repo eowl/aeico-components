@@ -264,7 +264,7 @@ describe('DropdownButton', () => {
       `)
       await updated()
       const db = group.querySelector<HTMLElement>(TAG)!
-      // Last child → right corners should have radius, left corners should be 0
+      
       expect(db.style.getPropertyValue('--_btn-r-tr')).to.not.equal('0')
       expect(db.style.getPropertyValue('--_btn-r-tl')).to.equal('0')
     })

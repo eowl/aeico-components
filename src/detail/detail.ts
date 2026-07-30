@@ -19,7 +19,6 @@ import type { DetailColor, DetailVariant, DetailIconPlacement } from './defines'
  * </ae-detail>
  */
 class Detail extends AeicoComponent {
-
   protected static styles = [styleVariables, colorCSS, detailStyle];
 
   @prop({ type: String })

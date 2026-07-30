@@ -14,7 +14,7 @@
   margin-bottom: 0;
 }
 
-/* default color (no [color] attribute) — primary */
+/* default color (no [color] attribute) - primary */
 :host(:not([color])) {
   --ae-color-solid:           var(--ae-color-primary);
   --ae-color-on-solid:        var(--ae-color-text-main);

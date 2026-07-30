@@ -114,7 +114,7 @@ describe('Switch', () => {
     })
   })
 
-  describe('icon rendering — no icon', () => {
+  describe('icon rendering - no icon', () => {
     it('renders no .toggle-knob-icon when neither icon nor iconChecked is set', async () => {
       const el = await mount<Switch>(`<${TAG_NAME}></${TAG_NAME}>`)
       expect(el.shadowRoot!.querySelector('.toggle-knob-icon')).to.not.exist
@@ -126,7 +126,7 @@ describe('Switch', () => {
     })
   })
 
-  describe('icon rendering — knob mode', () => {
+  describe('icon rendering - knob mode', () => {
     it('renders a single .toggle-knob-icon when only icon is set', async () => {
       const el = await mount<Switch>(`<${TAG_NAME} icon="test-icon-a"></${TAG_NAME}>`)
       await updated()
@@ -201,7 +201,7 @@ describe('Switch', () => {
     })
   })
 
-  describe('icon rendering — track mode', () => {
+  describe('icon rendering - track mode', () => {
     it('renders .track-icon-left and .track-icon-right when icon-placement="track"', async () => {
       const el = await mount<Switch>(`<${TAG_NAME} icon="test-icon-a" icon-checked="test-icon-b" icon-placement="track"></${TAG_NAME}>`)
       await updated()

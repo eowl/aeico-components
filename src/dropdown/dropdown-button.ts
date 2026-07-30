@@ -9,7 +9,7 @@ import './dropdown';
 import '../button/button';
 
 /**
- * DropdownButton — a pre-composed trigger + dropdown panel.
+ * DropdownButton - a pre-composed trigger + dropdown panel.
  *
  * Renders an `ae-button`-styled trigger with a built-in chevron,
  * and a floating panel for `<ae-dropdown-item>` children.
@@ -35,12 +35,11 @@ import '../button/button';
  * ```
  *
  * Emits:
- * - `open`   — when the panel opens
- * - `close`  — when the panel closes
- * - `select` — `{ detail: { value, label } }` when a menu item is selected
+ * - `open`   - when the panel opens
+ * - `close`  - when the panel closes
+ * - `select` - `{ detail: { value, label } }` when a menu item is selected
  */
 class DropdownButton extends AeicoComponent {
-
   // ae-button and ae-dropdown each carry their own shadow DOM styles.
   // Only the host display is set here so button-group compact layout works.
   protected static styles = [

@@ -116,7 +116,6 @@ button:disabled {
   background: var(--ae-color-subtle-hover);
 }
 
-/* Icon-only: single ae-icon child → square compact layout */
 :host([icon-only]) {
   display: inline-flex;
 }

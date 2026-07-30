@@ -27,19 +27,19 @@ import 'aeico-components';
 <ae-slider min="0" max="200" step="10"></ae-slider>
 ```
 
-### `tracked` — fill from zero to current value
+### `tracked` - fill from zero to current value
 
 ```html
 <ae-slider min="0" max="100" tracked></ae-slider>
 ```
 
-### `editable` — show a number input next to the slider
+### `editable` - show a number input next to the slider
 
 ```html
 <ae-slider min="0" max="100" editable></ae-slider>
 ```
 
-### `marks="true"` — auto marks at endpoints
+### `marks="true"` - auto marks at endpoints
 
 ```html
 <ae-slider min="0" max="100" step="25" marks></ae-slider>
@@ -55,7 +55,7 @@ import 'aeico-components';
 ]'></ae-slider>
 ```
 
-### `options` — discrete labelled options
+### `options` - discrete labelled options
 
 ```html
 <ae-slider options='["XS", "S", "M", "L", "XL"]'></ae-slider>
@@ -106,7 +106,7 @@ Appends `%` to the tooltip and editable input display.
 | `min` | `number` | `0` | Minimum numeric value. |
 | `max` | `number` | `100` | Maximum numeric value. |
 | `step` | `number` | `1` | Step increment between values. |
-| `options` | `string[] \| Array<{ label: string, value: number \| string }>` | — | Discrete labelled options. When set, overrides `min`/`max`/`step`. |
+| `options` | `string[] \| Array<{ label: string, value: number \| string }>` | - | Discrete labelled options. When set, overrides `min`/`max`/`step`. |
 | `percentage` | `boolean` | `false` | Appends `%` to labels and the editable input. |
 | `editable` | `boolean` | `false` | Shows a number input field for direct value entry. |
 | `tracked` | `boolean` | `false` | Fills the track from the start to the current value. |

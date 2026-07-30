@@ -13,7 +13,6 @@ import styles from '../styles/components/switch.css';
 class Switch extends AeicoField<boolean> {
   protected fieldElement: HTMLInputElement | null = null;
 
-
   @prop({ type: Boolean })
   accessor checked: boolean | undefined;
 

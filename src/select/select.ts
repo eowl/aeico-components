@@ -37,7 +37,6 @@ class Select extends AeicoField<SelectOptionValue | SelectMultiValue> {
   private _slotOptionData: Array<{ value: string; label: string }> = [];
   private _selectedListEl: HTMLElement | null = null;
 
-
   @prop({ type: Boolean, observe: false, reflect: false })
   accessor _expanded: boolean = false;
 
@@ -121,7 +120,7 @@ class Select extends AeicoField<SelectOptionValue | SelectMultiValue> {
   }
 
   protected onDisabledChanged(_newValue: boolean): void {
-    // disabled is a reactive prop — render() already picks it up automatically
+    // disabled is a reactive prop - render() already picks it up automatically
   }
 
   protected onUpdated(changedProps: Map<string, unknown>): void {
@@ -344,7 +343,7 @@ class Select extends AeicoField<SelectOptionValue | SelectMultiValue> {
       this.renderError();
 
       // Visually-hidden input so native form constraint validation works for `required`.
-      // type="text" (not "hidden") is required — type="hidden" is exempt from constraint validation.
+      // type="text" (not "hidden") is required - type="hidden" is exempt from constraint validation.
       const currentValue =
         this.value != null &&
         this.value !== '' &&

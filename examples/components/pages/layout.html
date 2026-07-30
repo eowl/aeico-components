@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>(function(){if(localStorage.getItem("aeico-demo-theme")==="dark")document.documentElement.setAttribute("theme","dark")})()</script>
-  <title>Layout Utilities — Aeico Components</title>
+  <title>Layout Utilities - Aeico Components</title>
   <link rel="stylesheet" href="../demo.css">
   <script type="module" src="../shared.ts"></script>
 </head>
@@ -16,18 +16,18 @@
 
       <!-- Container variants -->
       <div class="demo-group">
-        <label>Container variants — <code>.container-sm</code> / <code>.container-md</code> / <code>.container</code> / <code>.container-xl</code></label>
+        <label>Container variants - <code>.container-sm</code> / <code>.container-md</code> / <code>.container</code> / <code>.container-xl</code></label>
         <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.8rem; font-family: monospace;">
-          <div class="container-sm"  style="background: rgba(99,102,241,.08); border: 1px solid rgba(99,102,241,.3); border-radius:4px; padding:0.4rem 0.75rem;">container-sm  — max 720px</div>
-          <div class="container-md"  style="background: rgba(99,102,241,.08); border: 1px solid rgba(99,102,241,.3); border-radius:4px; padding:0.4rem 0.75rem;">container-md  — max 960px</div>
-          <div class="container"     style="background: rgba(99,102,241,.12); border: 1px solid rgba(99,102,241,.4); border-radius:4px; padding:0.4rem 0.75rem;">container     — max 1280px (default)</div>
-          <div class="container-xl" style="background: rgba(99,102,241,.08); border: 1px solid rgba(99,102,241,.3); border-radius:4px; padding:0.4rem 0.75rem;">container-xl  — max 1440px</div>
+          <div class="container-sm"  style="background: rgba(99,102,241,.08); border: 1px solid rgba(99,102,241,.3); border-radius:4px; padding:0.4rem 0.75rem;">container-sm  - max 720px</div>
+          <div class="container-md"  style="background: rgba(99,102,241,.08); border: 1px solid rgba(99,102,241,.3); border-radius:4px; padding:0.4rem 0.75rem;">container-md  - max 960px</div>
+          <div class="container"     style="background: rgba(99,102,241,.12); border: 1px solid rgba(99,102,241,.4); border-radius:4px; padding:0.4rem 0.75rem;">container     - max 1280px (default)</div>
+          <div class="container-xl" style="background: rgba(99,102,241,.08); border: 1px solid rgba(99,102,241,.3); border-radius:4px; padding:0.4rem 0.75rem;">container-xl  - max 1440px</div>
         </div>
       </div>
 
       <!-- Stack -->
       <div class="demo-group">
-        <label><code>.stack</code> — vertical flex column, gap controlled by <code>--stack-gap</code></label>
+        <label><code>.stack</code> - vertical flex column, gap controlled by <code>--stack-gap</code></label>
         <div class="layout-demo-wrap">
           <div class="stack stack-2">
             <div class="layout-box">.stack.stack-2 (8px gap)</div>
@@ -47,7 +47,7 @@
 
       <!-- Cluster -->
       <div class="demo-group">
-        <label><code>.cluster</code> — horizontal flex-wrap, gap controlled by <code>--cluster-gap</code></label>
+        <label><code>.cluster</code> - horizontal flex-wrap, gap controlled by <code>--cluster-gap</code></label>
         <div class="layout-demo-wrap">
           <div class="cluster cluster-2">
             <div class="layout-box">.cluster.cluster-2</div>
@@ -58,7 +58,7 @@
             <div class="layout-box">item 6</div>
           </div>
         </div>
-        <label><code>.cluster.cluster-between</code> — space-between justify</label>
+        <label><code>.cluster.cluster-between</code> - space-between justify</label>
         <div class="layout-demo-wrap">
           <div class="cluster cluster-4 cluster-between">
             <div class="layout-box">left</div>
@@ -70,7 +70,7 @@
 
       <!-- Grid fixed columns -->
       <div class="demo-group">
-        <label><code>.grid.grid-cols-3</code> — fixed 3-column grid</label>
+        <label><code>.grid.grid-cols-3</code> - fixed 3-column grid</label>
         <div class="layout-demo-wrap">
           <div class="grid grid-cols-3">
             <div class="layout-box tall">1</div>
@@ -98,7 +98,7 @@
 
       <!-- Gap utilities -->
       <div class="demo-group">
-        <label>Gap utilities — <code>.gap-x-{n}</code> / <code>.gap-y-{n}</code> control column-gap and row-gap separately</label>
+        <label>Gap utilities - <code>.gap-x-{n}</code> / <code>.gap-y-{n}</code> control column-gap and row-gap separately</label>
         <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 0.5rem;">
           <div>
             <code style="font-size:0.75rem; color:var(--text-secondary); margin-bottom:.25rem; display:block">.gap-4 (both directions, 16px)</code>
@@ -126,7 +126,7 @@
 
       <!-- Grid auto -->
       <div class="demo-group">
-        <label><code>.grid-auto</code> — auto-fill, each column min <code>--grid-min-col</code> (default 240px). Resize the window to see columns reflow.</label>
+        <label><code>.grid-auto</code> - auto-fill, each column min <code>--grid-min-col</code> (default 240px). Resize the window to see columns reflow.</label>
         <div class="layout-demo-wrap">
           <div class="grid-auto">
             <div class="layout-box tall">auto 1</div>
@@ -151,7 +151,7 @@
 
       <!-- Responsive grid -->
       <div class="demo-group">
-        <label>Responsive grid — <code>.grid.grid-cols-1.grid-cols-md-2.grid-cols-lg-3</code>. Resize window: 1col → 2col (≥768px) → 3col (≥992px).</label>
+        <label>Responsive grid - <code>.grid.grid-cols-1.grid-cols-md-2.grid-cols-lg-3</code>. Resize window: 1col to 2col (≥768px) to 3col (≥992px).</label>
         <div class="layout-demo-wrap">
           <div class="grid grid-cols-1 grid-cols-md-2 grid-cols-lg-3">
             <div class="layout-box tall">responsive 1</div>
@@ -166,7 +166,7 @@
 
       <!-- Gap utilities -->
       <div class="demo-group">
-        <label><code>.gap-{n}</code> — gap utilities applied to a flex cluster</label>
+        <label><code>.gap-{n}</code> - gap utilities applied to a flex cluster</label>
         <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.5rem;">
           <div style="display:flex; align-items:center; gap:0.75rem;">
             <code style="min-width:6rem; font-size:0.75rem; color:var(--text-secondary)">.gap-1</code>
@@ -198,21 +198,21 @@
 
       <!-- Flank -->
       <div class="demo-group">
-        <label><code>.flank</code> — sidebar + content, wraps when content &lt; <code>--flank-content-min</code> (50%)</label>
+        <label><code>.flank</code> - sidebar + content, wraps when content &lt; <code>--flank-content-min</code> (50%)</label>
         <div class="layout-demo-wrap">
           <div class="flank" style="--flank-size: 6rem">
             <div class="layout-box" style="height:4rem; display:flex; align-items:center; justify-content:center;">sidebar</div>
-            <div class="layout-box" style="min-height:4rem;">content fills remaining space — resize the window to see it wrap below the sidebar</div>
+            <div class="layout-box" style="min-height:4rem;">content fills remaining space - resize the window to see it wrap below the sidebar</div>
           </div>
         </div>
-        <label><code>.flank.flank-end</code> — sidebar on the right</label>
+        <label><code>.flank.flank-end</code> - sidebar on the right</label>
         <div class="layout-demo-wrap">
           <div class="flank flank-end" style="--flank-size: 6rem">
             <div class="layout-box" style="min-height:4rem;">content area on the left</div>
             <div class="layout-box" style="height:4rem; display:flex; align-items:center; justify-content:center;">sidebar</div>
           </div>
         </div>
-        <label><code>.flank</code> with <code>--flank-content-min: 60%</code> — wraps sooner</label>
+        <label><code>.flank</code> with <code>--flank-content-min: 60%</code> - wraps sooner</label>
         <div class="layout-demo-wrap">
           <div class="flank" style="--flank-size: 8rem; --flank-content-min: 60%">
             <div class="layout-box" style="height:4rem; display:flex; align-items:center; justify-content:center;">8rem sidebar</div>
@@ -223,10 +223,10 @@
 
       <!-- Frame -->
       <div class="demo-group">
-        <label><code>.frame</code> — aspect-ratio crop container (default 16/9). Inner img/video fills and covers.</label>
+        <label><code>.frame</code> - aspect-ratio crop container (default 16/9). Inner img/video fills and covers.</label>
         <div class="layout-demo-wrap" style="max-width: 480px">
           <div class="frame frame-landscape" style="background: rgba(99,102,241,.15); border: 1px solid rgba(99,102,241,.3); border-radius: 6px;">
-            <span style="font-family:monospace; font-size:0.8rem; color:var(--text-secondary)">.frame.frame-landscape — 16 / 9</span>
+            <span style="font-family:monospace; font-size:0.8rem; color:var(--text-secondary)">.frame.frame-landscape - 16 / 9</span>
           </div>
         </div>
         <div class="cluster cluster-4" style="margin-top:.5rem; max-width:480px">
@@ -250,7 +250,7 @@
 
       <!-- Split -->
       <div class="demo-group">
-        <label><code>.split</code> — space-between toolbar, no wrapping by default</label>
+        <label><code>.split</code> - space-between toolbar, no wrapping by default</label>
         <div class="layout-demo-wrap">
           <div class="split" style="padding: .5rem; background: rgba(99,102,241,.06); border: 1px solid rgba(99,102,241,.2); border-radius: 6px;">
             <strong style="font-size:.9rem">Page title</strong>
@@ -260,7 +260,7 @@
             </div>
           </div>
         </div>
-        <label><code>.split.split-col</code> — vertical split (e.g. card with footer pinned to bottom)</label>
+        <label><code>.split.split-col</code> - vertical split (e.g. card with footer pinned to bottom)</label>
         <div class="layout-demo-wrap">
           <div class="split split-col" style="height: 10rem; padding: .75rem; background: rgba(99,102,241,.06); border: 1px solid rgba(99,102,241,.2); border-radius: 6px;">
             <div>
@@ -274,10 +274,10 @@
 
       <!-- Grid span -->
       <div class="demo-group">
-        <label><code>.grid-span</code> — child spans all grid columns</label>
+        <label><code>.grid-span</code> - child spans all grid columns</label>
         <div class="layout-demo-wrap">
           <div class="grid grid-cols-3" style="--grid-gap: var(--space-2)">
-            <div class="layout-box grid-span" style="text-align:center">.grid-span — full width</div>
+            <div class="layout-box grid-span" style="text-align:center">.grid-span - full width</div>
             <div class="layout-box tall">1</div>
             <div class="layout-box tall">2</div>
             <div class="layout-box tall">3</div>

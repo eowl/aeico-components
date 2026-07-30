@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>(function(){if(localStorage.getItem("aeico-demo-theme")==="dark")document.documentElement.setAttribute("theme","dark")})()</script>
-  <title>Menu — Aeico Components</title>
+  <title>Menu - Aeico Components</title>
   <link rel="stylesheet" href="../demo.css">
   <script type="module" src="../shared.ts"></script>
 </head>
@@ -15,7 +15,7 @@
 
       <!-- ─── Horizontal flyout (top nav bar) ──────────────────────────── -->
       <div class="demo-group">
-        <label>Horizontal flyout — top navigation bar</label>
+        <label>Horizontal flyout - top navigation bar</label>
         <div class="demo-row">
           <ae-menu id="menu-h-flyout" orientation="horizontal">
             <ae-menu-item key="home">Home</ae-menu-item>
@@ -33,9 +33,9 @@
         </div>
       </div>
 
-      <!-- ─── Horizontal flyout — hover trigger ────────────────────────── -->
+      <!-- ─── Horizontal flyout - hover trigger ────────────────────────── -->
       <div class="demo-group">
-        <label>Horizontal flyout — hover trigger</label>
+        <label>Horizontal flyout - hover trigger</label>
         <div class="demo-row">
           <ae-menu orientation="horizontal" trigger="hover">
             <ae-menu-item key="home">Home</ae-menu-item>
@@ -51,7 +51,7 @@
 
       <!-- ─── Vertical flyout (sidebar) ────────────────────────────────── -->
       <div class="demo-group">
-        <label>Vertical flyout — sidebar</label>
+        <label>Vertical flyout - sidebar</label>
         <div class="demo-row">
           <div style="width: 200px; border: 1px solid var(--border-color, #e0e0e0); border-radius: 6px;">
             <ae-menu orientation="vertical">
@@ -73,7 +73,7 @@
 
       <!-- ─── Inline accordion (sidebar) ───────────────────────────────── -->
       <div class="demo-group">
-        <label>Inline mode — accordion sidebar</label>
+        <label>Inline mode - accordion sidebar</label>
         <div class="demo-row">
           <div style="width: 220px; border: 1px solid var(--border-color, #e0e0e0); border-radius: 6px; overflow: hidden;">
             <ae-menu id="menu-inline" mode="inline" orientation="vertical">
@@ -96,7 +96,7 @@
 
       <!-- ─── Text wrapping ──────────────────────────────────────────── -->
       <div class="demo-group">
-        <label>wrap-text — allow text to wrap (no horizontal scrollbar)</label>
+        <label>wrap-text - allow text to wrap (no horizontal scrollbar)</label>
         <div class="demo-row">
           <div style="width: 160px; border: 1px solid var(--border-color, #e0e0e0); border-radius: 6px; overflow: hidden;">
             <ae-menu orientation="vertical" wrap-text>
@@ -125,7 +125,7 @@
 
       <!-- ─── Custom expand / collapse icons ───────────────────────────── -->
       <div class="demo-group">
-        <label>Inline mode — custom expand/collapse icons (icon-placement="end", default)</label>
+        <label>Inline mode - custom expand/collapse icons (icon-placement="end", default)</label>
         <div class="demo-row">
           <div style="width: 220px; border: 1px solid var(--border-color, #e0e0e0); border-radius: 6px; overflow: hidden;">
           <ae-menu mode="inline" orientation="vertical">
@@ -146,9 +146,9 @@
         </div>
       </div>
 
-      <!-- ─── Custom icons — icon-placement="start" ──────────────────── -->
+      <!-- ─── Custom icons - icon-placement="start" ──────────────────── -->
       <div class="demo-group">
-        <label>Inline mode — custom expand/collapse icons (icon-placement="start")</label>
+        <label>Inline mode - custom expand/collapse icons (icon-placement="start")</label>
         <div class="demo-row">
           <div style="width: 220px; border: 1px solid var(--border-color, #e0e0e0); border-radius: 6px; overflow: hidden;">
           <ae-menu mode="inline" orientation="vertical">
@@ -186,7 +186,7 @@
         const { key, label, keyPath } = e.detail;
         const log = document.getElementById('log');
         const li = document.createElement('li');
-        li.textContent = `select → key="${key}" label="${label}" keyPath=[${keyPath.join(' > ')}]`;
+        li.textContent = `select - key="${key}" label="${label}" keyPath=[${keyPath.join(' > ')}]`;
         log.prepend(li);
       });
     });

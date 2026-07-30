@@ -191,7 +191,6 @@
       }
     }
 
-    // Menu click → update iframe; menu already handles visual selection internally
     menu.addEventListener('select', (e) => {
       const { key } = e.detail;
       if (PAGES[key]) {
@@ -202,7 +201,7 @@
 
     // After each load: hide the inner navbar and sync theme
     frame.addEventListener('load', () => {
-      // Inject CSS to hide only the shell navbar (sticky) — keeps demo navbars visible
+      // Inject CSS to hide only the shell navbar (sticky) - keeps demo navbars visible
       const style = frame.contentDocument.createElement('style');
       style.textContent = 'ae-navbar[sticky] { display: none !important; }';
       frame.contentDocument.head.appendChild(style);

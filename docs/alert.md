@@ -75,12 +75,12 @@ Use `invisible` to hide the alert initially, then call `.show()` / `.hide()` in 
 
 | Attribute | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `color` | `'primary' \| 'secondary' \| 'success' \| 'danger' \| 'warning' \| 'info' \| 'light' \| 'dark'` | — | Sets the semantic colour and icon. |
+| `color` | `'primary' \| 'secondary' \| 'success' \| 'danger' \| 'warning' \| 'info' \| 'light' \| 'dark'` | - | Sets the semantic colour and icon. |
 | `variant` | `'subtle' \| 'faint' \| 'filled' \| 'outlined'` | `'subtle'` | Visual style of the alert. |
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Controls padding and font size. |
 | `dismissible` | `boolean` | `false` | Shows a close (×) button. |
 | `invisible` | `boolean` | `false` | Hides the alert. Use `.show()` / `.hide()` to control visibility. |
-| `closeText` | `string` | — | Custom text for the close button's `title` attribute. Defaults to "Close alert". |
+| `closeText` | `string` | - | Custom text for the close button's `title` attribute. Defaults to "Close alert". |
 
 ## Slots
 
@@ -92,7 +92,7 @@ Use `invisible` to hide the alert initially, then call `.show()` / `.hide()` in 
 
 | Event | Detail | Description |
 |-------|--------|-------------|
-| `alert-close` | — | Fired when the user clicks the dismiss button. |
+| `alert-close` | - | Fired when the user clicks the dismiss button. |
 
 ## CSS Custom Properties
 

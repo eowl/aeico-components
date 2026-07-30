@@ -8,7 +8,6 @@ import type { CardVariant, CardColor } from './defines';
 import { prop } from 'aeico';
 
 class Card extends AeicoComponent {
-
   protected static styles = [styleVariables, colorCSS, cardStyle];
 
   @prop({ type: String })

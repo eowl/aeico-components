@@ -49,7 +49,7 @@ Adds a moving shimmer over the fill to indicate activity.
 <ae-progress-bar value="65" animated></ae-progress-bar>
 ```
 
-### `label` — accessible label
+### `label` - accessible label
 
 ```html
 <ae-progress-bar value="40" label="File upload progress"></ae-progress-bar>
@@ -74,7 +74,7 @@ Adds a moving shimmer over the fill to indicate activity.
 | `value` | `number` | `0` | Fill percentage (0–100). Automatically clamped. |
 | `color` | `'default' \| 'primary' \| 'secondary' \| 'success' \| 'danger' \| 'warning' \| 'info' \| 'light' \| 'dark'` | `'primary'` | Fill colour theme. |
 | `animated` | `boolean` | `false` | Adds a shimmer animation to indicate ongoing progress. |
-| `label` | `string` | — | Sets `aria-label` on the progress element for screen readers. |
+| `label` | `string` | - | Sets `aria-label` on the progress element for screen readers. |
 
 ## CSS Custom Properties
 

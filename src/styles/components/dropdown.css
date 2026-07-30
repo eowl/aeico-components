@@ -49,7 +49,7 @@
   pointer-events: none;
 }
 
-/* Bootstrap-style CSS border caret — shadow DOM only, no global injection needed */
+/* Bootstrap-style CSS border caret - shadow DOM only, no global injection needed */
 .ae-dropdown-arrow {
   display: inline-block;
   width: 0;

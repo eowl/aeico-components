@@ -23,7 +23,7 @@ import 'aeico-components';
 </ae-detail>
 ```
 
-### `summary` slot — rich header content
+### `summary` slot - rich header content
 
 ```html
 <ae-detail>
@@ -91,8 +91,8 @@ import 'aeico-components';
 
 | Attribute | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `summary` | `string` | — | Text label shown in the toggle bar. |
-| `color` | `'default' \| 'primary' \| 'secondary' \| 'success' \| 'danger' \| 'warning' \| 'info' \| 'light' \| 'dark'` | — | Semantic colour theme. |
+| `summary` | `string` | - | Text label shown in the toggle bar. |
+| `color` | `'default' \| 'primary' \| 'secondary' \| 'success' \| 'danger' \| 'warning' \| 'info' \| 'light' \| 'dark'` | - | Semantic colour theme. |
 | `variant` | `'subtle' \| 'faint' \| 'filled' \| 'outlined'` | `'subtle'` | Visual style. |
 | `disabled` | `boolean` | `false` | Prevents the panel from being toggled. |
 
@@ -109,8 +109,8 @@ import 'aeico-components';
 
 | Event | Detail | Description |
 |-------|--------|-------------|
-| `open` | — | Fired when the panel opens. |
-| `close` | — | Fired when the panel closes. |
+| `open` | - | Fired when the panel opens. |
+| `close` | - | Fired when the panel closes. |
 
 ## CSS Custom Properties
 

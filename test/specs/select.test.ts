@@ -166,7 +166,7 @@ describe('Select', () => {
     })
   })
 
-  describe('option selection — options prop', () => {
+  describe('option selection - options prop', () => {
     it('clicking an option sets the value and closes the dropdown', async () => {
       const el = await mount<Select>(`<${TAG}></${TAG}>`)
       el.options = FRUITS
@@ -220,7 +220,7 @@ describe('Select', () => {
     })
   })
 
-  describe('option selection — slot mode', () => {
+  describe('option selection - slot mode', () => {
     it('clicking a slot option selects it and fires change event', async () => {
       const el = await mount<Select>(`
         <${TAG}>

@@ -22,7 +22,6 @@ import { prop } from 'aeico';
  * @cssproperty --thickness - Custom property to set the thickness of the divider when the `thickness` prop is used.
  */
 class Divider extends AeicoComponent {
-
   @prop({ type: Boolean })
   accessor vertical: boolean = false;
 

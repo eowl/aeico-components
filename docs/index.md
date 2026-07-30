@@ -89,7 +89,7 @@ import 'aeico-components';
 
 | Resource | Type | Description |
 |----------|------|-------------|
-| [Styles](./styles.md) | CSS | Light DOM utility stylesheets — layout, spacing, border-radius, and design tokens. |
+| [Styles](./styles.md) | CSS | Light DOM utility stylesheets - layout, spacing, border-radius, and design tokens. |
 
 ---
 

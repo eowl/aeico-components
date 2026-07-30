@@ -12,7 +12,6 @@ import IconRegistry from './registry';
 import './built-in-icons';
 
 class Icon extends AeicoComponent {
-
   static props: Props = {
     name: { type: String },
     size: { type: String },

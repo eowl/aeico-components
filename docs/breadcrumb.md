@@ -27,7 +27,7 @@ import 'aeico-components';
 </ae-breadcrumb>
 ```
 
-### `separator` — custom text separator
+### `separator` - custom text separator
 
 ```html
 <ae-breadcrumb separator=">">
@@ -37,7 +37,7 @@ import 'aeico-components';
 </ae-breadcrumb>
 ```
 
-### `separator` slot — custom element separator
+### `separator` slot - custom element separator
 
 The named `separator` slot takes priority over the `separator` attribute.
 
@@ -50,7 +50,7 @@ The named `separator` slot takes priority over the `separator` attribute.
 </ae-breadcrumb>
 ```
 
-### `color` — themed links
+### `color` - themed links
 
 ```html
 <ae-breadcrumb color="primary">
@@ -77,7 +77,7 @@ When `href` is set the item renders as an `<a>` anchor; otherwise it renders as 
 | Attribute | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `separator` | `string` | `'/'` | Text character shown between items. Overridden by the `separator` slot. |
-| `color` | `string` | — | Applies a theme colour to item links. |
+| `color` | `string` | - | Applies a theme colour to item links. |
 
 ## `ae-breadcrumb` Slots
 
@@ -92,7 +92,7 @@ When `href` is set the item renders as an `<a>` anchor; otherwise it renders as 
 
 | Attribute | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `href` | `string` | — | When set, the item renders as an `<a>` anchor. |
+| `href` | `string` | - | When set, the item renders as an `<a>` anchor. |
 
 ## `ae-breadcrumb-item` Slots
 

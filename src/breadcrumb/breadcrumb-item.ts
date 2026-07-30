@@ -22,7 +22,6 @@ import { prop } from 'aeico';
  * ```
  */
 class BreadcrumbItem extends AeicoComponent {
-
   protected static styles = [styleVariables, style];
 
   @prop({ type: String })

@@ -2,9 +2,9 @@
  * esbuild build script for CJS output.
  *
  * Produces:
- *   dist/*.cjs          — entry points
- *   dist/*.cjs.map      — source maps
- *   dist/chunks/*.cjs   — shared chunks
+ *   dist/*.cjs          - entry points
+ *   dist/*.cjs.map      - source maps
+ *   dist/chunks/*.cjs   - shared chunks
  */
 
 import * as esbuild from 'esbuild'
@@ -94,4 +94,4 @@ await esbuild.build({
   absWorkingDir: rootDir,
 })
 
-console.log('CJS build done → dist/*.cjs')
+console.log('CJS build done to dist/*.cjs')

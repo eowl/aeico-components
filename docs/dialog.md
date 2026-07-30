@@ -31,7 +31,7 @@ import 'aeico-components';
 <ae-button color="danger" onclick="document.querySelector('#dlg').open()">Delete</ae-button>
 ```
 
-### `label` — dialog title
+### `label` - dialog title
 
 ```html
 <ae-dialog label="User Profile">
@@ -39,7 +39,7 @@ import 'aeico-components';
 </ae-dialog>
 ```
 
-### `header` slot — custom header
+### `header` slot - custom header
 
 ```html
 <ae-dialog>
@@ -63,7 +63,7 @@ import 'aeico-components';
 </ae-dialog>
 ```
 
-### `modal="false"` — modeless dialog
+### `modal="false"` - modeless dialog
 
 ```html
 <ae-dialog id="modeless" label="Floating Panel" modal="false">
@@ -71,7 +71,7 @@ import 'aeico-components';
 </ae-dialog>
 ```
 
-### `closable="false"` — remove the close button
+### `closable="false"` - remove the close button
 
 ```html
 <ae-dialog id="required" label="Required Action" closable="false">
@@ -80,7 +80,7 @@ import 'aeico-components';
 </ae-dialog>
 ```
 
-### `closeOnOverlayClick="false"` — prevent backdrop close
+### `closeOnOverlayClick="false"` - prevent backdrop close
 
 ```html
 <ae-dialog label="Sticky Dialog" closeOnOverlayClick="false">
@@ -88,7 +88,7 @@ import 'aeico-components';
 </ae-dialog>
 ```
 
-### `data-close` — elements that auto-close the dialog
+### `data-close` - elements that auto-close the dialog
 
 ```html
 <ae-dialog label="Actions">
@@ -118,9 +118,9 @@ import 'aeico-components';
 
 | Attribute | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `label` | `string` | — | Title shown in the dialog header. |
-| `width` | `string` | — | CSS width of the dialog panel (e.g. `'600px'`, `'80vw'`). |
-| `height` | `string` | — | CSS height of the dialog panel. |
+| `label` | `string` | - | Title shown in the dialog header. |
+| `width` | `string` | - | CSS width of the dialog panel (e.g. `'600px'`, `'80vw'`). |
+| `height` | `string` | - | CSS height of the dialog panel. |
 | `modal` | `boolean` | `true` | When `true`, renders a backdrop and traps focus. |
 | `closable` | `boolean` | `true` | Shows the built-in close (×) button. |
 | `header` | `boolean` | `true` | Shows the header bar. Set to `false` to hide it entirely. |
@@ -138,5 +138,5 @@ import 'aeico-components';
 
 | Event | Detail | Description |
 |-------|--------|-------------|
-| `open` | — | Fired when the dialog opens. |
-| `close` | — | Fired when the dialog closes. |
+| `open` | - | Fired when the dialog opens. |
+| `close` | - | Fired when the dialog closes. |

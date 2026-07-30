@@ -10,7 +10,6 @@ import style from '../styles/components/text-input.css';
 class TextInput extends AeicoField {
   protected fieldElement: HTMLInputElement | null = null;
 
-
   static props: Props = {
     placeholder: { type: String },
     type: { type: String },

@@ -12,7 +12,6 @@ import { CheckboxVariant } from './defines';
 class Checkbox extends AeicoField<boolean> {
   protected fieldElement: HTMLInputElement | null = null;
 
-
   static props: Props = {
     checked: { type: Boolean },
     defaultChecked: { type: Boolean },

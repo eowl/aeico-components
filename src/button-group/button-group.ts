@@ -23,7 +23,7 @@ import DropdownButton from '../dropdown/dropdown-button';
  *   <ae-button>Three</ae-button>
  * </ae-button-group>
  *
- * <!-- Compact — joined strip -->
+ * <!-- Compact - joined strip -->
  * <ae-button-group compact color="primary">
  *   <ae-button>Left</ae-button>
  *   <ae-button>Middle</ae-button>
@@ -38,7 +38,6 @@ import DropdownButton from '../dropdown/dropdown-button';
  * ```
  */
 class ButtonGroup extends AeicoComponent {
-
   static props: Props = {
     variant: { type: String },
     color: { type: String },

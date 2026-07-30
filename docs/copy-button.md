@@ -15,7 +15,7 @@ import 'aeico-components';
 
 ## Examples
 
-### Basic — copy from `text` attribute
+### Basic - copy from `text` attribute
 
 ```html
 <ae-copy-button text="npm install aeico-components">Copy install command</ae-copy-button>
@@ -49,14 +49,14 @@ When `text` is not set, the content of the default slot is copied.
 <ae-copy-button text="hello" disabled>Copy</ae-copy-button>
 ```
 
-### `duration` — how long the confirmation is shown
+### `duration` - how long the confirmation is shown
 
 ```html
 <!-- Shows "Copied!" for 4 seconds instead of the default 2 -->
 <ae-copy-button text="hello" duration="4000">Copy</ae-copy-button>
 ```
 
-### `tooltip` and `tooltipCopied` — custom tooltip text
+### `tooltip` and `tooltipCopied` - custom tooltip text
 
 ```html
 <ae-copy-button
@@ -91,7 +91,7 @@ When `text` is not set, the content of the default slot is copied.
 
 | Attribute | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `text` | `string` | — | Text to copy. Falls back to the default slot content when not set. |
+| `text` | `string` | - | Text to copy. Falls back to the default slot content when not set. |
 | `color` | `'default' \| 'primary' \| 'secondary' \| 'success' \| 'danger' \| 'warning' \| 'info' \| 'light' \| 'dark'` | `'default'` | Button colour theme. |
 | `variant` | `'filled' \| 'outlined' \| 'faint' \| 'subtle' \| 'text'` | `'filled'` | Button visual style. |
 | `size` | `'3xs' \| '2xs' \| 'xs' \| 'sm' \| 'md' \| 'lg'` | `'md'` | Button size. |

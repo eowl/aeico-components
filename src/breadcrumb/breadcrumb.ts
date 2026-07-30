@@ -15,8 +15,8 @@ import type BreadcrumbItem from './breadcrumb-item';
  * as `aria-current="page"`.
  *
  * The separator is configurable via:
- * - `separator` attribute (text, default `/`) — simple and concise
- * - `slot="separator"` (any element, e.g. `ae-icon`) — takes priority over the attribute
+ * - `separator` attribute (text, default `/`) - simple and concise
+ * - `slot="separator"` (any element, e.g. `ae-icon`) - takes priority over the attribute
  *
  * Supports `color` for theming item link colors. The separator intentionally
  * uses a fixed muted color and does NOT respond to the `color` prop.
@@ -45,7 +45,6 @@ import type BreadcrumbItem from './breadcrumb-item';
  * ```
  */
 class Breadcrumb extends AeicoComponent {
-
   protected static styles = [styleVariables, colorCSS, style];
 
   /** Text separator shown between items. Ignored when `slot="separator"` is provided. */

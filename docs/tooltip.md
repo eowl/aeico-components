@@ -51,7 +51,7 @@ import 'aeico-components';
 </ae-tooltip>
 ```
 
-### `trigger="click"` — show on click
+### `trigger="click"` - show on click
 
 ```html
 <ae-tooltip content="Copied!" trigger="click">
@@ -59,7 +59,7 @@ import 'aeico-components';
 </ae-tooltip>
 ```
 
-### `open` — controlled visibility
+### `open` - controlled visibility
 
 ```html
 <ae-tooltip id="tt" content="Always visible" open>
@@ -75,7 +75,7 @@ import 'aeico-components';
 </ae-tooltip>
 ```
 
-### `tooltip` slot — rich HTML content
+### `tooltip` slot - rich HTML content
 
 ```html
 <ae-tooltip>
@@ -108,7 +108,7 @@ import 'aeico-components';
 
 | Attribute | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `content` | `string` | — | Plain text tooltip. Use the `tooltip` slot for rich HTML. |
+| `content` | `string` | - | Plain text tooltip. Use the `tooltip` slot for rich HTML. |
 | `placement` | `'top' \| 'top-start' \| 'top-end' \| 'bottom' \| 'bottom-start' \| 'bottom-end' \| 'left' \| 'right'` | `'top'` | Position of the tooltip relative to the trigger. |
 | `trigger` | `'hover' \| 'click'` | `'hover'` | How the tooltip is activated. |
 | `open` | `boolean` | `false` | Controls tooltip visibility programmatically. |

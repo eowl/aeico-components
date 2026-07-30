@@ -156,7 +156,7 @@ describe('Icon', () => {
     })
   })
 
-  describe('stroke — component prop', () => {
+  describe('stroke - component prop', () => {
     it('fill icon has no --icon-fill CSS var set', async () => {
       const el = await mount<Icon>(`<${TAG_NAME} name="test-star"></${TAG_NAME}>`)
       expect(el.style.getPropertyValue('--icon-fill')).to.equal('')

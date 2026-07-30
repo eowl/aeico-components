@@ -46,7 +46,6 @@ type PageItem = number | 'ellipsis-start' | 'ellipsis-end';
  * ```
  */
 class Pagination extends AeicoComponent {
-
   protected static styles = [styleVariables, sizeCSS, paginationStyle];
 
   @prop({ type: Number })

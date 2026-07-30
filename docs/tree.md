@@ -44,7 +44,7 @@ import 'aeico-components';
 </ae-tree>
 ```
 
-### `selectedKey` — pre-selected item
+### `selectedKey` - pre-selected item
 
 ```html
 <ae-tree selectedKey="a1">
@@ -55,7 +55,7 @@ import 'aeico-components';
 </ae-tree>
 ```
 
-### `multiple` — multi-select on click
+### `multiple` - multi-select on click
 
 ```html
 <ae-tree multiple>
@@ -65,7 +65,7 @@ import 'aeico-components';
 </ae-tree>
 ```
 
-### `checkable` — checkbox selection
+### `checkable` - checkbox selection
 
 ```html
 <ae-tree checkable defaultExpandAll>
@@ -79,7 +79,7 @@ import 'aeico-components';
 </ae-tree>
 ```
 
-### `showLine` — connector lines
+### `showLine` - connector lines
 
 ```html
 <ae-tree showLine defaultExpandAll>
@@ -93,7 +93,7 @@ import 'aeico-components';
 </ae-tree>
 ```
 
-### `icon` — default expand icon name
+### `icon` - default expand icon name
 
 ```html
 <ae-tree icon="folder">
@@ -168,8 +168,8 @@ console.log(tree.expandedKeys);  // string[]
 | `multiple` | `boolean` | `false` | Allows multiple items to be selected by clicking (without checkboxes). |
 | `showLine` | `boolean` | `false` | Renders dashed connector lines between parent and children. |
 | `defaultExpandAll` | `boolean` | `false` | Expands all parent nodes on mount. |
-| `selectedKey` | `string` | — | Convenience prop to set an initially selected key. |
-| `icon` | `string` | — | Default icon name used as the expand/collapse indicator. |
+| `selectedKey` | `string` | - | Convenience prop to set an initially selected key. |
+| `icon` | `string` | - | Default icon name used as the expand/collapse indicator. |
 
 ## `ae-tree` JavaScript Properties (read/write)
 
@@ -200,8 +200,8 @@ console.log(tree.expandedKeys);  // string[]
 | Attribute | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `key` | `string` | auto-generated | Unique identifier. Auto-generated if omitted. |
-| `label` | `string` | — | When set, the item is treated as a parent node that can expand/collapse. Sub-items go in the `sub` slot. |
-| `icon` | `string` | — | Icon name displayed before the label. |
+| `label` | `string` | - | When set, the item is treated as a parent node that can expand/collapse. Sub-items go in the `sub` slot. |
+| `icon` | `string` | - | Icon name displayed before the label. |
 | `disabled` | `boolean` | `false` | Prevents the item from being selected, checked, or expanded. |
 | `expanded` | `boolean` | `false` | Controls the expanded state of a parent item. |
 | `selected` | `boolean` | `false` | Marks the item as selected (usually managed by `ae-tree`). |

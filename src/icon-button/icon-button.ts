@@ -17,7 +17,6 @@ export type IconButtonSize = 'xs' | 'sm' | 'md' | 'lg';
  * ```
  */
 class IconButton extends AeicoComponent {
-
   static props: Props = {
     icon: { type: String },
     size: { type: String },

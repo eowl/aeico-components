@@ -177,7 +177,7 @@ events.forEach(eventName => {
         detail = Object.keys(safe).length ? JSON.stringify(safe) : ''
       }
     } catch { /* ignore */ }
-    appendLog(`${tag} → ${eventName}${detail ? ' ' + detail : ''}`)
+    appendLog(`${tag} - ${eventName}${detail ? ' ' + detail : ''}`)
   }) as EventListener)
 })
 
@@ -194,7 +194,7 @@ function applyTheme(silent = false) {
     document.documentElement.removeAttribute('theme')
     if (btn) btn.textContent = '🌙 Dark'
   }
-  if (!silent) appendLog(`theme → ${isDark ? 'dark' : 'light'}`)
+  if (!silent) appendLog(`theme - ${isDark ? 'dark' : 'light'}`)
   // Sync theme to embedded iframe (when acting as shell)
   const frame = document.getElementById('content-frame') as HTMLIFrameElement | null
   frame?.contentWindow?.postMessage({ type: 'aeico-theme', dark: isDark }, '*')
@@ -225,7 +225,7 @@ window.addEventListener('message', (e: MessageEvent) => {
   }
 })
 
-// Apply persisted theme on startup (silent — no event log entry)
+// Apply persisted theme on startup (silent - no event log entry)
 if (isDark) applyTheme(true)
 
 // --- Radius applying (used from postMessage by shell) ---
@@ -250,7 +250,7 @@ const isIframe = window !== window.parent
 const RADIUS_VALUE_MAP: Record<string, string | null> = {
   square: '0',
   xs:     '2px',
-  sm:     null,  // default — remove overrides
+  sm:     null,  // default - remove overrides
   md:     '6px',
   lg:     '8px',
   xl:     '12px',
@@ -310,7 +310,7 @@ function applyRadius(value: string) {
     frame.contentWindow.postMessage({ type: 'aeico-radius', value }, '*')
   }
 
-  appendLog(`radius → ${value}`)
+  appendLog(`radius - ${value}`)
 }
 
 // Handle radius dropdown select
@@ -341,7 +341,7 @@ function switchLang(lang: SupportedLang) {
   ;(window as any).__aeicoLang = lang
   applyLocaleToFields(LOCALES[lang])
   syncLangButtons()
-  appendLog(`language switched → ${lang}`)
+  appendLog(`language switched - ${lang}`)
   // Sync language to embedded iframe (when acting as shell)
   const frame = document.getElementById('content-frame') as HTMLIFrameElement | null
   frame?.contentWindow?.postMessage({ type: 'aeico-lang', lang }, '*')
@@ -356,7 +356,7 @@ syncLangButtons()
 // --- Dropdown events ---
 document.querySelectorAll<any>('.dropdown-demo').forEach(el => {
   el.addEventListener('select', (e: CustomEvent) => {
-    appendLog(`dropdown select → value: "${e.detail?.value}", label: "${e.detail?.label}"`)
+    appendLog(`dropdown select - value: "${e.detail?.value}", label: "${e.detail?.label}"`)
   })
   el.addEventListener('open', () => appendLog('dropdown open'))
   el.addEventListener('close', () => appendLog('dropdown close'))
