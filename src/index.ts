@@ -9,12 +9,12 @@
  * import { SelectField, RangeField, Button } from 'aeico/components'
  *
  * // Manually register components
- * SelectField.register()
- * RangeField.register()
- * Button.register()
+ * SelectField.define()
+ * RangeField.define()
+ * Button.define()
  *
  * // Or use with custom names
- * SelectField.register('my-select')
+ * SelectField.define('my-select')
  * ```
  *
  * @example

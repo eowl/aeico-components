@@ -57,6 +57,8 @@
     "build": "node scripts/build.mjs && node scripts/build-cjs.mjs && node scripts/build-styles.mjs && tsc --declaration --emitDeclarationOnly --outDir dist/types -p tsconfig.json",
     "dev": "node scripts/build.mjs --watch",
     "dev:example": "vite --config vite.example.config.ts",
+    "dev:example:components": "vite --config vite.example.config.ts",
+    "dev:example:simple": "cd examples/simple && vite",
     "type-check": "tsc --noEmit",
     "lint": "eslint \"src/**/*.ts\" \"test/**/*.ts\"",
     "lint:fix": "eslint \"src/**/*.ts\" \"test/**/*.ts\" --fix",
@@ -76,7 +78,7 @@
   "author": "Eowl",
   "license": "MIT",
   "peerDependencies": {
-    "aeico": "^0.1.5"
+    "aeico": "^0.1.8"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -85,7 +87,7 @@
     "@web/dev-server-esbuild": "^1.0.5",
     "@web/test-runner": "^0.20.2",
     "@web/test-runner-playwright": "^0.11.1",
-    "aeico": "^0.1.5",
+    "aeico": "^0.1.8",
     "aeico-localize": "^0.1.1",
     "esbuild": "^0.28.1",
     "eslint": "^10.1.0",
