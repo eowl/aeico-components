@@ -41,12 +41,11 @@ function cssStringPlugin() {
 }
 
 export default defineConfig({
-  root: path.resolve(__dirname, 'example'),
+  root: path.resolve(__dirname, 'examples', 'components'),
   esbuild: {
     target: 'es2022',
   },
   define: {
-    __DEV__: 'true',
     'import.meta.env.DEV': 'true',
   },
   server: {

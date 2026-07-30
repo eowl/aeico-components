@@ -25,8 +25,8 @@ import {
   ProgressBar,
   Textarea,
   Pagination,
-} from '../src/index'
-import '../src/styles/layout.css'
+} from '../../src/index'
+import '../../src/styles/layout.css'
 void [TextInput, NumberInput, Select, Slider, Checkbox, RadioGroup, Icon, Switch, Tabs, Tab, TabPanel, Dialog, Divider, Card, Badge, Tag, Breadcrumb, BreadcrumbItem, Navbar, Dropdown, DropdownItem, Detail, ProgressBar, Textarea, Pagination]
 
 // --- Localization setup ---

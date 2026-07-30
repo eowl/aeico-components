@@ -31,9 +31,9 @@ import {
   Tree,
   TreeItem,
   CopyButton,
-} from '../src/index'
-import '../src/styles/layout.css'
-import '../src/styles/radius.css'
+} from '../../src/index'
+import '../../src/styles/layout.css'
+import '../../src/styles/radius.css'
 void [TextInput, NumberInput, Select, Slider, Checkbox, RadioGroup, Icon, Switch, Tabs, Tab, TabPanel, Dialog, Drawer, Divider, Card, Badge, Tag, Breadcrumb, BreadcrumbItem, Navbar, Dropdown, DropdownItem, Detail, ProgressBar, Textarea, Menu, MenuItem, Pagination, Tree, TreeItem, CopyButton]
 
 // --- Localization setup ---
