@@ -5,7 +5,7 @@ import Divider from '../../src/divider/divider.js'
 const TAG_NAME = 'ae-divider'
 
 before(async () => {
-  Divider.register()
+  Divider.define('divider')
   await whenDefined(TAG_NAME)
 })
 

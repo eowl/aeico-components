@@ -1,4 +1,4 @@
-﻿import type { InferProps, Props } from 'aeico';
+import type { InferProps, Props } from 'aeico';
 import styleVariables from '../styles/variables.css';
 import buttonGroupStyle from '../styles/components/button-group.css';
 import AeicoComponent from '../aeico-component';
@@ -23,7 +23,7 @@ import DropdownButton from '../dropdown/dropdown-button';
  *   <ae-button>Three</ae-button>
  * </ae-button-group>
  *
- * <!-- Compact — joined strip -->
+ * <!-- Compact - joined strip -->
  * <ae-button-group compact color="primary">
  *   <ae-button>Left</ae-button>
  *   <ae-button>Middle</ae-button>
@@ -38,8 +38,6 @@ import DropdownButton from '../dropdown/dropdown-button';
  * ```
  */
 class ButtonGroup extends AeicoComponent {
-  static tagName = 'button-group';
-
   static props: Props = {
     variant: { type: String },
     color: { type: String },
@@ -129,7 +127,7 @@ class ButtonGroup extends AeicoComponent {
   }
 }
 
-ButtonGroup.register();
+ButtonGroup.define('button-group');
 
 declare global {
   interface HTMLElementTagNameMap {

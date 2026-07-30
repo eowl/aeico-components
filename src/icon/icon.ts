@@ -1,4 +1,4 @@
-﻿import type { InferProps, Props } from 'aeico';
+import type { InferProps, Props } from 'aeico';
 import { SVG_NS } from '../utils';
 import AeicoComponent from '../aeico-component';
 import { html } from 'aeico';
@@ -12,8 +12,6 @@ import IconRegistry from './registry';
 import './built-in-icons';
 
 class Icon extends AeicoComponent {
-  static tagName = 'icon';
-
   static props: Props = {
     name: { type: String },
     size: { type: String },
@@ -91,7 +89,7 @@ class Icon extends AeicoComponent {
   }
 }
 
-Icon.register();
+Icon.define('icon');
 
 declare global {
   interface HTMLElementTagNameMap {

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>(function(){if(localStorage.getItem("aeico-demo-theme")==="dark")document.documentElement.setAttribute("theme","dark")})()</script>
+  <title>Button Group - Aeico Components</title>
+  <link rel="stylesheet" href="../demo.css">
+  <script type="module" src="../shared.ts"></script>
+</head>
+<body>
+  <div class="content">
+    <div class="section">
+      <h2>Button Group</h2>
+      <span class="tag">&lt;ae-button-group&gt;</span>
+
+      <div class="demo-group">
+        <label>Loose filled (default)</label>
+        <ae-button-group>
+          <ae-button>One</ae-button>
+          <ae-button>Two</ae-button>
+          <ae-button>Three</ae-button>
+        </ae-button-group>
+      </div>
+
+      <div class="demo-group">
+        <label>Loose colors</label>
+        <ae-button-group color="primary">
+          <ae-button>Save</ae-button>
+          <ae-button>Preview</ae-button>
+          <ae-button>Duplicate</ae-button>
+        </ae-button-group>
+        <ae-button-group variant="outlined" color="danger">
+          <ae-button>Delete</ae-button>
+          <ae-button>Archive</ae-button>
+          <ae-button disabled>Restore</ae-button>
+        </ae-button-group>
+      </div>
+
+      <div class="demo-group">
+        <label>Compact filled</label>
+        <ae-button-group compact>
+          <ae-button>Left</ae-button>
+          <ae-button>Middle</ae-button>
+          <ae-button>Right</ae-button>
+        </ae-button-group>
+
+        <ae-button-group compact color="primary">
+          <ae-button>Left</ae-button>
+          <ae-button>Middle</ae-button>
+          <ae-button>Right</ae-button>
+        </ae-button-group>
+
+        <ae-button-group compact color="danger">
+          <ae-button>Left</ae-button>
+          <ae-button>Middle</ae-button>
+          <ae-button>Right</ae-button>
+        </ae-button-group>
+      </div>
+
+      <div class="demo-group">
+        <label>Compact outlined</label>
+        <ae-button-group compact variant="outlined" color="primary">
+          <ae-button>Bold</ae-button>
+          <ae-button>Italic</ae-button>
+          <ae-button>Underline</ae-button>
+          <ae-button>Strike</ae-button>
+        </ae-button-group>
+      </div>
+
+      <div class="demo-group">
+        <label>Active</label>
+         <ae-button-group compact color="primary">
+          <ae-button>Left</ae-button>
+          <ae-button active>Middle</ae-button>
+          <ae-button>Right</ae-button>
+        </ae-button-group>
+      </div>
+
+      <div class="demo-group">
+        <label>Sizes</label>
+        <ae-button-group compact color="primary" size="xs">
+          <ae-button>XS</ae-button>
+          <ae-button>XS</ae-button>
+          <ae-button>XS</ae-button>
+        </ae-button-group>
+        <ae-button-group compact color="primary" size="sm">
+          <ae-button>SM</ae-button>
+          <ae-button>SM</ae-button>
+          <ae-button>SM</ae-button>
+        </ae-button-group>
+        <ae-button-group compact color="primary" size="md">
+          <ae-button>MD</ae-button>
+          <ae-button>MD</ae-button>
+          <ae-button>MD</ae-button>
+        </ae-button-group>
+        <ae-button-group compact color="primary" size="lg">
+          <ae-button>LG</ae-button>
+          <ae-button>LG</ae-button>
+          <ae-button>LG</ae-button>
+        </ae-button-group>
+      </div>
+
+      <div class="demo-group">
+        <label>Disabled (group-level)</label>
+        <ae-button-group compact color="primary" disabled>
+          <ae-button>One</ae-button>
+          <ae-button>Two</ae-button>
+          <ae-button>Three</ae-button>
+        </ae-button-group>
+      </div>
+
+      <div class="demo-group">
+        <label>With icons</label>
+        <ae-button-group compact variant="outlined" color="primary">
+          <ae-button><ae-icon name="star"></ae-icon></ae-button>
+          <ae-button><ae-icon name="home"></ae-icon></ae-button>
+          <ae-button><ae-icon name="heart"></ae-icon></ae-button>
+        </ae-button-group>
+        <ae-button-group color="primary" compact>
+          <ae-button><ae-icon name="edit"></ae-icon> Edit</ae-button>
+          <ae-button><ae-icon name="trash"></ae-icon> Delete</ae-button>
+        </ae-button-group>
+      </div>
+    </div>
+
+    <!-- Dropdown -->
+  </div>
+  <footer id="log-footer">
+    <div id="log-footer-header">
+      Event Log
+      <span class="clear-log" id="clear-log">[clear]</span>
+    </div>
+    <div id="event-log"></div>
+  </footer>
+
+</body>
+</html>

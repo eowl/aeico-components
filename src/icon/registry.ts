@@ -2,7 +2,7 @@ import { IconDefinition, IconRegistryData, defaultViewBox } from './defines';
 
 class IconRegistry {
   private static _icons: Map<string, IconDefinition> = new Map();
-  /** Names registered via addBuiltIn — can be overridden by user add() calls */
+  /** Names registered via addBuiltIn - can be overridden by user add() calls */
   private static _builtInKeys: Set<string> = new Set();
 
   /** Register user icons. Always takes priority over built-in icons. */

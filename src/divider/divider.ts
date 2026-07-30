@@ -1,4 +1,4 @@
-﻿import AeicoComponent from '../aeico-component';
+import AeicoComponent from '../aeico-component';
 import type { InferProps } from 'aeico';
 import styleVariables from '../styles/variables.css';
 import colorCSS from '../styles/color.css';
@@ -22,8 +22,6 @@ import { prop } from 'aeico';
  * @cssproperty --thickness - Custom property to set the thickness of the divider when the `thickness` prop is used.
  */
 class Divider extends AeicoComponent {
-  static tagName = 'divider';
-
   @prop({ type: Boolean })
   accessor vertical: boolean = false;
 
@@ -44,7 +42,7 @@ class Divider extends AeicoComponent {
   }
 }
 
-Divider.register();
+Divider.define('divider');
 
 declare global {
   interface HTMLElementTagNameMap {

@@ -1,10 +1,9 @@
-﻿import type { Props } from 'aeico';
+import type { Props } from 'aeico';
 import tabStyle from '../styles/components/tab.css';
 import AeicoComponent from '../aeico-component';
 import { html } from 'aeico';
 
 class Tab extends AeicoComponent {
-  static tagName = 'tab';
   static props: Props = {
     active: { type: Boolean },
     disabled: { type: Boolean },
@@ -52,7 +51,7 @@ class Tab extends AeicoComponent {
   }
 }
 
-Tab.register();
+Tab.define('tab');
 
 declare global {
   interface HTMLElementTagNameMap {

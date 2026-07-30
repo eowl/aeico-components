@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>(function(){if(localStorage.getItem("aeico-demo-theme")==="dark")document.documentElement.setAttribute("theme","dark")})()</script>
+  <title>Tabs - Aeico Components</title>
+  <link rel="stylesheet" href="../demo.css">
+  <script type="module" src="../shared.ts"></script>
+</head>
+<body>
+  <div class="content">
+    <div class="section">
+      <h2>Tabs</h2>
+      <span class="tag">&lt;ae-tabs&gt; &lt;ae-tab&gt; &lt;ae-tab-panel&gt;</span>
+
+      <div class="demo-group">
+        <label>Basic position-based pairing</label>
+        <ae-tabs>
+          <ae-tab>Tab 1</ae-tab>
+          <ae-tab>Tab 2</ae-tab>
+          <ae-tab>Tab 3</ae-tab>
+          <ae-tab-panel><p style="padding: 1rem;">Content of Tab 1</p></ae-tab-panel>
+          <ae-tab-panel><p style="padding: 1rem;">Content of Tab 2</p></ae-tab-panel>
+          <ae-tab-panel><p style="padding: 1rem;">Content of Tab 3</p></ae-tab-panel>
+        </ae-tabs>
+      </div>
+
+      <div class="demo-group">
+        <label>ID-based pairing (panel attribute panel id)</label>
+        <ae-tabs>
+          <ae-tab panel="panel-c">Panel C first</ae-tab>
+          <ae-tab panel="panel-a">Panel A</ae-tab>
+          <ae-tab panel="panel-b">Panel B</ae-tab>
+          <ae-tab-panel id="panel-a"><p style="padding: 1rem;">This is Panel A</p></ae-tab-panel>
+          <ae-tab-panel id="panel-b"><p style="padding: 1rem;">This is Panel B</p></ae-tab-panel>
+          <ae-tab-panel id="panel-c"><p style="padding: 1rem;">This is Panel C (matched to first tab via ID)</p></ae-tab-panel>
+        </ae-tabs>
+      </div>
+
+      <div class="demo-group">
+        <label>With initial active index</label>
+        <ae-tabs active-index="1">
+          <ae-tab>Home</ae-tab>
+          <ae-tab>Profile</ae-tab>
+          <ae-tab>Settings</ae-tab>
+          <ae-tab-panel><p style="padding: 1rem;">🏠 Home content</p></ae-tab-panel>
+          <ae-tab-panel><p style="padding: 1rem;">👤 Profile content</p></ae-tab-panel>
+          <ae-tab-panel><p style="padding: 1rem;">⚙️ Settings content</p></ae-tab-panel>
+        </ae-tabs>
+      </div>
+
+      <div class="demo-group">
+        <label>With disabled tab</label>
+        <ae-tabs>
+          <ae-tab>Enabled</ae-tab>
+          <ae-tab disabled>Disabled</ae-tab>
+          <ae-tab>Also Enabled</ae-tab>
+          <ae-tab-panel><p style="padding: 1rem;">First tab content</p></ae-tab-panel>
+          <ae-tab-panel><p style="padding: 1rem;">Disabled tab content (unreachable)</p></ae-tab-panel>
+          <ae-tab-panel><p style="padding: 1rem;">Third tab content</p></ae-tab-panel>
+        </ae-tabs>
+      </div>
+
+      <div class="demo-group">
+        <label>With icons</label>
+        <ae-tabs>
+          <ae-tab><ae-icon name="home" size="sm"></ae-icon> Home</ae-tab>
+          <ae-tab><ae-icon name="star" size="sm"></ae-icon> Favorites</ae-tab>
+          <ae-tab><ae-icon name="settings" size="sm"></ae-icon> Settings</ae-tab>
+          <ae-tab-panel><p style="padding: 1rem;">Home page content</p></ae-tab-panel>
+          <ae-tab-panel><p style="padding: 1rem;">Your favorites</p></ae-tab-panel>
+          <ae-tab-panel><p style="padding: 1rem;">Settings panel</p></ae-tab-panel>
+        </ae-tabs>
+      </div>
+
+      <div class="demo-group">
+        <label>Custom gap via CSS variable (<code>--ae-tabs-gap</code>)</label>
+        <ae-tabs style="--ae-tabs-gap: 16px;">
+          <ae-tab>Tab 1</ae-tab>
+          <ae-tab>Tab 2</ae-tab>
+          <ae-tab>Tab 3</ae-tab>
+          <ae-tab-panel><p style="padding: 1rem;">Content of Tab 1 (gap: 16px)</p></ae-tab-panel>
+          <ae-tab-panel><p style="padding: 1rem;">Content of Tab 2 (gap: 16px)</p></ae-tab-panel>
+          <ae-tab-panel><p style="padding: 1rem;">Content of Tab 3 (gap: 16px)</p></ae-tab-panel>
+        </ae-tabs>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Tabs Variants</h2>
+
+      <div class="demo-group">
+        <label>Variant: <code>text</code> (default)</label>
+        <ae-tabs>
+          <ae-tab>Tab 1</ae-tab>
+          <ae-tab>Tab 2</ae-tab>
+          <ae-tab>Tab 3</ae-tab>
+          <ae-tab-panel><p style="padding: 1rem;">Content 1 - text variant</p></ae-tab-panel>
+          <ae-tab-panel><p style="padding: 1rem;">Content 2 - text variant</p></ae-tab-panel>
+          <ae-tab-panel><p style="padding: 1rem;">Content 3 - text variant</p></ae-tab-panel>
+        </ae-tabs>
+      </div>
+
+      <div class="demo-group">
+        <label>Variant: <code>filled</code></label>
+        <ae-tabs variant="filled">
+          <ae-tab>Tab 1</ae-tab>
+          <ae-tab>Tab 2</ae-tab>
+          <ae-tab>Tab 3</ae-tab>
+          <ae-tab-panel><p style="padding: 1rem;">Content 1 - filled variant</p></ae-tab-panel>
+          <ae-tab-panel><p style="padding: 1rem;">Content 2 - filled variant</p></ae-tab-panel>
+          <ae-tab-panel><p style="padding: 1rem;">Content 3 - filled variant</p></ae-tab-panel>
+        </ae-tabs>
+      </div>
+
+      <div class="demo-group">
+        <label>Variant: <code>outlined</code></label>
+        <ae-tabs variant="outlined">
+          <ae-tab>Tab 1</ae-tab>
+          <ae-tab>Tab 2</ae-tab>
+          <ae-tab>Tab 3</ae-tab>
+          <ae-tab-panel><p style="padding: 1rem;">Content 1 - outlined variant</p></ae-tab-panel>
+          <ae-tab-panel><p style="padding: 1rem;">Content 2 - outlined variant</p></ae-tab-panel>
+          <ae-tab-panel><p style="padding: 1rem;">Content 3 - outlined variant</p></ae-tab-panel>
+        </ae-tabs>
+      </div>
+
+      <div class="demo-group">
+        <label>Variant: <code>subtle</code></label>
+        <ae-tabs variant="subtle">
+          <ae-tab>Tab 1</ae-tab>
+          <ae-tab>Tab 2</ae-tab>
+          <ae-tab>Tab 3</ae-tab>
+          <ae-tab-panel><p style="padding: 1rem;">Content 1 - subtle variant</p></ae-tab-panel>
+          <ae-tab-panel><p style="padding: 1rem;">Content 2 - subtle variant</p></ae-tab-panel>
+          <ae-tab-panel><p style="padding: 1rem;">Content 3 - subtle variant</p></ae-tab-panel>
+        </ae-tabs>
+      </div>
+
+      <div class="demo-group">
+        <label>Variant: <code>faint</code></label>
+        <ae-tabs variant="faint">
+          <ae-tab>Tab 1</ae-tab>
+          <ae-tab>Tab 2</ae-tab>
+          <ae-tab>Tab 3</ae-tab>
+          <ae-tab-panel><p style="padding: 1rem;">Content 1 - faint variant</p></ae-tab-panel>
+          <ae-tab-panel><p style="padding: 1rem;">Content 2 - faint variant</p></ae-tab-panel>
+          <ae-tab-panel><p style="padding: 1rem;">Content 3 - faint variant</p></ae-tab-panel>
+        </ae-tabs>
+      </div>
+    </div>
+
+    <!-- Badge -->
+  </div>
+  <footer id="log-footer">
+    <div id="log-footer-header">
+      Event Log
+      <span class="clear-log" id="clear-log">[clear]</span>
+    </div>
+    <div id="event-log"></div>
+  </footer>
+
+</body>
+</html>

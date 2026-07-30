@@ -1,16 +1,16 @@
-﻿import AeicoComponent from '../aeico-component';
+import AeicoComponent from '../aeico-component';
 import type { InferProps, Props } from 'aeico';
 
 /**
- * AeRadio — structured option element for ae-radio-group.
+ * AeRadio - structured option element for ae-radio-group.
  *
  * Replaces the native `<option>` approach with a custom element that is
  * fully extensible.  Current surface:
- *   - `value`    — option value submitted / matched against radio-group value
- *   - `disabled` — disables this individual option (independent of the group)
- *   - Light DOM  — label content; can be plain text or rich HTML (icons, etc.)
+ *   - `value`    - option value submitted / matched against radio-group value
+ *   - `disabled` - disables this individual option (independent of the group)
+ *   - Light DOM  - label content; can be plain text or rich HTML (icons, etc.)
  *
- * This element has **no shadow DOM** — it is a pure data / content carrier.
+ * This element has **no shadow DOM** - it is a pure data / content carrier.
  * ae-radio-group reads its properties and light-DOM content, then renders
  * the appropriate UI (radio input, button, segmented pill, …).
  *
@@ -32,9 +32,7 @@ import type { InferProps, Props } from 'aeico';
  * ```
  */
 class Radio extends AeicoComponent {
-  static tagName = 'radio';
-
-  /** No shadow DOM — this element is a transparent data/content carrier. */
+  /** No shadow DOM - this element is a transparent data/content carrier. */
   static override useShadowDOM = false;
 
   static override props: Props = {
@@ -46,7 +44,7 @@ class Radio extends AeicoComponent {
   declare disabled?: boolean;
 }
 
-Radio.register();
+Radio.define('radio');
 
 declare global {
   interface HTMLElementTagNameMap {

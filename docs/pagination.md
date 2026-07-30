@@ -21,7 +21,7 @@ import 'aeico-components';
 <ae-pagination total="100" page-size="10" page="1"></ae-pagination>
 ```
 
-### `page` — controlled current page
+### `page` - controlled current page
 
 ```html
 <ae-pagination total="200" page-size="20" page="3"></ae-pagination>
@@ -33,13 +33,13 @@ import 'aeico-components';
 <ae-pagination total="500" page-size="25"></ae-pagination>
 ```
 
-### `pageCount` — override calculated page count
+### `pageCount` - override calculated page count
 
 ```html
 <ae-pagination page-count="12" page="1"></ae-pagination>
 ```
 
-### `siblingCount` — pages shown around the current page
+### `siblingCount` - pages shown around the current page
 
 ```html
 <!-- 2 sibling pages on each side -->
@@ -55,13 +55,13 @@ import 'aeico-components';
 <ae-pagination total="100" size="lg"></ae-pagination>
 ```
 
-### `simple` — compact prev/next with page input only
+### `simple` - compact prev/next with page input only
 
 ```html
 <ae-pagination total="100" simple></ae-pagination>
 ```
 
-### `showFirstLast` — dedicated first/last buttons
+### `showFirstLast` - dedicated first/last buttons
 
 ```html
 <ae-pagination total="300" show-first-last></ae-pagination>
@@ -109,14 +109,14 @@ import 'aeico-components';
 |-----------|------|---------|-------------|
 | `page` | `number` | `1` | Current page number (1-indexed). |
 | `pageSize` | `number` | `10` | Number of items per page. Used to compute `pageCount`. |
-| `total` | `number` | — | Total number of items. Used with `pageSize` to compute page count. |
-| `pageCount` | `number` | — | Explicit total page count. Overrides the `total` / `pageSize` calculation. |
+| `total` | `number` | - | Total number of items. Used with `pageSize` to compute page count. |
+| `pageCount` | `number` | - | Explicit total page count. Overrides the `total` / `pageSize` calculation. |
 | `siblingCount` | `number` | `1` | Number of page buttons shown on each side of the current page. |
 | `size` | `'xs' \| 'sm' \| 'md' \| 'lg'` | `'md'` | Controls button size. |
 | `disabled` | `boolean` | `false` | Disables all controls. |
 | `simple` | `boolean` | `false` | Shows only prev/next buttons and a page number input. |
 | `showFirstLast` | `boolean` | `false` | Adds dedicated first-page and last-page buttons. |
-| `variant` | `'borderless' \| 'link'` | — | Visual style of page number buttons. |
+| `variant` | `'borderless' \| 'link'` | - | Visual style of page number buttons. |
 
 ## Slots
 

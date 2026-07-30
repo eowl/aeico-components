@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>(function(){if(localStorage.getItem("aeico-demo-theme")==="dark")document.documentElement.setAttribute("theme","dark")})()</script>
+  <title>IconButton - Aeico Components</title>
+  <link rel="stylesheet" href="../demo.css">
+  <script type="module" src="../shared.ts"></script>
+</head>
+<body>
+  <div class="content">
+    <div class="section">
+      <h2>IconButton <small style="color:var(--text-secondary)">(deprecated use ae-button + ae-icon)</small></h2>
+      <span class="tag">&lt;ae-button&gt; + &lt;ae-icon&gt;</span>
+
+      <div class="demo-group">
+        <label>Sizes</label>
+        <div class="demo-row">
+          <ae-button size="xs"><ae-icon name="star"></ae-icon></ae-button>
+          <ae-button size="sm"><ae-icon name="star"></ae-icon></ae-button>
+          <ae-button size="md"><ae-icon name="star"></ae-icon></ae-button>
+          <ae-button size="lg"><ae-icon name="star"></ae-icon></ae-button>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>Colors (filled)</label>
+        <div class="demo-row">
+          <ae-button><ae-icon name="home"></ae-icon></ae-button>
+          <ae-button color="secondary"><ae-icon name="home"></ae-icon></ae-button>
+          <ae-button color="primary"><ae-icon name="check"></ae-icon></ae-button>
+          <ae-button color="success"><ae-icon name="check"></ae-icon></ae-button>
+          <ae-button color="danger"><ae-icon name="close"></ae-icon></ae-button>
+          <ae-button color="warning"><ae-icon name="warning"></ae-icon></ae-button>
+          <ae-button color="info"><ae-icon name="info"></ae-icon></ae-button>
+          <ae-button color="light"><ae-icon name="info"></ae-icon></ae-button>
+          <ae-button color="dark"><ae-icon name="info"></ae-icon></ae-button>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>Variants</label>
+        <div class="demo-row">
+          <ae-button color="primary"><ae-icon name="star"></ae-icon></ae-button>
+          <ae-button color="primary" variant="outlined"><ae-icon name="star"></ae-icon></ae-button>
+          <ae-button color="primary" variant="subtle"><ae-icon name="star"></ae-icon></ae-button>
+          <ae-button color="primary" variant="text"><ae-icon name="star"></ae-icon></ae-button>
+          <ae-button color="danger"><ae-icon name="settings"></ae-icon></ae-button>
+          <ae-button color="danger" variant="outlined"><ae-icon name="settings"></ae-icon></ae-button>
+          <ae-button color="danger" variant="subtle"><ae-icon name="settings"></ae-icon></ae-button>
+          <ae-button color="danger" variant="text"><ae-icon name="settings"></ae-icon></ae-button>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>Disabled</label>
+        <div class="demo-row">
+          <ae-button disabled><ae-icon name="home"></ae-icon></ae-button>
+          <ae-button color="primary" disabled><ae-icon name="home"></ae-icon></ae-button>
+          <ae-button color="danger" variant="outlined" disabled><ae-icon name="heart"></ae-icon></ae-button>
+          <ae-button color="danger" variant="subtle" disabled><ae-icon name="heart"></ae-icon></ae-button>
+          <ae-button color="danger" variant="text" disabled><ae-icon name="heart"></ae-icon></ae-button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dialog -->
+  </div>
+  <footer id="log-footer">
+    <div id="log-footer-header">
+      Event Log
+      <span class="clear-log" id="clear-log">[clear]</span>
+    </div>
+    <div id="event-log"></div>
+  </footer>
+
+</body>
+</html>

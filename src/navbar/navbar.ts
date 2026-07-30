@@ -1,4 +1,4 @@
-﻿import type { InferProps } from 'aeico';
+import type { InferProps } from 'aeico';
 import styleVariables from '../styles/variables.css';
 import colorCSS from '../styles/color.css';
 import navbarStyle from '../styles/components/navbar.css';
@@ -14,9 +14,9 @@ import type { NavbarColor, NavbarAppearance } from './defines';
  * mobile hamburger collapse.
  *
  * Slots:
- * - `brand`  — leftmost area, typically a logo or site name link
- * - `start`  — main navigation links / dropdowns
- * - `end`    — right-side actions (login button, avatar, etc.)
+ * - `brand`  - leftmost area, typically a logo or site name link
+ * - `start`  - main navigation links / dropdowns
+ * - `end`    - right-side actions (login button, avatar, etc.)
  *
  * Slotted `<a>` elements receive default link styling controlled via
  * CSS custom properties. Mark the active link with `aria-current="page"`.
@@ -43,8 +43,6 @@ import type { NavbarColor, NavbarAppearance } from './defines';
  * ```
  */
 class Navbar extends AeicoComponent {
-  static tagName = 'navbar';
-
   protected static styles = [styleVariables, colorCSS, navbarStyle];
 
   /** Background color using the design-system color token set. */
@@ -57,8 +55,8 @@ class Navbar extends AeicoComponent {
 
   /**
    * Hover style preset for slotted `<a>` links.
-   * - `text`  — only the font color changes on hover (default)
-   * - `block` — a subtle filled background block appears on hover
+   * - `text`  - only the font color changes on hover (default)
+   * - `block` - a subtle filled background block appears on hover
    *
    * Fine-tune further with `--ae-navbar-link-hover-color` /
    * `--ae-navbar-link-hover-bg` CSS variables.
@@ -148,7 +146,7 @@ class Navbar extends AeicoComponent {
   }
 }
 
-Navbar.register();
+Navbar.define('navbar');
 
 declare global {
   interface HTMLElementTagNameMap {

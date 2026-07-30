@@ -7,7 +7,7 @@ import type Detail from '../detail/detail';
 import type { DetailColor, DetailVariant } from '../detail/defines';
 
 /**
- * DetailGroup component — wraps multiple `ae-detail` elements into an
+ * DetailGroup component - wraps multiple `ae-detail` elements into an
  * accordion-style group. By default only one item can be open at a time;
  * set `multiple` to allow several items open simultaneously.
  *
@@ -21,8 +21,6 @@ import type { DetailColor, DetailVariant } from '../detail/defines';
  * ```
  */
 class DetailGroup extends AeicoComponent {
-  static tagName = 'detail-group';
-
   static props: Props = {
     multiple: { type: Boolean },
     variant: { type: String },
@@ -92,7 +90,7 @@ class DetailGroup extends AeicoComponent {
   }
 }
 
-DetailGroup.register();
+DetailGroup.define('detail-group');
 
 declare global {
   interface HTMLElementTagNameMap {

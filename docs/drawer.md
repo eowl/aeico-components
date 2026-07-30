@@ -29,7 +29,7 @@ import 'aeico-components';
 <ae-button onclick="document.querySelector('#drawer').open()">Open</ae-button>
 ```
 
-### `placement` — which edge to open from
+### `placement` - which edge to open from
 
 ```html
 <ae-drawer placement="left"   label="Left Drawer">...</ae-drawer>
@@ -38,7 +38,7 @@ import 'aeico-components';
 <ae-drawer placement="bottom" label="Bottom Drawer">...</ae-drawer>
 ```
 
-### `size` — control the opening dimension
+### `size` - control the opening dimension
 
 For `left` / `right` placements, `size` sets the drawer width.
 For `top` / `bottom` placements, `size` sets the drawer height.
@@ -53,7 +53,7 @@ For `top` / `bottom` placements, `size` sets the drawer height.
 </ae-drawer>
 ```
 
-### `label` — header title
+### `label` - header title
 
 ```html
 <ae-drawer label="User Profile">
@@ -61,7 +61,7 @@ For `top` / `bottom` placements, `size` sets the drawer height.
 </ae-drawer>
 ```
 
-### `header` slot — custom header
+### `header` slot - custom header
 
 ```html
 <ae-drawer>
@@ -73,7 +73,7 @@ For `top` / `bottom` placements, `size` sets the drawer height.
 </ae-drawer>
 ```
 
-### `modal="false"` — no backdrop
+### `modal="false"` - no backdrop
 
 ```html
 <ae-drawer id="panel" label="Side Panel" modal="false">
@@ -81,7 +81,7 @@ For `top` / `bottom` placements, `size` sets the drawer height.
 </ae-drawer>
 ```
 
-### `closable="false"` — remove the close button
+### `closable="false"` - remove the close button
 
 ```html
 <ae-drawer id="required" label="Required Step" closable="false">
@@ -90,7 +90,7 @@ For `top` / `bottom` placements, `size` sets the drawer height.
 </ae-drawer>
 ```
 
-### `header="false"` — no header
+### `header="false"` - no header
 
 ```html
 <ae-drawer header="false">
@@ -99,7 +99,7 @@ For `top` / `bottom` placements, `size` sets the drawer height.
 </ae-drawer>
 ```
 
-### `closeOnOverlayClick="false"` — keep open on backdrop click
+### `closeOnOverlayClick="false"` - keep open on backdrop click
 
 ```html
 <ae-drawer id="form-drawer" label="Edit Record" close-on-overlay-click="false">
@@ -115,9 +115,9 @@ For `top` / `bottom` placements, `size` sets the drawer height.
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| `label` | `label` | `string` | — | Header title text |
+| `label` | `label` | `string` | - | Header title text |
 | `placement` | `placement` | `'left' \| 'right' \| 'top' \| 'bottom'` | `'right'` | Edge to open from |
-| `size` | `size` | `string` | — | Width (left/right) or height (top/bottom) e.g. `'320px'` |
+| `size` | `size` | `string` | - | Width (left/right) or height (top/bottom) e.g. `'320px'` |
 | `modal` | `modal` | `boolean` | `true` | Show modal backdrop with focus trap |
 | `closable` | `closable` | `boolean` | `true` | Show close button in header |
 | `header` | `header` | `boolean` | `true` | Show the header bar |

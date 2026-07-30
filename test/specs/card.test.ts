@@ -5,7 +5,7 @@ import Card from '../../src/card/card.js'
 const TAG_NAME = 'ae-card'
 
 before(async () => {
-  Card.register()
+  Card.define('card')
   await whenDefined(TAG_NAME)
 })
 

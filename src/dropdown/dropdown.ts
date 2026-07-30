@@ -1,4 +1,4 @@
-﻿import AeicoComponent from '../aeico-component';
+import AeicoComponent from '../aeico-component';
 import type { InferProps } from 'aeico';
 import { html } from 'aeico';
 import { prop } from 'aeico';
@@ -9,15 +9,15 @@ import type { DropdownPlacement } from './defines';
 import './dropdown-item';
 
 /**
- * Dropdown component — renders a floating menu panel anchored to a trigger slot.
+ * Dropdown component - renders a floating menu panel anchored to a trigger slot.
  *
  * The trigger is provided via `slot="trigger"` (typically an `<ae-button>`).
  * Menu items are provided as `<ae-dropdown-item>` default-slot children.
  *
  * Emits:
- * - `open`   — when the panel opens
- * - `close`  — when the panel closes
- * - `select` — `{ detail: { value, label } }` when a menu item is clicked
+ * - `open`   - when the panel opens
+ * - `close`  - when the panel closes
+ * - `select` - `{ detail: { value, label } }` when a menu item is clicked
  *
  * @example
  * ```html
@@ -42,8 +42,6 @@ import './dropdown-item';
  * ```
  */
 class Dropdown extends AeicoComponent {
-  static tagName = 'dropdown';
-
   protected static styles = [variables, style];
 
   /**
@@ -133,7 +131,7 @@ class Dropdown extends AeicoComponent {
 
   // Called via declarative @click on the trigger-wrapper div inside the shadow DOM.
   // Events from slotted trigger content bubble through the shadow DOM slot path,
-  // so this fires for trigger clicks only — not for panel item clicks.
+  // so this fires for trigger clicks only - not for panel item clicks.
   private _handleTriggerClick = (): void => {
     this.toggle();
   };
@@ -199,7 +197,7 @@ class Dropdown extends AeicoComponent {
   }
 }
 
-Dropdown.register();
+Dropdown.define('dropdown');
 
 declare global {
   interface HTMLElementTagNameMap {

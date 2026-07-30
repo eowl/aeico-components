@@ -10,7 +10,7 @@ import TextInput from '../../src/text-input/text-input'
 const TAG = 'ae-text-input'
 
 before(async () => {
-  TextInput.register()
+  TextInput.define('text-input')
   await whenDefined(TAG)
 })
 

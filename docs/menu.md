@@ -2,7 +2,7 @@
 
 `Navigation`
 
-A multi-level navigation menu. Supports two layout modes — **flyout** (sub-menus float out) and **inline** (accordion-style) — and horizontal or vertical orientation.
+A multi-level navigation menu. Supports two layout modes - **flyout** (sub-menus float out) and **inline** (accordion-style) - and horizontal or vertical orientation.
 
 Includes two components: `ae-menu` (container) and `ae-menu-item` (each item/node).
 
@@ -30,7 +30,7 @@ import 'aeico-components';
 </ae-menu>
 ```
 
-### `mode="inline"` — accordion style
+### `mode="inline"` - accordion style
 
 ```html
 <ae-menu mode="inline">
@@ -43,7 +43,7 @@ import 'aeico-components';
 </ae-menu>
 ```
 
-### `orientation="horizontal"` — horizontal top nav
+### `orientation="horizontal"` - horizontal top nav
 
 ```html
 <ae-menu orientation="horizontal">
@@ -56,7 +56,7 @@ import 'aeico-components';
 </ae-menu>
 ```
 
-### `trigger="click"` — open sub-menus on click only
+### `trigger="click"` - open sub-menus on click only
 
 ```html
 <ae-menu trigger="click">
@@ -93,7 +93,7 @@ import 'aeico-components';
 </ae-menu>
 ```
 
-### `wrap-text` — allow text to wrap
+### `wrap-text` - allow text to wrap
 
 When the menu has a constrained width, long item text causes a horizontal scrollbar by default
 (items use `white-space: nowrap`). Add the `wrap-text` attribute to let text wrap to the next line.
@@ -136,7 +136,7 @@ When the menu has a constrained width, long item text causes a horizontal scroll
 | `mode` | `'flyout' \| 'inline'` | `'flyout'` | Layout mode: floating sub-menus or accordion expansion. |
 | `orientation` | `'horizontal' \| 'vertical'` | `'vertical'` | Root menu direction. |
 | `trigger` | `'click' \| 'hover'` | `'hover'` | How sub-menus are opened. |
-| `selectedKey` | `string` | — | Key of the currently selected/highlighted item. |
+| `selectedKey` | `string` | - | Key of the currently selected/highlighted item. |
 | `wrapText` | `boolean` | `false` | When `true`, long item text wraps to the next line instead of overflowing with a horizontal scrollbar. |
 
 ## `ae-menu` Slots
@@ -157,10 +157,10 @@ When the menu has a constrained width, long item text causes a horizontal scroll
 
 | Attribute | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `key` | `string` | — | Unique identifier for this item. Used in events and `selectedKey`. |
-| `label` | `string` | — | When set, the item becomes a parent/submenu trigger. The sub-items go in the default slot. |
+| `key` | `string` | - | Unique identifier for this item. Used in events and `selectedKey`. |
+| `label` | `string` | - | When set, the item becomes a parent/submenu trigger. The sub-items go in the default slot. |
 | `disabled` | `boolean` | `false` | Makes the item non-interactive. |
-| `href` | `string` | — | Renders the item as an `<a>` anchor. |
+| `href` | `string` | - | Renders the item as an `<a>` anchor. |
 | `selected` | `boolean` | `false` | Marks the item as selected (usually managed by the parent `ae-menu`). |
 | `open` | `boolean` | `false` | Controls sub-menu visibility for parent items. |
 

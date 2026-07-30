@@ -1,4 +1,4 @@
-﻿import type { InferProps, Props, Watchers } from 'aeico';
+import type { InferProps, Props, Watchers } from 'aeico';
 import { tags } from 'aeico';
 import AeicoComponent from './aeico-component';
 
@@ -205,7 +205,7 @@ class AeicoField<TValue = string> extends AeicoComponent {
   }
 
   /**
-   * Watcher for error property — syncs aria-invalid on the field element
+   * Watcher for error property - syncs aria-invalid on the field element
    */
   protected onErrorChanged(newValue: string | undefined): void {
     if (this.fieldElement) {

@@ -1,6 +1,6 @@
 /**
  * Lightweight test helpers for mounting/unmounting custom elements.
- * No Lit dependency — replaces @open-wc/testing's fixture() / elementUpdated().
+ * No Lit dependency - replaces @open-wc/testing's fixture() / elementUpdated().
  */
 
 /** Wrapper elements created by mount(), tracked for cleanup via unmountAll() */

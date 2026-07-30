@@ -9,7 +9,7 @@
   white-space: nowrap;
 }
 
-/* Separator — uses a fixed muted color that does NOT follow the breadcrumb's color prop */
+/* Separator - uses a fixed muted color that does NOT follow the breadcrumb's color prop */
 .sep {
   display: inline-flex;
   align-items: center;
@@ -33,7 +33,7 @@
   color: var(--ae-color-text-muted);
 }
 
-/* Current page — last item */
+/* Current page - last item */
 :host([aria-current="page"]) .label {
   color: var(--ae-color-text-main);
   font-weight: 500;

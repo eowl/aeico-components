@@ -33,7 +33,7 @@ export function cssInlinePlugin() {
           type: 'application/javascript',
         }
       } catch {
-        // File not found — let WTR produce its own 404
+        // File not found - let WTR produce its own 404
         return
       }
     },

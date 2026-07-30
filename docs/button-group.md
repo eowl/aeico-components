@@ -51,7 +51,7 @@ Setting `color` and `variant` on the group propagates to all child buttons.
 </ae-button-group>
 ```
 
-### `compact` — joined buttons
+### `compact` - joined buttons
 
 Removes gaps and joins button borders so the group looks like a single segmented control.
 
@@ -63,7 +63,7 @@ Removes gaps and joins button borders so the group looks like a single segmented
 </ae-button-group>
 ```
 
-### `block` — full-width
+### `block` - full-width
 
 ```html
 <ae-button-group color="primary" block>
@@ -72,7 +72,7 @@ Removes gaps and joins button borders so the group looks like a single segmented
 </ae-button-group>
 ```
 
-### `disabled` — disable all children
+### `disabled` - disable all children
 
 ```html
 <ae-button-group color="primary" disabled>
@@ -97,9 +97,9 @@ Removes gaps and joins button borders so the group looks like a single segmented
 
 | Attribute | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `color` | `'default' \| 'primary' \| 'secondary' \| 'success' \| 'danger' \| 'warning' \| 'info' \| 'light' \| 'dark'` | — | Propagated to all child buttons. |
-| `variant` | `'filled' \| 'outlined' \| 'faint' \| 'subtle' \| 'text'` | — | Propagated to all child buttons. |
-| `size` | `'3xs' \| '2xs' \| 'xs' \| 'sm' \| 'md' \| 'lg'` | — | Propagated to all child buttons. |
+| `color` | `'default' \| 'primary' \| 'secondary' \| 'success' \| 'danger' \| 'warning' \| 'info' \| 'light' \| 'dark'` | - | Propagated to all child buttons. |
+| `variant` | `'filled' \| 'outlined' \| 'faint' \| 'subtle' \| 'text'` | - | Propagated to all child buttons. |
+| `size` | `'3xs' \| '2xs' \| 'xs' \| 'sm' \| 'md' \| 'lg'` | - | Propagated to all child buttons. |
 | `compact` | `boolean` | `false` | Removes gaps between buttons and joins their borders. |
 | `block` | `boolean` | `false` | Makes the group full-width. |
 | `disabled` | `boolean` | `false` | Disables all child buttons. |

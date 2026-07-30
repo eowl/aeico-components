@@ -1,4 +1,4 @@
-﻿import type { InferProps } from 'aeico';
+import type { InferProps } from 'aeico';
 import styleVariables from '../styles/variables.css';
 import colorCSS from '../styles/color.css';
 import cardStyle from '../styles/components/card.css';
@@ -8,8 +8,6 @@ import type { CardVariant, CardColor } from './defines';
 import { prop } from 'aeico';
 
 class Card extends AeicoComponent {
-  static tagName = 'card';
-
   protected static styles = [styleVariables, colorCSS, cardStyle];
 
   @prop({ type: String })
@@ -45,7 +43,7 @@ class Card extends AeicoComponent {
   }
 }
 
-Card.register();
+Card.define('card');
 
 declare global {
   interface HTMLElementTagNameMap {

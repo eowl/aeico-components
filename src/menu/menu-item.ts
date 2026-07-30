@@ -12,7 +12,7 @@ import type {
 } from './defines';
 
 /**
- * Menu item — used as a direct child of `<ae-menu>` or nested inside another
+ * Menu item - used as a direct child of `<ae-menu>` or nested inside another
  * `<ae-menu-item>` to create a two-level submenu.
  *
  * - **Leaf item**: omit `label`; slot contains the item text.
@@ -20,8 +20,8 @@ import type {
  *   `<ae-menu-item>` elements that appear in the submenu panel/section.
  *
  * **Slots (parent items only)**
- * - `expand`  — icon shown when the submenu is closed (default: CSS triangle).
- * - `collapse` — icon shown when the submenu is open (default: rotated CSS triangle).
+ * - `expand`  - icon shown when the submenu is closed (default: CSS triangle).
+ * - `collapse` - icon shown when the submenu is open (default: rotated CSS triangle).
  *
  * @example
  * ```html
@@ -33,8 +33,6 @@ import type {
  * ```
  */
 class MenuItem extends AeicoComponent {
-  static tagName = 'menu-item';
-
   protected static styles = [variables, style];
 
   @prop({ type: String })
@@ -68,7 +66,7 @@ class MenuItem extends AeicoComponent {
     const depth = this.parentElement?.closest('ae-menu-item') ? 1 : 0;
     this.dataset.depth = String(depth);
 
-    // Hover listeners — check mode/trigger at runtime
+    // Hover listeners - check mode/trigger at runtime
     this.listen('mouseenter', this._handleMouseEnter);
     this.listen('mouseleave', this._handleMouseLeave);
 
@@ -312,7 +310,7 @@ class MenuItem extends AeicoComponent {
   }
 }
 
-MenuItem.register();
+MenuItem.define('menu-item');
 
 declare global {
   interface HTMLElementTagNameMap {

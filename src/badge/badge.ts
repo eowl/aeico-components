@@ -1,4 +1,4 @@
-﻿import type { InferProps } from 'aeico';
+import type { InferProps } from 'aeico';
 import styleVariables from '../styles/variables.css';
 import sizeCSS from '../styles/size.css';
 import colorCSS from '../styles/color.css';
@@ -25,7 +25,6 @@ import { prop } from 'aeico';
  * ```
  */
 class Badge extends AeicoComponent {
-  static tagName = 'badge';
   protected static styles = [styleVariables, sizeCSS, colorCSS, badgeStyle];
 
   @prop({ type: String })
@@ -51,7 +50,7 @@ class Badge extends AeicoComponent {
   }
 }
 
-Badge.register();
+Badge.define('badge');
 
 declare global {
   interface HTMLElementTagNameMap {

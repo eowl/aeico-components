@@ -5,7 +5,7 @@ import Alert from '../../src/alert'
 const TAG_NAME = 'ae-alert'
 
 before(async () => {
-  Alert.register()
+  Alert.define('alert')
   await whenDefined(TAG_NAME)
 })
 

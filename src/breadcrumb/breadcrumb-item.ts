@@ -1,4 +1,4 @@
-﻿import type { InferProps } from 'aeico';
+import type { InferProps } from 'aeico';
 import styleVariables from '../styles/variables.css';
 import style from '../styles/components/breadcrumb-item.css';
 import AeicoComponent from '../aeico-component';
@@ -22,8 +22,6 @@ import { prop } from 'aeico';
  * ```
  */
 class BreadcrumbItem extends AeicoComponent {
-  static tagName = 'breadcrumb-item';
-
   protected static styles = [styleVariables, style];
 
   @prop({ type: String })
@@ -49,7 +47,7 @@ class BreadcrumbItem extends AeicoComponent {
   }
 }
 
-BreadcrumbItem.register();
+BreadcrumbItem.define('breadcrumb-item');
 
 declare global {
   interface HTMLElementTagNameMap {

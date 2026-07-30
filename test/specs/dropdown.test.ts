@@ -7,8 +7,8 @@ const TAG = 'ae-dropdown'
 const ITEM_TAG = 'ae-dropdown-item'
 
 before(async () => {
-  Dropdown.register()
-  DropdownItem.register()
+  Dropdown.define('dropdown')
+  DropdownItem.define('dropdown-item')
   await Promise.all([whenDefined(TAG), whenDefined(ITEM_TAG)])
 })
 

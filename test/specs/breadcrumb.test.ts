@@ -7,8 +7,8 @@ const BC = 'ae-breadcrumb'
 const BC_ITEM = 'ae-breadcrumb-item'
 
 before(async () => {
-  Breadcrumb.register()
-  BreadcrumbItem.register()
+  Breadcrumb.define('breadcrumb')
+  BreadcrumbItem.define('breadcrumb-item')
   await Promise.all([whenDefined(BC), whenDefined(BC_ITEM)])
 })
 

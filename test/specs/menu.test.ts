@@ -7,8 +7,8 @@ const TAG = 'ae-menu'
 const ITEM_TAG = 'ae-menu-item'
 
 before(async () => {
-  Menu.register()
-  MenuItem.register()
+  Menu.define('menu')
+  MenuItem.define('menu-item')
   await Promise.all([whenDefined(TAG), whenDefined(ITEM_TAG)])
 })
 

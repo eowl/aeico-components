@@ -5,7 +5,7 @@ import Textarea from '../../src/textarea/textarea.js'
 const TAG = 'ae-textarea'
 
 before(async () => {
-  Textarea.register()
+  Textarea.define('textarea')
   await whenDefined(TAG)
 })
 

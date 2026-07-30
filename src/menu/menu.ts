@@ -12,16 +12,14 @@ import './menu-item';
  * optional two-level flyout or inline (accordion) submenus.
  *
  * Two modes:
- * - `flyout` (default) — submenus open as floating panels (like a nav bar or
+ * - `flyout` (default) - submenus open as floating panels (like a nav bar or
  *   context menu).
- * - `inline` — submenus expand in-place (accordion-style sidebar).
+ * - `inline` - submenus expand in-place (accordion-style sidebar).
  *
  * Emits:
- * - `select` — `{ detail: { key, label, keyPath } }` when a leaf item is clicked.
+ * - `select` - `{ detail: { key, label, keyPath } }` when a leaf item is clicked.
  */
 class Menu extends AeicoComponent {
-  static tagName = 'menu';
-
   protected static styles = [variables, style];
 
   @prop({ type: String })
@@ -72,7 +70,7 @@ class Menu extends AeicoComponent {
   }
 }
 
-Menu.register();
+Menu.define('menu');
 
 declare global {
   interface HTMLElementTagNameMap {

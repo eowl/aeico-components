@@ -6,7 +6,7 @@ import Checkbox from '../../src/checkbox'
 const TAG_NAME = 'ae-checkbox'
 
 before(async () => {
-  Checkbox.register()
+  Checkbox.define('checkbox')
   await whenDefined(TAG_NAME)
 })
 

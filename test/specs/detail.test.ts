@@ -5,7 +5,7 @@ import Detail from '../../src/detail/detail.js'
 const TAG = 'ae-detail'
 
 before(async () => {
-  Detail.register()
+  Detail.define('detail')
   await whenDefined(TAG)
 })
 

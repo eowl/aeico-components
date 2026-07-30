@@ -2,9 +2,9 @@
  * esbuild build script for ESM output.
  *
  * Replaces the Vite library build. Produces:
- *   dist/*.js          — entry points
- *   dist/*.js.map      — source maps
- *   dist/chunks/*.js   — shared chunks
+ *   dist/*.js          - entry points
+ *   dist/*.js.map      - source maps
+ *   dist/chunks/*.js   - shared chunks
  */
 
 import * as esbuild from 'esbuild'
@@ -15,7 +15,7 @@ import { fileURLToPath } from 'node:url'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const rootDir = resolve(__dirname, '..')
 
-/** @type {Record<string, string>} — same entries as the old Vite config */
+/** @type {Record<string, string>} - same entries as the old Vite config */
 const entryPoints = {
   index:          'src/index.ts',
   alert:          'src/alert/index.ts',
@@ -56,7 +56,6 @@ const entryPoints = {
  * esbuild plugin: imports of `.css` files are resolved to a string export.
  *
  *   import variables from '../styles/variables.css'
- *   →  export default "<contents of variables.css>"
  *
  * This replaces Vite's `?inline` query parameter.
  */
@@ -108,8 +107,8 @@ const buildOptions = {
 if (watch) {
   const ctx = await esbuild.context(buildOptions)
   await ctx.watch()
-  console.log('ESM watch mode — rebuilding on changes...')
+  console.log('ESM watch mode - rebuilding on changes...')
 } else {
   await esbuild.build(buildOptions)
-  console.log('ESM build done → dist/*.js')
+  console.log('ESM build done to dist/*.js')
 }

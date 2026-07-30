@@ -63,7 +63,7 @@ Use inside a flex container to separate inline items.
 |-----------|------|---------|-------------|
 | `vertical` | `boolean` | `false` | Renders as a vertical line instead of horizontal. |
 | `thickness` | `string` | `'1px'` | CSS value for the line thickness (e.g. `'2px'`, `'0.5rem'`). |
-| `color` | `string` | — | Theme colour for the divider line. |
+| `color` | `string` | - | Theme colour for the divider line. |
 
 ## CSS Custom Properties
 

@@ -63,7 +63,7 @@ import 'aeico-components';
 <ae-tag color="danger"  dismissible>Error</ae-tag>
 ```
 
-### `disabled` — prevent dismissal
+### `disabled` - prevent dismissal
 
 ```html
 <ae-tag color="info" dismissible disabled>Cannot remove</ae-tag>
@@ -119,7 +119,7 @@ import 'aeico-components';
 
 | Event | Detail | Description |
 |-------|--------|-------------|
-| `dismiss` | — | Fired when the user clicks the dismiss button. |
+| `dismiss` | - | Fired when the user clicks the dismiss button. |
 
 ## CSS Custom Properties
 

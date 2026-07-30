@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>(function(){if(localStorage.getItem("aeico-demo-theme")==="dark")document.documentElement.setAttribute("theme","dark")})()</script>
+  <title>Card - Aeico Components</title>
+  <link rel="stylesheet" href="../demo.css">
+  <script type="module" src="../shared.ts"></script>
+</head>
+<body>
+  <div class="content">
+    <div class="section">
+      <h2>Card</h2>
+      <span class="tag">&lt;ae-card&gt;</span>
+
+      <div class="demo-group">
+        <label>Variants (primary)</label>
+        <div class="demo-row" style="flex-wrap: wrap; gap: 12px;">
+          <ae-card color="primary" style="max-width: 180px;">
+            <span slot="header">filled (default)</span>
+            <p>Solid color background.</p>
+          </ae-card>
+          <ae-card color="primary" variant="subtle" style="max-width: 180px;">
+            <span slot="header">subtle</span>
+            <p>Subtle bg, no border.</p>
+          </ae-card>
+          <ae-card color="primary" variant="outlined" style="max-width: 180px;">
+            <span slot="header">outlined</span>
+            <p>Transparent bg, visible border.</p>
+          </ae-card>
+          <ae-card color="primary" variant="filled" style="max-width: 180px;">
+            <span slot="header">filled</span>
+            <p>Solid color background.</p>
+          </ae-card>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>Colors filled (default)</label>
+        <div class="demo-row" style="flex-wrap: wrap; gap: 12px;">
+          <ae-card style="max-width: 130px;">
+            <span slot="header">default</span>
+            <p>filled</p>
+          </ae-card>
+          <ae-card color="primary" style="max-width: 130px;">
+            <span slot="header">primary</span>
+            <p>filled</p>
+          </ae-card>
+          <ae-card color="secondary" style="max-width: 130px;">
+            <span slot="header">secondary</span>
+            <p>filled</p>
+          </ae-card>
+          <ae-card color="success" style="max-width: 130px;">
+            <span slot="header">success</span>
+            <p>filled</p>
+          </ae-card>
+          <ae-card color="danger" style="max-width: 130px;">
+            <span slot="header">danger</span>
+            <p>filled</p>
+          </ae-card>
+          <ae-card color="warning" style="max-width: 130px;">
+            <span slot="header">warning</span>
+            <p>filled</p>
+          </ae-card>
+          <ae-card color="info" style="max-width: 130px;">
+            <span slot="header">info</span>
+            <p>filled</p>
+          </ae-card>
+          <ae-card color="light" style="max-width: 130px;">
+            <span slot="header">light</span>
+            <p>filled</p>
+          </ae-card>
+          <ae-card color="dark" style="max-width: 130px;">
+            <span slot="header">dark</span>
+            <p>filled</p>
+          </ae-card>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>Colors subtle</label>
+        <div class="demo-row" style="flex-wrap: wrap; gap: 12px;">
+          <ae-card variant="subtle" style="max-width: 130px;">
+            <span slot="header">default</span>
+            <p>subtle</p>
+          </ae-card>
+          <ae-card color="primary" variant="subtle" style="max-width: 130px;">
+            <span slot="header">primary</span>
+            <p>subtle</p>
+          </ae-card>
+          <ae-card color="secondary" variant="subtle" style="max-width: 130px;">
+            <span slot="header">secondary</span>
+            <p>subtle</p>
+          </ae-card>
+          <ae-card color="success" variant="subtle" style="max-width: 130px;">
+            <span slot="header">success</span>
+            <p>subtle</p>
+          </ae-card>
+          <ae-card color="danger" variant="subtle" style="max-width: 130px;">
+            <span slot="header">danger</span>
+            <p>subtle</p>
+          </ae-card>
+          <ae-card color="warning" variant="subtle" style="max-width: 130px;">
+            <span slot="header">warning</span>
+            <p>subtle</p>
+          </ae-card>
+          <ae-card color="info" variant="subtle" style="max-width: 130px;">
+            <span slot="header">info</span>
+            <p>subtle</p>
+          </ae-card>
+          <ae-card color="light" variant="subtle" style="max-width: 130px;">
+            <span slot="header">light</span>
+            <p>subtle</p>
+          </ae-card>
+          <ae-card color="dark" variant="subtle" style="max-width: 130px;">
+            <span slot="header">dark</span>
+            <p>subtle</p>
+          </ae-card>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>Colors outlined</label>
+        <div class="demo-row" style="flex-wrap: wrap; gap: 12px;">
+          <ae-card variant="outlined" style="max-width: 130px;">
+            <span slot="header">default</span>
+            <p>outlined</p>
+          </ae-card>
+          <ae-card color="primary" variant="outlined" style="max-width: 130px;">
+            <span slot="header">primary</span>
+            <p>outlined</p>
+          </ae-card>
+          <ae-card color="secondary" variant="outlined" style="max-width: 130px;">
+            <span slot="header">secondary</span>
+            <p>outlined</p>
+          </ae-card>
+          <ae-card color="success" variant="outlined" style="max-width: 130px;">
+            <span slot="header">success</span>
+            <p>outlined</p>
+          </ae-card>
+          <ae-card color="danger" variant="outlined" style="max-width: 130px;">
+            <span slot="header">danger</span>
+            <p>outlined</p>
+          </ae-card>
+          <ae-card color="warning" variant="outlined" style="max-width: 130px;">
+            <span slot="header">warning</span>
+            <p>outlined</p>
+          </ae-card>
+          <ae-card color="info" variant="outlined" style="max-width: 130px;">
+            <span slot="header">info</span>
+            <p>outlined</p>
+          </ae-card>
+          <ae-card color="light" variant="outlined" style="max-width: 130px;">
+            <span slot="header">light</span>
+            <p>outlined</p>
+          </ae-card>
+          <ae-card color="dark" variant="outlined" style="max-width: 130px;">
+            <span slot="header">dark</span>
+            <p>outlined</p>
+          </ae-card>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>Colors faint</label>
+        <div class="demo-row" style="flex-wrap: wrap; gap: 12px;">
+          <ae-card variant="faint" style="max-width: 130px;">
+            <span slot="header">default</span>
+            <p>faint</p>
+          </ae-card>
+          <ae-card color="primary" variant="faint" style="max-width: 130px;">
+            <span slot="header">primary</span>
+            <p>faint</p>
+          </ae-card>
+          <ae-card color="secondary" variant="faint" style="max-width: 130px;">
+            <span slot="header">secondary</span>
+            <p>faint</p>
+          </ae-card>
+          <ae-card color="success" variant="faint" style="max-width: 130px;">
+            <span slot="header">success</span>
+            <p>faint</p>
+          </ae-card>
+          <ae-card color="danger" variant="faint" style="max-width: 130px;">
+            <span slot="header">danger</span>
+            <p>faint</p>
+          </ae-card>
+          <ae-card color="warning" variant="faint" style="max-width: 130px;">
+            <span slot="header">warning</span>
+            <p>faint</p>
+          </ae-card>
+          <ae-card color="info" variant="faint" style="max-width: 130px;">
+            <span slot="header">info</span>
+            <p>faint</p>
+          </ae-card>
+          <ae-card color="light" variant="faint" style="max-width: 130px;">
+            <span slot="header">light</span>
+            <p>faint</p>
+          </ae-card>
+          <ae-card color="dark" variant="faint" style="max-width: 130px;">
+            <span slot="header">dark</span>
+            <p>faint</p>
+          </ae-card>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>Colors text</label>
+        <div class="demo-row" style="flex-wrap: wrap; gap: 12px;">
+          <ae-card variant="text" style="max-width: 130px;">
+            <span slot="header">default</span>
+            <p>text</p>
+          </ae-card>
+          <ae-card color="primary" variant="text" style="max-width: 130px;">
+            <span slot="header">primary</span>
+            <p>text</p>
+          </ae-card>
+          <ae-card color="secondary" variant="text" style="max-width: 130px;">
+            <span slot="header">secondary</span>
+            <p>text</p>
+          </ae-card>
+          <ae-card color="success" variant="text" style="max-width: 130px;">
+            <span slot="header">success</span>
+            <p>text</p>
+          </ae-card>
+          <ae-card color="danger" variant="text" style="max-width: 130px;">
+            <span slot="header">danger</span>
+            <p>text</p>
+          </ae-card>
+          <ae-card color="warning" variant="text" style="max-width: 130px;">
+            <span slot="header">warning</span>
+            <p>text</p>
+          </ae-card>
+          <ae-card color="info" variant="text" style="max-width: 130px;">
+            <span slot="header">info</span>
+            <p>text</p>
+          </ae-card>
+          <ae-card color="light" variant="text" style="max-width: 130px;">
+            <span slot="header">light</span>
+            <p>text</p>
+          </ae-card>
+          <ae-card color="dark" variant="text" style="max-width: 130px;">
+            <span slot="header">dark</span>
+            <p>text</p>
+          </ae-card>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>With header &amp; footer</label>
+        <div class="demo-row" style="flex-wrap: wrap; gap: 12px;">
+          <ae-card color="primary" style="max-width: 240px;">
+            <span slot="header">Card Title</span>
+            <p>Default faint card with header and footer.</p>
+            <span slot="footer">Footer note</span>
+          </ae-card>
+          <ae-card color="primary" variant="filled" style="max-width: 240px;">
+            <span slot="header">Card Title</span>
+            <p>Filled card with header and footer.</p>
+            <span slot="footer">Footer note</span>
+          </ae-card>
+        </div>
+      </div>
+    </div>
+
+    <!-- Icon -->
+  </div>
+  <footer id="log-footer">
+    <div id="log-footer-header">
+      Event Log
+      <span class="clear-log" id="clear-log">[clear]</span>
+    </div>
+    <div id="event-log"></div>
+  </footer>
+
+</body>
+</html>

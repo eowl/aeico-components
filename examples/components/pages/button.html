@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>(function(){if(localStorage.getItem("aeico-demo-theme")==="dark")document.documentElement.setAttribute("theme","dark")})()</script>
+  <title>Button - Aeico Components</title>
+  <link rel="stylesheet" href="../demo.css">
+  <script type="module" src="../shared.ts"></script>
+</head>
+<body>
+  <div class="content">
+    <div class="section">
+      <h2>Button</h2>
+      <span class="tag">&lt;ae-button&gt;</span>
+
+      <div class="demo-group">
+        <label>filled (default)</label>
+        <div class="demo-row">
+          <ae-button>Default</ae-button>
+          <ae-button color="primary">Primary</ae-button>
+          <ae-button color="secondary">Secondary</ae-button>
+          <ae-button color="success">Success</ae-button>
+          <ae-button color="danger">Danger</ae-button>
+          <ae-button color="warning">Warning</ae-button>
+          <ae-button color="info">Info</ae-button>
+          <ae-button color="light">Light</ae-button>
+          <ae-button color="dark">Dark</ae-button>
+          <ae-button disabled>Disabled</ae-button>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>outlined</label>
+        <div class="demo-row">
+          <ae-button variant="outlined">Default</ae-button>
+          <ae-button variant="outlined" color="primary">Primary</ae-button>
+          <ae-button variant="outlined" color="secondary">Secondary</ae-button>
+          <ae-button variant="outlined" color="success">Success</ae-button>
+          <ae-button variant="outlined" color="danger">Danger</ae-button>
+          <ae-button variant="outlined" color="warning">Warning</ae-button>
+          <ae-button variant="outlined" color="info">Info</ae-button>
+          <ae-button variant="outlined" color="light">Light</ae-button>
+          <ae-button variant="outlined" color="dark">Dark</ae-button>
+          <ae-button variant="outlined" disabled>Disabled</ae-button>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>faint</label>
+        <div class="demo-row">
+          <ae-button variant="faint">Default</ae-button>
+          <ae-button variant="faint" color="primary">Primary</ae-button>
+          <ae-button variant="faint" color="secondary">Secondary</ae-button>
+          <ae-button variant="faint" color="success">Success</ae-button>
+          <ae-button variant="faint" color="danger">Danger</ae-button>
+          <ae-button variant="faint" color="warning">Warning</ae-button>
+          <ae-button variant="faint" color="info">Info</ae-button>
+          <ae-button variant="faint" color="light">Light</ae-button>
+          <ae-button variant="faint" color="dark">Dark</ae-button>
+          <ae-button variant="faint" disabled>Disabled</ae-button>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>subtle</label>
+        <div class="demo-row">
+          <ae-button variant="subtle">Default</ae-button>
+          <ae-button variant="subtle" color="primary">Primary</ae-button>
+          <ae-button variant="subtle" color="secondary">Secondary</ae-button>
+          <ae-button variant="subtle" color="success">Success</ae-button>
+          <ae-button variant="subtle" color="danger">Danger</ae-button>
+          <ae-button variant="subtle" color="warning">Warning</ae-button>
+          <ae-button variant="subtle" color="info">Info</ae-button>
+          <ae-button variant="subtle" color="light">Light</ae-button>
+          <ae-button variant="subtle" color="dark">Dark</ae-button>
+          <ae-button variant="subtle" disabled>Disabled</ae-button>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>text</label>
+        <div class="demo-row">
+          <ae-button variant="text">Default</ae-button>
+          <ae-button variant="text" color="primary">Primary</ae-button>
+          <ae-button variant="text" color="secondary">Secondary</ae-button>
+          <ae-button variant="text" color="success">Success</ae-button>
+          <ae-button variant="text" color="danger">Danger</ae-button>
+          <ae-button variant="text" color="warning">Warning</ae-button>
+          <ae-button variant="text" color="info">Info</ae-button>
+          <ae-button variant="text" color="light">Light</ae-button>
+          <ae-button variant="text" color="dark">Dark</ae-button>
+          <ae-button variant="text" disabled>Disabled</ae-button>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>Sizes</label>
+        <div class="demo-row" style="align-items: center;">
+          <ae-button size="xs" color="primary">XS</ae-button>
+          <ae-button size="sm" color="primary">SM</ae-button>
+          <ae-button size="md" color="primary">MD</ae-button>
+          <ae-button size="lg" color="primary">LG</ae-button>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>With icon</label>
+        <div class="demo-row">
+          <ae-button color="primary">
+            <ae-icon name="home" size="sm"></ae-icon>
+            Home
+          </ae-button>
+          <ae-button color="success">
+            <ae-icon name="check" size="sm"></ae-icon>
+            Confirm
+          </ae-button>
+          <ae-button color="danger">
+            <ae-icon name="close" size="sm"></ae-icon>
+            Delete
+          </ae-button>
+          <ae-button variant="outlined" color="primary">
+            <ae-icon name="home" size="sm"></ae-icon>
+            Outlined
+          </ae-button>
+          <ae-button variant="subtle" color="info">
+            <ae-icon name="home" size="sm"></ae-icon>
+            Subtle
+          </ae-button>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>Block</label>
+        <ae-button block color="primary">Block Button</ae-button>
+      </div>
+    </div>
+
+    <!-- Button Group -->
+  </div>
+  <footer id="log-footer">
+    <div id="log-footer-header">
+      Event Log
+      <span class="clear-log" id="clear-log">[clear]</span>
+    </div>
+    <div id="event-log"></div>
+  </footer>
+
+</body>
+</html>

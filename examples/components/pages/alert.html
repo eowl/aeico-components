@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>(function(){if(localStorage.getItem("aeico-demo-theme")==="dark")document.documentElement.setAttribute("theme","dark")})()</script>
+  <title>Alert - Aeico Components</title>
+  <link rel="stylesheet" href="../demo.css">
+  <script type="module" src="../shared.ts"></script>
+</head>
+<body>
+  <div class="content">
+    <div class="section">
+      <h2>Alert</h2>
+      <span class="tag">&lt;ae-alert&gt;</span>
+
+      <div class="demo-group">
+        <label>filled (default)</label>
+        <ae-alert color="primary">Primary</ae-alert>
+        <ae-alert color="secondary">Secondary</ae-alert>
+        <ae-alert color="success">Success</ae-alert>
+        <ae-alert color="danger">Danger</ae-alert>
+        <ae-alert color="warning">Warning</ae-alert>
+        <ae-alert color="info">Info</ae-alert>
+        <ae-alert color="light">Light</ae-alert>
+        <ae-alert color="dark">Dark</ae-alert>
+      </div>
+
+      <div class="demo-group">
+        <label>subtle</label>
+        <ae-alert variant="subtle" color="primary">Primary</ae-alert>
+        <ae-alert variant="subtle" color="secondary">Secondary</ae-alert>
+        <ae-alert variant="subtle" color="success">Success</ae-alert>
+        <ae-alert variant="subtle" color="danger">Danger</ae-alert>
+        <ae-alert variant="subtle" color="warning">Warning</ae-alert>
+        <ae-alert variant="subtle" color="info">Info</ae-alert>
+        <ae-alert variant="subtle" color="light">Light</ae-alert>
+        <ae-alert variant="subtle" color="dark">Dark</ae-alert>
+      </div>
+
+      <div class="demo-group">
+        <label>outlined</label>
+        <ae-alert variant="outlined" color="primary">Primary</ae-alert>
+        <ae-alert variant="outlined" color="secondary">Secondary</ae-alert>
+        <ae-alert variant="outlined" color="success">Success</ae-alert>
+        <ae-alert variant="outlined" color="danger">Danger</ae-alert>
+        <ae-alert variant="outlined" color="warning">Warning</ae-alert>
+        <ae-alert variant="outlined" color="info">Info</ae-alert>
+        <ae-alert variant="outlined" color="light">Light</ae-alert>
+        <ae-alert variant="outlined" color="dark">Dark</ae-alert>
+      </div>
+
+      <div class="demo-group">
+        <label>Sizes</label>
+        <ae-alert size="sm" color="info">Small (sm)</ae-alert>
+        <ae-alert color="info">Medium (default)</ae-alert>
+        <ae-alert size="lg" color="info">Large (lg)</ae-alert>
+      </div>
+
+      <div class="demo-group">
+        <label>Dismissible</label>
+        <ae-alert color="primary" dismissible>Dismissible click × to close</ae-alert>
+        <ae-alert variant="filled" color="success" dismissible>Filled dismissible</ae-alert>
+        <ae-alert variant="outlined" color="danger" dismissible>Outlined dismissible</ae-alert>
+      </div>
+    </div>
+
+    <!-- Divider -->
+  </div>
+  <footer id="log-footer">
+    <div id="log-footer-header">
+      Event Log
+      <span class="clear-log" id="clear-log">[clear]</span>
+    </div>
+    <div id="event-log"></div>
+  </footer>
+
+</body>
+</html>

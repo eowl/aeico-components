@@ -1,4 +1,4 @@
-﻿import type { Props } from 'aeico';
+import type { Props } from 'aeico';
 import styleVariables from '../styles/variables.css';
 import tabsStyle from '../styles/components/tabs.css';
 import AeicoComponent from '../aeico-component';
@@ -7,7 +7,6 @@ import type Tab from './tab';
 import type { TabVariant } from './defines';
 
 class Tabs extends AeicoComponent {
-  static tagName = 'tabs';
   static props: Props = {
     activeIndex: { type: Number },
     variant: { type: String },
@@ -135,7 +134,7 @@ class Tabs extends AeicoComponent {
   }
 }
 
-Tabs.register();
+Tabs.define('tabs');
 
 declare global {
   interface HTMLElementTagNameMap {

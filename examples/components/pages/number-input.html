@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>(function(){if(localStorage.getItem("aeico-demo-theme")==="dark")document.documentElement.setAttribute("theme","dark")})()</script>
+  <title>NumberInput - Aeico Components</title>
+  <link rel="stylesheet" href="../demo.css">
+  <script type="module" src="../shared.ts"></script>
+</head>
+<body>
+  <div class="content">
+    <div class="section">
+      <h2>NumberInput</h2>
+      <span class="tag">&lt;ae-number-input&gt;</span>
+      <div class="demo-group">
+        <label>Basic</label>
+        <ae-number-input placeholder="Enter a number"></ae-number-input>
+
+        <label>With label and value</label>
+        <ae-number-input label="Quantity" value="10"></ae-number-input>
+
+        <label>With min/max (0–100)</label>
+        <ae-number-input label="Percentage" min="0" max="100" placeholder="0–100"></ae-number-input>
+
+        <label>With step (0.01)</label>
+        <ae-number-input label="Price" min="0" step="0.01" placeholder="0.00"></ae-number-input>
+
+        <label>With controls (stepper buttons)</label>
+        <ae-number-input label="Quantity" controls value="10" min="0" max="100" step="5"></ae-number-input>
+
+        <label>With controls and clearable</label>
+        <ae-number-input label="Score" controls clearable value="50" min="0" max="100" step="10"></ae-number-input>
+
+        <label>With controls disabled</label>
+        <ae-number-input label="Disabled" controls value="25" disabled></ae-number-input>
+
+        <label>With resettable, default value: 50</label>
+        <ae-number-input placeholder="Resettable" resettable value="50" default-value="50"></ae-number-input>
+
+        <label>With clearable</label>
+        <ae-number-input placeholder="Clearable" clearable value="42"></ae-number-input>
+
+        <label>With resettable and clearable, default value: 25</label>
+        <ae-number-input placeholder="Both" resettable clearable value="25" default-value="25"></ae-number-input>
+
+        <label>Disabled</label>
+        <ae-number-input label="Disabled" value="99" disabled></ae-number-input>
+
+        <label>Required with helper text</label>
+        <ae-number-input label="Age" required helper-text="Must be between 1 and 150" min="1" max="150" placeholder="Your age"></ae-number-input>
+
+        <label>With error</label>
+        <ae-number-input label="Invalid" error="Value must be positive" value="-5"></ae-number-input>
+
+        <label>Size 2xs</label>
+        <ae-number-input placeholder="Small" size="2xs" value="7"></ae-number-input>
+      </div>
+    </div>
+  </div>
+  <footer id="log-footer">
+    <div id="log-footer-header">
+      Event Log
+      <span class="clear-log" id="clear-log">[clear]</span>
+    </div>
+    <div id="event-log"></div>
+  </footer>
+
+</body>
+</html>

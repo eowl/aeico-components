@@ -5,7 +5,7 @@ import ProgressBar from '../../src/progress-bar/progress-bar.js'
 const TAG_NAME = 'ae-progress-bar'
 
 before(async () => {
-  ProgressBar.register()
+  ProgressBar.define('progress-bar')
   await whenDefined(TAG_NAME)
 })
 

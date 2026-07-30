@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>(function(){if(localStorage.getItem("aeico-demo-theme")==="dark")document.documentElement.setAttribute("theme","dark")})()</script>
+  <title>Icon - Aeico Components</title>
+  <link rel="stylesheet" href="../demo.css">
+  <script type="module" src="../shared.ts"></script>
+</head>
+<body>
+  <div class="content">
+    <div class="section">
+      <h2>Icon</h2>
+      <span class="tag">&lt;ae-icon&gt;</span>
+
+      <div class="demo-group">
+        <label>Sizes (3xs to xl + numeric)</label>
+        <div class="demo-row" style="align-items: flex-end;">
+          <ae-icon name="star" size="3xs"></ae-icon>
+          <ae-icon name="star" size="2xs"></ae-icon>
+          <ae-icon name="star" size="xs"></ae-icon>
+          <ae-icon name="star" size="sm"></ae-icon>
+          <ae-icon name="star" size="md"></ae-icon>
+          <ae-icon name="star" size="lg"></ae-icon>
+          <ae-icon name="star" size="xl"></ae-icon>
+          <ae-icon name="star" size="32"></ae-icon>
+          <ae-icon name="typescript" size="xl"></ae-icon>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>Colors (via color.css token --color-solid)</label>
+        <div class="demo-row">
+          <ae-icon name="home"></ae-icon>
+          <ae-icon name="home" color="primary"></ae-icon>
+          <ae-icon name="home" color="secondary"></ae-icon>
+          <ae-icon name="home" color="success"></ae-icon>
+          <ae-icon name="home" color="danger"></ae-icon>
+          <ae-icon name="home" color="warning"></ae-icon>
+          <ae-icon name="home" color="info"></ae-icon>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>Fill icons (registry default)</label>
+        <div class="demo-row">
+          <ae-icon name="home"     size="md" color="primary"></ae-icon>
+          <ae-icon name="check"    size="md" color="success"></ae-icon>
+          <ae-icon name="close"    size="md" color="danger"></ae-icon>
+          <ae-icon name="info"     size="md" color="info"></ae-icon>
+          <ae-icon name="warning"  size="md" color="warning"></ae-icon>
+          <ae-icon name="star"     size="md" color="warning"></ae-icon>
+          <ae-icon name="settings" size="md"></ae-icon>
+          <ae-icon name="heart"    size="md" color="danger"></ae-icon>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>Stroke icons (stroke set in registry)</label>
+        <div class="demo-row">
+          <ae-icon name="edit"   size="md"></ae-icon>
+          <ae-icon name="search" size="md"></ae-icon>
+          <ae-icon name="user"   size="md" color="secondary"></ae-icon>
+          <ae-icon name="trash"  size="md" color="danger"></ae-icon>
+          <ae-icon name="eye"    size="md" color="info"></ae-icon>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>stroke prop override - force fill icon to stroke, stroke icon to fill</label>
+        <div class="demo-row">
+          <span style="font-size:0.8rem;color:var(--text-secondary)">fill to stroke:</span>
+          <ae-icon name="home"  size="lg" stroke color="primary"></ae-icon>
+          <ae-icon name="star"  size="lg" stroke color="warning"></ae-icon>
+          <ae-icon name="heart" size="lg" stroke color="danger"></ae-icon>
+          <span style="font-size:0.8rem;color:var(--text-secondary);margin-left:1rem;">stroke to fill:</span>
+          <ae-icon name="edit"  size="lg" stroke="false" color="primary"></ae-icon>
+          <ae-icon name="trash" size="lg" stroke="false" color="danger"></ae-icon>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>strokeWidth prop override</label>
+        <div class="demo-row">
+          <ae-icon name="search" size="xl" stroke-width="0.75"></ae-icon>
+          <ae-icon name="search" size="xl" stroke-width="1"></ae-icon>
+          <ae-icon name="search" size="xl"></ae-icon>
+          <ae-icon name="search" size="xl" stroke-width="3"></ae-icon>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>In buttons</label>
+        <div class="demo-row">
+          <ae-button color="primary"><ae-icon name="edit"></ae-icon></ae-button>
+          <ae-button color="danger"><ae-icon name="trash"></ae-icon></ae-button>
+          <ae-button color="primary" variant="outlined"><ae-icon name="search"></ae-icon> Search</ae-button>
+          <ae-button color="info" variant="subtle"><ae-icon name="eye"></ae-icon> Preview</ae-button>
+          <ae-button color="success" variant="text"><ae-icon name="check"></ae-icon> Confirm</ae-button>
+        </div>
+      </div>
+    </div>
+
+    <!-- IconButton (deprecated use ae-button + ae-icon slot) -->
+  </div>
+  <footer id="log-footer">
+    <div id="log-footer-header">
+      Event Log
+      <span class="clear-log" id="clear-log">[clear]</span>
+    </div>
+    <div id="event-log"></div>
+  </footer>
+
+</body>
+</html>

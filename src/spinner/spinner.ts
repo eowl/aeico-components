@@ -8,7 +8,7 @@ import style from '../styles/components/spinner.css';
 import type { SpinnerColor, SpinnerSize, SpinnerVariant } from './defines';
 
 /**
- * Spinner — animated loading indicator.
+ * Spinner - animated loading indicator.
  *
  * Supports two visual variants: a rotating ring (`border`, default) and
  * three bouncing dots (`dots`). Size and colour are driven by the shared
@@ -22,8 +22,6 @@ import type { SpinnerColor, SpinnerSize, SpinnerVariant } from './defines';
  * ```
  */
 class Spinner extends AeicoComponent {
-  static tagName = 'spinner';
-
   @prop({ type: String })
   accessor variant: SpinnerVariant = 'border';
 
@@ -69,7 +67,7 @@ class Spinner extends AeicoComponent {
   }
 }
 
-Spinner.register();
+Spinner.define('spinner');
 
 declare global {
   interface HTMLElementTagNameMap {

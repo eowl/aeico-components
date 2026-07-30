@@ -4,7 +4,7 @@
   height: var(--thickness, 1px);
   flex-shrink: 0;
 
-  /* Override color.css default — divider uses the subtle border token when no [color] is set */
+  /* Override color.css default - divider uses the subtle border token when no [color] is set */
   --ae-color-border: var(--ae-border-default);
 
   background: var(--ae-color-border);

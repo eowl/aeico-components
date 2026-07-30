@@ -15,7 +15,7 @@ import 'aeico-components';
 
 ## Examples
 
-### Basic — string options
+### Basic - string options
 
 ```html
 <ae-radio-group options='["Option A", "Option B", "Option C"]'></ae-radio-group>
@@ -42,7 +42,7 @@ import 'aeico-components';
 ]'></ae-radio-group>
 ```
 
-### `mode="button"` — toggle button style
+### `mode="button"` - toggle button style
 
 ```html
 <ae-radio-group
@@ -52,7 +52,7 @@ import 'aeico-components';
 </ae-radio-group>
 ```
 
-### `mode="button-group"` — compact segmented control
+### `mode="button-group"` - compact segmented control
 
 ```html
 <ae-radio-group
@@ -77,7 +77,7 @@ import 'aeico-components';
 <ae-radio-group mode="button-group" color="primary" size="lg" options='["S", "M", "L"]'></ae-radio-group>
 ```
 
-### `allowEmpty` — allow deselecting
+### `allowEmpty` - allow deselecting
 
 ```html
 <ae-radio-group
@@ -117,7 +117,7 @@ Slot-based `<ae-radio>` elements are merged with the `options` prop.
 
 | Attribute | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `options` | `string[] \| Array<{ value: string, label: string, disabled?: boolean }>` | — | Options to render. Can be a JSON string in HTML or a JS array. |
+| `options` | `string[] \| Array<{ value: string, label: string, disabled?: boolean }>` | - | Options to render. Can be a JSON string in HTML or a JS array. |
 | `mode` | `'default' \| 'button' \| 'button-group'` | `'default'` | Display mode: classic radio, individual buttons, or segmented control. |
 | `color` | `'default' \| 'primary' \| 'secondary' \| 'success' \| 'danger' \| 'warning' \| 'info' \| 'light' \| 'dark'` | `'default'` | Selected item colour (for `button` and `button-group` modes). |
 | `variant` | `'filled' \| 'outlined' \| 'faint' \| 'subtle' \| 'text'` | `'filled'` | Selected item style (for `button` and `button-group` modes). |

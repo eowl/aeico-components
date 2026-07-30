@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>(function(){if(localStorage.getItem("aeico-demo-theme")==="dark")document.documentElement.setAttribute("theme","dark")})()</script>
+  <title>Checkbox - Aeico Components</title>
+  <link rel="stylesheet" href="../demo.css">
+  <script type="module" src="../shared.ts"></script>
+</head>
+<body>
+  <div class="content">
+    <div class="section">
+      <h2>Checkbox</h2>
+      <span class="tag">&lt;ae-checkbox&gt;</span>
+      <div class="demo-group">
+        <div class="demo-row">
+          <ae-checkbox></ae-checkbox>
+          <ae-checkbox checked></ae-checkbox>
+          <ae-checkbox resettable default-checked></ae-checkbox>
+          <ae-checkbox checked resettable clearable default-checked></ae-checkbox>
+          <ae-checkbox disabled></ae-checkbox>
+          <ae-checkbox checked disabled></ae-checkbox>
+        </div>
+        <label>Sizes</label>
+        <div class="demo-row">
+          <ae-checkbox size="sm" checked></ae-checkbox>
+          <ae-checkbox checked></ae-checkbox>
+          <ae-checkbox size="lg" checked></ae-checkbox>
+        </div>
+        <label>Colors</label>
+        <div class="demo-row">
+          <ae-checkbox color="primary" checked></ae-checkbox>
+          <ae-checkbox color="secondary" checked></ae-checkbox>
+          <ae-checkbox color="success" checked></ae-checkbox>
+          <ae-checkbox color="danger" checked></ae-checkbox>
+          <ae-checkbox color="warning" checked></ae-checkbox>
+        </div>
+        <label>With resettable, default-checked, Action Button Style: Integrated (default)</label>
+        <div class="demo-row">
+          <ae-checkbox resettable default-checked></ae-checkbox>
+          <ae-checkbox checked resettable clearable default-checked></ae-checkbox>
+        </div>
+        <label>With resettable, default-checked, Action Button Style: Standalone</label>
+        <div class="demo-row">
+          <ae-checkbox resettable default-checked action-button-style="standalone"></ae-checkbox>
+          <ae-checkbox checked resettable clearable default-checked action-button-style="standalone"></ae-checkbox>
+        </div>
+      </div>
+    </div>
+
+    <!-- Switch -->
+  </div>
+  <footer id="log-footer">
+    <div id="log-footer-header">
+      Event Log
+      <span class="clear-log" id="clear-log">[clear]</span>
+    </div>
+    <div id="event-log"></div>
+  </footer>
+
+</body>
+</html>

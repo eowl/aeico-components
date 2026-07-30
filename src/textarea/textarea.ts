@@ -12,8 +12,6 @@ export type TextareaResize = 'none' | 'vertical' | 'horizontal' | 'both';
 class Textarea extends AeicoField {
   protected fieldElement: HTMLTextAreaElement | null = null;
 
-  static tagName = 'textarea';
-
   @prop({ type: String })
   accessor placeholder: string | undefined;
 
@@ -95,7 +93,7 @@ class Textarea extends AeicoField {
   }
 }
 
-Textarea.register();
+Textarea.define('textarea');
 
 declare global {
   interface HTMLElementTagNameMap {

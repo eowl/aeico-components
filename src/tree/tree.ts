@@ -35,8 +35,6 @@ import type TreeItem from './tree-item';
  * ```
  */
 class Tree extends AeicoComponent {
-  static tagName = 'tree';
-
   protected static styles = [variables, style];
 
   @prop({ type: Boolean })
@@ -141,7 +139,7 @@ class Tree extends AeicoComponent {
         } satisfies TreeSelectDetail,
       });
     } else {
-      // Single select — deselect all, select target
+      // Single select - deselect all, select target
       const alreadySelected = this.selectedKey === key;
       this._getAllItems().forEach((item) => {
         item.selected = !alreadySelected && item.key === key;
@@ -225,7 +223,7 @@ class Tree extends AeicoComponent {
   }
 }
 
-Tree.register();
+Tree.define('tree');
 
 declare global {
   interface HTMLElementTagNameMap {

@@ -5,9 +5,9 @@
 A floating menu attached to a trigger element. Use the `trigger` slot for full control over the trigger, or set `label` for a built-in button trigger.
 
 This file covers three closely related components:
-- **`ae-dropdown`** — the container that manages open/close state and positioning
-- **`ae-dropdown-item`** — individual menu items inside a dropdown
-- **`ae-dropdown-button`** — a self-contained button + dropdown in one element
+- **`ae-dropdown`** - the container that manages open/close state and positioning
+- **`ae-dropdown-item`** - individual menu items inside a dropdown
+- **`ae-dropdown-button`** - a self-contained button + dropdown in one element
 
 ## Import
 
@@ -33,7 +33,7 @@ import 'aeico-components';
 </ae-dropdown>
 ```
 
-### `label` — built-in trigger button
+### `label` - built-in trigger button
 
 ```html
 <ae-dropdown label="Options">
@@ -56,7 +56,7 @@ import 'aeico-components';
 </ae-dropdown>
 ```
 
-### `closeOnSelect="false"` — keep open after selection
+### `closeOnSelect="false"` - keep open after selection
 
 ```html
 <ae-dropdown closeOnSelect="false">
@@ -111,7 +111,7 @@ import 'aeico-components';
 | `open` | `boolean` | `false` | Controls panel visibility. |
 | `closeOnSelect` | `boolean` | `true` | Closes the panel after an item is selected. |
 | `disabled` | `boolean` | `false` | Prevents the dropdown from opening. |
-| `label` | `string` | — | When set, renders a built-in button as the trigger. |
+| `label` | `string` | - | When set, renders a built-in button as the trigger. |
 
 ## `ae-dropdown` Slots
 
@@ -124,8 +124,8 @@ import 'aeico-components';
 
 | Event | Detail | Description |
 |-------|--------|-------------|
-| `open` | — | Fired when the panel opens. |
-| `close` | — | Fired when the panel closes. |
+| `open` | - | Fired when the panel opens. |
+| `close` | - | Fired when the panel closes. |
 | `select` | `{ value: string, label: string, checked: boolean }` | Fired when an item is clicked. |
 
 ## `ae-dropdown` CSS Custom Properties
@@ -165,14 +165,14 @@ import 'aeico-components';
 <ae-dropdown-item value="export" disabled>Export (unavailable)</ae-dropdown-item>
 ```
 
-### `href` — renders as a link
+### `href` - renders as a link
 
 ```html
 <ae-dropdown-item href="/profile">Go to Profile</ae-dropdown-item>
 <ae-dropdown-item href="/settings">Settings</ae-dropdown-item>
 ```
 
-### `type="checkbox"` — toggleable item
+### `type="checkbox"` - toggleable item
 
 ```html
 <ae-dropdown closeOnSelect="false">
@@ -182,7 +182,7 @@ import 'aeico-components';
 </ae-dropdown>
 ```
 
-### `active` — highlight the current selection
+### `active` - highlight the current selection
 
 ```html
 <ae-dropdown>
@@ -206,10 +206,10 @@ import 'aeico-components';
 
 | Attribute | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `value` | `string` | — | Value emitted in the parent `select` event detail. |
+| `value` | `string` | - | Value emitted in the parent `select` event detail. |
 | `disabled` | `boolean` | `false` | Makes the item non-interactive and visually dimmed. |
-| `href` | `string` | — | When set, the item renders as an `<a>` anchor. |
-| `type` | `'checkbox'` | — | Enables toggle mode; each click flips `checked`. |
+| `href` | `string` | - | When set, the item renders as an `<a>` anchor. |
+| `type` | `'checkbox'` | - | Enables toggle mode; each click flips `checked`. |
 | `checked` | `boolean` | `false` | Checked state for `type="checkbox"` items. |
 | `active` | `boolean` | `false` | Highlights the item as the currently active/selected option. |
 
@@ -274,7 +274,7 @@ import 'aeico-components';
 </ae-dropdown-button>
 ```
 
-### `label` slot — rich button content
+### `label` slot - rich button content
 
 ```html
 <ae-dropdown-button color="primary">
@@ -309,6 +309,6 @@ import 'aeico-components';
 
 | Event | Detail | Description |
 |-------|--------|-------------|
-| `open` | — | Fired when the panel opens. |
-| `close` | — | Fired when the panel closes. |
+| `open` | - | Fired when the panel opens. |
+| `close` | - | Fired when the panel closes. |
 | `select` | `{ value: string, label: string, checked: boolean }` | Fired when an item is clicked. |

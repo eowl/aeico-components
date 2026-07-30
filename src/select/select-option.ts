@@ -1,4 +1,4 @@
-﻿import AeicoComponent from '../aeico-component';
+import AeicoComponent from '../aeico-component';
 import type { InferProps } from 'aeico';
 import { html } from 'aeico';
 import style from '../styles/components/select-option.css';
@@ -6,8 +6,6 @@ import variables from '../styles/variables.css';
 import { prop } from 'aeico';
 
 class SelectOption extends AeicoComponent {
-  static tagName = 'select-option';
-
   @prop({ type: String })
   accessor value: string | undefined;
 
@@ -47,7 +45,7 @@ class SelectOption extends AeicoComponent {
   }
 }
 
-SelectOption.register();
+SelectOption.define('select-option');
 
 declare global {
   interface HTMLElementTagNameMap {

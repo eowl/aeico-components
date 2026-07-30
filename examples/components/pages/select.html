@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>(function(){if(localStorage.getItem("aeico-demo-theme")==="dark")document.documentElement.setAttribute("theme","dark")})()</script>
+  <title>Select - Aeico Components</title>
+  <link rel="stylesheet" href="../demo.css">
+  <script type="module" src="../shared.ts"></script>
+</head>
+<body>
+  <div class="content">
+    <div class="section">
+      <h2>Select</h2>
+      <span class="tag">&lt;ae-select&gt;</span>
+
+      <!-- 1. Options source slot vs JS prop -->
+      <div class="demo-group">
+        <label>Slot mode options via <code>&lt;ae-select-option&gt;</code> (initial value set by JS)</label>
+        <ae-select id="select-slot" placeholder="Choose a fruit..." style="max-width:260px">
+          <ae-select-option value="apple">Apple</ae-select-option>
+          <ae-select-option value="banana">Banana</ae-select-option>
+          <ae-select-option value="cherry">Cherry</ae-select-option>
+          <ae-select-option value="grape">Grape</ae-select-option>
+        </ae-select>
+      </div>
+
+      <div class="demo-group">
+        <label>Options prop JS array, <code>clearable</code> + <code>resettable</code> + <code>default-value</code></label>
+        <ae-select id="select-opts" clearable resettable placeholder="Choose a fruit..." style="max-width:260px"></ae-select>
+
+        <label>Options prop JS array, <code>clearable</code> + <code>resettable</code> + <code>default-value</code>, Action Button Style: Standalone</label>
+        <ae-select id="select-opts-standalone" clearable resettable placeholder="Choose a fruit..." action-button-style="standalone" style="max-width:260px"></ae-select>
+      </div>
+
+      <!-- 2. Disabled option in slot -->
+      <div class="demo-group">
+        <label>Disabled option (<code>disabled</code> on <code>ae-select-option</code>)</label>
+        <ae-select placeholder="Choose..." style="max-width:260px">
+          <ae-select-option value="a">Option A</ae-select-option>
+          <ae-select-option value="b" disabled>Option B (disabled)</ae-select-option>
+          <ae-select-option value="c">Option C</ae-select-option>
+        </ae-select>
+      </div>
+
+      <!-- 3. Disabled component -->
+      <div class="demo-group">
+        <label>Disabled component (<code>disabled</code>)</label>
+        <ae-select id="select-disabled" disabled placeholder="Disabled" style="max-width:260px"></ae-select>
+      </div>
+
+      <!-- 4. Sizes -->
+      <div class="demo-group">
+        <label>Sizes <code>size</code> prop (xs / sm / md / lg / xl)</label>
+        <div class="demo-row" style="align-items:flex-start">
+          <ae-select size="xs"  placeholder="xs"  style="max-width:120px" id="select-size-xs"></ae-select>
+          <ae-select size="sm"  placeholder="sm"  style="max-width:140px" id="select-size-sm"></ae-select>
+          <ae-select           placeholder="md"  style="max-width:160px" id="select-size-md"></ae-select>
+          <ae-select size="lg"  placeholder="lg"  style="max-width:180px" id="select-size-lg"></ae-select>
+          <ae-select size="xl"  placeholder="xl"  style="max-width:200px" id="select-size-xl"></ae-select>
+        </div>
+      </div>
+
+      <!-- 5. Position variants -->
+      <div class="demo-group">
+        <label>Dropdown position <code>position</code> prop</label>
+        <div class="demo-row" style="align-items:flex-start">
+          <div>
+            <div style="font-size:0.75rem;color:#999;margin-bottom:4px">bottom (default)</div>
+            <ae-select id="select-pos-bottom" placeholder="bottom" style="max-width:160px"></ae-select>
+          </div>
+          <div>
+            <div style="font-size:0.75rem;color:#999;margin-bottom:4px">top</div>
+            <ae-select id="select-pos-top" position="top" placeholder="top" style="max-width:160px"></ae-select>
+          </div>
+          <div>
+            <div style="font-size:0.75rem;color:#999;margin-bottom:4px">right</div>
+            <ae-select id="select-pos-right" position="right" placeholder="right" style="max-width:160px"></ae-select>
+          </div>
+          <div>
+            <div style="font-size:0.75rem;color:#999;margin-bottom:4px">left</div>
+            <ae-select id="select-pos-left" position="left" placeholder="left" style="max-width:160px"></ae-select>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Multiple slot mode -->
+      <div class="demo-group">
+        <label>Multiple slot mode (<code>multiple clearable</code>)</label>
+        <ae-select id="select-multi-slot" multiple clearable placeholder="Select fruits..." style="max-width:400px">
+          <ae-select-option value="apple">Apple</ae-select-option>
+          <ae-select-option value="banana">Banana</ae-select-option>
+          <ae-select-option value="cherry">Cherry</ae-select-option>
+          <ae-select-option value="grape">Grape</ae-select-option>
+          <ae-select-option value="mango">Mango</ae-select-option>
+        </ae-select>
+      </div>
+
+      <!-- 7. Multiple JS options prop, pre-selected -->
+      <div class="demo-group">
+        <label>Multiple options prop, pre-selected (<code>multiple clearable resettable default-value</code>)</label>
+        <ae-select id="select-multi-opts" multiple clearable resettable placeholder="Select colors..." style="max-width:400px"></ae-select>
+      </div>
+
+      <!-- 8. Multiple expandable (overflow expand) -->
+      <div class="demo-group">
+        <label>Multiple <code>expandable=false</code> (default): fixed height, overflow shows </label>
+        <ae-select id="select-overflow" multiple clearable placeholder="Select items..." style="max-width:260px">
+          <ae-select-option value="ts">TypeScript</ae-select-option>
+          <ae-select-option value="js">JavaScript</ae-select-option>
+          <ae-select-option value="css">CSS</ae-select-option>
+          <ae-select-option value="html">HTML</ae-select-option>
+          <ae-select-option value="wc">Web Components</ae-select-option>
+        </ae-select>
+      </div>
+
+      <div class="demo-group">
+        <label>Multiple <code>expandable</code>: height grows with selections</label>
+        <ae-select id="select-expandable" multiple expandable clearable placeholder="Select items..." style="max-width:260px">
+          <ae-select-option value="ts">TypeScript</ae-select-option>
+          <ae-select-option value="js">JavaScript</ae-select-option>
+          <ae-select-option value="css">CSS</ae-select-option>
+          <ae-select-option value="html">HTML</ae-select-option>
+          <ae-select-option value="wc">Web Components</ae-select-option>
+        </ae-select>
+      </div>
+
+      <!-- 8. Change event live output -->
+      <div class="demo-group">
+        <label>Change event live value output</label>
+        <ae-select id="select-event" multiple clearable placeholder="Select tags..." style="max-width:400px">
+          <ae-select-option value="ts">TypeScript</ae-select-option>
+          <ae-select-option value="js">JavaScript</ae-select-option>
+          <ae-select-option value="css">CSS</ae-select-option>
+          <ae-select-option value="html">HTML</ae-select-option>
+          <ae-select-option value="wc">Web Components</ae-select-option>
+        </ae-select>
+        <code id="select-event-output" style="display:block;margin-top:6px;font-size:0.8rem;color:#0e639c">value: []</code>
+      </div>
+    </div>
+
+    <!-- Button -->
+  </div>
+  <footer id="log-footer">
+    <div id="log-footer-header">
+      Event Log
+      <span class="clear-log" id="clear-log">[clear]</span>
+    </div>
+    <div id="event-log"></div>
+  </footer>
+
+<script type="module">
+import { FRUIT_OPTIONS, COLOR_OPTIONS, POSITION_OPTIONS } from '../shared.ts'
+
+const selectSlotEl = document.querySelector('#select-slot')
+if (selectSlotEl) selectSlotEl.value = 'banana'
+
+const selectOptsEl = document.querySelector('#select-opts')
+if (selectOptsEl) {
+  selectOptsEl.options = FRUIT_OPTIONS
+  selectOptsEl.defaultValue = 'cherry'
+  selectOptsEl.value = 'cherry'
+}
+
+const selectOptsStandaloneEl = document.querySelector('#select-opts-standalone')
+if (selectOptsStandaloneEl) {
+  selectOptsStandaloneEl.options = FRUIT_OPTIONS
+  selectOptsStandaloneEl.defaultValue = 'cherry'
+  selectOptsStandaloneEl.value = 'cherry'
+}
+
+const selectDisabledEl = document.querySelector('#select-disabled')
+if (selectDisabledEl) {
+  selectDisabledEl.options = FRUIT_OPTIONS
+  selectDisabledEl.value = 'apple'
+}
+
+;['#select-size-xs','#select-size-sm','#select-size-md','#select-size-lg','#select-size-xl'].forEach(id => {
+  const el = document.querySelector(id)
+  if (el) el.options = FRUIT_OPTIONS
+})
+
+;['#select-pos-bottom','#select-pos-top','#select-pos-right','#select-pos-left'].forEach(id => {
+  const el = document.querySelector(id)
+  if (el) el.options = POSITION_OPTIONS
+})
+
+const selectMultiOptsEl = document.querySelector('#select-multi-opts')
+if (selectMultiOptsEl) {
+  selectMultiOptsEl.options = COLOR_OPTIONS
+  selectMultiOptsEl.defaultValue = ['red', 'blue']
+  selectMultiOptsEl.value = ['red', 'blue']
+}
+
+const selectEventEl = document.querySelector('#select-event')
+const selectEventOutput = document.getElementById('select-event-output')
+if (selectEventEl && selectEventOutput) {
+  selectEventEl.addEventListener('change', (e) => {
+    const val = e.detail?.value
+    const display = Array.isArray(val) ? '['+val.map(v=>JSON.stringify(v)).join(', ')+']' : JSON.stringify(val)
+    selectEventOutput.textContent = 'value: ' + display
+  })
+}
+</script>
+</body>
+</html>

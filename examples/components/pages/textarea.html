@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>(function(){if(localStorage.getItem("aeico-demo-theme")==="dark")document.documentElement.setAttribute("theme","dark")})()</script>
+  <title>Textarea - Aeico Components</title>
+  <link rel="stylesheet" href="../demo.css">
+  <script type="module" src="../shared.ts"></script>
+</head>
+<body>
+  <div class="content">
+    <div class="section">
+      <h2>Textarea</h2>
+
+      <label>Basic</label>
+      <ae-textarea placeholder="Enter some text..." style="max-width:480px"></ae-textarea>
+
+      <label>With rows and placeholder</label>
+      <ae-textarea placeholder="Describe your issue..." rows="6" style="max-width:480px"></ae-textarea>
+
+      <label>Label + required + helperText</label>
+      <ae-textarea label="Comments" required placeholder="Write your comments here..." helper-text="Max 500 characters." style="max-width:480px"></ae-textarea>
+
+      <label>Error state</label>
+      <ae-textarea label="Bio" required placeholder="Tell us about yourself..." error="Bio is required." style="max-width:480px"></ae-textarea>
+
+      <label>Label placement left</label>
+      <ae-textarea label="Notes" label-placement="left" placeholder="Add notes..." style="max-width:600px"></ae-textarea>
+
+      <label>autoResize - grows as you type</label>
+      <ae-textarea label="Message" auto-resize placeholder="Type to grow..." style="max-width:480px"></ae-textarea>
+
+      <label>resize="none"</label>
+      <ae-textarea resize="none" placeholder="Cannot be resized..." rows="4" style="max-width:480px"></ae-textarea>
+
+      <label>Clearable + resettable</label>
+      <ae-textarea label="Description" clearable resettable value="Initial content" placeholder="Enter description..." style="max-width:480px"></ae-textarea>
+
+      <label>maxlength + minlength</label>
+      <ae-textarea label="Short bio" placeholder="10–200 characters..." minlength="10" maxlength="200" style="max-width:480px"></ae-textarea>
+
+      <label>Disabled</label>
+      <ae-textarea label="Disabled field" disabled value="Cannot edit this" style="max-width:480px"></ae-textarea>
+    </div><!-- /Textarea -->
+
+  </div><!-- .content -->
+
+  <footer id="log-footer">
+    <div id="log-footer-header">
+      Event Log
+      <span class="clear-log" id="clear-log">[clear]</span>
+    </div>
+    <div id="event-log"></div>
+  </footer>
+
+</body>
+</html>
+
+  </div>
+  <footer id="log-footer">
+    <div id="log-footer-header">
+      Event Log
+      <span class="clear-log" id="clear-log">[clear]</span>
+    </div>
+    <div id="event-log"></div>
+  </footer>
+
+</body>
+</html>

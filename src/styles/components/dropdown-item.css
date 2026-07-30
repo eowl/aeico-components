@@ -56,14 +56,14 @@
   pointer-events: none;
 }
 
-/* Active item — current selection, current route, etc. */
+/* Active item - current selection, current route, etc. */
 :host([active]) .item {
   background: var(--dropdown-item-bg-selected, rgba(0, 0, 0, 0.06));
   color: var(--dropdown-item-color-active, var(--ae-color-primary, #0e639c));
   font-weight: 500;
 }
 
-/* Checkbox mode — fixed-width indicator column */
+/* Checkbox mode - fixed-width indicator column */
 .check-indicator {
   display: inline-flex;
   align-items: center;

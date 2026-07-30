@@ -1,4 +1,4 @@
-﻿import AeicoField from '../aeico-field';
+import AeicoField from '../aeico-field';
 import type { InferProps, Props } from 'aeico';
 import { html, tags } from 'aeico';
 import type { ButtonColor, ButtonVariant, ButtonSize } from '../button';
@@ -19,8 +19,6 @@ class RadioGroup extends AeicoField {
 
   private static _instanceCount = 0;
   private readonly _groupName: string;
-
-  static tagName = 'radio-group';
 
   static props: Props = {
     options: { type: Array },
@@ -82,7 +80,7 @@ class RadioGroup extends AeicoField {
     this.update();
   }
 
-  // Single handler for radio inputs — handles both select and deselect.
+  // Single handler for radio inputs - handles both select and deselect.
   // Only uses `click` (not `change`) because `change` fires before `click`;
   // if we set value in `change`, the `click` handler would see the updated
   // value and immediately deselect.
@@ -155,7 +153,7 @@ class RadioGroup extends AeicoField {
         this.renderResetButton();
       }
 
-      // Hidden slot — captures <option> light DOM children
+      // Hidden slot - captures <option> light DOM children
       this._slotEl = slot({
         style: { display: 'none' },
         '@slotchange': () => this._onSlotChange(),
@@ -184,7 +182,7 @@ class RadioGroup extends AeicoField {
           required: Boolean(this.required),
           '@click': this._boundOnRadioClick,
         });
-        // Sync DOM property directly — setAttribute('checked') doesn't work
+        // Sync DOM property directly - setAttribute('checked') doesn't work
         // after user interaction; only the .checked property controls state.
         el.checked = isChecked;
         // Keep fieldElement pointing to first radio for base-class compat
@@ -226,7 +224,7 @@ class RadioGroup extends AeicoField {
   }
 }
 
-RadioGroup.register();
+RadioGroup.define('radio-group');
 
 declare global {
   interface HTMLElementTagNameMap {

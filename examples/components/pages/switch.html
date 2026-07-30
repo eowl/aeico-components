@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>(function(){if(localStorage.getItem("aeico-demo-theme")==="dark")document.documentElement.setAttribute("theme","dark")})()</script>
+  <title>Switch - Aeico Components</title>
+  <link rel="stylesheet" href="../demo.css">
+  <script type="module" src="../shared.ts"></script>
+</head>
+<body>
+  <div class="content">
+    <div class="section">
+      <h2>Switch</h2>
+      <span class="tag">&lt;ae-switch&gt;</span>
+      <div class="demo-group">
+        <div class="demo-row">
+          <ae-switch></ae-switch>
+          <ae-switch checked></ae-switch>
+          <ae-switch resettable default-checked></ae-switch>
+          <ae-switch checked resettable clearable default-checked></ae-switch>
+          <ae-switch disabled></ae-switch>
+          <ae-switch checked disabled></ae-switch>
+        </div>
+        <label>Sizes</label>
+        <div class="demo-row">
+          <ae-switch size="sm" checked></ae-switch>
+          <ae-switch checked></ae-switch>
+          <ae-switch size="lg" checked></ae-switch>
+        </div>
+        <label>Colors</label>
+        <div class="demo-row">
+          <ae-switch color="primary" checked></ae-switch>
+          <ae-switch color="secondary" checked></ae-switch>
+          <ae-switch color="success" checked></ae-switch>
+          <ae-switch color="danger" checked></ae-switch>
+          <ae-switch color="warning" checked></ae-switch>
+        </div>
+        <label>Icons (knob mode)</label>
+        <div class="demo-row">
+          <ae-switch icon="bell-off" icon-checked="bell"></ae-switch>
+          <ae-switch icon="bell-off" icon-checked="bell" checked></ae-switch>
+          <ae-switch icon="moon" icon-checked="sun"></ae-switch>
+          <ae-switch icon="moon" icon-checked="sun" checked></ae-switch>
+          <ae-switch icon="volume-x" icon-checked="volume-2" checked color="success"></ae-switch>
+          <ae-switch icon="moon" icon-checked="sun" checked color="primary" size="lg"></ae-switch>
+        </div>
+        <label>Icons (track mode)</label>
+        <div class="demo-row">
+          <ae-switch icon="bell-off" icon-checked="bell" icon-placement="track"></ae-switch>
+          <ae-switch icon="bell-off" icon-checked="bell" icon-placement="track" checked></ae-switch>
+          <ae-switch icon="moon" icon-checked="sun" icon-placement="track" checked color="primary"></ae-switch>
+        </div>
+        <label>Label left</label>
+        <div class="demo-row">
+          <ae-switch label="Enable notifications" label-placement="left" checked></ae-switch>
+          <ae-switch label="Dark mode" label-placement="left"></ae-switch>
+        </div>
+        <label>With resettable, default-checked, Action Button Style: Integrated (default)</label>
+        <div class="demo-row">
+          <ae-switch resettable default-checked></ae-switch>
+          <ae-switch checked resettable clearable default-checked></ae-switch>
+        </div>
+        <label>With resettable, default-checked, Action Button Style: Standalone</label>
+        <div class="demo-row">
+          <ae-switch resettable default-checked action-button-style="standalone"></ae-switch>
+          <ae-switch checked resettable clearable default-checked action-button-style="standalone"></ae-switch>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slider -->
+  </div>
+  <footer id="log-footer">
+    <div id="log-footer-header">
+      Event Log
+      <span class="clear-log" id="clear-log">[clear]</span>
+    </div>
+    <div id="event-log"></div>
+  </footer>
+
+</body>
+</html>

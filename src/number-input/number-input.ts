@@ -10,8 +10,6 @@ import style from '../styles/components/number-input.css';
 class NumberInput extends AeicoField<number> {
   protected fieldElement: HTMLInputElement | null = null;
 
-  static tagName = 'number-input';
-
   static props: Props = {
     placeholder: { type: String },
     min: { type: Number },
@@ -125,7 +123,7 @@ class NumberInput extends AeicoField<number> {
   }
 }
 
-NumberInput.register();
+NumberInput.define('number-input');
 
 declare global {
   interface HTMLElementTagNameMap {

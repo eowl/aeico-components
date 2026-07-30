@@ -12,7 +12,7 @@ const MULTI_PATH_1 = 'M10 5l4-4 4 4'
 const MULTI_PATH_2 = 'M10 19l4 4 4-4'
 
 before(async () => {
-  Icon.register()
+  Icon.define('icon')
   await whenDefined(TAG_NAME)
 
   IconRegistry.add({
@@ -156,7 +156,7 @@ describe('Icon', () => {
     })
   })
 
-  describe('stroke — component prop', () => {
+  describe('stroke - component prop', () => {
     it('fill icon has no --icon-fill CSS var set', async () => {
       const el = await mount<Icon>(`<${TAG_NAME} name="test-star"></${TAG_NAME}>`)
       expect(el.style.getPropertyValue('--icon-fill')).to.equal('')

@@ -38,4 +38,4 @@ for (const name of files) {
   await writeFile(resolve(typesDir, `${name}.d.ts`), dts, 'utf-8')
 }
 
-console.log('Styles built → dist/styles/* + dist/types/styles/*')
+console.log('Styles built tp dist/styles/* + dist/types/styles/*')

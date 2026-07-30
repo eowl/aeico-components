@@ -5,7 +5,7 @@ import Badge from '../../src/badge/badge.js'
 const TAG_NAME = 'ae-badge'
 
 before(async () => {
-  Badge.register()
+  Badge.define('badge')
   await whenDefined(TAG_NAME)
 })
 

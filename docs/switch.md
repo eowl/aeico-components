@@ -21,13 +21,13 @@ import 'aeico-components';
 <ae-switch>Enable notifications</ae-switch>
 ```
 
-### `checked` — controlled state
+### `checked` - controlled state
 
 ```html
 <ae-switch checked>Dark mode</ae-switch>
 ```
 
-### `defaultChecked` — uncontrolled initial state
+### `defaultChecked` - uncontrolled initial state
 
 ```html
 <ae-switch defaultChecked>Auto-save</ae-switch>
@@ -82,7 +82,7 @@ import 'aeico-components';
 |-----------|------|---------|-------------|
 | `checked` | `boolean` | `false` | Current checked state (controlled). |
 | `defaultChecked` | `boolean` | `false` | Initial checked state (uncontrolled). |
-| `label` | `string` | — | Label text. Prefer the default slot for rich HTML labels. |
+| `label` | `string` | - | Label text. Prefer the default slot for rich HTML labels. |
 | `disabled` | `boolean` | `false` | Disables the switch. |
 
 ## Slots

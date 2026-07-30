@@ -1,4 +1,4 @@
-/* Action button base styles — shared by clear-btn and reset-btn (standalone mode) */
+/* Action button base styles - shared by clear-btn and reset-btn (standalone mode) */
 .clear-btn:not(.action-btn),
 .reset-btn:not(.action-btn) {
   width: 1.333em;

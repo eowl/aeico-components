@@ -62,7 +62,7 @@ import 'aeico-components';
 <ae-button color="primary" disabled>Disabled</ae-button>
 ```
 
-### `type` — form submission
+### `type` - form submission
 
 ```html
 <form>
@@ -71,7 +71,7 @@ import 'aeico-components';
 </form>
 ```
 
-### `active` — toggle state
+### `active` - toggle state
 
 Use `active` to visually indicate a pressed or selected state (e.g. toolbar toggles).
 
@@ -79,7 +79,7 @@ Use `active` to visually indicate a pressed or selected state (e.g. toolbar togg
 <ae-button color="primary" variant="outlined" active>Bold</ae-button>
 ```
 
-### `block` — full-width
+### `block` - full-width
 
 ```html
 <ae-button color="primary" block>Full Width</ae-button>
@@ -118,7 +118,7 @@ When the default slot contains only an `<ae-icon>`, the button automatically app
 
 | Name | Description |
 |------|-------------|
-| (default) | Button content — text, icons, or both. A slot containing only `<ae-icon>` enables icon-button mode. |
+| (default) | Button content - text, icons, or both. A slot containing only `<ae-icon>` enables icon-button mode. |
 
 ## CSS Custom Properties
 

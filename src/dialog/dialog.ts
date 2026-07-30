@@ -1,4 +1,4 @@
-﻿import type { InferProps, Props } from 'aeico';
+import type { InferProps, Props } from 'aeico';
 import styleVariables from '../styles/variables.css';
 import style from '../styles/components/dialog.css';
 import AeicoComponent from '../aeico-component';
@@ -6,7 +6,6 @@ import { html, tags } from 'aeico';
 import '../icon/icon';
 
 class Dialog extends AeicoComponent {
-  static tagName = 'dialog';
   static props: Props = {
     label: { type: String },
     width: { type: String },
@@ -139,7 +138,7 @@ class Dialog extends AeicoComponent {
   }
 }
 
-Dialog.register();
+Dialog.define('dialog');
 
 declare global {
   interface HTMLElementTagNameMap {

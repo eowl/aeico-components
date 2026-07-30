@@ -66,7 +66,7 @@ import 'aeico-components';
 
 | Attribute | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `icon` | `string` | — | Name of the icon to display (passed to `<ae-icon>`). |
+| `icon` | `string` | - | Name of the icon to display (passed to `<ae-icon>`). |
 | `color` | `'default' \| 'primary' \| 'secondary' \| 'success' \| 'danger' \| 'warning' \| 'info' \| 'light' \| 'dark'` | `'default'` | Semantic colour theme. |
 | `variant` | `'filled' \| 'outlined' \| 'subtle' \| 'text'` | `'subtle'` | Visual style. |
 | `size` | `'xs' \| 'sm' \| 'md' \| 'lg'` | `'md'` | Button and icon size. |

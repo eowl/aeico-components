@@ -17,7 +17,7 @@ import 'aeico-components';
 
 ## Examples
 
-### Basic — positional matching
+### Basic - positional matching
 
 ```html
 <ae-tabs>
@@ -31,7 +31,7 @@ import 'aeico-components';
 </ae-tabs>
 ```
 
-### `activeIndex` — initially active tab
+### `activeIndex` - initially active tab
 
 ```html
 <ae-tabs activeIndex="1">
@@ -142,7 +142,7 @@ import 'aeico-components';
 |-----------|------|---------|-------------|
 | `active` | `boolean` | `false` | Marks this tab as active (usually managed by `ae-tabs`). |
 | `disabled` | `boolean` | `false` | Makes the tab non-clickable. |
-| `panel` | `string` | — | The `id` of the associated `<ae-tab-panel>`. Uses positional matching when omitted. |
+| `panel` | `string` | - | The `id` of the associated `<ae-tab-panel>`. Uses positional matching when omitted. |
 
 ## `ae-tab` Slots
 

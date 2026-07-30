@@ -21,7 +21,7 @@ import 'aeico-components';
 <ae-text-input label="Username" placeholder="Enter your username"></ae-text-input>
 ```
 
-### `type` — HTML input types
+### `type` - HTML input types
 
 ```html
 <ae-text-input label="Email"    type="email"    placeholder="name@example.com"></ae-text-input>
@@ -31,13 +31,13 @@ import 'aeico-components';
 <ae-text-input label="Search"   type="search"   placeholder="Search…"></ae-text-input>
 ```
 
-### `value` — controlled state
+### `value` - controlled state
 
 ```html
 <ae-text-input label="Name" value="Alice"></ae-text-input>
 ```
 
-### `defaultValue` — uncontrolled initial value
+### `defaultValue` - uncontrolled initial value
 
 ```html
 <ae-text-input label="Nickname" defaultValue="ace_dev"></ae-text-input>
@@ -72,7 +72,7 @@ import 'aeico-components';
 </ae-text-input>
 ```
 
-### `actionButtonStyle` — action button display style
+### `actionButtonStyle` - action button display style
 
 ```html
 <!-- Integrated (default): buttons are attached to the input as one piece -->
@@ -99,11 +99,11 @@ import 'aeico-components';
 
 | Attribute | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `label` | `string` | — | Field label displayed above the input. |
-| `placeholder` | `string` | — | Placeholder text shown when the input is empty. |
+| `label` | `string` | - | Field label displayed above the input. |
+| `placeholder` | `string` | - | Placeholder text shown when the input is empty. |
 | `type` | `string` | `'text'` | Native `<input>` type (e.g. `'email'`, `'password'`, `'number'`). |
-| `value` | `string` | — | Controlled input value. |
-| `defaultValue` | `string` | — | Uncontrolled initial value. |
+| `value` | `string` | - | Controlled input value. |
+| `defaultValue` | `string` | - | Uncontrolled initial value. |
 | `disabled` | `boolean` | `false` | Disables the input. |
 | `required` | `boolean` | `false` | Marks the field as required in a form. |
 | `clearable` | `boolean` | `false` | Shows a clear button when the input has a value. |
