@@ -131,7 +131,7 @@
       </div>
 
       <div class="demo-group">
-        <label>label prop with built-in CSS caret (no slot="trigger")</label>
+        <label>label prop with built-in trigger and CSS caret</label>
         <div class="demo-row">
           <ae-dropdown class="dropdown-demo" label="Actions" placement="bottom-start">
             <ae-dropdown-item value="edit"><ae-icon name="edit"></ae-icon>Edit</ae-dropdown-item>
@@ -148,6 +148,28 @@
           </ae-dropdown>
           <ae-dropdown class="dropdown-demo" label="Disabled" placement="bottom-start" disabled>
             <ae-dropdown-item value="x">Item</ae-dropdown-item>
+          </ae-dropdown>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>label prop with slot="start" and slot="end"</label>
+        <div class="demo-row">
+          <ae-dropdown class="dropdown-demo" label="Settings" placement="bottom-start">
+            <ae-icon slot="start" name="settings" size="sm"></ae-icon>
+            <ae-dropdown-item value="a">Item A</ae-dropdown-item>
+            <ae-dropdown-item value="b">Item B</ae-dropdown-item>
+          </ae-dropdown>
+          <ae-dropdown class="dropdown-demo" label="Filter" placement="bottom-start">
+            <ae-icon slot="start" name="filter" size="sm"></ae-icon>
+            <ae-icon slot="end" name="ellipsis" size="sm"></ae-icon>
+            <ae-dropdown-item value="a">Item A</ae-dropdown-item>
+            <ae-dropdown-item value="b">Item B</ae-dropdown-item>
+          </ae-dropdown>
+          <ae-dropdown class="dropdown-demo" label="More" placement="bottom-start">
+            <ae-icon slot="end" name="ellipsis" size="sm"></ae-icon>
+            <ae-dropdown-item value="edit">Edit</ae-dropdown-item>
+            <ae-dropdown-item value="delete">Delete</ae-dropdown-item>
           </ae-dropdown>
         </div>
       </div>

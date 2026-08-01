@@ -21,10 +21,24 @@ import './dropdown-item';
  *
  * @example
  * ```html
+ * <!-- Trigger via slot -->
  * <ae-dropdown>
  *   <ae-button slot="trigger">Actions</ae-button>
- *   <ae-dropdown-item value="edit" icon="edit">Edit</ae-dropdown-item>
- *   <ae-dropdown-item value="delete" danger icon="trash">Delete</ae-dropdown-item>
+ *   <ae-dropdown-item value="edit">Edit</ae-dropdown-item>
+ *   <ae-dropdown-item value="delete">Delete</ae-dropdown-item>
+ * </ae-dropdown>
+ *
+ * <!-- label prop with built-in trigger -->
+ * <ae-dropdown label="User" placement="bottom-end">
+ *   <ae-dropdown-item value="profile">Profile</ae-dropdown-item>
+ *   <ae-dropdown-item value="logout">Sign out</ae-dropdown-item>
+ * </ae-dropdown>
+ *
+ * <!-- label prop with start / end slots -->
+ * <ae-dropdown label="Settings" placement="bottom-start">
+ *   <ae-icon slot="start" name="settings" size="sm"></ae-icon>
+ *   <ae-icon slot="end" name="ellipsis" size="sm"></ae-icon>
+ *   <ae-dropdown-item value="a">Item A</ae-dropdown-item>
  * </ae-dropdown>
  * ```
  *
@@ -33,10 +47,9 @@ import './dropdown-item';
  * <!-- Inside ae-navbar -->
  * <ae-navbar>
  *   <a slot="brand" href="/">MyApp</a>
- *   <ae-dropdown slot="end">
- *     <ae-button slot="trigger" variant="outlined" size="sm">User</ae-button>
- *     <ae-dropdown-item href="/profile" icon="user">Profile</ae-dropdown-item>
- *     <ae-dropdown-item value="logout" danger>Sign out</ae-dropdown-item>
+ *   <ae-dropdown slot="end" label="User" placement="bottom-end">
+ *     <ae-dropdown-item href="/profile">Profile</ae-dropdown-item>
+ *     <ae-dropdown-item value="logout">Sign out</ae-dropdown-item>
  *   </ae-dropdown>
  * </ae-navbar>
  * ```
@@ -154,6 +167,7 @@ class Dropdown extends AeicoComponent {
     const placementClass = `placement-${this.placement}`;
     const hasLabel = !!this.label;
     const dir = this.placement.split('-')[0];
+    const hasEndSlot = this.querySelector('[slot="end"]') !== null;
     return html(({ div, slot, button, span }) => {
       div(
         {
@@ -171,11 +185,16 @@ class Dropdown extends AeicoComponent {
                 disabled: this.disabled || undefined,
               },
               () => {
+                slot({ name: 'start' });
                 span({ text: this.label });
-                span({
-                  className: `ae-dropdown-arrow ae-dropdown-arrow--${dir}`,
-                  'aria-hidden': 'true',
-                });
+                if (hasEndSlot) {
+                  slot({ name: 'end' });
+                } else {
+                  span({
+                    className: `ae-dropdown-arrow ae-dropdown-arrow--${dir}`,
+                    'aria-hidden': 'true',
+                  });
+                }
               },
             );
           } else {
