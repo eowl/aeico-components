@@ -5,6 +5,7 @@ import { prop } from 'aeico';
 import type { ButtonColor, ButtonSize, ButtonVariant } from '../button/defines';
 import type { DropdownPlacement } from './defines';
 import type Dropdown from './dropdown';
+import dropdownStyle from '../styles/components/dropdown.css';
 import './dropdown';
 import '../button/button';
 
@@ -18,10 +19,25 @@ import '../button/button';
  *
  * @example
  * ```html
+ * <!-- Default: built-in CSS caret -->
  * <ae-dropdown-button variant="outlined" color="primary">
- *   Actions
+ *   <span slot="label">Actions</span>
  *   <ae-dropdown-item value="edit">Edit</ae-dropdown-item>
  *   <ae-dropdown-item value="delete">Delete</ae-dropdown-item>
+ * </ae-dropdown-button>
+ *
+ * <!-- Leading content via slot="start" + default caret -->
+ * <ae-dropdown-button variant="outlined" color="primary">
+ *   <ae-icon slot="start" name="settings" size="sm"></ae-icon>
+ *   <span slot="label">Settings</span>
+ *   <ae-dropdown-item value="a">Item A</ae-dropdown-item>
+ * </ae-dropdown-button>
+ *
+ * <!-- Custom end content via slot="end" replaces the default caret -->
+ * <ae-dropdown-button variant="outlined" color="primary">
+ *   <span slot="label">More</span>
+ *   <ae-icon slot="end" name="ellipsis" size="sm"></ae-icon>
+ *   <ae-dropdown-item value="edit">Edit</ae-dropdown-item>
  * </ae-dropdown-button>
  *
  * <!-- Inside ae-button-group -->
@@ -40,16 +56,7 @@ import '../button/button';
  * - `select` - `{ detail: { value, label } }` when a menu item is selected
  */
 class DropdownButton extends AeicoComponent {
-  // ae-button and ae-dropdown each carry their own shadow DOM styles.
-  // Only the host display is set here so button-group compact layout works.
-  protected static styles = [
-    ':host { display: inline-block; }',
-    '.caret { display: inline-block; width: 0; height: 0; margin-left: 0.3em; vertical-align: 0.2em; flex-shrink: 0; }',
-    '.caret--bottom { border-top: 0.35em solid; border-right: 0.35em solid transparent; border-left: 0.35em solid transparent; }',
-    '.caret--top { border-bottom: 0.35em solid; border-right: 0.35em solid transparent; border-left: 0.35em solid transparent; }',
-    '.caret--right { border-left: 0.35em solid; border-top: 0.35em solid transparent; border-bottom: 0.35em solid transparent; }',
-    '.caret--left { border-right: 0.35em solid; border-top: 0.35em solid transparent; border-bottom: 0.35em solid transparent; }',
-  ];
+  protected static styles = [dropdownStyle];
 
   @prop({ type: String })
   accessor variant: ButtonVariant = 'filled';
@@ -89,6 +96,7 @@ class DropdownButton extends AeicoComponent {
 
   protected render() {
     const dir = this.placement.split('-')[0];
+    const hasEndSlot = this.querySelector('[slot="end"]') !== null;
     return html(({ aeDropdown, aeButton, slot, span }) => {
       this._dropdownEl = aeDropdown(
         {
@@ -105,8 +113,16 @@ class DropdownButton extends AeicoComponent {
               disabled: this.disabled || undefined,
             },
             () => {
+              slot({ name: 'start' });
               slot({ name: 'label' });
-              span({ className: `caret caret--${dir}`, 'aria-hidden': 'true' });
+              if (hasEndSlot) {
+                slot({ name: 'end' });
+              } else {
+                span({
+                  className: `ae-dropdown-arrow ae-dropdown-arrow--${dir}`,
+                  'aria-hidden': 'true',
+                });
+              }
             },
           );
           slot();
