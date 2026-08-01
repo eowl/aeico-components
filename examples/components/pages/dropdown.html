@@ -131,6 +131,28 @@
       </div>
 
       <div class="demo-group">
+        <label>label prop with built-in CSS caret (no slot="trigger")</label>
+        <div class="demo-row">
+          <ae-dropdown class="dropdown-demo" label="Actions" placement="bottom-start">
+            <ae-dropdown-item value="edit"><ae-icon name="edit"></ae-icon>Edit</ae-dropdown-item>
+            <ae-dropdown-item value="view"><ae-icon name="eye"></ae-icon>View</ae-dropdown-item>
+            <ae-dropdown-item value="delete" style="--dropdown-item-color:var(--color-danger,#dc3545)"><ae-icon name="trash"></ae-icon>Delete</ae-dropdown-item>
+          </ae-dropdown>
+          <ae-dropdown class="dropdown-demo" label="Settings" placement="bottom-end">
+            <ae-dropdown-item value="a">Item A</ae-dropdown-item>
+            <ae-dropdown-item value="b">Item B</ae-dropdown-item>
+          </ae-dropdown>
+          <ae-dropdown class="dropdown-demo" label="Top" placement="top-start">
+            <ae-dropdown-item value="a">Item A</ae-dropdown-item>
+            <ae-dropdown-item value="b">Item B</ae-dropdown-item>
+          </ae-dropdown>
+          <ae-dropdown class="dropdown-demo" label="Disabled" placement="bottom-start" disabled>
+            <ae-dropdown-item value="x">Item</ae-dropdown-item>
+          </ae-dropdown>
+        </div>
+      </div>
+
+      <div class="demo-group">
         <label>In Navbar (slot="end")</label>
         <div style="isolation:isolate;position:relative;">
         <ae-navbar color="dark" appearance="block" style="border-radius:6px;">
@@ -143,6 +165,96 @@
             <ae-dropdown-item value="logout" style="--dropdown-item-color:var(--color-danger,#dc3545)">Sign out</ae-dropdown-item>
           </ae-dropdown>
         </ae-navbar>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Dropdown in Grid Layout</h2>
+      <span class="tag">Testing menu offset inside layout.css .grid containers</span>
+
+      <div class="demo-group">
+        <label>.grid .grid-cols-2: ae-slider + ae-dropdown (reproduces viscards control-bar scenario)</label>
+        <div class="grid grid-cols-2" style="padding:12px;background:#333;border-radius:8px;">
+          <ae-slider
+            label="Speed"
+            label-placement="left"
+            color="info"
+            tracked
+            min="1"
+            max="15"
+            step="1"
+            value="5"
+            style="--field-label-width:auto;"
+          ></ae-slider>
+          <ae-dropdown class="dropdown-demo" placement="top-end" close-on-select="false">
+            <ae-button slot="trigger" color="info" variant="outlined" size="sm">Settings</ae-button>
+            <ae-dropdown-item type="checkbox" value="showLabels" checked>Show labels</ae-dropdown-item>
+            <ae-dropdown-item type="checkbox" value="useLocalStorage" checked>Enable session storage</ae-dropdown-item>
+          </ae-dropdown>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>.grid .grid-cols-2: ae-dropdown + ae-button (another grid structure for comparison)</label>
+        <div class="grid grid-cols-2" style="padding:12px;background:#333;border-radius:8px;">
+          <ae-dropdown class="dropdown-demo" placement="top-end" close-on-select="false">
+            <ae-button slot="trigger" color="info" variant="outlined" size="sm">Settings</ae-button>
+            <ae-dropdown-item type="checkbox" value="a">Option A</ae-dropdown-item>
+            <ae-dropdown-item type="checkbox" value="b">Option B</ae-dropdown-item>
+          </ae-dropdown>
+          <ae-button variant="outlined" size="sm">Right button</ae-button>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>.grid .grid-cols-2: ae-dropdown wrapped in a div (works correctly)</label>
+        <div class="grid grid-cols-2" style="padding:12px;background:#333;border-radius:8px;">
+          <ae-slider
+            label="Speed"
+            label-placement="left"
+            color="info"
+            tracked
+            min="1"
+            max="15"
+            step="1"
+            value="5"
+            style="--field-label-width:auto;"
+          ></ae-slider>
+          <div>
+            <ae-dropdown class="dropdown-demo" placement="top-end" close-on-select="false">
+              <ae-button slot="trigger" color="info" variant="outlined" size="sm">Settings</ae-button>
+              <ae-dropdown-item type="checkbox" value="showLabels" checked>Show labels</ae-dropdown-item>
+              <ae-dropdown-item type="checkbox" value="useLocalStorage" checked>Enable session storage</ae-dropdown-item>
+            </ae-dropdown>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>.grid .grid-cols-4 - default left alignment</label>
+        <div class="grid grid-cols-4">
+          <ae-dropdown class="dropdown-demo">
+            <ae-button slot="trigger">Grid Col 1 <ae-icon name="chevron-down" size="sm"></ae-icon></ae-button>
+            <ae-dropdown-item value="a">Action A</ae-dropdown-item>
+            <ae-dropdown-item value="b">Action B</ae-dropdown-item>
+            <ae-dropdown-item value="c">Action C</ae-dropdown-item>
+          </ae-dropdown>
+          <ae-dropdown class="dropdown-demo" placement="bottom-end">
+            <ae-button slot="trigger" variant="outlined">Grid Col 2 <ae-icon name="chevron-down" size="sm"></ae-icon></ae-button>
+            <ae-dropdown-item value="x">Item X</ae-dropdown-item>
+            <ae-dropdown-item value="y">Item Y</ae-dropdown-item>
+          </ae-dropdown>
+          <ae-dropdown class="dropdown-demo" placement="top-start">
+            <ae-button slot="trigger" variant="faint" color="secondary">Grid Col 3 <ae-icon name="chevron-up" size="sm"></ae-icon></ae-button>
+            <ae-dropdown-item value="m">Item M</ae-dropdown-item>
+            <ae-dropdown-item value="n">Item N</ae-dropdown-item>
+          </ae-dropdown>
+          <ae-dropdown class="dropdown-demo">
+            <ae-button slot="trigger" color="primary">Grid Col 4 <ae-icon name="chevron-down" size="sm"></ae-icon></ae-button>
+            <ae-dropdown-item value="edit">Edit</ae-dropdown-item>
+            <ae-dropdown-item value="delete" style="--dropdown-item-color:var(--color-danger,#dc3545)">Delete</ae-dropdown-item>
+          </ae-dropdown>
         </div>
       </div>
     </div>
