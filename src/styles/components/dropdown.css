@@ -1,6 +1,9 @@
 :host {
   display: inline-block;
   position: relative;
+  /* Prevent grid/flex parent stretch from inflating the host width,
+     which would throw off the absolutely-positioned panel. */
+  width: fit-content;
 
   --dropdown-z-index: 1000;
   --dropdown-bg: var(--ae-surface-overlay, #fff);
