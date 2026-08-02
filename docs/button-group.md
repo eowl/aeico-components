@@ -72,6 +72,26 @@ Removes gaps and joins button borders so the group looks like a single segmented
 </ae-button-group>
 ```
 
+### `vertical` - vertical stack
+
+Stacks buttons vertically instead of side by side. Works with `compact`, `block`, and all other button-group props.
+
+```html
+<ae-button-group vertical color="primary">
+  <ae-button>Top</ae-button>
+  <ae-button>Middle</ae-button>
+  <ae-button>Bottom</ae-button>
+</ae-button-group>
+```
+
+```html
+<ae-button-group vertical compact color="primary">
+  <ae-button>Top</ae-button>
+  <ae-button>Middle</ae-button>
+  <ae-button>Bottom</ae-button>
+</ae-button-group>
+```
+
 ### `disabled` - disable all children
 
 ```html
@@ -102,6 +122,7 @@ Removes gaps and joins button borders so the group looks like a single segmented
 | `size` | `'3xs' \| '2xs' \| 'xs' \| 'sm' \| 'md' \| 'lg'` | - | Propagated to all child buttons. |
 | `compact` | `boolean` | `false` | Removes gaps between buttons and joins their borders. |
 | `block` | `boolean` | `false` | Makes the group full-width. |
+| `vertical` | `boolean` | `false` | Stacks buttons vertically instead of horizontally. |
 | `disabled` | `boolean` | `false` | Disables all child buttons. |
 
 ## Slots
