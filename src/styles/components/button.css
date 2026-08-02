@@ -26,7 +26,7 @@ button {
   width: 100%;
 
   background:   var(--ae-color-solid);
-  border: 1px solid var(--ae-color-solid);
+  border: 1px solid var(--ae-button-border-color, var(--ae-color-solid));
   color:        var(--ae-color-on-solid);
 }
 

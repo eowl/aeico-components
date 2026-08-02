@@ -102,6 +102,29 @@
       </div>
 
       <div class="demo-group">
+        <label>Vertical</label>
+        <div style="display: flex; gap: 1rem; align-items: flex-start;">
+          <ae-button-group vertical>
+            <ae-button>Top</ae-button>
+            <ae-button>Middle</ae-button>
+            <ae-button>Bottom</ae-button>
+          </ae-button-group>
+
+          <ae-button-group vertical compact color="primary">
+            <ae-button>Top</ae-button>
+            <ae-button>Middle</ae-button>
+            <ae-button>Bottom</ae-button>
+          </ae-button-group>
+
+          <ae-button-group vertical block color="primary">
+            <ae-button>Block Top</ae-button>
+            <ae-button>Block Middle</ae-button>
+            <ae-button>Block Bottom</ae-button>
+          </ae-button-group>
+        </div>
+      </div>
+
+      <div class="demo-group">
         <label>Disabled (group-level)</label>
         <ae-button-group compact color="primary" disabled>
           <ae-button>One</ae-button>
@@ -113,6 +136,11 @@
       <div class="demo-group">
         <label>With icons</label>
         <ae-button-group compact variant="outlined" color="primary">
+          <ae-button><ae-icon name="star"></ae-icon></ae-button>
+          <ae-button><ae-icon name="home"></ae-icon></ae-button>
+          <ae-button><ae-icon name="heart"></ae-icon></ae-button>
+        </ae-button-group>
+        <ae-button-group compact variant="outlined" vertical color="primary">
           <ae-button><ae-icon name="star"></ae-icon></ae-button>
           <ae-button><ae-icon name="home"></ae-icon></ae-button>
           <ae-button><ae-icon name="heart"></ae-icon></ae-button>
