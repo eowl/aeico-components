@@ -19,8 +19,8 @@
 
 :host([compact]) {
   gap: 0;
-  /* Reset --ae-border-radius so individual --_btn-r-* corners take effect */
   --ae-border-radius: initial;
+  --ae-button-border-color: rgba(0, 0, 0, 0.15);
 }
 
 /* Raise hovered/focused button so its border shows above neighbours */
