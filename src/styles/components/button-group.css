@@ -4,6 +4,10 @@
   gap: 8px;
 }
 
+:host([vertical]) {
+  flex-direction: column;
+}
+
 :host([block]) {
   display: flex;
   width: 100%;

@@ -1,8 +1,8 @@
-import type { InferProps, Props } from 'aeico';
+import type { InferProps } from 'aeico';
 import styleVariables from '../styles/variables.css';
 import buttonGroupStyle from '../styles/components/button-group.css';
 import AeicoComponent from '../aeico-component';
-import { html } from 'aeico';
+import { html, prop } from 'aeico';
 import type { ButtonColor, ButtonVariant, ButtonSize } from '../button';
 import Button from '../button/button';
 import DropdownButton from '../dropdown/dropdown-button';
@@ -12,7 +12,8 @@ import DropdownButton from '../dropdown/dropdown-button';
  *
  * Groups multiple `ae-button` elements, propagating shared `variant`, `color`,
  * `size`, and `disabled` props to each child. Supports a `compact` mode that
- * joins buttons into a seamless connected strip (like Bootstrap's button group).
+ * joins buttons into a seamless connected strip (like Bootstrap's button group)
+ * and a `vertical` mode that stacks buttons from top to bottom.
  *
  * @example
  * ```html
@@ -30,6 +31,13 @@ import DropdownButton from '../dropdown/dropdown-button';
  *   <ae-button>Right</ae-button>
  * </ae-button-group>
  *
+ * <!-- Vertical stack -->
+ * <ae-button-group vertical color="primary">
+ *   <ae-button>Top</ae-button>
+ *   <ae-button>Middle</ae-button>
+ *   <ae-button>Bottom</ae-button>
+ * </ae-button-group>
+ *
  * <!-- Full-width -->
  * <ae-button-group block color="danger" variant="outlined">
  *   <ae-button>Delete</ae-button>
@@ -38,32 +46,33 @@ import DropdownButton from '../dropdown/dropdown-button';
  * ```
  */
 class ButtonGroup extends AeicoComponent {
-  static props: Props = {
-    variant: { type: String },
-    color: { type: String },
-    size: { type: String },
-    compact: { type: Boolean },
-    block: { type: Boolean },
-    disabled: { type: Boolean },
-  };
+  @prop({ type: String })
+  accessor variant: ButtonVariant = 'filled';
+
+  @prop({ type: String })
+  accessor color: ButtonColor = 'default';
+
+  @prop({ type: String })
+  accessor size: ButtonSize = 'md';
+
+  @prop({ type: Boolean })
+  accessor compact: boolean = false;
+
+  @prop({ type: Boolean })
+  accessor block: boolean = false;
+
+  @prop({ type: Boolean })
+  accessor disabled: boolean = false;
+
+  @prop({ type: Boolean })
+  accessor vertical: boolean = false;
 
   protected static styles = [styleVariables, buttonGroupStyle];
-
-  declare variant?: ButtonVariant;
-  declare color?: ButtonColor;
-  declare size?: ButtonSize;
-  declare compact?: boolean;
-  declare block?: boolean;
-  declare disabled?: boolean;
 
   private slotEl: HTMLSlotElement | null = null;
 
   connectedCallback() {
     super.connectedCallback();
-
-    if (this.variant === undefined) this.variant = 'filled';
-    if (this.color === undefined) this.color = 'default';
-    if (this.size === undefined) this.size = 'md';
   }
 
   protected render() {
@@ -106,14 +115,24 @@ class ButtonGroup extends AeicoComponent {
         const isFirst = i === 0;
         const isLast = i === buttons.length - 1;
 
-        btn.style.marginLeft = isFirst ? '' : '-1px';
-
-        btn.style.setProperty('--_btn-r-tl', isFirst ? r : '0');
-        btn.style.setProperty('--_btn-r-bl', isFirst ? r : '0');
-        btn.style.setProperty('--_btn-r-tr', isLast ? r : '0');
-        btn.style.setProperty('--_btn-r-br', isLast ? r : '0');
+        if (this.vertical) {
+          btn.style.marginTop = isFirst ? '' : '-1px';
+          btn.style.marginLeft = '';
+          btn.style.setProperty('--_btn-r-tl', isFirst ? r : '0');
+          btn.style.setProperty('--_btn-r-tr', isFirst ? r : '0');
+          btn.style.setProperty('--_btn-r-bl', isLast ? r : '0');
+          btn.style.setProperty('--_btn-r-br', isLast ? r : '0');
+        } else {
+          btn.style.marginLeft = isFirst ? '' : '-1px';
+          btn.style.marginTop = '';
+          btn.style.setProperty('--_btn-r-tl', isFirst ? r : '0');
+          btn.style.setProperty('--_btn-r-bl', isFirst ? r : '0');
+          btn.style.setProperty('--_btn-r-tr', isLast ? r : '0');
+          btn.style.setProperty('--_btn-r-br', isLast ? r : '0');
+        }
       } else {
         btn.style.marginLeft = '';
+        btn.style.marginTop = '';
         this._clearRadius(btn);
       }
     });
