@@ -41,6 +41,60 @@
       </div>
 
       <div class="demo-group">
+        <label>Leading slot (slot="start") + default caret</label>
+        <div class="demo-row">
+          <ae-dropdown-button>
+            <ae-icon slot="start" name="settings" size="sm"></ae-icon>
+            <span slot="label">Settings</span>
+            <ae-dropdown-item value="a">Item A</ae-dropdown-item>
+            <ae-dropdown-item value="b">Item B</ae-dropdown-item>
+          </ae-dropdown-button>
+          <ae-dropdown-button variant="outlined" color="primary">
+            <ae-icon slot="start" name="edit" size="sm"></ae-icon>
+            <span slot="label">Edit</span>
+            <ae-dropdown-item value="copy">Copy</ae-dropdown-item>
+            <ae-dropdown-item value="paste">Paste</ae-dropdown-item>
+          </ae-dropdown-button>
+          <ae-dropdown-button variant="subtle" color="secondary">
+            <ae-icon slot="start" name="filter" size="sm"></ae-icon>
+            <span slot="label">Filter</span>
+            <ae-dropdown-item value="a">Item A</ae-dropdown-item>
+            <ae-dropdown-item value="b">Item B</ae-dropdown-item>
+          </ae-dropdown-button>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>Custom end slot (slot="end") replaces default caret</label>
+        <div class="demo-row">
+          <ae-dropdown-button>
+            <span slot="label">More</span>
+            <ae-icon slot="end" name="ellipsis" size="sm"></ae-icon>
+            <ae-dropdown-item value="edit">Edit</ae-dropdown-item>
+            <ae-dropdown-item value="delete">Delete</ae-dropdown-item>
+          </ae-dropdown-button>
+          <ae-dropdown-button variant="outlined" color="primary">
+            <span slot="label">Options</span>
+            <ae-icon slot="end" name="chevron-down" size="sm"></ae-icon>
+            <ae-dropdown-item value="a">Item A</ae-dropdown-item>
+            <ae-dropdown-item value="b">Item B</ae-dropdown-item>
+          </ae-dropdown-button>
+          <!-- Leading icon + custom caret, both -->
+          <ae-dropdown-button variant="subtle" color="secondary">
+            <ae-icon slot="start" name="filter" size="sm"></ae-icon>
+            <span slot="label">Filter</span>
+            <ae-icon slot="end" name="ellipsis" size="sm"></ae-icon>
+            <ae-dropdown-item value="a">Item A</ae-dropdown-item>
+            <ae-dropdown-item value="b">Item B</ae-dropdown-item>
+          </ae-dropdown-button>
+          <!-- No label, no end slot → default caret only -->
+          <ae-dropdown-button variant="faint" placement="bottom-end" style="width:2.5em;">
+            <ae-dropdown-item value="a">Item A</ae-dropdown-item>
+          </ae-dropdown-button>
+        </div>
+      </div>
+
+      <div class="demo-group">
         <label>Inside ae-button-group compact - Save + options strip</label>
         <div class="demo-row">
           <ae-button-group compact color="primary">
