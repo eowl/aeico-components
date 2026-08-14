@@ -9,7 +9,7 @@
   --tree-item-bg-selected: var(--ae-color-primary-bg-subtle, rgba(14, 99, 156, 0.08));
   --tree-item-color-selected: var(--ae-color-primary, #0e639c);
   --tree-item-line-color: var(--ae-border-default, rgba(0, 0, 0, 0.15));
-  --tree-item-expand-size: 1rem;
+  --tree-item-expand-size: 1.25rem;
 }
 
 .tree-item-content {
@@ -56,11 +56,16 @@
   outline-offset: 1px;
 }
 
-.expand-btn svg,
+.expand-btn svg {
+  display: block;
+  width: 0.6875rem;
+  height: 0.6875rem;
+  fill: currentColor;
+  transition: transform 0.18s;
+}
+
 .expand-btn ae-icon {
   display: block;
-  width: 0.625rem;
-  height: 0.625rem;
   fill: currentColor;
   transition: transform 0.18s;
 }
@@ -68,11 +73,11 @@
 /* ae-icon uses font-size for its internal sizing */
 .expand-btn ae-icon,
 .expand-placeholder ae-icon {
-  font-size: 0.625rem;
+  font-size: var(--tree-item-expand-size);
 }
 
-:host([expanded]) .expand-btn svg,
-:host([expanded]) .expand-btn ae-icon {
+:host([expanded]) .expand-btn:not(.expand-btn--swap) svg,
+:host([expanded]) .expand-btn:not(.expand-btn--swap) ae-icon {
   transform: rotate(90deg);
 }
 

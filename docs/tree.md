@@ -93,23 +93,16 @@ import 'aeico-components';
 </ae-tree>
 ```
 
-### `icon` - default expand icon name
+### `expand-icon` / `collapse-icon` - custom expand toggle icons
+
+Set custom icons for the expand/collapse toggle. `expand-icon` is shown when the item is
+collapsed; `collapse-icon` (optional) is shown when expanded. If `collapse-icon` is omitted,
+the `expand-icon` is rotated instead.
 
 ```html
-<ae-tree icon="folder">
+<ae-tree expand-icon="chevron-right" collapse-icon="chevron-down">
   <ae-tree-item key="src" label="src/">
     <ae-tree-item key="main" slot="sub">main.ts</ae-tree-item>
-  </ae-tree-item>
-</ae-tree>
-```
-
-### `ae-tree-item` with `icon`
-
-```html
-<ae-tree defaultExpandAll>
-  <ae-tree-item key="src" label="src/" icon="folder-open">
-    <ae-tree-item key="main" slot="sub" icon="file-code">main.ts</ae-tree-item>
-    <ae-tree-item key="utils" slot="sub" icon="file-code">utils.ts</ae-tree-item>
   </ae-tree-item>
 </ae-tree>
 ```
@@ -182,7 +175,8 @@ console.log(tree.expandedKeys);  // string[]
 | `defaultExpandAll` | `boolean` | `false` | Expands all parent nodes on mount. |
 | `wrapText` | `boolean` | `false` | Allows item text to wrap to the next line instead of being truncated with an ellipsis. |
 | `selectedKey` | `string` | - | Convenience prop to set an initially selected key. |
-| `icon` | `string` | - | Default icon name used as the expand/collapse indicator. |
+| `expandIcon` | `string` | - | Icon name shown on the expand toggle when collapsed. |
+| `collapseIcon` | `string` | - | Icon name shown on the expand toggle when expanded. Falls back to `expandIcon` (rotated) when omitted. |
 
 ## `ae-tree` JavaScript Properties (read/write)
 
@@ -214,7 +208,6 @@ console.log(tree.expandedKeys);  // string[]
 |-----------|------|---------|-------------|
 | `key` | `string` | auto-generated | Unique identifier. Auto-generated if omitted. |
 | `label` | `string` | - | When set, the item is treated as a parent node that can expand/collapse. Sub-items go in the `sub` slot. |
-| `icon` | `string` | - | Icon name displayed before the label. |
 | `disabled` | `boolean` | `false` | Prevents the item from being selected, checked, or expanded. |
 | `expanded` | `boolean` | `false` | Controls the expanded state of a parent item. |
 | `selected` | `boolean` | `false` | Marks the item as selected (usually managed by `ae-tree`). |

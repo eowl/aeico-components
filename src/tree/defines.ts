@@ -5,7 +5,8 @@ export interface ParentTreeLike extends Element {
   showLine?: boolean;
   defaultExpandAll?: boolean;
   wrapText?: boolean;
-  icon?: string;
+  expandIcon?: string;
+  collapseIcon?: string;
 }
 
 export interface TreeSelectDetail {

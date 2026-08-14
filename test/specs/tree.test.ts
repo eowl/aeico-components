@@ -620,18 +620,19 @@ describe('TreeItem', () => {
   })
 })
 
-describe('ae-tree icon prop', () => {
+describe('ae-tree expand icon props', () => {
   beforeEach(() => whenDefined('ae-tree'))
   afterEach(() => unmountAll())
 
-  it('icon defaults to undefined', async () => {
+  it('expandIcon/collapseIcon default to undefined', async () => {
     const el = await mount<Tree>(BASIC_TREE)
-    expect(el.icon).to.be.undefined
+    expect(el.expandIcon).to.be.undefined
+    expect(el.collapseIcon).to.be.undefined
   })
 
-  it('parent items show ae-icon in expand-btn when tree has icon set', async () => {
+  it('parent items show ae-icon in expand-btn when tree has expand-icon set', async () => {
     const el = await mount<Tree>(`
-      <ae-tree icon="chevron-right">
+      <ae-tree expand-icon="chevron-right">
         <ae-tree-item key="p">
           Parent
           <ae-tree-item key="c">Child</ae-tree-item>
@@ -648,7 +649,7 @@ describe('ae-tree icon prop', () => {
 
   it('leaf items never show an expand icon regardless of tree icon', async () => {
     const el = await mount<Tree>(`
-      <ae-tree icon="chevron-right">
+      <ae-tree expand-icon="chevron-right">
         <ae-tree-item key="leaf">Leaf</ae-tree-item>
       </ae-tree>
     `)
@@ -660,10 +661,10 @@ describe('ae-tree icon prop', () => {
     expect(leaf.shadowRoot!.querySelector('.expand-placeholder')).to.exist
   })
 
-  it('per-item icon overrides tree-level icon', async () => {
+  it('shows collapse-icon when expanded, expand-icon when collapsed', async () => {
     const el = await mount<Tree>(`
-      <ae-tree icon="chevron-right">
-        <ae-tree-item key="p" icon="chevron-down">
+      <ae-tree expand-icon="chevron-right" collapse-icon="chevron-down" default-expand-all>
+        <ae-tree-item key="p">
           Parent
           <ae-tree-item key="c">Child</ae-tree-item>
         </ae-tree-item>
@@ -673,9 +674,39 @@ describe('ae-tree icon prop', () => {
     await updated()
 
     const parent = el.querySelector<TreeItem>('[key="p"]')!
+    expect(parent.expanded).to.be.true
+
+    const expandedIcon = parent.shadowRoot!.querySelector<HTMLElement>('.expand-btn ae-icon')!
+    expect(expandedIcon).to.exist
+    expect(expandedIcon.getAttribute('name')).to.equal('chevron-down')
+
+    // Collapse -> should switch back to expand-icon
+    parent.expanded = false
+    await updated()
+
+    const collapsedIcon = parent.shadowRoot!.querySelector<HTMLElement>('.expand-btn ae-icon')!
+    expect(collapsedIcon.getAttribute('name')).to.equal('chevron-right')
+  })
+
+  it('falls back to rotating expand-icon when collapse-icon is omitted', async () => {
+    const el = await mount<Tree>(`
+      <ae-tree expand-icon="chevron-right" default-expand-all>
+        <ae-tree-item key="p">
+          Parent
+          <ae-tree-item key="c">Child</ae-tree-item>
+        </ae-tree-item>
+      </ae-tree>
+    `)
+    await updated()
+    await updated()
+
+    const parent = el.querySelector<TreeItem>('[key="p"]')!
+    expect(parent.expanded).to.be.true
+
     const icon = parent.shadowRoot!.querySelector<HTMLElement>('.expand-btn ae-icon')!
-    expect(icon).to.exist
-    expect(icon.getAttribute('name')).to.equal('chevron-down')
+    expect(icon.getAttribute('name')).to.equal('chevron-right')
+    // No swap class -> CSS rotates the icon via :host([expanded]) rule
+    expect(parent.shadowRoot!.querySelector('.expand-btn--swap')).to.not.exist
   })
 
   it('items without explicit key get a stable auto-generated key', async () => {

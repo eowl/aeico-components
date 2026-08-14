@@ -55,17 +55,16 @@ class Tree extends AeicoComponent {
   @prop({ type: String })
   accessor selectedKey: string | undefined;
 
-  /** Icon name used for the expand/collapse toggle on all items (overridable per item). */
   @prop({ type: String })
-  accessor icon: string | undefined;
+  accessor expandIcon: string | undefined;
 
-  /** Currently selected keys (multi-select). Set programmatically. */
+  @prop({ type: String })
+  accessor collapseIcon: string | undefined;
+
   selectedKeys: string[] = [];
 
-  /** Currently checked keys (checkable mode). Set programmatically. */
   checkedKeys: string[] = [];
 
-  /** Currently expanded keys. Set programmatically. */
   expandedKeys: string[] = [];
 
   connectedCallback() {

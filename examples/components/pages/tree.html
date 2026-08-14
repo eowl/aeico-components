@@ -158,49 +158,31 @@
         </div>
       </div>
 
-      <!-- ─── Tree-level icon + rich label content ────────────────── -->
+      <!-- ─── Custom expand icons + rich label content ────────────────── -->
       <div class="demo-group">
-        <label>Tree-level <code>icon</code> + rich label content</label>
+        <label>Custom expand icons (<code>expand-icon</code> / <code>collapse-icon</code>) + rich label content</label>
         <div class="demo-row">
-          <ae-tree class="tree-demo" icon="chevron-right" default-expand-all>
+          <ae-tree class="tree-demo" expand-icon="chevron-right" collapse-icon="chevron-down" default-expand-all>
             <ae-tree-item key="i1">
-              <span style="display:inline-flex;align-items:center;gap:0.25rem">
-                <ae-icon name="chevrons-right" size="14"></ae-icon>Engineering
-              </span>
               <ae-tree-item key="i1-1">
-                <span style="display:inline-flex;align-items:center;gap:0.25rem">
-                  <ae-icon name="chevrons-right" size="14"></ae-icon>Frontend
-                </span>
                 <ae-tree-item key="i1-1-1">
-                  <span style="display:inline-flex;align-items:center;gap:0.25rem">
-                    <ae-icon name="chevron-right" size="14"></ae-icon>React
-                  </span>
+                  React
                 </ae-tree-item>
                 <ae-tree-item key="i1-1-2">
-                  <span style="display:inline-flex;align-items:center;gap:0.25rem">
-                    <ae-icon name="chevron-right" size="14"></ae-icon>Vue
-                  </span>
+                  Vue
                 </ae-tree-item>
               </ae-tree-item>
               <ae-tree-item key="i1-2">
-                <span style="display:inline-flex;align-items:center;gap:0.25rem">
-                  <ae-icon name="chevrons-right" size="14"></ae-icon>Backend
-                </span>
+                Backend
                 <ae-tree-item key="i1-2-1">
-                  <span style="display:inline-flex;align-items:center;gap:0.25rem">
-                    <ae-icon name="chevron-right" size="14"></ae-icon>Node.js
-                  </span>
+                  Node.js
                 </ae-tree-item>
               </ae-tree-item>
             </ae-tree-item>
             <ae-tree-item key="i2">
-              <span style="display:inline-flex;align-items:center;gap:0.25rem">
-                <ae-icon name="chevrons-right" size="14"></ae-icon>Design
-              </span>
+              Design
               <ae-tree-item key="i2-1">
-                <span style="display:inline-flex;align-items:center;gap:0.25rem">
-                  <ae-icon name="chevron-right" size="14"></ae-icon>UI / UX
-                </span>
+                UI / UX
               </ae-tree-item>
             </ae-tree-item>
           </ae-tree>
