@@ -123,6 +123,18 @@ import 'aeico-components';
 </ae-tree>
 ```
 
+### `wrap-text` - allow text to wrap
+
+When the tree has a constrained width, long item text is truncated with an ellipsis by default
+(items use `white-space: nowrap`). Add the `wrap-text` attribute to let text wrap to the next line.
+
+```html
+<ae-tree wrap-text>
+  <ae-tree-item key="short">Short</ae-tree-item>
+  <ae-tree-item key="long">This is a very long tree item text that will wrap to the next line</ae-tree-item>
+</ae-tree>
+```
+
 ### Listening to events
 
 ```html
@@ -168,6 +180,7 @@ console.log(tree.expandedKeys);  // string[]
 | `multiple` | `boolean` | `false` | Allows multiple items to be selected by clicking (without checkboxes). |
 | `showLine` | `boolean` | `false` | Renders dashed connector lines between parent and children. |
 | `defaultExpandAll` | `boolean` | `false` | Expands all parent nodes on mount. |
+| `wrapText` | `boolean` | `false` | Allows item text to wrap to the next line instead of being truncated with an ellipsis. |
 | `selectedKey` | `string` | - | Convenience prop to set an initially selected key. |
 | `icon` | `string` | - | Default icon name used as the expand/collapse indicator. |
 

@@ -4,6 +4,7 @@ export interface ParentTreeLike extends Element {
   multiple?: boolean;
   showLine?: boolean;
   defaultExpandAll?: boolean;
+  wrapText?: boolean;
   icon?: string;
 }
 

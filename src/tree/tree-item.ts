@@ -103,6 +103,10 @@ class TreeItem extends AeicoComponent {
     return this._parentTree?.checkable ?? false;
   }
 
+  private get _wrapText(): boolean {
+    return this._parentTree?.wrapText ?? false;
+  }
+
   private get _hasChildren(): boolean {
     return !!this.querySelector(':scope > ae-tree-item[slot="sub"]');
   }
@@ -173,7 +177,10 @@ class TreeItem extends AeicoComponent {
     return html(({ div, button, span, input, slot, svg, path, aeIcon }) => {
       div(
         {
-          className: 'tree-item-content',
+          className: {
+            'tree-item-content': true,
+            'tree-item-content--wrap': this._wrapText,
+          },
           role: 'treeitem',
           'aria-expanded': hasChildren ? String(this.expanded) : undefined,
           'aria-selected': String(this.selected),
@@ -225,7 +232,10 @@ class TreeItem extends AeicoComponent {
           button(
             {
               type: 'button',
-              className: 'tree-item-label',
+              className: {
+                'tree-item-label': true,
+                'tree-item-label--wrap': this._wrapText,
+              },
               disabled: this.disabled,
               '@click': this._handleLabelClick,
               '@keydown': this._handleKeydown,

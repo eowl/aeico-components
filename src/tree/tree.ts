@@ -49,6 +49,9 @@ class Tree extends AeicoComponent {
   @prop({ type: Boolean })
   accessor defaultExpandAll: boolean = false;
 
+  @prop({ type: Boolean })
+  accessor wrapText: boolean = false;
+
   @prop({ type: String })
   accessor selectedKey: string | undefined;
 
