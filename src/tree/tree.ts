@@ -3,7 +3,12 @@ import type { InferProps } from 'aeico';
 import { html, prop } from 'aeico';
 import style from '../styles/components/tree.css';
 import variables from '../styles/variables.css';
-import type { TreeSelectDetail, TreeExpandDetail, TreeCheckDetail, TreeIconPlacement } from './defines';
+import type {
+  TreeSelectDetail,
+  TreeExpandDetail,
+  TreeCheckDetail,
+  TreeIconPlacement,
+} from './defines';
 import './tree-item';
 import type TreeItem from './tree-item';
 
