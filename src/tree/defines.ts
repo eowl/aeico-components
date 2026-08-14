@@ -1,10 +1,15 @@
-/** Minimal interface used by tree-item to read config from its parent ae-tree. */
+export type TreeIconPlacement = 'start' | 'end';
+
 export interface ParentTreeLike extends Element {
   checkable?: boolean;
   multiple?: boolean;
   showLine?: boolean;
   defaultExpandAll?: boolean;
-  icon?: string;
+  wrapText?: boolean;
+  expandIcon?: string;
+  collapseIcon?: string;
+  iconPlacement?: TreeIconPlacement;
+  clickToggle?: boolean;
 }
 
 export interface TreeSelectDetail {

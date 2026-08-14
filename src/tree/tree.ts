@@ -3,7 +3,12 @@ import type { InferProps } from 'aeico';
 import { html, prop } from 'aeico';
 import style from '../styles/components/tree.css';
 import variables from '../styles/variables.css';
-import type { TreeSelectDetail, TreeExpandDetail, TreeCheckDetail } from './defines';
+import type {
+  TreeSelectDetail,
+  TreeExpandDetail,
+  TreeCheckDetail,
+  TreeIconPlacement,
+} from './defines';
 import './tree-item';
 import type TreeItem from './tree-item';
 
@@ -49,20 +54,28 @@ class Tree extends AeicoComponent {
   @prop({ type: Boolean })
   accessor defaultExpandAll: boolean = false;
 
+  @prop({ type: Boolean })
+  accessor wrapText: boolean = false;
+
   @prop({ type: String })
   accessor selectedKey: string | undefined;
 
-  /** Icon name used for the expand/collapse toggle on all items (overridable per item). */
   @prop({ type: String })
-  accessor icon: string | undefined;
+  accessor expandIcon: string | undefined;
 
-  /** Currently selected keys (multi-select). Set programmatically. */
+  @prop({ type: String })
+  accessor collapseIcon: string | undefined;
+
+  @prop({ type: String })
+  accessor iconPlacement: TreeIconPlacement = 'start';
+
+  @prop({ type: Boolean })
+  accessor clickToggle: boolean = false;
+
   selectedKeys: string[] = [];
 
-  /** Currently checked keys (checkable mode). Set programmatically. */
   checkedKeys: string[] = [];
 
-  /** Currently expanded keys. Set programmatically. */
   expandedKeys: string[] = [];
 
   connectedCallback() {

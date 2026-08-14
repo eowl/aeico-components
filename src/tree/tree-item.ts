@@ -17,7 +17,6 @@ let _autoKeyCounter = 0;
  * - **Leaf item**: no `<ae-tree-item>` children; no expand toggle is shown.
  *
  * @prop {string}  key          - Unique identifier for this item.
- * @prop {string}  icon         - Icon name (uses `<ae-icon>`). Optional.
  * @prop {boolean} disabled     - Disables interaction.
  * @prop {boolean} expanded     - Whether children are visible.
  * @prop {boolean} selected     - Whether this item is visually selected.
@@ -32,9 +31,6 @@ class TreeItem extends AeicoComponent {
 
   @prop({ type: String })
   accessor key: string | undefined;
-
-  @prop({ type: String })
-  accessor icon: string | undefined;
 
   /** Stable auto-generated key used when `key` prop is not set. */
   private readonly _autoKey = `ae-tree-item-${_autoKeyCounter++}`;
@@ -103,6 +99,18 @@ class TreeItem extends AeicoComponent {
     return this._parentTree?.checkable ?? false;
   }
 
+  private get _wrapText(): boolean {
+    return this._parentTree?.wrapText ?? false;
+  }
+
+  private get _iconPlacement(): 'start' | 'end' {
+    return this._parentTree?.iconPlacement ?? 'start';
+  }
+
+  private get _clickToggle(): boolean {
+    return this._parentTree?.clickToggle ?? false;
+  }
+
   private get _hasChildren(): boolean {
     return !!this.querySelector(':scope > ae-tree-item[slot="sub"]');
   }
@@ -121,6 +129,17 @@ class TreeItem extends AeicoComponent {
 
   private _handleLabelClick = (): void => {
     if (this.disabled) return;
+    // clickToggle: parent (non-leaf) label click toggles expand instead of select
+    if (this._clickToggle && this._hasChildren) {
+      this.dispatchEvent(
+        new CustomEvent('_tree-item-toggle-expand', {
+          bubbles: true,
+          composed: true,
+          detail: { key: this._effectiveKey },
+        }),
+      );
+      return;
+    }
     this.dispatchEvent(
       new CustomEvent('_tree-item-select', {
         bubbles: true,
@@ -168,12 +187,22 @@ class TreeItem extends AeicoComponent {
   protected render() {
     const hasChildren = this._hasChildren;
     const isCheckable = this._isCheckable;
-    const expandIcon = this.icon ?? this._parentTree?.icon;
+    // Collapsed shows expandIcon; expanded shows collapseIcon (falls back to
+    // expandIcon, which is rotated by CSS). No icon set -> default SVG triangle.
+    const expandIcon = this._parentTree?.expandIcon;
+    const collapseIcon = this._parentTree?.collapseIcon ?? expandIcon;
+    // When a distinct collapseIcon is provided, the icon swaps on expand
+    // instead of being rotated.
+    const swapIcon = !!this._parentTree?.collapseIcon;
 
     return html(({ div, button, span, input, slot, svg, path, aeIcon }) => {
       div(
         {
-          className: 'tree-item-content',
+          className: {
+            'tree-item-content': true,
+            'tree-item-content--wrap': this._wrapText,
+            'tree-item-content--icon-end': this._iconPlacement === 'end',
+          },
           role: 'treeitem',
           'aria-expanded': hasChildren ? String(this.expanded) : undefined,
           'aria-selected': String(this.selected),
@@ -184,14 +213,18 @@ class TreeItem extends AeicoComponent {
             button(
               {
                 type: 'button',
-                className: 'expand-btn',
+                className: {
+                  'expand-btn': true,
+                  'expand-btn--swap': swapIcon,
+                },
                 tabIndex: -1,
                 'aria-hidden': 'true',
                 '@click': this._handleExpandClick,
               },
               () => {
-                if (expandIcon) {
-                  aeIcon({ className: 'expand-icon', name: expandIcon });
+                const iconName = this.expanded ? collapseIcon : expandIcon;
+                if (iconName) {
+                  aeIcon({ className: 'expand-icon', name: iconName });
                 } else {
                   svg(
                     {
@@ -225,7 +258,10 @@ class TreeItem extends AeicoComponent {
           button(
             {
               type: 'button',
-              className: 'tree-item-label',
+              className: {
+                'tree-item-label': true,
+                'tree-item-label--wrap': this._wrapText,
+              },
               disabled: this.disabled,
               '@click': this._handleLabelClick,
               '@keydown': this._handleKeydown,

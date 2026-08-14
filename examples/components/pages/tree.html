@@ -127,6 +127,40 @@
         </div>
       </div>
 
+      <!-- ─── wrap-text - text wraps instead of ellipsis ─────────── -->
+      <div class="demo-group">
+        <label>Wrap text (constrained width)</label>
+        <div class="demo-row">
+          <ae-tree class="tree-demo" wrap-text default-expand-all>
+            <ae-tree-item key="w1">Quarterly Roadmap and Milestones
+              <ae-tree-item key="w1-1">Q1 - Foundation &amp; Onboarding</ae-tree-item>
+              <ae-tree-item key="w1-2">Q2 - Core Feature Delivery &amp; Release</ae-tree-item>
+            </ae-tree-item>
+            <ae-tree-item key="w2">Long text that would normally be truncated with an ellipsis</ae-tree-item>
+          </ae-tree>
+        </div>
+      </div>
+
+      <!-- ─── click-toggle - click parent to expand/collapse ────── -->
+      <div class="demo-group">
+        <label><code>click-toggle</code> - click a parent label to expand/collapse</label>
+        <div class="demo-row">
+          <ae-tree class="tree-demo" click-toggle>
+            <ae-tree-item key="ct1">Documents
+              <ae-tree-item key="ct1-1">Reports
+                <ae-tree-item key="ct1-1-1">Q1 Report</ae-tree-item>
+                <ae-tree-item key="ct1-1-2">Q2 Report</ae-tree-item>
+              </ae-tree-item>
+              <ae-tree-item key="ct1-2">Presentations</ae-tree-item>
+            </ae-tree-item>
+            <ae-tree-item key="ct2">Images
+              <ae-tree-item key="ct2-1">Photos</ae-tree-item>
+              <ae-tree-item key="ct2-2">Screenshots</ae-tree-item>
+            </ae-tree-item>
+          </ae-tree>
+        </div>
+      </div>
+
       <!-- ─── Disabled items ──────────────────────────────────────── -->
       <div class="demo-group">
         <label>Disabled items</label>
@@ -144,50 +178,51 @@
         </div>
       </div>
 
-      <!-- ─── Tree-level icon + rich label content ────────────────── -->
+      <!-- ─── Custom expand icons + rich label content ────────────────── -->
       <div class="demo-group">
-        <label>Tree-level <code>icon</code> + rich label content</label>
+        <label>Custom expand icons (<code>expand-icon</code> / <code>collapse-icon</code>) + rich label content</label>
         <div class="demo-row">
-          <ae-tree class="tree-demo" icon="chevron-right" default-expand-all>
+          <ae-tree class="tree-demo" expand-icon="chevron-right" collapse-icon="chevron-down" default-expand-all>
             <ae-tree-item key="i1">
-              <span style="display:inline-flex;align-items:center;gap:0.25rem">
-                <ae-icon name="chevrons-right" size="14"></ae-icon>Engineering
-              </span>
+              Technology
               <ae-tree-item key="i1-1">
-                <span style="display:inline-flex;align-items:center;gap:0.25rem">
-                  <ae-icon name="chevrons-right" size="14"></ae-icon>Frontend
-                </span>
-                <ae-tree-item key="i1-1-1">
-                  <span style="display:inline-flex;align-items:center;gap:0.25rem">
-                    <ae-icon name="chevron-right" size="14"></ae-icon>React
-                  </span>
-                </ae-tree-item>
+                  React
                 <ae-tree-item key="i1-1-2">
-                  <span style="display:inline-flex;align-items:center;gap:0.25rem">
-                    <ae-icon name="chevron-right" size="14"></ae-icon>Vue
-                  </span>
+                  React Native
                 </ae-tree-item>
               </ae-tree-item>
               <ae-tree-item key="i1-2">
-                <span style="display:inline-flex;align-items:center;gap:0.25rem">
-                  <ae-icon name="chevrons-right" size="14"></ae-icon>Backend
-                </span>
+                Backend
                 <ae-tree-item key="i1-2-1">
-                  <span style="display:inline-flex;align-items:center;gap:0.25rem">
-                    <ae-icon name="chevron-right" size="14"></ae-icon>Node.js
-                  </span>
+                  Node.js
                 </ae-tree-item>
               </ae-tree-item>
             </ae-tree-item>
             <ae-tree-item key="i2">
-              <span style="display:inline-flex;align-items:center;gap:0.25rem">
-                <ae-icon name="chevrons-right" size="14"></ae-icon>Design
-              </span>
+              Design
               <ae-tree-item key="i2-1">
-                <span style="display:inline-flex;align-items:center;gap:0.25rem">
-                  <ae-icon name="chevron-right" size="14"></ae-icon>UI / UX
-                </span>
+                UI / UX
               </ae-tree-item>
+            </ae-tree-item>
+          </ae-tree>
+        </div>
+      </div>
+
+      <!-- ─── Icon placement = end ─────────────────────────────────── -->
+      <div class="demo-group">
+        <label><code>icon-placement="end"</code> - expand toggle after the label</label>
+        <div class="demo-row">
+          <ae-tree class="tree-demo" icon-placement="end" expand-icon="chevron-right" collapse-icon="chevron-down" default-expand-all>
+            <ae-tree-item key="ip1">Documents
+              <ae-tree-item key="ip1-1">Reports
+                <ae-tree-item key="ip1-1-1">Q1 Report</ae-tree-item>
+                <ae-tree-item key="ip1-1-2">Q2 Report</ae-tree-item>
+              </ae-tree-item>
+              <ae-tree-item key="ip1-2">Presentations</ae-tree-item>
+            </ae-tree-item>
+            <ae-tree-item key="ip2">Images
+              <ae-tree-item key="ip2-1">Photos</ae-tree-item>
+              <ae-tree-item key="ip2-2">Screenshots</ae-tree-item>
             </ae-tree-item>
           </ae-tree>
         </div>

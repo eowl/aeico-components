@@ -93,23 +93,16 @@ import 'aeico-components';
 </ae-tree>
 ```
 
-### `icon` - default expand icon name
+### `expand-icon` / `collapse-icon` - custom expand toggle icons
+
+Set custom icons for the expand/collapse toggle. `expand-icon` is shown when the item is
+collapsed; `collapse-icon` (optional) is shown when expanded. If `collapse-icon` is omitted,
+the `expand-icon` is rotated instead.
 
 ```html
-<ae-tree icon="folder">
+<ae-tree expand-icon="chevron-right" collapse-icon="chevron-down">
   <ae-tree-item key="src" label="src/">
     <ae-tree-item key="main" slot="sub">main.ts</ae-tree-item>
-  </ae-tree-item>
-</ae-tree>
-```
-
-### `ae-tree-item` with `icon`
-
-```html
-<ae-tree defaultExpandAll>
-  <ae-tree-item key="src" label="src/" icon="folder-open">
-    <ae-tree-item key="main" slot="sub" icon="file-code">main.ts</ae-tree-item>
-    <ae-tree-item key="utils" slot="sub" icon="file-code">utils.ts</ae-tree-item>
   </ae-tree-item>
 </ae-tree>
 ```
@@ -120,6 +113,32 @@ import 'aeico-components';
 <ae-tree>
   <ae-tree-item key="active">Active Item</ae-tree-item>
   <ae-tree-item key="locked" disabled>Locked Item</ae-tree-item>
+</ae-tree>
+```
+
+### `click-toggle` - click a parent label to expand/collapse
+
+By default, clicking a parent item's label selects it. Add the `click-toggle` attribute so that
+clicking a parent (non-leaf) item toggles its expand/collapse state instead of selecting it.
+
+```html
+<ae-tree click-toggle>
+  <ae-tree-item key="docs" label="Documents">
+    <ae-tree-item key="resume" slot="sub">Resume.pdf</ae-tree-item>
+    <ae-tree-item key="cover" slot="sub">CoverLetter.docx</ae-tree-item>
+  </ae-tree-item>
+</ae-tree>
+```
+
+### `wrap-text` - allow text to wrap
+
+When the tree has a constrained width, long item text is truncated with an ellipsis by default
+(items use `white-space: nowrap`). Add the `wrap-text` attribute to let text wrap to the next line.
+
+```html
+<ae-tree wrap-text>
+  <ae-tree-item key="short">Short</ae-tree-item>
+  <ae-tree-item key="long">This is a very long tree item text that will wrap to the next line</ae-tree-item>
 </ae-tree>
 ```
 
@@ -168,8 +187,12 @@ console.log(tree.expandedKeys);  // string[]
 | `multiple` | `boolean` | `false` | Allows multiple items to be selected by clicking (without checkboxes). |
 | `showLine` | `boolean` | `false` | Renders dashed connector lines between parent and children. |
 | `defaultExpandAll` | `boolean` | `false` | Expands all parent nodes on mount. |
+| `wrapText` | `boolean` | `false` | Allows item text to wrap to the next line instead of being truncated with an ellipsis. |
 | `selectedKey` | `string` | - | Convenience prop to set an initially selected key. |
-| `icon` | `string` | - | Default icon name used as the expand/collapse indicator. |
+| `expandIcon` | `string` | - | Icon name shown on the expand toggle when collapsed. |
+| `collapseIcon` | `string` | - | Icon name shown on the expand toggle when expanded. Falls back to `expandIcon` (rotated) when omitted. |
+| `iconPlacement` | `'start' \| 'end'` | `'start'` | Placement of the expand toggle icon: `'start'` (before the label) or `'end'` (after the label). |
+| `clickToggle` | `boolean` | `false` | When true, clicking a parent item label toggles expand/collapse instead of selecting it. |
 
 ## `ae-tree` JavaScript Properties (read/write)
 
@@ -201,7 +224,6 @@ console.log(tree.expandedKeys);  // string[]
 |-----------|------|---------|-------------|
 | `key` | `string` | auto-generated | Unique identifier. Auto-generated if omitted. |
 | `label` | `string` | - | When set, the item is treated as a parent node that can expand/collapse. Sub-items go in the `sub` slot. |
-| `icon` | `string` | - | Icon name displayed before the label. |
 | `disabled` | `boolean` | `false` | Prevents the item from being selected, checked, or expanded. |
 | `expanded` | `boolean` | `false` | Controls the expanded state of a parent item. |
 | `selected` | `boolean` | `false` | Marks the item as selected (usually managed by `ae-tree`). |
