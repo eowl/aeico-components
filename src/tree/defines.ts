@@ -1,4 +1,5 @@
-/** Minimal interface used by tree-item to read config from its parent ae-tree. */
+export type TreeIconPlacement = 'start' | 'end';
+
 export interface ParentTreeLike extends Element {
   checkable?: boolean;
   multiple?: boolean;
@@ -7,6 +8,7 @@ export interface ParentTreeLike extends Element {
   wrapText?: boolean;
   expandIcon?: string;
   collapseIcon?: string;
+  iconPlacement?: TreeIconPlacement;
 }
 
 export interface TreeSelectDetail {

@@ -103,6 +103,10 @@ class TreeItem extends AeicoComponent {
     return this._parentTree?.wrapText ?? false;
   }
 
+  private get _iconPlacement(): 'start' | 'end' {
+    return this._parentTree?.iconPlacement ?? 'start';
+  }
+
   private get _hasChildren(): boolean {
     return !!this.querySelector(':scope > ae-tree-item[slot="sub"]');
   }
@@ -182,6 +186,7 @@ class TreeItem extends AeicoComponent {
           className: {
             'tree-item-content': true,
             'tree-item-content--wrap': this._wrapText,
+            'tree-item-content--icon-end': this._iconPlacement === 'end',
           },
           role: 'treeitem',
           'aria-expanded': hasChildren ? String(this.expanded) : undefined,

@@ -177,6 +177,7 @@ console.log(tree.expandedKeys);  // string[]
 | `selectedKey` | `string` | - | Convenience prop to set an initially selected key. |
 | `expandIcon` | `string` | - | Icon name shown on the expand toggle when collapsed. |
 | `collapseIcon` | `string` | - | Icon name shown on the expand toggle when expanded. Falls back to `expandIcon` (rotated) when omitted. |
+| `iconPlacement` | `'start' \| 'end'` | `'start'` | Placement of the expand toggle icon: `'start'` (before the label) or `'end'` (after the label). |
 
 ## `ae-tree` JavaScript Properties (read/write)
 

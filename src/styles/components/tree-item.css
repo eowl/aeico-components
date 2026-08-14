@@ -144,6 +144,11 @@
   align-items: center;
 }
 
+.tree-item-content--icon-end .expand-btn,
+.tree-item-content--icon-end .expand-placeholder {
+  order: 2;
+}
+
 .tree-item-label:focus-visible {
   outline: 2px solid var(--ae-color-primary, #0e639c);
   outline-offset: -2px;

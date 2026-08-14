@@ -3,7 +3,7 @@ import type { InferProps } from 'aeico';
 import { html, prop } from 'aeico';
 import style from '../styles/components/tree.css';
 import variables from '../styles/variables.css';
-import type { TreeSelectDetail, TreeExpandDetail, TreeCheckDetail } from './defines';
+import type { TreeSelectDetail, TreeExpandDetail, TreeCheckDetail, TreeIconPlacement } from './defines';
 import './tree-item';
 import type TreeItem from './tree-item';
 
@@ -58,8 +58,13 @@ class Tree extends AeicoComponent {
   @prop({ type: String })
   accessor expandIcon: string | undefined;
 
+  /** Icon name shown on the expand toggle when expanded (uses `<ae-icon>`). */
   @prop({ type: String })
   accessor collapseIcon: string | undefined;
+
+  /** Placement of the expand/collapse toggle icon: 'start' (before label) or 'end' (after label). */
+  @prop({ type: String })
+  accessor iconPlacement: TreeIconPlacement = 'start';
 
   selectedKeys: string[] = [];
 
