@@ -107,6 +107,10 @@ class TreeItem extends AeicoComponent {
     return this._parentTree?.iconPlacement ?? 'start';
   }
 
+  private get _clickToggle(): boolean {
+    return this._parentTree?.clickToggle ?? false;
+  }
+
   private get _hasChildren(): boolean {
     return !!this.querySelector(':scope > ae-tree-item[slot="sub"]');
   }
@@ -125,6 +129,17 @@ class TreeItem extends AeicoComponent {
 
   private _handleLabelClick = (): void => {
     if (this.disabled) return;
+    // clickToggle: parent (non-leaf) label click toggles expand instead of select
+    if (this._clickToggle && this._hasChildren) {
+      this.dispatchEvent(
+        new CustomEvent('_tree-item-toggle-expand', {
+          bubbles: true,
+          composed: true,
+          detail: { key: this._effectiveKey },
+        }),
+      );
+      return;
+    }
     this.dispatchEvent(
       new CustomEvent('_tree-item-select', {
         bubbles: true,

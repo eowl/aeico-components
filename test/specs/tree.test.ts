@@ -728,3 +728,63 @@ describe('ae-tree expand icon props', () => {
     expect(detail.key.startsWith('ae-tree-item-')).to.be.true
   })
 })
+
+describe('ae-tree click-toggle prop', () => {
+  beforeEach(() => whenDefined('ae-tree'))
+  afterEach(() => unmountAll())
+
+  it('clickToggle defaults to false', async () => {
+    const el = await mount<Tree>(BASIC_TREE)
+    expect(el.clickToggle).to.be.false
+  })
+
+  it('clicking a parent label toggles expand instead of select when click-toggle', async () => {
+    const el = await mount<Tree>(`
+      <ae-tree click-toggle>
+        <ae-tree-item key="p">
+          Parent
+          <ae-tree-item key="c">Child</ae-tree-item>
+        </ae-tree-item>
+      </ae-tree>
+    `)
+    await updated()
+    await updated()
+
+    let expandedDetail: any
+    let selectDetail: any
+    el.addEventListener('expand', (e: Event) => { expandedDetail = (e as CustomEvent).detail })
+    el.addEventListener('select', (e: Event) => { selectDetail = (e as CustomEvent).detail })
+
+    const parent = el.querySelector<TreeItem>('[key="p"]')!
+    expect(parent.expanded).to.be.false
+
+    parent.shadowRoot!.querySelector<HTMLButtonElement>('.tree-item-label')!.click()
+    await updated()
+
+    expect(expandedDetail).to.exist
+    expect(expandedDetail.key).to.equal('p')
+    expect(expandedDetail.expanded).to.be.true
+    expect(parent.expanded).to.be.true
+    expect(selectDetail).to.not.exist
+  })
+
+  it('clicking a leaf label still selects when click-toggle', async () => {
+    const el = await mount<Tree>(`
+      <ae-tree click-toggle>
+        <ae-tree-item key="leaf">Leaf</ae-tree-item>
+      </ae-tree>
+    `)
+    await updated()
+    await updated()
+
+    let selectDetail: any
+    el.addEventListener('select', (e: Event) => { selectDetail = (e as CustomEvent).detail })
+
+    const leaf = el.querySelector<TreeItem>('[key="leaf"]')!
+    leaf.shadowRoot!.querySelector<HTMLButtonElement>('.tree-item-label')!.click()
+    await updated()
+
+    expect(selectDetail).to.exist
+    expect(selectDetail.key).to.equal('leaf')
+  })
+})

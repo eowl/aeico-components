@@ -58,13 +58,14 @@ class Tree extends AeicoComponent {
   @prop({ type: String })
   accessor expandIcon: string | undefined;
 
-  /** Icon name shown on the expand toggle when expanded (uses `<ae-icon>`). */
   @prop({ type: String })
   accessor collapseIcon: string | undefined;
 
-  /** Placement of the expand/collapse toggle icon: 'start' (before label) or 'end' (after label). */
   @prop({ type: String })
   accessor iconPlacement: TreeIconPlacement = 'start';
+
+  @prop({ type: Boolean })
+  accessor clickToggle: boolean = false;
 
   selectedKeys: string[] = [];
 

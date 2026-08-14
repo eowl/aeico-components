@@ -116,6 +116,20 @@ the `expand-icon` is rotated instead.
 </ae-tree>
 ```
 
+### `click-toggle` - click a parent label to expand/collapse
+
+By default, clicking a parent item's label selects it. Add the `click-toggle` attribute so that
+clicking a parent (non-leaf) item toggles its expand/collapse state instead of selecting it.
+
+```html
+<ae-tree click-toggle>
+  <ae-tree-item key="docs" label="Documents">
+    <ae-tree-item key="resume" slot="sub">Resume.pdf</ae-tree-item>
+    <ae-tree-item key="cover" slot="sub">CoverLetter.docx</ae-tree-item>
+  </ae-tree-item>
+</ae-tree>
+```
+
 ### `wrap-text` - allow text to wrap
 
 When the tree has a constrained width, long item text is truncated with an ellipsis by default
@@ -178,6 +192,7 @@ console.log(tree.expandedKeys);  // string[]
 | `expandIcon` | `string` | - | Icon name shown on the expand toggle when collapsed. |
 | `collapseIcon` | `string` | - | Icon name shown on the expand toggle when expanded. Falls back to `expandIcon` (rotated) when omitted. |
 | `iconPlacement` | `'start' \| 'end'` | `'start'` | Placement of the expand toggle icon: `'start'` (before the label) or `'end'` (after the label). |
+| `clickToggle` | `boolean` | `false` | When true, clicking a parent item label toggles expand/collapse instead of selecting it. |
 
 ## `ae-tree` JavaScript Properties (read/write)
 
