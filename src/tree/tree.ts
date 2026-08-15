@@ -68,7 +68,7 @@ class Tree extends AeicoComponent {
 
   @prop({ type: String })
   accessor iconPlacement: TreeIconPlacement = 'start';
-  
+
   @prop({ type: Boolean })
   accessor clickable: boolean = false;
 
