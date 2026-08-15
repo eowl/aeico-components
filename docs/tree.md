@@ -116,16 +116,31 @@ the `expand-icon` is rotated instead.
 </ae-tree>
 ```
 
-### `click-toggle` - click a parent label to expand/collapse
+### `clickable` - click anywhere on an item row
 
-By default, clicking a parent item's label selects it. Add the `click-toggle` attribute so that
-clicking a parent (non-leaf) item toggles its expand/collapse state instead of selecting it.
+By default, clicking a parent item's label selects it. Add the `clickable` attribute so that
+clicking anywhere on an item row acts on it: parent (non-leaf) items expand/collapse, leaf
+items are selected.
 
 ```html
-<ae-tree click-toggle>
+<ae-tree clickable>
   <ae-tree-item key="docs" label="Documents">
     <ae-tree-item key="resume" slot="sub">Resume.pdf</ae-tree-item>
     <ae-tree-item key="cover" slot="sub">CoverLetter.docx</ae-tree-item>
+  </ae-tree-item>
+</ae-tree>
+```
+
+In `checkable` mode, clicking the label text toggles the checkbox instead of selecting. When
+`checkable` and `clickable` are both set, clicking a parent's label text toggles the checkbox.
+Because the label fills the row, a parent node can only be expanded/collapsed by clicking its
+expand toggle (the triangle); clicking the row otherwise toggles the checkbox.
+
+```html
+<ae-tree checkable clickable>
+  <ae-tree-item key="fruits" label="Fruits">
+    <ae-tree-item key="apple" slot="sub">Apple</ae-tree-item>
+    <ae-tree-item key="banana" slot="sub">Banana</ae-tree-item>
   </ae-tree-item>
 </ae-tree>
 ```
@@ -192,7 +207,7 @@ console.log(tree.expandedKeys);  // string[]
 | `expandIcon` | `string` | - | Icon name shown on the expand toggle when collapsed. |
 | `collapseIcon` | `string` | - | Icon name shown on the expand toggle when expanded. Falls back to `expandIcon` (rotated) when omitted. |
 | `iconPlacement` | `'start' \| 'end'` | `'start'` | Placement of the expand toggle icon: `'start'` (before the label) or `'end'` (after the label). |
-| `clickToggle` | `boolean` | `false` | When true, clicking a parent item label toggles expand/collapse instead of selecting it. |
+| `clickable` | `boolean` | `false` | When true, clicking anywhere on an item row acts: parents expand/collapse, leaves are selected. In `checkable` mode, clicking the row toggles the checkbox instead, so parents only expand via the toggle triangle. |
 
 ## `ae-tree` JavaScript Properties (read/write)
 

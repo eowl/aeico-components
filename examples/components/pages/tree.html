@@ -141,11 +141,11 @@
         </div>
       </div>
 
-      <!-- ─── click-toggle - click parent to expand/collapse ────── -->
+      <!-- ─── clickable - click anywhere on a row to act ─────────── -->
       <div class="demo-group">
-        <label><code>click-toggle</code> - click a parent label to expand/collapse</label>
+        <label><code>clickable</code> - click anywhere on a row (parents expand, leaves select)</label>
         <div class="demo-row">
-          <ae-tree class="tree-demo" click-toggle>
+          <ae-tree class="tree-demo" clickable>
             <ae-tree-item key="ct1">Documents
               <ae-tree-item key="ct1-1">Reports
                 <ae-tree-item key="ct1-1-1">Q1 Report</ae-tree-item>
@@ -241,6 +241,25 @@
             <ae-tree-item key="cd2" disabled>Category B (disabled)
               <ae-tree-item key="cd2-1">Item 4</ae-tree-item>
             </ae-tree-item>
+          </ae-tree>
+        </div>
+      </div>
+
+      <!-- ─── Checkable + clickable (coexist) ─────────────────────── -->
+      <div class="demo-group">
+        <label><code>checkable</code> + <code>clickable</code> - rows expand/select, checkbox checks</label>
+        <div class="demo-row">
+          <ae-tree class="tree-demo" checkable clickable>
+            <ae-tree-item key="cc1">Fruits
+              <ae-tree-item key="cc1-1">Apple</ae-tree-item>
+              <ae-tree-item key="cc1-2">Banana</ae-tree-item>
+              <ae-tree-item key="cc1-3">Cherry</ae-tree-item>
+            </ae-tree-item>
+            <ae-tree-item key="cc2">Vegetables
+              <ae-tree-item key="cc2-1">Carrot</ae-tree-item>
+              <ae-tree-item key="cc2-2">Broccoli</ae-tree-item>
+            </ae-tree-item>
+            <ae-tree-item key="cc3">Grains</ae-tree-item>
           </ae-tree>
         </div>
       </div>
