@@ -170,13 +170,30 @@ class TreeItem extends AeicoComponent {
     this._dispatchSelect();
   }
 
+  /** If this leaf item's label contains a link, trigger its click. Returns
+   * true if a link was found and clicked. Only called for leaves, so any
+   * `<a>` here belongs to this item's own label. */
+  private _activateLink(): boolean {
+    const link = this.querySelector<HTMLAnchorElement>('a[href]');
+    if (!link) return false;
+    link.click();
+    return true;
+  }
+
   /** Row click: checkable mode toggles check on the label text; clickable
-   * mode lets the whole row act (parents expand/collapse, leaves select). */
+   * mode lets the whole row act (parents expand/collapse, leaves select or
+   * follow an inner link). */
   private _handleRowClick = (e: Event): void => {
     if (this.disabled) return;
     const target = e.target as HTMLElement;
-    // The expand toggle and checkbox handle their own clicks.
-    if (target.closest('.expand-btn') || target.closest('.tree-item-checkbox')) return;
+    // The expand toggle, checkbox and inner links handle their own clicks.
+    if (
+      target.closest('.expand-btn') ||
+      target.closest('.tree-item-checkbox') ||
+      target.closest('a')
+    ) {
+      return;
+    }
 
     const onLabel = !!target.closest('.tree-item-label');
 
@@ -191,6 +208,8 @@ class TreeItem extends AeicoComponent {
         this._dispatchToggleExpand();
         return;
       }
+      // A leaf with a link in its label follows the link instead of selecting.
+      if (this._activateLink()) return;
       if (this._isCheckable) {
         this._toggleCheck();
         return;

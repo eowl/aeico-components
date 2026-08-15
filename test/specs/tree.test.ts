@@ -806,6 +806,33 @@ describe('ae-tree clickable prop', () => {
 
     expect(parent.expanded).to.be.true
   })
+
+  it('clicking a leaf row text (not the link) follows the link when clickable', async () => {
+    const el = await mount<Tree>(`
+      <ae-tree clickable>
+        <ae-tree-item key="leaf">
+          <span id="text-part">Text</span>
+          <a id="the-link" href="https://example.com">Link</a>
+        </ae-tree-item>
+      </ae-tree>
+    `)
+    await updated()
+    await updated()
+
+    let selectDetail: any
+    el.addEventListener('select', (e: Event) => { selectDetail = (e as CustomEvent).detail })
+
+    let clicked = false
+    const link = el.querySelector<HTMLAnchorElement>('#the-link')!
+    link.addEventListener('click', () => { clicked = true })
+
+    // Click the text part (inside the label, outside the link)
+    el.querySelector<HTMLElement>('#text-part')!.click()
+    await updated()
+
+    expect(clicked).to.be.true
+    expect(selectDetail).to.not.exist
+  })
 })
 
 describe('ae-tree checkable + clickable coexist', () => {

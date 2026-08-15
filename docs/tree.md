@@ -131,6 +131,17 @@ items are selected.
 </ae-tree>
 ```
 
+When a leaf item's label contains an `<a>` link, clicking anywhere on that row (outside the
+link) follows the link instead of selecting the item.
+
+```html
+<ae-tree clickable>
+  <ae-tree-item key="home">
+    <a href="/home">Home</a>
+  </ae-tree-item>
+</ae-tree>
+```
+
 In `checkable` mode, clicking the label text toggles the checkbox instead of selecting. When
 `checkable` and `clickable` are both set, clicking a parent's label text toggles the checkbox.
 Because the label fills the row, a parent node can only be expanded/collapsed by clicking its
