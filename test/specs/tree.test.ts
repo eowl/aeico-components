@@ -729,18 +729,18 @@ describe('ae-tree expand icon props', () => {
   })
 })
 
-describe('ae-tree click-toggle prop', () => {
+describe('ae-tree clickable prop', () => {
   beforeEach(() => whenDefined('ae-tree'))
   afterEach(() => unmountAll())
 
-  it('clickToggle defaults to false', async () => {
+  it('clickable defaults to false', async () => {
     const el = await mount<Tree>(BASIC_TREE)
-    expect(el.clickToggle).to.be.false
+    expect(el.clickable).to.be.false
   })
 
-  it('clicking a parent label toggles expand instead of select when click-toggle', async () => {
+  it('clicking a parent row toggles expand instead of select when clickable', async () => {
     const el = await mount<Tree>(`
-      <ae-tree click-toggle>
+      <ae-tree clickable>
         <ae-tree-item key="p">
           Parent
           <ae-tree-item key="c">Child</ae-tree-item>
@@ -758,7 +758,7 @@ describe('ae-tree click-toggle prop', () => {
     const parent = el.querySelector<TreeItem>('[key="p"]')!
     expect(parent.expanded).to.be.false
 
-    parent.shadowRoot!.querySelector<HTMLButtonElement>('.tree-item-label')!.click()
+    parent.shadowRoot!.querySelector<HTMLElement>('.tree-item-content')!.click()
     await updated()
 
     expect(expandedDetail).to.exist
@@ -768,9 +768,9 @@ describe('ae-tree click-toggle prop', () => {
     expect(selectDetail).to.not.exist
   })
 
-  it('clicking a leaf label still selects when click-toggle', async () => {
+  it('clicking a leaf row selects when clickable', async () => {
     const el = await mount<Tree>(`
-      <ae-tree click-toggle>
+      <ae-tree clickable>
         <ae-tree-item key="leaf">Leaf</ae-tree-item>
       </ae-tree>
     `)
@@ -781,10 +781,106 @@ describe('ae-tree click-toggle prop', () => {
     el.addEventListener('select', (e: Event) => { selectDetail = (e as CustomEvent).detail })
 
     const leaf = el.querySelector<TreeItem>('[key="leaf"]')!
-    leaf.shadowRoot!.querySelector<HTMLButtonElement>('.tree-item-label')!.click()
+    leaf.shadowRoot!.querySelector<HTMLElement>('.tree-item-content')!.click()
     await updated()
 
     expect(selectDetail).to.exist
     expect(selectDetail.key).to.equal('leaf')
+  })
+
+  it('clicking the expand toggle still toggles expand when clickable', async () => {
+    const el = await mount<Tree>(`
+      <ae-tree clickable>
+        <ae-tree-item key="p">
+          Parent
+          <ae-tree-item key="c">Child</ae-tree-item>
+        </ae-tree-item>
+      </ae-tree>
+    `)
+    await updated()
+    await updated()
+
+    const parent = el.querySelector<TreeItem>('[key="p"]')!
+    parent.shadowRoot!.querySelector<HTMLElement>('.expand-btn')!.click()
+    await updated()
+
+    expect(parent.expanded).to.be.true
+  })
+})
+
+describe('ae-tree checkable + clickable coexist', () => {
+  beforeEach(() => whenDefined('ae-tree'))
+  afterEach(() => unmountAll())
+
+  it('clicking a leaf label toggles check (not select) when checkable', async () => {
+    const el = await mount<Tree>(`
+      <ae-tree checkable>
+        <ae-tree-item key="leaf">Leaf</ae-tree-item>
+      </ae-tree>
+    `)
+    await updated()
+    await updated()
+
+    let checkDetail: any
+    let selectDetail: any
+    el.addEventListener('check', (e: Event) => { checkDetail = (e as CustomEvent).detail })
+    el.addEventListener('select', (e: Event) => { selectDetail = (e as CustomEvent).detail })
+
+    const leaf = el.querySelector<TreeItem>('[key="leaf"]')!
+    leaf.shadowRoot!.querySelector<HTMLElement>('.tree-item-label')!.click()
+    await updated()
+
+    expect(checkDetail).to.exist
+    expect(checkDetail.key).to.equal('leaf')
+    expect(checkDetail.checked).to.be.true
+    expect(selectDetail).to.not.exist
+  })
+
+  it('checkable + clickable: clicking a parent label toggles check, not expand', async () => {
+    const el = await mount<Tree>(`
+      <ae-tree checkable clickable>
+        <ae-tree-item key="p">
+          Parent
+          <ae-tree-item key="c">Child</ae-tree-item>
+        </ae-tree-item>
+      </ae-tree>
+    `)
+    await updated()
+    await updated()
+
+    let checkDetail: any
+    let expandDetail: any
+    el.addEventListener('check', (e: Event) => { checkDetail = (e as CustomEvent).detail })
+    el.addEventListener('expand', (e: Event) => { expandDetail = (e as CustomEvent).detail })
+
+    const parent = el.querySelector<TreeItem>('[key="p"]')!
+    parent.shadowRoot!.querySelector<HTMLElement>('.tree-item-label')!.click()
+    await updated()
+
+    expect(checkDetail).to.exist
+    expect(checkDetail.key).to.equal('p')
+    expect(expandDetail).to.not.exist
+    expect(parent.expanded).to.be.false
+  })
+
+  it('checkable + clickable: clicking a parent row (non-label) toggles expand', async () => {
+    const el = await mount<Tree>(`
+      <ae-tree checkable clickable>
+        <ae-tree-item key="p">
+          Parent
+          <ae-tree-item key="c">Child</ae-tree-item>
+        </ae-tree-item>
+      </ae-tree>
+    `)
+    await updated()
+    await updated()
+
+    const parent = el.querySelector<TreeItem>('[key="p"]')!
+    // Click the row content directly (not the label button, not the expand-btn)
+    const content = parent.shadowRoot!.querySelector<HTMLElement>('.tree-item-content')!
+    content.click()
+    await updated()
+
+    expect(parent.expanded).to.be.true
   })
 })
