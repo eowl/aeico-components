@@ -49,6 +49,17 @@ describe('Menu', () => {
       const el = await mount<Menu>(`<${TAG}></${TAG}>`)
       expect(el.selectedKey).to.be.undefined
     })
+
+    it('expandIcon/collapseIcon default to undefined', async () => {
+      const el = await mount<Menu>(`<${TAG}></${TAG}>`)
+      expect(el.expandIcon).to.be.undefined
+      expect(el.collapseIcon).to.be.undefined
+    })
+
+    it('iconPlacement defaults to "end"', async () => {
+      const el = await mount<Menu>(`<${TAG}></${TAG}>`)
+      expect(el.iconPlacement).to.equal('end')
+    })
   })
 
   describe('structure', () => {
@@ -425,5 +436,53 @@ describe('MenuItem', () => {
       el.shadowRoot!.querySelector<HTMLButtonElement>('button')!.click()
       expect(detail.key).to.equal('foo')
     })
+  })
+})
+
+describe('Menu expand/collapse icons', () => {
+  it('renders ae-icon from menu-level expand-icon when item has no slot content', async () => {
+    const menu = await mount<Menu>(`
+      <${TAG} expand-icon="chevron-right" collapse-icon="chevron-down">
+        <${ITEM_TAG} key="p" label="Parent">
+          <${ITEM_TAG} key="c">Child</${ITEM_TAG}>
+        </${ITEM_TAG}>
+      </${TAG}>
+    `)
+    await updated()
+
+    const item = menu.querySelector(`[key="p"]`) as MenuItem
+    const expandSlot = item.shadowRoot!.querySelector('slot[name="expand"]')!
+    expect(expandSlot.querySelector('ae-icon')).to.exist
+    expect(expandSlot.querySelector('ae-icon')!.getAttribute('name')).to.equal('chevron-right')
+  })
+
+  it('falls back to CSS triangle when no icon name and no slot content', async () => {
+    const menu = await mount<Menu>(`
+      <${TAG}>
+        <${ITEM_TAG} key="p" label="Parent">
+          <${ITEM_TAG} key="c">Child</${ITEM_TAG}>
+        </${ITEM_TAG}>
+      </${TAG}>
+    `)
+    await updated()
+
+    const item = menu.querySelector(`[key="p"]`) as MenuItem
+    const expandSlot = item.shadowRoot!.querySelector('slot[name="expand"]')!
+    expect(expandSlot.querySelector('.item-arrow')).to.exist
+    expect(expandSlot.querySelector('ae-icon')).to.not.exist
+  })
+
+  it('menu-level icon-placement="start" adds item--icon-start class', async () => {
+    const menu = await mount<Menu>(`
+      <${TAG} icon-placement="start">
+        <${ITEM_TAG} key="p" label="Parent">
+          <${ITEM_TAG} key="c">Child</${ITEM_TAG}>
+        </${ITEM_TAG}>
+      </${TAG}>
+    `)
+    await updated()
+
+    const item = menu.querySelector(`[key="p"]`) as MenuItem
+    expect(item.shadowRoot!.querySelector('.item--icon-start')).to.exist
   })
 })
