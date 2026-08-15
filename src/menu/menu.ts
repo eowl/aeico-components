@@ -3,7 +3,13 @@ import type { InferProps } from 'aeico';
 import { html, prop } from 'aeico';
 import style from '../styles/components/menu.css';
 import variables from '../styles/variables.css';
-import type { MenuMode, MenuOrientation, MenuSelectDetail, MenuTrigger, MenuIconPlacement } from './defines';
+import type {
+  MenuMode,
+  MenuOrientation,
+  MenuSelectDetail,
+  MenuTrigger,
+  MenuIconPlacement,
+} from './defines';
 // Ensure ae-menu-item is registered when this module is used
 import './menu-item';
 
