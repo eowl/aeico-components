@@ -3,6 +3,7 @@ import type { InferProps } from 'aeico';
 import { html, prop } from 'aeico';
 import style from '../styles/components/menu-item.css';
 import variables from '../styles/variables.css';
+import '../icon';
 import type {
   MenuMode,
   MenuOrientation,
@@ -54,7 +55,7 @@ class MenuItem extends AeicoComponent {
   accessor open: boolean = false;
 
   @prop({ type: String })
-  accessor iconPlacement: MenuIconPlacement = 'end';
+  accessor iconPlacement: MenuIconPlacement | undefined;
 
   private _outsideClickHandler: ((e: MouseEvent) => void) | null = null;
   private _closeTimer: ReturnType<typeof setTimeout> | null = null;
@@ -62,15 +63,12 @@ class MenuItem extends AeicoComponent {
   connectedCallback() {
     super.connectedCallback();
 
-    // data-depth lets CSS apply depth-specific styles without JS
     const depth = this.parentElement?.closest('ae-menu-item') ? 1 : 0;
     this.dataset.depth = String(depth);
 
-    // Hover listeners - check mode/trigger at runtime
     this.listen('mouseenter', this._handleMouseEnter);
     this.listen('mouseleave', this._handleMouseLeave);
 
-    // Outside-click to close flyout panel (not applicable in inline mode)
     this._outsideClickHandler = (e: MouseEvent) => {
       if (!this.open) return;
       if (this._mode === 'inline') return;
@@ -79,7 +77,6 @@ class MenuItem extends AeicoComponent {
 
     document.addEventListener('click', this._outsideClickHandler);
 
-    // Close own submenu when a leaf inside it is selected (flyout)
     this.listen('_menu-item-select', this._handleChildSelect as EventListener);
   }
 
@@ -113,6 +110,11 @@ class MenuItem extends AeicoComponent {
 
   private get _wrapText(): boolean {
     return this._parentMenu?.wrapText ?? false;
+  }
+
+  /** Effective icon placement: item's own attribute wins, else inherits from parent menu. */
+  private get _effectiveIconPlacement(): MenuIconPlacement {
+    return this.iconPlacement ?? this._parentMenu?.iconPlacement ?? 'end';
   }
 
   private get _isParent(): boolean {
@@ -211,14 +213,14 @@ class MenuItem extends AeicoComponent {
     const panelPlacement = this._panelPlacement;
     const isParent = this._isParent;
     const isInline = mode === 'inline';
-    // Arrow direction: inline always shows ► (rotates to ▼ on open)
-    // flyout-bottom shows ▼; flyout-right shows ►
     const arrowDir = !isInline && panelPlacement === 'bottom' ? 'bottom' : 'right';
     const wrapText = this._wrapText;
-    // Leaf items inside a submenu panel (depth > 0) need different padding
+    const iconStart = this._effectiveIconPlacement === 'start';
+    const expandIcon = this._parentMenu?.expandIcon;
+    const collapseIcon = this._parentMenu?.collapseIcon ?? expandIcon;
     const isNested = !!this.parentElement?.closest('ae-menu-item');
 
-    return html(({ div, button, a, span, slot }) => {
+    return html(({ div, button, a, span, slot, aeIcon }) => {
       if (isParent) {
         div({ className: 'item-wrapper' }, () => {
           button(
@@ -229,6 +231,7 @@ class MenuItem extends AeicoComponent {
                 'item--parent': true,
                 'item--open': this.open,
                 'item--wrap': wrapText,
+                'item--icon-start': iconStart,
               },
               disabled: this.disabled,
               'aria-haspopup': 'menu',
@@ -239,10 +242,18 @@ class MenuItem extends AeicoComponent {
             () => {
               span({ text: this.label });
               slot({ name: 'expand' }, () => {
-                span({ className: `item-arrow item-arrow--${arrowDir}`, 'aria-hidden': 'true' });
+                if (expandIcon) {
+                  aeIcon({ name: expandIcon });
+                } else {
+                  span({ className: `item-arrow item-arrow--${arrowDir}`, 'aria-hidden': 'true' });
+                }
               });
               slot({ name: 'collapse' }, () => {
-                span({ className: `item-arrow item-arrow--${arrowDir}`, 'aria-hidden': 'true' });
+                if (collapseIcon) {
+                  aeIcon({ name: collapseIcon });
+                } else {
+                  span({ className: `item-arrow item-arrow--${arrowDir}`, 'aria-hidden': 'true' });
+                }
               });
             },
           );

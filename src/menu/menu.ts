@@ -3,7 +3,7 @@ import type { InferProps } from 'aeico';
 import { html, prop } from 'aeico';
 import style from '../styles/components/menu.css';
 import variables from '../styles/variables.css';
-import type { MenuMode, MenuOrientation, MenuSelectDetail, MenuTrigger } from './defines';
+import type { MenuMode, MenuOrientation, MenuSelectDetail, MenuTrigger, MenuIconPlacement } from './defines';
 // Ensure ae-menu-item is registered when this module is used
 import './menu-item';
 
@@ -37,6 +37,15 @@ class Menu extends AeicoComponent {
   @prop({ type: Boolean })
   accessor wrapText: boolean = false;
 
+  @prop({ type: String })
+  accessor expandIcon: string | undefined;
+
+  @prop({ type: String })
+  accessor collapseIcon: string | undefined;
+
+  @prop({ type: String })
+  accessor iconPlacement: MenuIconPlacement = 'end';
+
   connectedCallback() {
     super.connectedCallback();
     this.listen('_menu-item-select', this._handleItemSelect as EventListener);
@@ -47,7 +56,8 @@ class Menu extends AeicoComponent {
     // Update visual selection on all leaf items
     this.querySelectorAll('ae-menu-item').forEach((el) => {
       const item = el;
-      item.selected = item.key === key && !item.label; // only leaf items
+      // only leaf items
+      item.selected = item.key === key && !item.label;
     });
     this.selectedKey = key;
     this.emit('select', { detail: { key, label, keyPath } });

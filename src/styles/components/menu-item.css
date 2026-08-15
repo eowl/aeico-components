@@ -1,7 +1,7 @@
 :host {
   display: block;
   position: relative;
-
+  
   --menu-item-height: 2.5rem;
   --menu-item-padding-x: 0.875rem;
   --menu-item-font-size: 0.9375rem;
@@ -129,6 +129,12 @@ slot[name="collapse"] .item-arrow--right {
 
 :host([icon-placement="start"]) slot[name="expand"],
 :host([icon-placement="start"]) slot[name="collapse"] {
+  order: -1;
+  margin-inline-start: 0;
+}
+
+.item--icon-start slot[name="expand"],
+.item--icon-start slot[name="collapse"] {
   order: -1;
   margin-inline-start: 0;
 }
