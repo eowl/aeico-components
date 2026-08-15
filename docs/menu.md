@@ -109,6 +109,34 @@ When the menu has a constrained width, long item text causes a horizontal scroll
 </ae-menu>
 ```
 
+### `expand-icon` / `collapse-icon` - custom toggle icons
+
+Set icon names for parent items' expand/collapse toggle. These apply only when the item does not
+provide its own `<ae-icon slot="expand">` / `<ae-icon slot="collapse">` content.
+
+```html
+<ae-menu mode="inline" orientation="vertical" expand-icon="chevron-right" collapse-icon="chevron-down">
+  <ae-menu-item key="products" label="Products">
+    <ae-menu-item key="web">Web</ae-menu-item>
+    <ae-menu-item key="mobile">Mobile</ae-menu-item>
+  </ae-menu-item>
+</ae-menu>
+```
+
+### `icon-placement` - move the toggle icon
+
+Use `icon-placement="start"` to place the expand toggle before the label instead of after it.
+A `<ae-menu-item>`'s own `icon-placement` overrides the menu-level setting.
+
+```html
+<ae-menu mode="inline" orientation="vertical" icon-placement="start">
+  <ae-menu-item key="products" label="Products">
+    <ae-menu-item key="web">Web</ae-menu-item>
+    <ae-menu-item key="mobile">Mobile</ae-menu-item>
+  </ae-menu-item>
+</ae-menu>
+```
+
 ### Listening to `select`
 
 ```html
@@ -138,6 +166,9 @@ When the menu has a constrained width, long item text causes a horizontal scroll
 | `trigger` | `'click' \| 'hover'` | `'hover'` | How sub-menus are opened. |
 | `selectedKey` | `string` | - | Key of the currently selected/highlighted item. |
 | `wrapText` | `boolean` | `false` | When `true`, long item text wraps to the next line instead of overflowing with a horizontal scrollbar. |
+| `expandIcon` | `string` | - | Icon name shown on a parent item's toggle when collapsed (when the item has no own `expand` slot content). |
+| `collapseIcon` | `string` | - | Icon name shown on a parent item's toggle when expanded (when the item has no own `collapse` slot content). Falls back to `expandIcon` when omitted. |
+| `iconPlacement` | `'start' \| 'end'` | `'end'` | Default placement of the expand toggle icon. A `ae-menu-item`'s own `icon-placement` overrides this. |
 
 ## `ae-menu` Slots
 
