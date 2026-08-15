@@ -169,6 +169,44 @@
         </div>
       </div>
 
+      <!-- ─── Menu-level expand/collapse icon names ─────────────────── -->
+      <div class="demo-group">
+        <label>Menu-level <code>expand-icon</code> / <code>collapse-icon</code> (no per-item slot)</label>
+        <div class="demo-row">
+          <div style="width: 220px; border: 1px solid var(--border-color, #e0e0e0); border-radius: 6px; overflow: hidden;">
+          <ae-menu mode="inline" orientation="vertical" expand-icon="chevron-right" collapse-icon="chevron-down">
+            <ae-menu-item key="products" label="Products">
+              <ae-menu-item key="web">Web</ae-menu-item>
+              <ae-menu-item key="mobile">Mobile</ae-menu-item>
+            </ae-menu-item>
+            <ae-menu-item key="docs" label="Docs">
+              <ae-menu-item key="guide">Guide</ae-menu-item>
+              <ae-menu-item key="api">API Reference</ae-menu-item>
+            </ae-menu-item>
+          </ae-menu>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── Menu-level icon-placement="start" ─────────────────────── -->
+      <div class="demo-group">
+        <label>Menu-level <code>icon-placement="start"</code></label>
+        <div class="demo-row">
+          <div style="width: 220px; border: 1px solid var(--border-color, #e0e0e0); border-radius: 6px; overflow: hidden;">
+          <ae-menu mode="inline" orientation="vertical" icon-placement="start" expand-icon="chevron-right" collapse-icon="chevron-down">
+            <ae-menu-item key="products" label="Products">
+              <ae-menu-item key="web">Web</ae-menu-item>
+              <ae-menu-item key="mobile">Mobile</ae-menu-item>
+            </ae-menu-item>
+            <ae-menu-item key="help" label="Help">
+              <ae-menu-item key="guide">Guide</ae-menu-item>
+              <ae-menu-item key="faq">FAQ</ae-menu-item>
+            </ae-menu-item>
+          </ae-menu>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
