@@ -107,8 +107,8 @@ class TreeItem extends AeicoComponent {
     return this._parentTree?.iconPlacement ?? 'start';
   }
 
-  private get _clickToggle(): boolean {
-    return this._parentTree?.clickToggle ?? false;
+  private get _clickable(): boolean {
+    return this._parentTree?.clickable ?? false;
   }
 
   private get _hasChildren(): boolean {
@@ -127,19 +127,17 @@ class TreeItem extends AeicoComponent {
     );
   };
 
-  private _handleLabelClick = (): void => {
-    if (this.disabled) return;
-    // clickToggle: parent (non-leaf) label click toggles expand instead of select
-    if (this._clickToggle && this._hasChildren) {
-      this.dispatchEvent(
-        new CustomEvent('_tree-item-toggle-expand', {
-          bubbles: true,
-          composed: true,
-          detail: { key: this._effectiveKey },
-        }),
-      );
-      return;
-    }
+  private _dispatchToggleExpand(): void {
+    this.dispatchEvent(
+      new CustomEvent('_tree-item-toggle-expand', {
+        bubbles: true,
+        composed: true,
+        detail: { key: this._effectiveKey },
+      }),
+    );
+  }
+
+  private _dispatchSelect(): void {
     this.dispatchEvent(
       new CustomEvent('_tree-item-select', {
         bubbles: true,
@@ -147,6 +145,83 @@ class TreeItem extends AeicoComponent {
         detail: { key: this._effectiveKey },
       }),
     );
+  }
+
+  private _toggleCheck(): void {
+    this.dispatchEvent(
+      new CustomEvent('_tree-item-check', {
+        bubbles: true,
+        composed: true,
+        detail: { key: this._effectiveKey, checked: !this.checked },
+      }),
+    );
+  }
+
+  /** Primary action for the label text (used by keyboard Enter/Space). */
+  private _activate(): void {
+    if (this._isCheckable) {
+      this._toggleCheck();
+      return;
+    }
+    if (this._clickable && this._hasChildren) {
+      this._dispatchToggleExpand();
+      return;
+    }
+    this._dispatchSelect();
+  }
+
+  /** If this leaf item's label contains a link, trigger its click. Returns
+   * true if a link was found and clicked. Only called for leaves, so any
+   * `<a>` here belongs to this item's own label. */
+  private _activateLink(): boolean {
+    const link = this.querySelector<HTMLAnchorElement>('a[href]');
+    if (!link) return false;
+    link.click();
+    return true;
+  }
+
+  /** Row click: checkable mode toggles check on the label text; clickable
+   * mode lets the whole row act (parents expand/collapse, leaves select or
+   * follow an inner link). */
+  private _handleRowClick = (e: Event): void => {
+    if (this.disabled) return;
+    const target = e.target as HTMLElement;
+    // The expand toggle, checkbox and inner links handle their own clicks.
+    if (
+      target.closest('.expand-btn') ||
+      target.closest('.tree-item-checkbox') ||
+      target.closest('a')
+    ) {
+      return;
+    }
+
+    const onLabel = !!target.closest('.tree-item-label');
+
+    // checkable: clicking the label text toggles check.
+    if (this._isCheckable && onLabel) {
+      this._toggleCheck();
+      return;
+    }
+
+    if (this._clickable) {
+      if (this._hasChildren) {
+        this._dispatchToggleExpand();
+        return;
+      }
+      // A leaf with a link in its label follows the link instead of selecting.
+      if (this._activateLink()) return;
+      if (this._isCheckable) {
+        this._toggleCheck();
+        return;
+      }
+      this._dispatchSelect();
+      return;
+    }
+
+    // default: only the label text selects.
+    if (onLabel) {
+      this._dispatchSelect();
+    }
   };
 
   private _handleCheckChange = (e: Event): void => {
@@ -165,7 +240,7 @@ class TreeItem extends AeicoComponent {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       if ((e.target as HTMLElement).classList.contains('tree-item-label')) {
-        this._handleLabelClick();
+        this._activate();
       }
     }
     if (e.key === 'ArrowRight' && this._hasChildren && !this.expanded) {
@@ -207,6 +282,7 @@ class TreeItem extends AeicoComponent {
           'aria-expanded': hasChildren ? String(this.expanded) : undefined,
           'aria-selected': String(this.selected),
           'aria-disabled': this.disabled ? 'true' : undefined,
+          '@click': this._handleRowClick,
         },
         () => {
           if (hasChildren) {
@@ -263,7 +339,6 @@ class TreeItem extends AeicoComponent {
                 'tree-item-label--wrap': this._wrapText,
               },
               disabled: this.disabled,
-              '@click': this._handleLabelClick,
               '@keydown': this._handleKeydown,
             },
             () => {

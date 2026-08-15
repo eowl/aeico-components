@@ -70,7 +70,7 @@ class Tree extends AeicoComponent {
   accessor iconPlacement: TreeIconPlacement = 'start';
 
   @prop({ type: Boolean })
-  accessor clickToggle: boolean = false;
+  accessor clickable: boolean = false;
 
   selectedKeys: string[] = [];
 

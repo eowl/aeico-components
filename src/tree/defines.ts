@@ -9,7 +9,7 @@ export interface ParentTreeLike extends Element {
   expandIcon?: string;
   collapseIcon?: string;
   iconPlacement?: TreeIconPlacement;
-  clickToggle?: boolean;
+  clickable?: boolean;
 }
 
 export interface TreeSelectDetail {
