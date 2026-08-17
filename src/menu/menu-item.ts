@@ -63,8 +63,19 @@ class MenuItem extends AeicoComponent {
   connectedCallback() {
     super.connectedCallback();
 
-    const depth = this.parentElement?.closest('ae-menu-item') ? 1 : 0;
+    let depth = 0;
+    let el: Element | null = this.parentElement;
+    while (el) {
+      const tag = el.tagName.toLowerCase();
+      if (tag === 'ae-menu-item') {
+        depth++;
+      } else if (tag === 'ae-menu') {
+        break;
+      }
+      el = el.parentElement;
+    }
     this.dataset.depth = String(depth);
+    this.style.setProperty('--depth', String(depth));
 
     this.listen('mouseenter', this._handleMouseEnter);
     this.listen('mouseleave', this._handleMouseLeave);
@@ -232,6 +243,7 @@ class MenuItem extends AeicoComponent {
                 'item--open': this.open,
                 'item--wrap': wrapText,
                 'item--icon-start': iconStart,
+                'item--inline': isInline,
               },
               disabled: this.disabled,
               'aria-haspopup': 'menu',
@@ -287,7 +299,12 @@ class MenuItem extends AeicoComponent {
       } else {
         // Leaf item
         const sharedProps = {
-          className: { item: true, 'item--leaf-in-panel': isNested, 'item--wrap': wrapText },
+          className: {
+            item: true,
+            'item--leaf-in-panel': isNested,
+            'item--wrap': wrapText,
+            'item--inline': isInline,
+          },
           role: 'menuitem',
           '@click': this._handleLeafClick,
           '@keydown': this._handleKeydown,

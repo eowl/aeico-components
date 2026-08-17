@@ -30,6 +30,22 @@ import 'aeico-components';
 </ae-menu>
 ```
 
+### Nested (multi-level) sub-menus
+
+Items nest arbitrarily. Each nested parent's flyout panel opens to the right.
+
+```html
+<ae-menu orientation="vertical">
+  <ae-menu-item key="products" label="Products">
+    <ae-menu-item key="web" label="Web">
+      <ae-menu-item key="react">React</ae-menu-item>
+      <ae-menu-item key="vue">Vue</ae-menu-item>
+    </ae-menu-item>
+    <ae-menu-item key="mobile">Mobile</ae-menu-item>
+  </ae-menu-item>
+</ae-menu>
+```
+
 ### `mode="inline"` - accordion style
 
 ```html

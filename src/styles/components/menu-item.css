@@ -171,9 +171,12 @@ slot[name="collapse"] .item-arrow--right {
 
 .submenu-inline {
   display: none;
-  padding-left: 1rem;
 }
 
 .submenu-inline.open {
   display: block;
+}
+
+.item--inline {
+  padding-left: calc(var(--menu-item-padding-x) + var(--indent-base, 1rem) * var(--depth, 0));
 }

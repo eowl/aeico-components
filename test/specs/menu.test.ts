@@ -147,6 +147,38 @@ describe('Menu', () => {
       expect(detail.keyPath).to.deep.equal(['products', 'web'])
     })
 
+    it('select event detail includes a 3-level keyPath', async () => {
+      const el = await mount<Menu>(`
+        <${TAG}>
+          <${ITEM_TAG} key="a" label="A">
+            <${ITEM_TAG} key="b" label="B">
+              <${ITEM_TAG} key="c">C</${ITEM_TAG}>
+            </${ITEM_TAG}>
+          </${ITEM_TAG}>
+        </${TAG}>
+      `)
+      await updated()
+
+      let detail: any
+      el.addEventListener('select', (e: Event) => {
+        detail = (e as CustomEvent).detail
+      })
+
+      // Open both parent levels
+      const a = el.querySelector(`[key="a"]`) as MenuItem
+      a.shadowRoot!.querySelector<HTMLButtonElement>('button')!.click()
+      await updated()
+      const b = el.querySelector(`[key="b"]`) as MenuItem
+      b.shadowRoot!.querySelector<HTMLButtonElement>('button')!.click()
+      await updated()
+
+      const c = el.querySelector(`[key="c"]`) as MenuItem
+      c.shadowRoot!.querySelector<HTMLButtonElement>('button')!.click()
+
+      expect(detail.key).to.equal('c')
+      expect(detail.keyPath).to.deep.equal(['a', 'b', 'c'])
+    })
+
     it('updates selectedKey after a leaf is selected', async () => {
       const el = await mount<Menu>(`
         <${TAG}>
@@ -385,6 +417,43 @@ describe('MenuItem', () => {
 
       const parentItem = menu.querySelector(`[key="p"]`) as MenuItem
       expect(parentItem.shadowRoot!.querySelector('.submenu-panel.placement-right')).to.exist
+    })
+
+    it('renders a nested (3rd-level) submenu-panel with placement-right', async () => {
+      const menu = await mount<Menu>(`
+        <${TAG} orientation="vertical">
+          <${ITEM_TAG} key="a" label="A">
+            <${ITEM_TAG} key="b" label="B">
+              <${ITEM_TAG} key="c">C</${ITEM_TAG}>
+            </${ITEM_TAG}>
+          </${ITEM_TAG}>
+        </${TAG}>
+      `)
+      await updated()
+
+      const b = menu.querySelector(`[key="b"]`) as MenuItem
+      // Nested parents use right placement
+      expect(b.shadowRoot!.querySelector('.submenu-panel.placement-right')).to.exist
+    })
+
+    it('computes depth for multi-level inline items', async () => {
+      const menu = await mount<Menu>(`
+        <${TAG} mode="inline" orientation="vertical">
+          <${ITEM_TAG} key="a" label="A">
+            <${ITEM_TAG} key="b" label="B">
+              <${ITEM_TAG} key="c">C</${ITEM_TAG}>
+            </${ITEM_TAG}>
+          </${ITEM_TAG}>
+        </${TAG}>
+      `)
+      await updated()
+
+      const a = menu.querySelector(`[key="a"]`) as MenuItem
+      const b = menu.querySelector(`[key="b"]`) as MenuItem
+      const c = menu.querySelector(`[key="c"]`) as MenuItem
+      expect(a.dataset.depth).to.equal('0')
+      expect(b.dataset.depth).to.equal('1')
+      expect(c.dataset.depth).to.equal('2')
     })
 
     it('Escape key closes open submenu', async () => {

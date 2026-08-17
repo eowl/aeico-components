@@ -71,6 +71,28 @@
         </div>
       </div>
 
+      <!-- ─── Nested multi-level flyout ────────────────────────────── -->
+      <div class="demo-group">
+        <label>Nested multi-level flyout (3 levels)</label>
+        <div class="demo-row">
+          <div style="width: 200px; border: 1px solid var(--border-color, #e0e0e0); border-radius: 6px;">
+            <ae-menu orientation="vertical">
+              <ae-menu-item key="products" label="Products">
+                <ae-menu-item key="web" label="Web">
+                  <ae-menu-item key="react">React</ae-menu-item>
+                  <ae-menu-item key="vue">Vue</ae-menu-item>
+                </ae-menu-item>
+                <ae-menu-item key="mobile" label="Mobile">
+                  <ae-menu-item key="ios">iOS</ae-menu-item>
+                  <ae-menu-item key="android">Android</ae-menu-item>
+                </ae-menu-item>
+              </ae-menu-item>
+              <ae-menu-item key="about">About</ae-menu-item>
+            </ae-menu>
+          </div>
+        </div>
+      </div>
+
       <!-- ─── Inline accordion (sidebar) ───────────────────────────────── -->
       <div class="demo-group">
         <label>Inline mode - accordion sidebar</label>
@@ -89,6 +111,33 @@
               </ae-menu-item>
               <ae-menu-item key="settings">Settings</ae-menu-item>
               <ae-menu-item key="disabled-item" disabled>Disabled Item</ae-menu-item>
+            </ae-menu>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── Inline multi-level (nested accordion) ─────────────────── -->
+      <div class="demo-group">
+        <label>Inline mode - nested multi-level (3 levels)</label>
+        <div class="demo-row">
+          <div style="width: 220px; border: 1px solid var(--border-color, #e0e0e0); border-radius: 6px; overflow: hidden;">
+            <ae-menu mode="inline" orientation="vertical">
+              <ae-menu-item key="products" label="Products">
+                <ae-menu-item key="web" label="Web">
+                  <ae-menu-item key="react">React</ae-menu-item>
+                  <ae-menu-item key="vue">Vue</ae-menu-item>
+                </ae-menu-item>
+                <ae-menu-item key="mobile" label="Mobile">
+                  <ae-menu-item key="ios">iOS</ae-menu-item>
+                  <ae-menu-item key="android">Android</ae-menu-item>
+                </ae-menu-item>
+              </ae-menu-item>
+              <ae-menu-item key="company" label="Company">
+                <ae-menu-item key="team" label="Team">
+                  <ae-menu-item key="engineers">Engineers</ae-menu-item>
+                  <ae-menu-item key="designers">Designers</ae-menu-item>
+                </ae-menu-item>
+              </ae-menu-item>
             </ae-menu>
           </div>
         </div>
