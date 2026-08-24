@@ -76,7 +76,6 @@
 
 :host([selected]) .item {
   color: var(--menu-item-active-color);
-  border-bottom-color: var(--menu-item-active-border-color);
 }
 
 .item-arrow {
