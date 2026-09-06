@@ -92,6 +92,8 @@ Images sharing the same `group` value are navigated together in one viewer. Open
 | `zoomable` | `boolean` | `true` | Click to open the fullscreen viewer. |
 | `group` | `string` | `''` | Group name. Images with the same group can be switched in one viewer. |
 | `fit` | `'cover' \| 'contain' \| 'fill' \| 'none' \| 'scale-down'` | `'cover'` | Object fit for the thumbnail. |
+| `loading` | `'lazy' \| 'eager'` | `'lazy'` | Passed to the thumbnail `img`, same as the native `loading` attribute. Use `eager` for above-the-fold / LCP images. |
+| `decoding` | `'async' \| 'sync' \| 'auto'` | `'async'` | Passed to the thumbnail `img`, same as the native `decoding` attribute. |
 
 ## Methods
 

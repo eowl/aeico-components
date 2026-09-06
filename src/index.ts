@@ -98,7 +98,7 @@ export type { ProgressBarProps, ProgressBarColor } from './progress-bar';
 export type { IconButtonProps, IconButtonVariant, IconButtonSize } from './icon-button';
 export type { DividerProps } from './divider';
 export type { CardProps, CardVariant, CardColor } from './card';
-export type { ImageProps, ImageFit } from './image';
+export type { ImageProps, ImageFit, ImageLoading, ImageDecoding } from './image';
 export type { NavbarProps, NavbarColor, NavbarAppearance } from './navbar';
 export type { DetailProps, DetailVariant, DetailColor } from './detail';
 export type {

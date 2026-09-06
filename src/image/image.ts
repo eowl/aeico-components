@@ -3,7 +3,7 @@ import styleVariables from '../styles/variables.css';
 import style from '../styles/components/image.css';
 import AeicoComponent from '../aeico-component';
 import { html, prop } from 'aeico';
-import type { ImageFit } from './defines';
+import type { ImageDecoding, ImageFit, ImageLoading } from './defines';
 import '../icon/icon';
 
 interface ImageViewerItem {
@@ -57,6 +57,12 @@ class Image extends AeicoComponent {
   @prop({ type: String })
   accessor fit: ImageFit = 'cover';
 
+  @prop({ type: String })
+  accessor loading: ImageLoading = 'lazy';
+
+  @prop({ type: String })
+  accessor decoding: ImageDecoding = 'async';
+
   private _items: ImageViewerItem[] | null = null;
   private _index = 0;
 
@@ -82,7 +88,14 @@ class Image extends AeicoComponent {
 
     return html(({ figure, img, div, button, span, slot, aeIcon }) => {
       figure({ className: 'thumb', part: 'image', '@click': this._handleThumbClick }, () => {
-        img({ className: 'thumb-img', part: 'img', src: this.src, alt: this.alt, loading: 'lazy' });
+        img({
+          className: 'thumb-img',
+          part: 'img',
+          src: this.src,
+          alt: this.alt,
+          loading: this.loading,
+          decoding: this.decoding,
+        });
         div(
           {
             className: 'caption',

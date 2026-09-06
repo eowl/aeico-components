@@ -73,6 +73,21 @@ describe('Image', () => {
       expect(getComputedStyle(img).objectFit).to.equal('contain')
     })
 
+    it('passes loading and decoding to the thumbnail img', async () => {
+      const el = await mount<Image>(`<${TAG_NAME} src="a.jpg" loading="eager" decoding="sync"></${TAG_NAME}>`)
+      await updated()
+      const img = el.shadowRoot!.querySelector<HTMLImageElement>('.thumb-img')!
+      expect(img.loading).to.equal('eager')
+      expect(img.decoding).to.equal('sync')
+    })
+
+    it('defaults thumbnail img to lazy loading and async decoding', async () => {
+      const el = await mount<Image>(`<${TAG_NAME} src="a.jpg"></${TAG_NAME}>`)
+      const img = el.shadowRoot!.querySelector<HTMLImageElement>('.thumb-img')!
+      expect(img.loading).to.equal('lazy')
+      expect(img.decoding).to.equal('async')
+    })
+
     it('has no forced default width so the host behaves like an img', async () => {
       const el = await mount<Image>(`<${TAG_NAME} src="a.jpg"></${TAG_NAME}>`)
       await updated()
