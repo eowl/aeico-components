@@ -59,6 +59,7 @@ export { default as IconButton } from './icon-button';
 export { Tabs, Tab, TabPanel } from './tabs';
 export { default as Divider } from './divider';
 export { default as Card } from './card';
+export { default as Image } from './image';
 export { default as Navbar } from './navbar';
 export { default as Spinner } from './spinner';
 export { default as Detail } from './detail';
@@ -97,6 +98,7 @@ export type { ProgressBarProps, ProgressBarColor } from './progress-bar';
 export type { IconButtonProps, IconButtonVariant, IconButtonSize } from './icon-button';
 export type { DividerProps } from './divider';
 export type { CardProps, CardVariant, CardColor } from './card';
+export type { ImageProps, ImageFit } from './image';
 export type { NavbarProps, NavbarColor, NavbarAppearance } from './navbar';
 export type { DetailProps, DetailVariant, DetailColor } from './detail';
 export type {
