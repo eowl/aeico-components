@@ -17,7 +17,7 @@ import './list-item';
  *
  * @example
  * ```html
- * <ae-list variant="bordered" divided>
+ * <ae-list variant="outlined" divided>
  *   <ae-list-item key="a">Item A</ae-list-item>
  *   <ae-list-item key="b" description="Secondary text">Item B</ae-list-item>
  *   <ae-list-item key="c" disabled>Item C</ae-list-item>
@@ -27,15 +27,12 @@ import './list-item';
 class List extends AeicoComponent {
   protected static styles = [styleVariables, colorCSS, style];
 
-  /** Visual style of the list container. */
   @prop({ type: String })
-  accessor variant: ListVariant = 'plain';
+  accessor variant: ListVariant = 'subtle';
 
-  /** Show dividers between adjacent items. Synced to each `ae-list-item`. */
   @prop({ type: Boolean })
   accessor divided: boolean = false;
 
-  /** Currently selected item key (single-select). */
   @prop({ type: String })
   accessor selectedKey: string | undefined;
 
@@ -67,7 +64,6 @@ class List extends AeicoComponent {
   private _syncItems = () => {
     const items = this._getItems().filter((el) => el.localName === 'ae-list-item');
     items.forEach((el, i) => {
-      // First item never gets a divider
       el.toggleAttribute('divided', this.divided && i > 0);
     });
   };
@@ -75,7 +71,6 @@ class List extends AeicoComponent {
   private _handleItemSelect = (e: CustomEvent<{ key: string }>): void => {
     const { key } = e.detail;
 
-    // Single select - deselect all, select target; clicking again deselects
     const alreadySelected = this.selectedKey === key;
     this.selectedKey = alreadySelected ? undefined : key;
 

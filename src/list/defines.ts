@@ -1,4 +1,4 @@
-export type ListVariant = 'plain' | 'bordered';
+export type ListVariant = 'subtle' | 'faint' | 'filled' | 'outlined' | 'text';
 
 export interface ListSelectDetail {
   key: string;

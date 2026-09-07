@@ -32,10 +32,11 @@ import 'aeico-components';
 ### `variant`
 
 ```html
-<ae-list variant="bordered">
-  <ae-list-item key="a">Item A</ae-list-item>
-  <ae-list-item key="b">Item B</ae-list-item>
-</ae-list>
+<ae-list variant="subtle">subtle (default)</ae-list>
+<ae-list variant="faint">faint</ae-list>
+<ae-list variant="filled">filled</ae-list>
+<ae-list variant="outlined">outlined</ae-list>
+<ae-list variant="text">text</ae-list>
 ```
 
 ### `divided`
@@ -53,7 +54,7 @@ Dividers are rendered between adjacent items; the first item gets none.
 ### `description`
 
 ```html
-<ae-list variant="bordered">
+<ae-list>
   <ae-list-item key="profile" description="Account settings and preferences">
     Profile
   </ae-list-item>
@@ -93,7 +94,7 @@ Click an item to select it (single-select). Clicking the selected item again
 or another item updates the selection. The list emits a `select` event.
 
 ```html
-<ae-list variant="bordered" id="list">
+<ae-list variant="outlined" id="list">
   <ae-list-item key="a">Item A</ae-list-item>
   <ae-list-item key="b">Item B</ae-list-item>
   <ae-list-item key="c">Item C</ae-list-item>
@@ -113,7 +114,7 @@ or another item updates the selection. The list emits a `select` event.
 
 | Attribute | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `variant` | `'plain' \| 'bordered'` | `'plain'` | Visual style of the list container. |
+| `variant` | `'subtle' \| 'faint' \| 'filled' \| 'outlined' \| 'text'` | `'subtle'` | Visual style of the list container. |
 | `divided` | `boolean` | `false` | Show dividers between adjacent items. |
 | `selectedKey` | `string` | - | Currently selected item key (single-select). |
 

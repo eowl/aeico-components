@@ -27,23 +27,18 @@ import '../divider';
 class ListItem extends AeicoComponent {
   protected static styles = [styleVariables, style];
 
-  /** Unique identifier of the item. */
   @prop({ type: String })
   accessor key: string | undefined;
 
-  /** Grey out the item and make it non-interactive. */
   @prop({ type: Boolean })
   accessor disabled: boolean = false;
 
-  /** Secondary text rendered below the main label. */
   @prop({ type: String })
   accessor description: string | undefined;
 
-  /** Show a divider above the item. Synced from parent `ae-list`. */
   @prop({ type: Boolean })
   accessor divided: boolean = false;
 
-  /** Whether the item is currently selected. Managed by the parent list. */
   @prop({ type: Boolean })
   accessor selected: boolean = false;
 

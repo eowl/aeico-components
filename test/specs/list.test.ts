@@ -46,17 +46,19 @@ describe('List', () => {
   })
 
   describe('variant prop', () => {
-    it('defaults to "plain"', async () => {
+    it('defaults to "subtle"', async () => {
       const el = await mount<List>(`<${LIST}></${LIST}>`)
-      expect(el.variant).to.equal('plain')
-      expect(el.getAttribute('variant')).to.equal('plain')
+      expect(el.variant).to.equal('subtle')
+      expect(el.getAttribute('variant')).to.equal('subtle')
     })
 
-    it('reflects the variant attribute', async () => {
-      const el = await mount<List>(`<${LIST} variant="bordered"></${LIST}>`)
-      expect(el.variant).to.equal('bordered')
-      expect(el.getAttribute('variant')).to.equal('bordered')
-    })
+    for (const variant of ['faint', 'filled', 'outlined', 'text'] as const) {
+      it(`reflects variant="${variant}"`, async () => {
+        const el = await mount<List>(`<${LIST} variant="${variant}"></${LIST}>`)
+        expect(el.variant).to.equal(variant)
+        expect(el.getAttribute('variant')).to.equal(variant)
+      })
+    }
   })
 
   describe('divided prop', () => {
