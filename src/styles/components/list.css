@@ -1,0 +1,31 @@
+:host {
+  display: block;
+}
+
+.list {
+  display: block;
+  box-sizing: border-box;
+  background: var(--ae-color-bg-subtle);
+  color: var(--ae-color-text-subtle);
+  border: 1px solid var(--ae-color-border-subtle);
+  border-radius: var(--ae-border-radius, var(--ae-radius-md));
+}
+
+/* Bordered variant: draw the outline on the host and clip item hover
+   backgrounds to the rounded corners (avoids broken corners on hover). */
+:host([variant="bordered"]) {
+  border: 1px solid var(--ae-color-border-subtle);
+  border-radius: var(--ae-border-radius, var(--ae-radius-md));
+  overflow: hidden;
+}
+
+:host([variant="bordered"]) .list {
+  background: transparent;
+  border-color: transparent;
+}
+
+:host([variant="plain"]) .list {
+  background: transparent;
+  border-color: transparent;
+  color: var(--ae-color-text-main);
+}

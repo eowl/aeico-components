@@ -31,11 +31,13 @@ import {
   Pagination,
   Tree,
   TreeItem,
+  List,
+  ListItem,
   CopyButton,
 } from '../../src/index'
 import '../../src/styles/layout.css'
 import '../../src/styles/radius.css'
-void [TextInput, NumberInput, Select, Slider, Checkbox, RadioGroup, Icon, Switch, Tabs, Tab, TabPanel, Dialog, Drawer, Divider, Card, Image, Badge, Tag, Breadcrumb, BreadcrumbItem, Navbar, Dropdown, DropdownItem, Detail, ProgressBar, Textarea, Menu, MenuItem, Pagination, Tree, TreeItem, CopyButton]
+void [TextInput, NumberInput, Select, Slider, Checkbox, RadioGroup, Icon, Switch, Tabs, Tab, TabPanel, Dialog, Drawer, Divider, Card, Image, Badge, Tag, Breadcrumb, BreadcrumbItem, Navbar, Dropdown, DropdownItem, Detail, ProgressBar, Textarea, Menu, MenuItem, Pagination, Tree, TreeItem, CopyButton, List, ListItem]
 
 // --- Localization setup ---
 
