@@ -68,6 +68,7 @@ import 'aeico-components';
 | [Badge](./badge.md) | `ae-badge` | Compact label for statuses, counts, or categories. |
 | [Card](./card.md) | `ae-card` | Container with optional header and footer sections. |
 | [Detail](./detail.md) | `ae-detail` | Expandable/collapsible content panel. |
+| [Image](./image.md) | `ae-image` | Image with caption overlay and fullscreen grouped viewer. |
 | [Tag](./tag.md) | `ae-tag` | Inline label for annotation or filtering, with optional dismiss. |
 | [Tree](./tree.md) | `ae-tree` | Hierarchical tree view with selection and checkbox support. |
 

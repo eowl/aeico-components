@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>(function(){if(localStorage.getItem("aeico-demo-theme")==="dark")document.documentElement.setAttribute("theme","dark")})()</script>
+  <title>Image - Aeico Components</title>
+  <link rel="stylesheet" href="../demo.css">
+  <script type="module" src="../shared.ts"></script>
+</head>
+<body>
+  <div class="content">
+    <div class="section">
+      <h2>Image</h2>
+      <span class="tag">&lt;ae-image&gt;</span>
+
+      <div class="demo-group">
+        <label>Basic (click to zoom; no size set -> intrinsic size)</label>
+        <div class="demo-row" style="flex-wrap: wrap; gap: 12px;">
+          <ae-image src="https://picsum.photos/seed/aeico-mountain/640/420" alt="Mountain"></ae-image>
+          <ae-image src="https://picsum.photos/seed/aeico-lake/640/420" alt="Lake"></ae-image>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>width / height attributes (like native img)</label>
+        <div class="demo-row" style="flex-wrap: wrap; gap: 12px; align-items: flex-start;">
+          <ae-image src="https://picsum.photos/seed/aeico-city/640/420" caption="width=260 (keeps ratio)" alt="City" width="260"></ae-image>
+          <ae-image src="https://picsum.photos/seed/aeico-city/640/420" caption="width=260 height=160 (fit: cover)" alt="City" width="260" height="160"></ae-image>
+          <ae-image src="https://picsum.photos/seed/aeico-city/640/420" caption="CSS width only (keeps ratio)" alt="City" style="width: 260px;"></ae-image>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>Caption (attribute or default slot)</label>
+        <div class="demo-row" style="flex-wrap: wrap; gap: 12px;">
+          <ae-image src="https://picsum.photos/seed/aeico-coast/640/420" caption="Sunset over the coast" style="width: 260px;"></ae-image>
+          <ae-image src="https://picsum.photos/seed/aeico-forest/640/420" style="width: 260px;">Forest trail after rain</ae-image>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>Fit</label>
+        <div class="demo-row" style="flex-wrap: wrap; gap: 12px; align-items: flex-end;">
+          <ae-image src="https://picsum.photos/seed/aeico-city/640/420" caption="cover" alt="City" width="200" height="140"></ae-image>
+          <ae-image src="https://picsum.photos/seed/aeico-city/640/420" fit="contain" caption="contain" alt="City" width="200" height="140"></ae-image>
+          <ae-image src="https://picsum.photos/seed/aeico-city/640/420" fit="fill" caption="fill" alt="City" width="200" height="140"></ae-image>
+          <ae-image src="https://picsum.photos/seed/aeico-city/640/420" fit="none" caption="none" alt="City" width="200" height="140"></ae-image>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>Not zoomable</label>
+        <div class="demo-row">
+          <ae-image src="https://picsum.photos/seed/aeico-desert/640/420" caption="zoomable=&quot;false&quot;" zoomable="false" style="width: 260px;"></ae-image>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>Group (open one, then switch with arrows / arrow keys)</label>
+        <div class="demo-row" style="flex-wrap: wrap; gap: 12px;">
+          <ae-image group="gallery" src="https://picsum.photos/seed/g1/640/420" caption="Gallery image 1" width="200" height="130"></ae-image>
+          <ae-image group="gallery" src="https://picsum.photos/seed/g2/640/420" caption="Gallery image 2" width="200" height="130"></ae-image>
+          <ae-image group="gallery" src="https://picsum.photos/seed/g3/640/420" caption="Gallery image 3" width="200" height="130"></ae-image>
+          <ae-image group="gallery" src="https://picsum.photos/seed/g4/640/420" caption="Gallery image 4" width="200" height="130"></ae-image>
+        </div>
+        <div class="demo-row" style="flex-wrap: wrap; gap: 12px; margin-top: 12px;">
+          <ae-image group="other" src="https://picsum.photos/seed/o1/640/420" caption="Another group 1" width="200" height="130"></ae-image>
+          <ae-image group="other" src="https://picsum.photos/seed/o2/640/420" caption="Another group 2" width="200" height="130"></ae-image>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
