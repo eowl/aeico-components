@@ -143,20 +143,38 @@ class Image extends AeicoComponent {
             },
           );
 
-          button({ className: 'tool-btn close-btn', 'aria-label': 'close', '@click': () => this.close() }, () => {
-            aeIcon({ name: 'close' });
-          });
+          button(
+            {
+              className: 'tool-btn close-btn',
+              'aria-label': 'close',
+              '@click': () => this.close(),
+            },
+            () => {
+              aeIcon({ name: 'close' });
+            },
+          );
 
           if (hasGroupNav) {
-            span({ className: 'count', textContent: `${this._index + 1} / ${this._items!.length}` });
+            span({
+              className: 'count',
+              textContent: `${this._index + 1} / ${this._items!.length}`,
+            });
             button(
-              { className: 'tool-btn nav-btn prev', 'aria-label': 'previous image', '@click': () => this._step(-1) },
+              {
+                className: 'tool-btn nav-btn prev',
+                'aria-label': 'previous image',
+                '@click': () => this._step(-1),
+              },
               () => {
                 aeIcon({ name: 'chevron-left' });
               },
             );
             button(
-              { className: 'tool-btn nav-btn next', 'aria-label': 'next image', '@click': () => this._step(1) },
+              {
+                className: 'tool-btn nav-btn next',
+                'aria-label': 'next image',
+                '@click': () => this._step(1),
+              },
               () => {
                 aeIcon({ name: 'chevron-right' });
               },
@@ -197,7 +215,9 @@ class Image extends AeicoComponent {
     this._index = 0;
     if (this.group === '') return;
     // Filter instead of building a selector to avoid escaping issues
-    const nodes = Array.from(document.querySelectorAll<Image>('ae-image')).filter((el) => el.group === this.group);
+    const nodes = Array.from(document.querySelectorAll<Image>('ae-image')).filter(
+      (el) => el.group === this.group,
+    );
     if (nodes.length < 2) return;
     this._items = nodes.map((el) => ({ src: el.src, alt: el.alt, caption: el.caption }));
     this._index = nodes.indexOf(this);
