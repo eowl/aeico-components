@@ -2,11 +2,12 @@
 
 `Display`
 
-A vertical list container (`ae-list`) for `ae-list-item` rows. Supports a
-`bordered` variant and dividers between items via `divided` (rendered with
+A vertical list container (`ae-list`) for `ae-list-item` rows. Supports
+container variants and dividers between items via `divided` (rendered with
 `ae-divider`). Items can be clicked to select (single-select), support hover
-highlighting, and can carry a `prefix` icon slot, a `description` secondary
-text line and a `disabled` state.
+highlighting, and can carry a `start` icon slot, an `end` slot (e.g. a badge
+pushed to the right), a `description` secondary text line and a `disabled`
+state.
 
 ## Import
 
@@ -64,17 +65,35 @@ Dividers are rendered between adjacent items; the first item gets none.
 </ae-list>
 ```
 
-### Prefix icon
+### Start icon
 
 ```html
 <ae-list>
   <ae-list-item key="user">
-    <ae-icon name="user" slot="prefix"></ae-icon>
+    <ae-icon name="user" slot="start"></ae-icon>
     Profile
   </ae-list-item>
   <ae-list-item key="settings">
-    <ae-icon name="settings" slot="prefix"></ae-icon>
+    <ae-icon name="settings" slot="start"></ae-icon>
     Settings
+  </ae-list-item>
+</ae-list>
+```
+
+### End badge
+
+The `end` slot is pushed to the far right of the label row; the `label`
+flexes to fill the space in between.
+
+```html
+<ae-list>
+  <ae-list-item key="inbox">
+    Inbox
+    <ae-badge slot="end" color="primary">3</ae-badge>
+  </ae-list-item>
+  <ae-list-item key="spam" description="Moved automatically">
+    Spam
+    <ae-badge slot="end" color="danger">12</ae-badge>
   </ae-list-item>
 </ae-list>
 ```
@@ -143,7 +162,8 @@ or another item updates the selection. The list emits a `select` event.
 | Name | Description |
 |------|-------------|
 | (default) | Main label content. |
-| `prefix` | Icon or other content rendered before the label. |
+| `start` | Icon or other content rendered before the label. |
+| `end` | Content pushed to the far right of the label row (e.g. a badge). |
 
 ## CSS Custom Properties
 
@@ -172,7 +192,8 @@ Override item layout and selection colors via tokens on `ae-list-item`:
 | `item` | The root item element. |
 | `divider` | The divider line above the item. |
 | `body` | The item content wrapper. |
-| `row` | The label row (prefix + label). |
-| `prefix` | The prefix slot wrapper. |
+| `row` | The label row (start + label + end). |
+| `start` | The start slot wrapper. |
 | `label` | The main label wrapper. |
+| `end` | The end slot wrapper. |
 | `description` | The secondary text line. |

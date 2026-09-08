@@ -52,11 +52,17 @@
   gap: 0.5rem;
 }
 
-.prefix {
+.start {
   display: inline-flex;
   align-items: center;
   flex-shrink: 0;
   color: var(--ae-color-text-muted);
+}
+
+.end {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
 }
 
 .label {
@@ -81,6 +87,6 @@
   background: transparent;
 }
 
-:host([disabled]) .prefix {
+:host([disabled]) .start {
   color: var(--ae-color-text-disabled);
 }

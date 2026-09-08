@@ -8,7 +8,8 @@ import '../divider';
 /**
  * ListItem Component
  *
- * A single row inside `<ae-list>`. Supports a `prefix` icon slot, a
+ * A single row inside `<ae-list>`. Supports a `start` icon slot, an `end`
+ * slot (e.g. a badge) pushed to the far right of the label row, a
  * `description` secondary text line and a visual `disabled` state.
  *
  * The `divided` attribute is normally synced from the parent `ae-list`;
@@ -18,8 +19,9 @@ import '../divider';
  * ```html
  * <ae-list divided>
  *   <ae-list-item key="profile" description="Account settings">
- *     <ae-icon name="user" slot="prefix"></ae-icon>
+ *     <ae-icon name="user" slot="start"></ae-icon>
  *     Profile
+ *     <ae-badge slot="end" color="primary">3</ae-badge>
  *   </ae-list-item>
  * </ae-list>
  * ```
@@ -62,11 +64,14 @@ class ListItem extends AeicoComponent {
           }
           div({ className: 'body', part: 'body' }, () => {
             div({ className: 'row', part: 'row' }, () => {
-              span({ className: 'prefix', part: 'prefix' }, () => {
-                slot({ name: 'prefix' });
+              span({ className: 'start', part: 'start' }, () => {
+                slot({ name: 'start' });
               });
               span({ className: 'label', part: 'label' }, () => {
                 slot();
+              });
+              span({ className: 'end', part: 'end' }, () => {
+                slot({ name: 'end' });
               });
             });
             if (this.description) {

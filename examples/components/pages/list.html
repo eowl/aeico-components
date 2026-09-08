@@ -68,20 +68,40 @@
       </div>
 
       <div class="demo-group">
-        <label>Prefix icon</label>
+        <label>Start icon</label>
         <div class="demo-row">
           <ae-list style="width: 100%; max-width: 560px;">
             <ae-list-item key="user">
-              <ae-icon name="user" slot="prefix"></ae-icon>
+              <ae-icon name="user" slot="start"></ae-icon>
               Profile
             </ae-list-item>
             <ae-list-item key="settings">
-              <ae-icon name="settings" slot="prefix"></ae-icon>
+              <ae-icon name="settings" slot="start"></ae-icon>
               Settings
             </ae-list-item>
             <ae-list-item key="home">
-              <ae-icon name="home" slot="prefix"></ae-icon>
+              <ae-icon name="home" slot="start"></ae-icon>
               Home
+            </ae-list-item>
+          </ae-list>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>End badge</label>
+        <div class="demo-row">
+          <ae-list divided style="width: 100%; max-width: 560px;">
+            <ae-list-item key="inbox">
+              Inbox
+              <ae-badge slot="end" color="primary">3</ae-badge>
+            </ae-list-item>
+            <ae-list-item key="spam" description="Moved automatically">
+              Spam
+              <ae-badge slot="end" color="danger">12</ae-badge>
+            </ae-list-item>
+            <ae-list-item key="archive">
+              Archive
+              <ae-badge slot="end" variant="outlined" color="success">done</ae-badge>
             </ae-list-item>
           </ae-list>
         </div>

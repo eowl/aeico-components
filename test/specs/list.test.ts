@@ -286,24 +286,45 @@ describe('ListItem', () => {
     })
   })
 
-  describe('prefix slot', () => {
-    it('renders slot[name="prefix"] inside .prefix', async () => {
+  describe('start slot', () => {
+    it('renders slot[name="start"] inside .start', async () => {
       const el = await mount<ListItem>(`<${LIST_ITEM}>A</${LIST_ITEM}>`)
-      const prefixSlot = el.shadowRoot!.querySelector('slot[name="prefix"]')
-      expect(prefixSlot).to.exist
+      const startSlot = el.shadowRoot!.querySelector('slot[name="start"]')
+      expect(startSlot).to.exist
     })
 
-    it('assigns slotted prefix content', async () => {
+    it('assigns slotted start content', async () => {
       const el = await mount<ListItem>(`
         <${LIST_ITEM}>
-          <span slot="prefix">*</span>
+          <span slot="start">*</span>
           A
         </${LIST_ITEM}>
       `)
-      const slotEl = el.shadowRoot!.querySelector<HTMLSlotElement>('slot[name="prefix"]')!
+      const slotEl = el.shadowRoot!.querySelector<HTMLSlotElement>('slot[name="start"]')!
       const assigned = slotEl.assignedElements()
       expect(assigned.length).to.equal(1)
       expect(assigned[0].textContent).to.equal('*')
+    })
+  })
+
+  describe('end slot', () => {
+    it('renders slot[name="end"] inside .end', async () => {
+      const el = await mount<ListItem>(`<${LIST_ITEM}>A</${LIST_ITEM}>`)
+      const endSlot = el.shadowRoot!.querySelector('slot[name="end"]')
+      expect(endSlot).to.exist
+    })
+
+    it('assigns slotted end content', async () => {
+      const el = await mount<ListItem>(`
+        <${LIST_ITEM}>
+          A
+          <span slot="end">3</span>
+        </${LIST_ITEM}>
+      `)
+      const slotEl = el.shadowRoot!.querySelector<HTMLSlotElement>('slot[name="end"]')!
+      const assigned = slotEl.assignedElements()
+      expect(assigned.length).to.equal(1)
+      expect(assigned[0].textContent).to.equal('3')
     })
   })
 
