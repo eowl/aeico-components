@@ -33,6 +33,7 @@ const entryPoints = {
   dropdown:       'src/dropdown/index.ts',
   icon:           'src/icon/index.ts',
   'icon-button':  'src/icon-button/index.ts',
+  list:           'src/list/index.ts',
   navbar:         'src/navbar/index.ts',
   'number-input': 'src/number-input/index.ts',
   'radio-group':  'src/radio-group/index.ts',
