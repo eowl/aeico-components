@@ -118,4 +118,10 @@ export type {
   TreeExpandDetail,
   TreeCheckDetail,
 } from './tree';
-export type { ListProps, ListItemProps, ListVariant, ListSelectDetail, ParentListLike } from './list';
+export type {
+  ListProps,
+  ListItemProps,
+  ListVariant,
+  ListSelectDetail,
+  ParentListLike,
+} from './list';
