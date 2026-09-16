@@ -2,7 +2,8 @@
   display: inline-block;
 }
 
-button {
+button,
+a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -24,81 +25,105 @@ button {
   min-width: 4.571em;
   height: 2.286em;
   width: 100%;
+  box-sizing: border-box;
 
   background:   var(--ae-color-solid);
   border: 1px solid var(--ae-button-border-color, var(--ae-color-solid));
   color:        var(--ae-color-on-solid);
 }
 
+/* Anchors do not inherit the button reset, so remove the default underline */
+a {
+  text-decoration: none;
+}
+
 button:focus  { outline: none; }
 button:active { transform: translateY(1px); }
 
-button:hover:not(:disabled) {
+a:focus  { outline: none; }
+a:active { transform: translateY(1px); }
+
+button:hover:not(:disabled),
+a:hover:not([aria-disabled='true']) {
   background:   var(--ae-color-solid-hover);
   border-color: var(--ae-color-border-hover);
   color:        var(--ae-color-on-solid-hover, var(--ae-color-on-solid));
 }
 
-button:active:not(:disabled) { background: var(--ae-color-solid-active); }
+button:active:not(:disabled),
+a:active:not([aria-disabled='true']) { background: var(--ae-color-solid-active); }
 
-button:disabled {
+button:disabled,
+a[aria-disabled='true'] {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
-:host([size="xs"]) button { border-radius: var(--ae-border-radius, var(--_btn-r-tl, var(--ae-radius-xs)) var(--_btn-r-tr, var(--ae-radius-xs)) var(--_btn-r-br, var(--ae-radius-xs)) var(--_btn-r-bl, var(--ae-radius-xs))); }
-:host([size="sm"]) button { border-radius: var(--ae-border-radius, var(--_btn-r-tl, var(--ae-radius-xs)) var(--_btn-r-tr, var(--ae-radius-xs)) var(--_btn-r-br, var(--ae-radius-xs)) var(--_btn-r-bl, var(--ae-radius-xs))); }
+:host([size="xs"]) button,
+:host([size="xs"]) a { border-radius: var(--ae-border-radius, var(--_btn-r-tl, var(--ae-radius-xs)) var(--_btn-r-tr, var(--ae-radius-xs)) var(--_btn-r-br, var(--ae-radius-xs)) var(--_btn-r-bl, var(--ae-radius-xs))); }
+:host([size="sm"]) button,
+:host([size="sm"]) a { border-radius: var(--ae-border-radius, var(--_btn-r-tl, var(--ae-radius-xs)) var(--_btn-r-tr, var(--ae-radius-xs)) var(--_btn-r-br, var(--ae-radius-xs)) var(--_btn-r-bl, var(--ae-radius-xs))); }
 
 /* --- Variants --- */
 
-:host([variant="outlined"]) button {
+:host([variant="outlined"]) button,
+:host([variant="outlined"]) a {
   background:   transparent;
   border-color: var(--ae-color-border);
   color:        var(--ae-color-accent);
 }
 
-:host([variant="outlined"]) button:hover:not(:disabled) {
+:host([variant="outlined"]) button:hover:not(:disabled),
+:host([variant="outlined"]) a:hover:not([aria-disabled='true']) {
   background:   var(--ae-color-subtle);
   border-color: var(--ae-color-border-hover);
   color:        var(--ae-color-accent-hover);
 }
 
-:host([variant="outlined"]) button:active:not(:disabled) {
+:host([variant="outlined"]) button:active:not(:disabled),
+:host([variant="outlined"]) a:active:not([aria-disabled='true']) {
   background: var(--ae-color-subtle-hover);
 }
 
-:host([variant="subtle"]) button {
+:host([variant="subtle"]) button,
+:host([variant="subtle"]) a {
   background:   var(--ae-color-subtle);
   border-color: transparent;
   color:        var(--ae-color-accent);
 }
 
-:host([variant="subtle"]) button:hover:not(:disabled) {
+:host([variant="subtle"]) button:hover:not(:disabled),
+:host([variant="subtle"]) a:hover:not([aria-disabled='true']) {
   background: var(--ae-color-subtle-hover);
   color:      var(--ae-color-accent-hover);
 }
 
-:host([variant="subtle"]) button:active:not(:disabled) {
+:host([variant="subtle"]) button:active:not(:disabled),
+:host([variant="subtle"]) a:active:not([aria-disabled='true']) {
   background: var(--ae-color-subtle-hover);
 }
 
-:host([variant="faint"]) button {
+:host([variant="faint"]) button,
+:host([variant="faint"]) a {
   background:   var(--ae-color-subtle);
   border-color: var(--ae-color-border);
   color:        var(--ae-color-accent);
 }
 
-:host([variant="faint"]) button:hover:not(:disabled) {
+:host([variant="faint"]) button:hover:not(:disabled),
+:host([variant="faint"]) a:hover:not([aria-disabled='true']) {
   background:   var(--ae-color-subtle-hover);
   border-color: var(--ae-color-border-hover);
   color:        var(--ae-color-accent-hover);
 }
 
-:host([variant="faint"]) button:active:not(:disabled) {
+:host([variant="faint"]) button:active:not(:disabled),
+:host([variant="faint"]) a:active:not([aria-disabled='true']) {
   background: var(--ae-color-subtle-hover);
 }
 
-:host([variant="text"]) button {
+:host([variant="text"]) button,
+:host([variant="text"]) a {
   background:   transparent;
   border-color: transparent;
   color:        var(--ae-color-accent);
@@ -107,12 +132,14 @@ button:disabled {
   padding-right: 4px;
 }
 
-:host([variant="text"]) button:hover:not(:disabled) {
+:host([variant="text"]) button:hover:not(:disabled),
+:host([variant="text"]) a:hover:not([aria-disabled='true']) {
   background: var(--ae-color-subtle);
   color:      var(--ae-color-accent-hover);
 }
 
-:host([variant="text"]) button:active:not(:disabled) {
+:host([variant="text"]) button:active:not(:disabled),
+:host([variant="text"]) a:active:not([aria-disabled='true']) {
   background: var(--ae-color-subtle-hover);
 }
 
@@ -124,7 +151,8 @@ button:disabled {
   font-size: var(--ae-size-m);
 }
 
-:host([icon-only]) button {
+:host([icon-only]) button,
+:host([icon-only]) a {
   padding:   0;
   min-width: auto;
   width:     2.286em;
@@ -136,7 +164,8 @@ button:disabled {
   font-size: 1.5em;
 }
 
-:host([active]) button {
+:host([active]) button,
+:host([active]) a {
   background:   var(--ae-color-solid-active);
   border-color: var(--ae-color-border-hover);
   color:        var(--ae-color-on-solid-hover, var(--ae-color-on-solid));

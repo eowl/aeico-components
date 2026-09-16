@@ -31,7 +31,7 @@ import 'aeico-components';
 
 | Component | Tag | Description |
 |-----------|-----|-------------|
-| [Button](./button.md) | `ae-button` | Triggers actions; supports variants, sizes, and icons. |
+| [Button](./button.md) | `ae-button` | Triggers actions; supports variants, sizes, icons, and link mode via `href`. |
 | [Button Group](./button-group.md) | `ae-button-group` | Groups buttons visually, including compact joined mode. |
 | [Copy Button](./copy-button.md) | `ae-copy-button` | Copies text to clipboard with visual feedback. |
 | [Icon](./icon.md) | `ae-icon` | Renders SVG icons from the built-in registry or custom sources. |
@@ -117,10 +117,10 @@ Button-like components accept a `variant` attribute:
 
 ### CSS Parts
 
-Use `::part()` to style internal elements without Shadow DOM workarounds:
+Use `::part()` to style internal elements without Shadow DOM workarounds. The exposed part name varies per component - check each component's docs:
 
 ```css
-ae-button::part(base) {
+ae-button::part(button) {
   border-radius: 0;
 }
 ```

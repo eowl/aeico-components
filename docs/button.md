@@ -102,6 +102,29 @@ When the default slot contains only an `<ae-icon>`, the button automatically app
 </ae-button>
 ```
 
+### `href` - renders as a link
+
+When `href` is set, the button renders as an `<a>` anchor instead of a `<button>`. This keeps native browser behaviour intact: middle click and ctrl/cmd+click open a new tab, the context menu offers "Open in new tab", and search engines can follow the link.
+
+```html
+<ae-button href="/settings" color="primary">Settings</ae-button>
+```
+
+Use `target` with `rel` for links that open in a new tab:
+
+```html
+<ae-button href="https://example.com" target="_blank" rel="noopener noreferrer">
+  <ae-icon name="open_in_new"></ae-icon>
+  Documentation
+</ae-button>
+```
+
+Notes:
+
+- `type` (form submission) has no effect when `href` is set.
+- When `disabled` is set, `href` is removed from the anchor and `aria-disabled="true"` is applied, so the link does not navigate. It stays focusable, matching the ARIA pattern for disabled links.
+- Always pair `target="_blank"` with `rel="noopener noreferrer"` so the opened page cannot access `window.opener`.
+
 ## Properties
 
 | Attribute | Type | Default | Description |
@@ -109,16 +132,25 @@ When the default slot contains only an `<ae-icon>`, the button automatically app
 | `color` | `'default' \| 'primary' \| 'secondary' \| 'success' \| 'danger' \| 'warning' \| 'info' \| 'light' \| 'dark'` | `'default'` | Semantic colour theme. |
 | `variant` | `'filled' \| 'outlined' \| 'faint' \| 'subtle' \| 'text'` | `'filled'` | Visual style. |
 | `size` | `'3xs' \| '2xs' \| 'xs' \| 'sm' \| 'md' \| 'lg'` | `'md'` | Button size. |
-| `disabled` | `boolean` | `false` | Disables the button. |
-| `type` | `'button' \| 'submit' \| 'reset'` | `'button'` | Native button type for form integration. |
+| `disabled` | `boolean` | `false` | Disables the button. Also removes `href` when rendered as an anchor. |
+| `type` | `'button' \| 'submit' \| 'reset'` | `'button'` | Native button type for form integration. Ignored when `href` is set. |
 | `active` | `boolean` | `false` | Applies an active/pressed visual state. |
 | `block` | `boolean` | `false` | Makes the button full-width. |
+| `href` | `string` | - | When set, the button renders as an `<a>` anchor. |
+| `target` | `string` | - | Browsing context for the link (e.g. `_blank`). Only meaningful with `href`. |
+| `rel` | `string` | - | Relationship to the link target (e.g. `noopener noreferrer`). Only meaningful with `href`. |
 
 ## Slots
 
 | Name | Description |
 |------|-------------|
 | (default) | Button content - text, icons, or both. A slot containing only `<ae-icon>` enables icon-button mode. |
+
+## CSS Parts
+
+| Part | Description |
+|------|-------------|
+| `button` | The interactive element - a `<button>`, or an `<a>` anchor when `href` is set. |
 
 ## CSS Custom Properties
 
