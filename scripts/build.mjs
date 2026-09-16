@@ -35,6 +35,7 @@ const entryPoints = {
   icon:           'src/icon/index.ts',
   image:          'src/image/index.ts',
   'icon-button':  'src/icon-button/index.ts',
+  list:           'src/list/index.ts',
   navbar:         'src/navbar/index.ts',
   'number-input': 'src/number-input/index.ts',
   'radio-group':  'src/radio-group/index.ts',

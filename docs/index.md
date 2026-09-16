@@ -69,6 +69,7 @@ import 'aeico-components';
 | [Card](./card.md) | `ae-card` | Container with optional header and footer sections. |
 | [Detail](./detail.md) | `ae-detail` | Expandable/collapsible content panel. |
 | [Image](./image.md) | `ae-image` | Image with caption overlay and fullscreen grouped viewer. |
+| [List](./list.md) | `ae-list` | Vertical list container with dividers and rich item rows. |
 | [Tag](./tag.md) | `ae-tag` | Inline label for annotation or filtering, with optional dismiss. |
 | [Tree](./tree.md) | `ae-tree` | Hierarchical tree view with selection and checkbox support. |
 

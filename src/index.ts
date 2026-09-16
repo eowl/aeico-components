@@ -69,6 +69,7 @@ export { Menu, MenuItem } from './menu';
 export { default as Tooltip } from './tooltip';
 export { default as Pagination } from './pagination';
 export { Tree, TreeItem } from './tree';
+export { List, ListItem } from './list';
 
 // Component types
 export type { SelectProps, SelectOption, SelectOptions, SelectOptionValue } from './select';
@@ -117,3 +118,10 @@ export type {
   TreeExpandDetail,
   TreeCheckDetail,
 } from './tree';
+export type {
+  ListProps,
+  ListItemProps,
+  ListVariant,
+  ListSelectDetail,
+  ParentListLike,
+} from './list';

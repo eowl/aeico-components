@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>(function(){if(localStorage.getItem("aeico-demo-theme")==="dark")document.documentElement.setAttribute("theme","dark")})()</script>
+  <title>List - Aeico Components</title>
+  <link rel="stylesheet" href="../demo.css">
+  <script type="module" src="../shared.ts"></script>
+</head>
+<body>
+  <div class="content">
+    <div class="section">
+      <h2>List</h2>
+      <span class="tag">&lt;ae-list&gt; &lt;ae-list-item&gt;</span>
+
+      <div class="demo-group">
+        <label>Variants</label>
+        <div class="demo-row" style="flex-direction: column; align-items: stretch;">
+          <ae-list style="width: 100%; max-width: 560px;">
+            <ae-list-item key="a">subtle (default)</ae-list-item>
+            <ae-list-item key="b">Item B</ae-list-item>
+            <ae-list-item key="c">Item C</ae-list-item>
+          </ae-list>
+          <ae-list variant="faint" style="width: 100%; max-width: 560px;">
+            <ae-list-item key="a">faint</ae-list-item>
+            <ae-list-item key="b">Item B</ae-list-item>
+            <ae-list-item key="c">Item C</ae-list-item>
+          </ae-list>
+          <ae-list variant="filled" style="width: 100%; max-width: 560px;">
+            <ae-list-item key="a">filled</ae-list-item>
+            <ae-list-item key="b">Item B</ae-list-item>
+            <ae-list-item key="c">Item C</ae-list-item>
+          </ae-list>
+          <ae-list variant="outlined" divided style="width: 100%; max-width: 560px;">
+            <ae-list-item key="a">outlined + divided</ae-list-item>
+            <ae-list-item key="b">Item B</ae-list-item>
+            <ae-list-item key="c">Item C</ae-list-item>
+          </ae-list>
+          <ae-list variant="text" divided style="width: 100%; max-width: 560px;">
+            <ae-list-item key="a">text + divided</ae-list-item>
+            <ae-list-item key="b">Item B</ae-list-item>
+            <ae-list-item key="c">Item C</ae-list-item>
+          </ae-list>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>Divided</label>
+        <div class="demo-row">
+          <ae-list divided style="width: 100%; max-width: 560px;">
+            <ae-list-item key="a">Item A</ae-list-item>
+            <ae-list-item key="b">Item B</ae-list-item>
+            <ae-list-item key="c">Item C</ae-list-item>
+          </ae-list>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>Description</label>
+        <div class="demo-row">
+          <ae-list style="width: 100%; max-width: 560px;">
+            <ae-list-item key="profile" description="Account settings and preferences">Profile</ae-list-item>
+            <ae-list-item key="security" description="Password and two-factor authentication">Security</ae-list-item>
+            <ae-list-item key="notifications" description="Email and push notifications">Notifications</ae-list-item>
+          </ae-list>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>Start icon</label>
+        <div class="demo-row">
+          <ae-list style="width: 100%; max-width: 560px;">
+            <ae-list-item key="user">
+              <ae-icon name="user" slot="start"></ae-icon>
+              Profile
+            </ae-list-item>
+            <ae-list-item key="settings">
+              <ae-icon name="settings" slot="start"></ae-icon>
+              Settings
+            </ae-list-item>
+            <ae-list-item key="home">
+              <ae-icon name="home" slot="start"></ae-icon>
+              Home
+            </ae-list-item>
+          </ae-list>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>End badge</label>
+        <div class="demo-row">
+          <ae-list divided style="width: 100%; max-width: 560px;">
+            <ae-list-item key="inbox">
+              Inbox
+              <ae-badge slot="end" color="primary">3</ae-badge>
+            </ae-list-item>
+            <ae-list-item key="spam" description="Moved automatically">
+              Spam
+              <ae-badge slot="end" color="danger">12</ae-badge>
+            </ae-list-item>
+            <ae-list-item key="archive">
+              Archive
+              <ae-badge slot="end" variant="outlined" color="success">done</ae-badge>
+            </ae-list-item>
+          </ae-list>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>Disabled</label>
+        <div class="demo-row">
+          <ae-list divided style="width: 100%; max-width: 560px;">
+            <ae-list-item key="a">Available</ae-list-item>
+            <ae-list-item key="b" disabled>Unavailable</ae-list-item>
+            <ae-list-item key="c">Available</ae-list-item>
+          </ae-list>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>Selection (click to select, single-select)</label>
+        <div class="demo-row">
+          <ae-list variant="outlined" id="select-demo" style="width: 100%; max-width: 560px;">
+            <ae-list-item key="a">Item A</ae-list-item>
+            <ae-list-item key="b">Item B</ae-list-item>
+            <ae-list-item key="c">Item C</ae-list-item>
+          </ae-list>
+        </div>
+        <div class="demo-row">
+          <span id="select-output" style="font-family: monospace; font-size: 0.8rem; color: var(--text-secondary);"></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script type="module">
+    const list = document.getElementById('select-demo');
+    const output = document.getElementById('select-output');
+    list.addEventListener('select', (e) => {
+      const { key, selected, selectedKeys } = e.detail;
+      output.textContent = `select -> key: ${key}, selected: ${selected}, selectedKeys: [${selectedKeys.join(', ')}]`;
+    });
+  </script>
+</body>
+</html>
