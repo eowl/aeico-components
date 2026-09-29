@@ -30,6 +30,13 @@ import { prop } from 'aeico';
  * <ae-button variant="danger" size="sm">Delete</ae-button>
  * <ae-button variant="subtle">Cancel</ae-button>
  * ```
+ *
+ * @example
+ * ```html
+ * <!-- Link button - renders as an anchor -->
+ * <ae-button href="/settings" color="primary">Settings</ae-button>
+ * <ae-button href="https://example.com" target="_blank" rel="noopener noreferrer">Docs</ae-button>
+ * ```
  */
 class Button extends AeicoComponent {
   protected static styles = [styleVariables, sizeCSS, colorCSS, buttonStyle];
@@ -55,7 +62,16 @@ class Button extends AeicoComponent {
   @prop({ type: Boolean })
   block?: boolean;
 
-  private _buttonElement: HTMLButtonElement | null = null;
+  @prop({ type: String })
+  href?: string;
+
+  @prop({ type: String })
+  target?: string;
+
+  @prop({ type: String })
+  rel?: string;
+
+  private _controlElement: HTMLButtonElement | HTMLAnchorElement | null = null;
   private _slotElement: HTMLSlotElement | null = null;
   private _autoAriaLabel = false;
 
@@ -89,19 +105,35 @@ class Button extends AeicoComponent {
   };
 
   protected render() {
-    return html(({ button, slot }) => {
-      this._buttonElement = button(
-        {
-          type: this.type || 'button',
-          disabled: this.disabled,
-          part: 'button',
-          'aria-pressed': this.active,
-          'aria-disabled': this.disabled,
-        },
-        () => {
-          this._slotElement = slot({ '@slotchange': this._handleSlotChange });
-        },
-      );
+    return html(({ button, a, slot }) => {
+      const children = () => {
+        this._slotElement = slot({ '@slotchange': this._handleSlotChange });
+      };
+
+      if (this.href) {
+        this._controlElement = a(
+          {
+            href: this.disabled ? undefined : this.href,
+            target: this.target,
+            rel: this.rel,
+            part: 'button',
+            'aria-pressed': this.active,
+            'aria-disabled': this.disabled ? 'true' : undefined,
+          },
+          children,
+        );
+      } else {
+        this._controlElement = button(
+          {
+            type: this.type || 'button',
+            disabled: this.disabled,
+            part: 'button',
+            'aria-pressed': this.active,
+            'aria-disabled': this.disabled ? 'true' : undefined,
+          },
+          children,
+        );
+      }
     });
   }
 
@@ -109,8 +141,8 @@ class Button extends AeicoComponent {
    * Programmatically click the button
    */
   click() {
-    if (!this.disabled && this._buttonElement) {
-      this._buttonElement.click();
+    if (!this.disabled && this._controlElement) {
+      this._controlElement.click();
     }
   }
 
@@ -118,8 +150,8 @@ class Button extends AeicoComponent {
    * Focus the button
    */
   focus() {
-    if (this._buttonElement) {
-      this._buttonElement.focus();
+    if (this._controlElement) {
+      this._controlElement.focus();
     }
   }
 
@@ -127,8 +159,8 @@ class Button extends AeicoComponent {
    * Blur the button
    */
   blur() {
-    if (this._buttonElement) {
-      this._buttonElement.blur();
+    if (this._controlElement) {
+      this._controlElement.blur();
     }
   }
 }
