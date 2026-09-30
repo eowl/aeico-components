@@ -3,6 +3,7 @@ import styleVariables from '../styles/variables.css';
 import style from '../styles/components/dialog.css';
 import AeicoComponent from '../aeico-component';
 import { html, tags } from 'aeico';
+import { acquireScrollLock, releaseScrollLock } from '../utils/scroll-lock';
 import '../icon/icon';
 
 class Dialog extends AeicoComponent {
@@ -28,6 +29,7 @@ class Dialog extends AeicoComponent {
 
   private _dialogEl: HTMLDialogElement | null = null;
   private _hasFooter = false;
+  private _scrollLocked = false;
 
   protected render() {
     return html(({ dialog, div, header, footer, span, button, slot }) => {
@@ -107,6 +109,7 @@ class Dialog extends AeicoComponent {
   };
 
   private _handleNativeClose = () => {
+    this._releaseScrollLock();
     this.emit('close', { detail: { target: this } });
   };
 
@@ -123,6 +126,10 @@ class Dialog extends AeicoComponent {
     if (!this._dialogEl) return;
     if (this.modal !== false) {
       this._dialogEl.showModal();
+      if (!this._scrollLocked) {
+        acquireScrollLock();
+        this._scrollLocked = true;
+      }
     } else {
       this._dialogEl.show();
     }
@@ -135,6 +142,19 @@ class Dialog extends AeicoComponent {
 
   isOpen(): boolean {
     return this._dialogEl?.open ?? false;
+  }
+
+  private _releaseScrollLock() {
+    if (this._scrollLocked) {
+      releaseScrollLock();
+      this._scrollLocked = false;
+    }
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    // Removing the element does not fire the native close event.
+    this._releaseScrollLock();
   }
 }
 

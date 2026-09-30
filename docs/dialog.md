@@ -121,7 +121,7 @@ import 'aeico-components';
 | `label` | `string` | - | Title shown in the dialog header. |
 | `width` | `string` | - | CSS width of the dialog panel (e.g. `'600px'`, `'80vw'`). |
 | `height` | `string` | - | CSS height of the dialog panel. |
-| `modal` | `boolean` | `true` | When `true`, renders a backdrop and traps focus. |
+| `modal` | `boolean` | `true` | When `true`, renders a backdrop, traps focus, and locks page scrolling while open. |
 | `closable` | `boolean` | `true` | Shows the built-in close (×) button. |
 | `header` | `boolean` | `true` | Shows the header bar. Set to `false` to hide it entirely. |
 | `closeOnOverlayClick` | `boolean` | `true` | Closes the dialog when the user clicks the backdrop. |
@@ -140,3 +140,9 @@ import 'aeico-components';
 |-------|--------|-------------|
 | `open` | - | Fired when the dialog opens. |
 | `close` | - | Fired when the dialog closes. |
+
+## Scrolling
+
+- The dialog body (`.body`) scrolls independently when content exceeds the panel height (`max-height: 90vh` by default).
+- While a modal dialog is open, the page behind it cannot be scrolled; the scrollbar width is compensated so the page does not shift. Modeless dialogs (`modal="false"`) do not lock scrolling.
+- When multiple overlays are open, the page stays locked until the last one is closed.
