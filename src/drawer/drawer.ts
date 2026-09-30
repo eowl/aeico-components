@@ -4,6 +4,7 @@ import style from '../styles/components/drawer.css';
 import AeicoComponent from '../aeico-component';
 import { html, prop, tags } from 'aeico';
 import type { DrawerPlacement } from './defines';
+import { acquireScrollLock, releaseScrollLock } from '../utils/scroll-lock';
 import '../icon/icon';
 
 class Drawer extends AeicoComponent {
@@ -32,6 +33,7 @@ class Drawer extends AeicoComponent {
 
   private _panelEl: HTMLDivElement | null = null;
   private _hasFooter = false;
+  private _scrollLocked = false;
 
   protected render() {
     const placement = this.placement || 'right';
@@ -133,6 +135,10 @@ class Drawer extends AeicoComponent {
     this.removeAttribute('data-closing');
     this.setAttribute('data-open', '');
     document.addEventListener('keydown', this._handleKeydown);
+    if (this.modal && !this._scrollLocked) {
+      acquireScrollLock();
+      this._scrollLocked = true;
+    }
     requestAnimationFrame(() => {
       const btn = this.shadowRoot?.querySelector<HTMLElement>('.close-btn');
       (btn ?? this._panelEl)?.focus();
@@ -147,8 +153,16 @@ class Drawer extends AeicoComponent {
     this._closeTimeout = setTimeout(() => {
       this.removeAttribute('data-open');
       this.removeAttribute('data-closing');
+      this._releaseScrollLock();
       this.emit('close', { detail: { target: this } });
     }, 220);
+  }
+
+  private _releaseScrollLock() {
+    if (this._scrollLocked) {
+      releaseScrollLock();
+      this._scrollLocked = false;
+    }
   }
 
   isOpen(): boolean {
@@ -159,6 +173,7 @@ class Drawer extends AeicoComponent {
     super.disconnectedCallback();
     clearTimeout(this._closeTimeout!);
     document.removeEventListener('keydown', this._handleKeydown);
+    this._releaseScrollLock();
   }
 }
 
