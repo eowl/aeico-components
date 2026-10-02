@@ -8,9 +8,9 @@
  */
 
 import * as esbuild from 'esbuild'
-import { readFile } from 'node:fs/promises'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { cssInline } from './lib/esbuild.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const rootDir = resolve(__dirname, '..')
@@ -54,36 +54,6 @@ const entryPoints = {
   spinner:        'src/spinner/index.ts',
 }
 
-/**
- * esbuild plugin: imports of `.css` files are resolved to a string export.
- *
- *   import variables from '../styles/variables.css'
- *
- * This replaces Vite's `?inline` query parameter.
- */
-function cssInlinePlugin() {
-  return {
-    name: 'css-inline',
-    setup(build) {
-      // Intercept .css files that are loaded via import/require
-      build.onResolve({ filter: /\.css$/ }, (args) => {
-        return {
-          path: resolve(args.resolveDir, args.path),
-          namespace: 'css-inline',
-        }
-      })
-
-      build.onLoad({ filter: /.*/, namespace: 'css-inline' }, async (args) => {
-        const cssText = await readFile(args.path, 'utf-8')
-        return {
-          contents: `export default ${JSON.stringify(cssText)}`,
-          loader: 'js',
-        }
-      })
-    },
-  }
-}
-
 const watch = process.argv.includes('--watch')
 
 const buildOptions = {
@@ -102,7 +72,7 @@ const buildOptions = {
   },
   sourcemap: true,
   minify: false,
-  plugins: [cssInlinePlugin()],
+  plugins: [cssInline()],
   absWorkingDir: rootDir,
 }
 
