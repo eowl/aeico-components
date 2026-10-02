@@ -15,9 +15,11 @@ import fs from 'fs'
  *
  * Exceptions: `layout.css` and `radius.css` (side-effect imports in shared.ts)
  * are left alone - they should be injected as normal stylesheets.
+ *
+ * Keep the skip list (and the module output shape) in sync with
+ * `scripts/lib/css-module.mjs`, which backs the esbuild and test-runner builds.
  */
 function cssStringPlugin() {
-  const RAW_CSS_PATTERN = /\/src\/styles\/(variables|size|color|components\/)/
   const SKIP_PATTERN = /\/src\/styles\/(layout|radius)\.css$/
 
   return {
@@ -27,7 +29,6 @@ function cssStringPlugin() {
       // Only handle .css files, skip layout.css and radius.css
       if (!id.endsWith('.css')) return
       if (SKIP_PATTERN.test(id)) return
-      if (!RAW_CSS_PATTERN.test(id)) return
 
       // Vite's CSS plugin has already processed this - `code` is the
       // transformed JS module. We replace it with a simple default export.

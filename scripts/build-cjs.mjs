@@ -8,9 +8,9 @@
  */
 
 import * as esbuild from 'esbuild'
-import { readFile } from 'node:fs/promises'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { cssInline } from './lib/esbuild.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const rootDir = resolve(__dirname, '..')
@@ -52,28 +52,6 @@ const entryPoints = {
   spinner:        'src/spinner/index.ts',
 }
 
-function cssInlinePlugin() {
-  return {
-    name: 'css-inline',
-    setup(build) {
-      build.onResolve({ filter: /\.css$/ }, (args) => {
-        return {
-          path: resolve(args.resolveDir, args.path),
-          namespace: 'css-inline',
-        }
-      })
-
-      build.onLoad({ filter: /.*/, namespace: 'css-inline' }, async (args) => {
-        const cssText = await readFile(args.path, 'utf-8')
-        return {
-          contents: `module.exports = ${JSON.stringify(cssText)}`,
-          loader: 'js',
-        }
-      })
-    },
-  }
-}
-
 await esbuild.build({
   entryPoints,
   bundle: true,
@@ -91,7 +69,7 @@ await esbuild.build({
   },
   sourcemap: true,
   minify: false,
-  plugins: [cssInlinePlugin()],
+  plugins: [cssInline({ format: 'cjs' })],
   absWorkingDir: rootDir,
 })
 
