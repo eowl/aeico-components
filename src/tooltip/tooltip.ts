@@ -43,6 +43,9 @@ class Tooltip extends AeicoComponent {
   accessor open: boolean = false;
 
   private _outsideClickHandler: ((e: MouseEvent) => void) | null = null;
+  private _positionCleanup: (() => void) | null = null;
+  private readonly _supportsPopover =
+    typeof HTMLElement !== 'undefined' && 'popover' in HTMLElement.prototype;
 
   connectedCallback() {
     super.connectedCallback();
@@ -57,6 +60,7 @@ class Tooltip extends AeicoComponent {
       if (!e.composedPath().includes(this)) this.open = false;
     };
     document.addEventListener('click', this._outsideClickHandler);
+    queueMicrotask(() => this._syncPopover());
   }
 
   disconnectedCallback() {
@@ -65,6 +69,7 @@ class Tooltip extends AeicoComponent {
       document.removeEventListener('click', this._outsideClickHandler);
       this._outsideClickHandler = null;
     }
+    this._stopPositioning();
   }
 
   private _handleMouseEnter = () => {
@@ -101,7 +106,7 @@ class Tooltip extends AeicoComponent {
 
     const host = this.getBoundingClientRect();
     const panelRect = panel.getBoundingClientRect();
-    const gap = 6; // Match --ae-tooltip-gap: 6px
+    const gap = 6;
     const pw = panelRect.width;
     const ph = panelRect.height;
 
@@ -146,9 +151,50 @@ class Tooltip extends AeicoComponent {
     panel.style.left = `${left}px`;
   }
 
-  protected onUpdated(changedProps: Map<string, unknown>) {
-    if (changedProps.has('open') && this.open) {
+  private _syncPopover(): void {
+    if (!this._supportsPopover) {
+      if (this.open) this._updatePosition();
+      return;
+    }
+    const panel = this.shadowRoot?.querySelector<HTMLElement>('.tooltip-panel');
+    if (!panel) return;
+    if (this.open && !panel.matches(':popover-open')) {
+      panel.style.visibility = 'hidden';
+      panel.style.display = 'block';
       this._updatePosition();
+      panel.style.display = '';
+      panel.style.visibility = '';
+      panel.showPopover();
+      this._startPositioning();
+    } else if (!this.open && panel.matches(':popover-open')) {
+      panel.hidePopover();
+      this._stopPositioning();
+    } else if (this.open) {
+      this._updatePosition();
+    }
+  }
+
+  private _startPositioning(): void {
+    if (this._positionCleanup) return;
+    const onMove = () => {
+      if (this.open) this._updatePosition();
+    };
+    document.addEventListener('scroll', onMove, true);
+    window.addEventListener('resize', onMove);
+    this._positionCleanup = () => {
+      document.removeEventListener('scroll', onMove, true);
+      window.removeEventListener('resize', onMove);
+    };
+  }
+
+  private _stopPositioning(): void {
+    this._positionCleanup?.();
+    this._positionCleanup = null;
+  }
+
+  protected onUpdated(changedProps: Map<string, unknown>) {
+    if (changedProps.has('open')) {
+      this._syncPopover();
     }
   }
 
@@ -160,6 +206,7 @@ class Tooltip extends AeicoComponent {
           className: `tooltip-panel placement-${this.placement ?? 'top'}`,
           role: 'tooltip',
           'aria-hidden': String(!this.open),
+          ...(this._supportsPopover ? { popover: 'manual' as const } : {}),
         },
         () => {
           slot({ name: 'tooltip' }, () => {
