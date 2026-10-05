@@ -77,10 +77,6 @@ class Select extends AeicoField<SelectOptionValue | SelectMultiValue> {
   })
   override value: SelectOptionValue | SelectMultiValue | undefined = undefined;
 
-  // Override base class defaultValue so arrays are JSON-serialized to the attribute,
-  // matching the value prop's parser/formatter. Without this override, setting
-  // defaultValue = ['a', 'b'] would be serialized as String(['a','b']) = "a,b",
-  // and reset() would restore a single string "a,b" instead of the array.
   @prop({
     type: String,
     parser: (v) => {
@@ -201,10 +197,6 @@ class Select extends AeicoField<SelectOptionValue | SelectMultiValue> {
     this._dropdownEl?.classList.toggle('position-top', this._isOpen && this._flipToTop);
   }
 
-  /**
-   * Sync internal open state from popover toggle events so Escape key
-   * and light dismiss (click outside) behave like a native select.
-   */
   private readonly _handlePopoverToggle = (e: Event): void => {
     const open = (e as ToggleEvent).newState === 'open';
     if (open === this._isOpen) return;
@@ -220,14 +212,12 @@ class Select extends AeicoField<SelectOptionValue | SelectMultiValue> {
   private _flipToTop = false;
   private _positionCleanup: (() => void) | null = null;
 
-  /** Position the popover near the trigger, flipping up when space is tight. */
   private _positionDropdown(): void {
     if (!this._triggerEl || !this._dropdownEl) return;
     const rect = this._triggerEl.getBoundingClientRect();
     const margin = 2;
     const dd = this._dropdownEl;
     const prevDisplay = dd.style.display;
-    // Measure natural height while hidden
     const wasOpen = dd.classList.contains('open');
     if (!wasOpen) {
       dd.style.visibility = 'hidden';
@@ -242,13 +232,13 @@ class Select extends AeicoField<SelectOptionValue | SelectMultiValue> {
     const pos = this.position || 'bottom';
     let flipToTop = false;
     if (pos === 'bottom') {
-      // Flip up when the dropdown would overflow the viewport and there is more room above
-      flipToTop = rect.bottom + margin + height > window.innerHeight && rect.top > window.innerHeight - rect.bottom;
+      flipToTop =
+        rect.bottom + margin + height > window.innerHeight &&
+        rect.top > window.innerHeight - rect.bottom;
     } else if (pos === 'top') {
       flipToTop = !(rect.top - margin - height < 0 && window.innerHeight - rect.bottom > rect.top);
     }
     this._flipToTop = flipToTop;
-
 
     dd.style.left = `${rect.left}px`;
     dd.style.minWidth = `${rect.width}px`;
@@ -261,7 +251,6 @@ class Select extends AeicoField<SelectOptionValue | SelectMultiValue> {
     }
   }
 
-  /** Follow the trigger on scroll/resize while the dropdown is open. */
   private _startPositioning(): void {
     this._positionDropdown();
     if (this._positionCleanup) return;
@@ -274,8 +263,8 @@ class Select extends AeicoField<SelectOptionValue | SelectMultiValue> {
         rect.right < 0 ||
         rect.left > window.innerWidth
       ) {
-        // Trigger scrolled out of view - close like a native select
         this._closeDropdown();
+
         return;
       }
       this._positionDropdown();
@@ -439,8 +428,6 @@ class Select extends AeicoField<SelectOptionValue | SelectMultiValue> {
       this.renderHelperText();
       this.renderError();
 
-      // Visually-hidden input so native form constraint validation works for `required`.
-      // type="text" (not "hidden") is required - type="hidden" is exempt from constraint validation.
       const currentValue =
         this.value != null &&
         this.value !== '' &&

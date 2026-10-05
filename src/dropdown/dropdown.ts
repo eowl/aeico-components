@@ -195,20 +195,28 @@ class Dropdown extends AeicoComponent {
 
     if (dir === 'bottom') {
       this._flipVertical =
-        rect.bottom + margin + h > window.innerHeight && rect.top > window.innerHeight - rect.bottom;
+        rect.bottom + margin + h > window.innerHeight &&
+        rect.top > window.innerHeight - rect.bottom;
     } else if (dir === 'top') {
-      this._flipVertical = !(rect.top - margin - h < 0 && window.innerHeight - rect.bottom > rect.top);
+      this._flipVertical = !(
+        rect.top - margin - h < 0 && window.innerHeight - rect.bottom > rect.top
+      );
     } else {
       this._flipVertical = false;
     }
     panel.classList.toggle('flipped', this._flipVertical);
 
-    const startX = align === 'end' ? rect.right - w : align === undefined ? rect.left + (rect.width - w) / 2 : rect.left;
+    const startX =
+      align === 'end'
+        ? rect.right - w
+        : align === undefined
+          ? rect.left + (rect.width - w) / 2
+          : rect.left;
     const startY = rect.top + (rect.height - h) / 2;
 
     panel.style.width = `${w}px`;
     if (dir === 'bottom' || dir === 'top') {
-      const below = dir === 'bottom' !== this._flipVertical;
+      const below = (dir === 'bottom') !== this._flipVertical;
       panel.style.left = `${startX}px`;
       if (below) {
         panel.style.bottom = '';
