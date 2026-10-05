@@ -138,44 +138,70 @@
 
 .dropdown {
   display: none;
-  position: absolute;
-  z-index: var(--select-dropdown-z-index);
   background: var(--ae-surface-overlay);
   border: 1px solid var(--ae-border-default);
   border-radius: var(--ae-border-radius, var(--ae-radius-xs));
   box-shadow: var(--select-dropdown-shadow);
   max-height: var(--select-dropdown-max-height);
   overflow-y: auto;
-  min-width: 100%;
   box-sizing: border-box;
+}
+
+/* Fallback (no Popover API): absolute inside the container, may be clipped
+   by ancestor overflow. Kept only for browsers without popover support. */
+.dropdown:not([popover]) {
+  position: absolute;
+  z-index: var(--select-dropdown-z-index);
+  min-width: 100%;
+}
+
+.dropdown:not([popover]).position-bottom {
+  top: 100%;
+  left: 0;
+  margin-top: 2px;
+}
+
+.dropdown:not([popover]).position-top {
+  bottom: 100%;
+  left: 0;
+  margin-bottom: 2px;
+}
+
+.dropdown:not([popover]).position-left {
+  right: 100%;
+  top: 0;
+  margin-right: 2px;
+}
+
+.dropdown:not([popover]).position-right {
+  left: 100%;
+  top: 0;
+  margin-left: 2px;
+}
+
+/* Popover mode: rendered in the top layer, positioned via inline styles
+   computed from the trigger rect. Reset UA popover default centering. */
+.dropdown[popover] {
+  position: fixed;
+  inset: auto;
+  margin: 0;
+  width: max-content;
+  border: 1px solid var(--ae-border-default);
+  padding: 0;
+  overflow: auto;
+}
+
+.dropdown[popover].position-left,
+.dropdown[popover].position-right {
+  top: auto;
 }
 
 .dropdown.open {
   display: block;
 }
 
-.dropdown.position-bottom {
-  top: 100%;
-  left: 0;
-  margin-top: 2px;
-}
-
-.dropdown.position-top {
-  bottom: 100%;
-  left: 0;
-  margin-bottom: 2px;
-}
-
-.dropdown.position-left {
-  right: 100%;
-  top: 0;
-  margin-right: 2px;
-}
-
-.dropdown.position-right {
-  left: 100%;
-  top: 0;
-  margin-left: 2px;
+.dropdown[popover]:popover-open {
+  display: block;
 }
 
 .container:has(.action-controls) .trigger {

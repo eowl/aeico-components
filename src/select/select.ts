@@ -37,6 +37,9 @@ class Select extends AeicoField<SelectOptionValue | SelectMultiValue> {
   private _slotOptionData: Array<{ value: string; label: string }> = [];
   private _selectedListEl: HTMLElement | null = null;
 
+  private readonly _supportsPopover =
+    typeof HTMLElement !== 'undefined' && 'popover' in HTMLElement.prototype;
+
   @prop({ type: Boolean, observe: false, reflect: false })
   accessor _expanded: boolean = false;
 
@@ -55,9 +58,6 @@ class Select extends AeicoField<SelectOptionValue | SelectMultiValue> {
   @prop({ type: Boolean })
   accessor expandable: boolean = false;
 
-  // Override base class value prop to support both string and array (multi-select).
-  // Uses field decorator (not accessor) because TypeScript TS2611 disallows overriding
-  // a parent class data property (declare value?) with an accessor in a subclass.
   @prop({
     type: String,
     parser: (v) => {
@@ -179,24 +179,119 @@ class Select extends AeicoField<SelectOptionValue | SelectMultiValue> {
 
   private _openDropdown(): void {
     this._isOpen = true;
+    if (this._supportsPopover && this._dropdownEl) {
+      this._dropdownEl.showPopover();
+      this._startPositioning();
+    }
     this._syncOpenState();
   }
 
   private _closeDropdown(): void {
     this._isOpen = false;
+    if (this._supportsPopover && this._dropdownEl?.matches(':popover-open')) {
+      this._dropdownEl.hidePopover();
+    }
+    this._stopPositioning();
     this._syncOpenState();
   }
 
   private _syncOpenState(): void {
     this._triggerEl?.classList.toggle('open', this._isOpen);
     this._dropdownEl?.classList.toggle('open', this._isOpen);
+    this._dropdownEl?.classList.toggle('position-top', this._isOpen && this._flipToTop);
   }
 
-  private readonly _handleOutsideClick = (e: Event): void => {
-    if (!e.composedPath().includes(this)) {
-      this._closeDropdown();
+  /**
+   * Sync internal open state from popover toggle events so Escape key
+   * and light dismiss (click outside) behave like a native select.
+   */
+  private readonly _handlePopoverToggle = (e: Event): void => {
+    const open = (e as ToggleEvent).newState === 'open';
+    if (open === this._isOpen) return;
+    this._isOpen = open;
+    if (open) {
+      this._startPositioning();
+    } else {
+      this._stopPositioning();
     }
+    this._syncOpenState();
   };
+
+  private _flipToTop = false;
+  private _positionCleanup: (() => void) | null = null;
+
+  /** Position the popover near the trigger, flipping up when space is tight. */
+  private _positionDropdown(): void {
+    if (!this._triggerEl || !this._dropdownEl) return;
+    const rect = this._triggerEl.getBoundingClientRect();
+    const margin = 2;
+    const dd = this._dropdownEl;
+    const prevDisplay = dd.style.display;
+    // Measure natural height while hidden
+    const wasOpen = dd.classList.contains('open');
+    if (!wasOpen) {
+      dd.style.visibility = 'hidden';
+      dd.style.display = 'block';
+    }
+    const height = dd.offsetHeight;
+    if (!wasOpen) {
+      dd.style.display = prevDisplay;
+      dd.style.visibility = '';
+    }
+
+    const pos = this.position || 'bottom';
+    let flipToTop = false;
+    if (pos === 'bottom') {
+      // Flip up when the dropdown would overflow the viewport and there is more room above
+      flipToTop = rect.bottom + margin + height > window.innerHeight && rect.top > window.innerHeight - rect.bottom;
+    } else if (pos === 'top') {
+      flipToTop = !(rect.top - margin - height < 0 && window.innerHeight - rect.bottom > rect.top);
+    }
+    this._flipToTop = flipToTop;
+
+
+    dd.style.left = `${rect.left}px`;
+    dd.style.minWidth = `${rect.width}px`;
+    if (flipToTop) {
+      dd.style.top = '';
+      dd.style.bottom = `${window.innerHeight - rect.top + margin}px`;
+    } else {
+      dd.style.bottom = '';
+      dd.style.top = `${rect.bottom + margin}px`;
+    }
+  }
+
+  /** Follow the trigger on scroll/resize while the dropdown is open. */
+  private _startPositioning(): void {
+    this._positionDropdown();
+    if (this._positionCleanup) return;
+    const onMove = () => {
+      if (!this._triggerEl) return;
+      const rect = this._triggerEl.getBoundingClientRect();
+      if (
+        rect.bottom < 0 ||
+        rect.top > window.innerHeight ||
+        rect.right < 0 ||
+        rect.left > window.innerWidth
+      ) {
+        // Trigger scrolled out of view - close like a native select
+        this._closeDropdown();
+        return;
+      }
+      this._positionDropdown();
+    };
+    document.addEventListener('scroll', onMove, true);
+    window.addEventListener('resize', onMove);
+    this._positionCleanup = () => {
+      document.removeEventListener('scroll', onMove, true);
+      window.removeEventListener('resize', onMove);
+    };
+  }
+
+  private _stopPositioning(): void {
+    this._positionCleanup?.();
+    this._positionCleanup = null;
+  }
 
   private readonly _handleOptionSelect = (e: Event): void => {
     const { value, label } = (e as CustomEvent<{ value: string; label: string }>).detail;
@@ -221,14 +316,13 @@ class Select extends AeicoField<SelectOptionValue | SelectMultiValue> {
 
   connectedCallback() {
     super.connectedCallback();
-    document.addEventListener('click', this._handleOutsideClick);
     this.addEventListener('selectoption', this._handleOptionSelect);
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    document.removeEventListener('click', this._handleOutsideClick);
     this.removeEventListener('selectoption', this._handleOptionSelect);
+    this._stopPositioning();
   }
 
   private _syncSlotOptionsSelected(): void {
@@ -326,7 +420,10 @@ class Select extends AeicoField<SelectOptionValue | SelectMultiValue> {
 
           this._dropdownEl = div(
             {
-              className: `dropdown position-${position}${this._isOpen ? ' open' : ''}`,
+              className: `dropdown position-${position}${this._isOpen ? ' open' : ''}${this._flipToTop ? ' position-top' : ''}`,
+              ...(this._supportsPopover
+                ? { popover: 'auto' as const, '@toggle': this._handlePopoverToggle }
+                : {}),
             },
             () => {
               this._renderProgrammaticOptions();
