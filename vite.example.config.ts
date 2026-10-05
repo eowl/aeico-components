@@ -26,6 +26,9 @@ function cssStringPlugin() {
     name: 'css-string',
     enforce: 'post' as const,
     transform(code: string, id: string) {
+      // Skip virtual modules (e.g. `index.html?html-proxy&direct&index=0.css`
+      // generated for inline <style> blocks) - they do not exist on disk.
+      if (id.includes('?')) return
       // Only handle .css files, skip layout.css and radius.css
       if (!id.endsWith('.css')) return
       if (SKIP_PATTERN.test(id)) return
