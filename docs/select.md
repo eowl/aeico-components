@@ -86,6 +86,12 @@ import 'aeico-components';
 <ae-select position="top" placeholder="Opens up" options='["A", "B", "C"]'></ae-select>
 ```
 
+By default (no `position`) the dropdown opens below the trigger and automatically flips above it when there is not enough space in the viewport, like a native `<select>`.
+
+### Dropdown rendering (top layer)
+
+The dropdown is rendered in the browser's top layer via the Popover API (Chrome 114+, Safari 17+, Firefox 125+), so it is never clipped by ancestor `overflow: hidden` and always paints above other content. Pressing `Escape` or clicking outside closes it, matching native select behavior. In browsers without Popover API support the dropdown falls back to absolute positioning inside the component.
+
 ### Disabled option
 
 ```html

@@ -1,5 +1,5 @@
 import { expect } from '@esm-bundle/chai'
-import { mount, unmountAll, whenDefined } from '../helpers/mount.js'
+import { mount, unmountAll, updated, whenDefined } from '../helpers/mount.js'
 import Tooltip from '../../src/tooltip/tooltip.js'
 
 const TAG_NAME = 'ae-tooltip'
@@ -193,6 +193,77 @@ describe('Tooltip', () => {
       const el = await mount<Tooltip>(`<${TAG_NAME} content="tip" trigger="click" disabled><span>T</span></${TAG_NAME}>`)
       el.dispatchEvent(new MouseEvent('click', { bubbles: true }))
       expect(el.open).to.be.false
+    })
+  })
+
+  describe('popover (top layer)', () => {
+    const supportsPopover = 'popover' in HTMLElement.prototype
+
+    function getPanel(el: Tooltip): HTMLElement {
+      return el.shadowRoot!.querySelector<HTMLElement>('.tooltip-panel')!
+    }
+
+    it('renders the panel as a manual popover when supported', async () => {
+      const el = await mount<Tooltip>(`<${TAG_NAME} content="tip"><span>T</span></${TAG_NAME}>`)
+      const panel = getPanel(el)
+      if (!supportsPopover) return
+      expect(panel.getAttribute('popover')).to.equal('manual')
+    })
+
+    it('shows the panel in the top layer when opened', async () => {
+      const el = await mount<Tooltip>(`<${TAG_NAME} content="tip"><span>T</span></${TAG_NAME}>`)
+      if (!supportsPopover) return
+      el.open = true
+      await updated()
+      expect(getPanel(el).matches(':popover-open')).to.be.true
+    })
+
+    it('hides the popover when closed', async () => {
+      const el = await mount<Tooltip>(`<${TAG_NAME} content="tip" open><span>T</span></${TAG_NAME}>`)
+      await updated()
+      if (!supportsPopover) return
+      expect(getPanel(el).matches(':popover-open')).to.be.true
+
+      el.open = false
+      await updated()
+      expect(getPanel(el).matches(':popover-open')).to.be.false
+    })
+
+    it('positions the panel with fixed coordinates when opened', async () => {
+      const el = await mount<Tooltip>(`<${TAG_NAME} content="tip"><span>T</span></${TAG_NAME}>`)
+      if (!supportsPopover) return
+      el.open = true
+      await updated()
+      expect(getPanel(el).style.top).to.not.be.empty
+      expect(getPanel(el).style.left).to.not.be.empty
+    })
+
+    it('syncs the popover when closed via outside click', async () => {
+      const el = await mount<Tooltip>(`<${TAG_NAME} content="tip"><span>T</span></${TAG_NAME}>`)
+      if (!supportsPopover) return
+      el.open = true
+      await updated()
+
+      document.body.click()
+      await updated()
+
+      // outside-click closes the tooltip (existing behavior for all trigger modes)
+      expect(el.open).to.be.false
+      expect(getPanel(el).matches(':popover-open')).to.be.false
+    })
+
+    it('closes on outside click when trigger="click"', async () => {
+      const el = await mount<Tooltip>(`<${TAG_NAME} content="tip" trigger="click"><span>T</span></${TAG_NAME}>`)
+      if (!supportsPopover) return
+      el.open = true
+      await updated()
+      expect(getPanel(el).matches(':popover-open')).to.be.true
+
+      document.body.click()
+      await updated()
+
+      expect(el.open).to.be.false
+      expect(getPanel(el).matches(':popover-open')).to.be.false
     })
   })
 })

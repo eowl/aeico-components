@@ -4,6 +4,8 @@
 
 A floating label that appears near its trigger element. Provide plain text via the `content` attribute, or rich HTML via the `tooltip` named slot.
 
+The panel is rendered in the browser's top layer via the Popover API (Chrome 114+, Safari 17+, Firefox 125+), so it is never clipped by ancestor `overflow: hidden` and always paints above other content. It follows its trigger on scroll and resize. In browsers without Popover API support the panel falls back to fixed positioning.
+
 ## Import
 
 ```js

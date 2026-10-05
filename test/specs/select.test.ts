@@ -164,6 +164,78 @@ describe('Select', () => {
       getTrigger(el).click()
       expect(getDropdown(el).classList.contains('open')).to.be.false
     })
+
+    it('renders the dropdown as a popover (top layer) when supported', async () => {
+      const el = await mount<Select>(`<${TAG}></${TAG}>`)
+      await updated()
+      const dd = getDropdown(el)
+      if (!('popover' in HTMLElement.prototype)) return // fallback browser
+      expect(dd.hasAttribute('popover')).to.be.true
+      getTrigger(el).click()
+      await updated()
+      expect(dd.matches(':popover-open')).to.be.true
+    })
+
+    it('closes the dropdown on Escape key (light dismiss)', async () => {
+      const el = await mount<Select>(`<${TAG}></${TAG}>`)
+      await updated()
+      if (!('popover' in HTMLElement.prototype)) return // fallback browser
+      getTrigger(el).click()
+      await updated()
+      expect(getDropdown(el).matches(':popover-open')).to.be.true
+
+      getDropdown(el).dispatchEvent(
+        new ToggleEvent('toggle', { newState: 'closed', oldState: 'open' }),
+      )
+      await updated()
+
+      expect(getDropdown(el).classList.contains('open')).to.be.false
+    })
+
+    it('closes the dropdown on outside click (light dismiss)', async () => {
+      const el = await mount<Select>(`<${TAG}></${TAG}>`)
+      await updated()
+      if (!('popover' in HTMLElement.prototype)) return // fallback browser
+      getTrigger(el).click()
+      await updated()
+
+      getDropdown(el).hidePopover()
+      await updated()
+      await new Promise((r) => setTimeout(r, 0))
+
+      expect(getDropdown(el).matches(':popover-open')).to.be.false
+      expect(getDropdown(el).classList.contains('open')).to.be.false
+    })
+
+    it('positions the dropdown with fixed coordinates in popover mode', async () => {
+      const el = await mount<Select>(`<${TAG}></${TAG}>`)
+      await updated()
+      if (!('popover' in HTMLElement.prototype)) return // fallback browser
+      getTrigger(el).click()
+      await updated()
+
+      const dd = getDropdown(el)
+      expect(dd.style.position).to.equal('')
+      expect(dd.style.top).to.not.be.empty
+      expect(dd.style.left).to.not.be.empty
+      expect(dd.classList.contains('position-top')).to.be.false
+    })
+
+    it('flips to position-top when there is no room below', async () => {
+      const el = await mount<Select>(`<${TAG}></${TAG}>`)
+      el.options = FRUITS
+      // Push the select near the bottom of the viewport
+      el.style.position = 'fixed'
+      el.style.top = `${window.innerHeight - 50}px`
+      el.style.left = '10px'
+      el.style.width = '200px'
+      await updated()
+      if (!('popover' in HTMLElement.prototype)) return // fallback browser
+      getTrigger(el).click()
+      await updated()
+
+      expect(getDropdown(el).classList.contains('position-top')).to.be.true
+    })
   })
 
   describe('option selection - options prop', () => {

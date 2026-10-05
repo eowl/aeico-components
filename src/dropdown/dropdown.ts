@@ -57,79 +57,52 @@ import './dropdown-item';
 class Dropdown extends AeicoComponent {
   protected static styles = [variables, style];
 
-  /**
-   * Position of the panel relative to the trigger.
-   * Defaults to `'bottom-start'` (left-aligned, below trigger).
-   */
   @prop({ type: String })
   accessor placement: DropdownPlacement = 'bottom-start';
 
-  /**
-   * Whether the dropdown panel is visible. Reflects as the `open` attribute.
-   * Can be used for controlled open/close state.
-   */
   @prop({ type: Boolean })
   accessor open: boolean = false;
 
-  /**
-   * When `true` (default), clicking a menu item automatically closes the panel.
-   */
   @prop({ type: Boolean })
   accessor closeOnSelect: boolean = true;
 
-  /** Disables the trigger and prevents opening. */
   @prop({ type: Boolean })
   accessor disabled: boolean = false;
 
-  /**
-   * Optional label text. When set, `ae-dropdown` renders its own trigger button
-   * in the shadow DOM (no `slot="trigger"` needed). Inherits `--ae-navbar-link-*`
-   * CSS variables so it automatically matches navbar link styles.
-   */
   @prop({ type: String })
   accessor label: string = '';
 
-  private _outsideClickHandler: ((e: MouseEvent) => void) | null = null;
+  private _flipVertical = false;
+  private _positionCleanup: (() => void) | null = null;
+  private readonly _supportsPopover =
+    typeof HTMLElement !== 'undefined' && 'popover' in HTMLElement.prototype;
 
   connectedCallback() {
     super.connectedCallback();
 
     this.listen('_item-select', this._handleItemSelect as EventListener);
     this.listen('keydown', this._handleKeydown as EventListener);
-
-    this._outsideClickHandler = (e: MouseEvent) => {
-      if (!this.open) return;
-      const path = e.composedPath();
-      if (!path.includes(this)) {
-        this._closePanel();
-      }
-    };
-    document.addEventListener('click', this._outsideClickHandler);
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    if (this._outsideClickHandler) {
-      document.removeEventListener('click', this._outsideClickHandler);
-      this._outsideClickHandler = null;
-    }
+    this._stopPositioning();
   }
 
-  /** Opens the dropdown panel. */
   show(): void {
     if (this.disabled || this.open) return;
     this.open = true;
+    this._onOpenChanged(true);
     this.emit('open');
   }
 
-  /** Closes the dropdown panel. */
   hide(): void {
     if (!this.open) return;
     this.open = false;
+    this._onOpenChanged(false);
     this.emit('close');
   }
 
-  /** Toggles the dropdown panel open/closed. */
   toggle(): void {
     if (this.open) {
       this.hide();
@@ -138,13 +111,41 @@ class Dropdown extends AeicoComponent {
     }
   }
 
+  private _onOpenChanged(open: boolean): void {
+    if (this._supportsPopover) {
+      const panel = this._getPanel();
+      if (open && panel && !panel.matches(':popover-open')) {
+        panel.showPopover();
+        this._startPositioning();
+      } else if (!open && panel?.matches(':popover-open')) {
+        panel.hidePopover();
+        this._stopPositioning();
+      }
+    }
+    this._positionPanel();
+  }
+
+  private readonly _handlePopoverToggle = (e: Event): void => {
+    const open = (e as ToggleEvent).newState === 'open';
+    if (open === this.open) return;
+    this.open = open;
+    if (open) {
+      this._startPositioning();
+    } else {
+      this._stopPositioning();
+      this.emit('close');
+    }
+    this._positionPanel();
+  };
+
+  private _getPanel(): HTMLElement | null {
+    return this.shadowRoot?.querySelector<HTMLElement>('.panel') ?? null;
+  }
+
   private _closePanel(): void {
     if (this.open) this.hide();
   }
 
-  // Called via declarative @click on the trigger-wrapper div inside the shadow DOM.
-  // Events from slotted trigger content bubble through the shadow DOM slot path,
-  // so this fires for trigger clicks only - not for panel item clicks.
   private _handleTriggerClick = (): void => {
     this.toggle();
   };
@@ -162,6 +163,118 @@ class Dropdown extends AeicoComponent {
       this._closePanel();
     }
   };
+
+  protected onUpdated(changedProps: Map<string, unknown>): void {
+    super.onUpdated(changedProps);
+    if (changedProps.has('open')) this._onOpenChanged(this.open);
+  }
+
+  private _positionPanel(): void {
+    if (!this._supportsPopover || !this.open) return;
+    const panel = this._getPanel();
+    if (!panel) return;
+    const trigger = panel.previousElementSibling as HTMLElement | null;
+    if (!trigger) return;
+
+    const rect = trigger.getBoundingClientRect();
+    const margin = 4;
+    const [dir, align] = this.placement.split('-');
+
+    const prevDisplay = panel.style.display;
+    const wasOpen = panel.classList.contains('open');
+    if (!wasOpen) {
+      panel.style.visibility = 'hidden';
+      panel.style.display = 'block';
+    }
+    const w = panel.offsetWidth;
+    const h = panel.offsetHeight;
+    if (!wasOpen) {
+      panel.style.display = prevDisplay;
+      panel.style.visibility = '';
+    }
+
+    if (dir === 'bottom') {
+      this._flipVertical =
+        rect.bottom + margin + h > window.innerHeight &&
+        rect.top > window.innerHeight - rect.bottom;
+    } else if (dir === 'top') {
+      this._flipVertical = !(
+        rect.top - margin - h < 0 && window.innerHeight - rect.bottom > rect.top
+      );
+    } else {
+      this._flipVertical = false;
+    }
+    panel.classList.toggle('flipped', this._flipVertical);
+
+    const startX =
+      align === 'end'
+        ? rect.right - w
+        : align === undefined
+          ? rect.left + (rect.width - w) / 2
+          : rect.left;
+    const startY = rect.top + (rect.height - h) / 2;
+
+    panel.style.width = `${w}px`;
+    if (dir === 'bottom' || dir === 'top') {
+      const below = (dir === 'bottom') !== this._flipVertical;
+      panel.style.left = `${startX}px`;
+      if (below) {
+        panel.style.bottom = '';
+        panel.style.top = `${rect.bottom + margin}px`;
+      } else {
+        panel.style.top = '';
+        panel.style.bottom = `${window.innerHeight - rect.top + margin}px`;
+      }
+    } else {
+      const toLeft = dir === 'left';
+      if (toLeft) {
+        panel.style.right = `${window.innerWidth - rect.left + margin}px`;
+        panel.style.left = '';
+      } else {
+        panel.style.left = `${rect.right + margin}px`;
+        panel.style.right = '';
+      }
+      if (align === 'start') {
+        panel.style.top = `${rect.top}px`;
+      } else if (align === 'end') {
+        panel.style.top = `${rect.bottom - h}px`;
+      } else {
+        panel.style.top = `${startY}px`;
+      }
+      panel.style.bottom = '';
+    }
+  }
+
+  private _startPositioning(): void {
+    this._positionPanel();
+    if (this._positionCleanup) return;
+    const onMove = () => {
+      const trigger = this._getPanel()?.previousElementSibling as HTMLElement | null;
+      if (!trigger) return;
+      const rect = trigger.getBoundingClientRect();
+      if (
+        rect.bottom < 0 ||
+        rect.top > window.innerHeight ||
+        rect.right < 0 ||
+        rect.left > window.innerWidth
+      ) {
+        this._closePanel();
+        return;
+      }
+      this._positionPanel();
+    };
+    document.addEventListener('scroll', onMove, true);
+    window.addEventListener('resize', onMove);
+    this._positionCleanup = () => {
+      document.removeEventListener('scroll', onMove, true);
+      window.removeEventListener('resize', onMove);
+    };
+  }
+
+  private _stopPositioning(): void {
+    this._positionCleanup?.();
+    this._positionCleanup = null;
+  }
 
   protected render() {
     const placementClass = `placement-${this.placement}`;
@@ -207,6 +320,9 @@ class Dropdown extends AeicoComponent {
           part: 'panel',
           className: { panel: true, open: this.open, [placementClass]: true },
           role: 'menu',
+          ...(this._supportsPopover
+            ? { popover: 'auto' as const, '@toggle': this._handlePopoverToggle }
+            : {}),
         },
         () => {
           slot();

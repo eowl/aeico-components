@@ -1,8 +1,6 @@
 :host {
   display: inline-block;
   position: relative;
-  /* Prevent grid/flex parent stretch from inflating the host width,
-     which would throw off the absolutely-positioned panel. */
   width: fit-content;
 
   --dropdown-z-index: 1000;
@@ -19,9 +17,6 @@
   height: 100%;
 }
 
-/* Internal trigger rendered when `label` prop is set.
-   Uses --dropdown-trigger-* variables. Context components (e.g. ae-navbar)
-   map their own tokens to these variables via ::slotted(ae-dropdown). */
 .trigger-label {
   display: inline-flex;
   align-items: center;
@@ -52,7 +47,6 @@
   pointer-events: none;
 }
 
-/* Bootstrap-style CSS border caret - shadow DOM only, no global injection needed */
 .ae-dropdown-arrow {
   display: inline-block;
   width: 0;
@@ -84,96 +78,106 @@
 
 .panel {
   display: none;
-  position: absolute;
-  z-index: var(--dropdown-z-index);
   background: var(--dropdown-bg);
   border: var(--dropdown-border);
   border-radius: var(--ae-border-radius, var(--ae-radius-md));
   box-shadow: var(--dropdown-shadow);
   min-width: var(--dropdown-min-width);
   padding: var(--dropdown-padding);
-  box-sizing: border-box;
-  /* Prevent panel from being wider than viewport */
-  max-width: calc(100vw - 16px);
+  box-sizing: border-box;  max-width: calc(100vw - 16px);
+}
+
+.panel:not([popover]) {
+  position: absolute;
+  z-index: var(--dropdown-z-index);
 }
 
 .panel.open {
   display: block;
 }
 
-/* placement variants */
-.panel.placement-bottom-start {
+.panel[popover] {
+  position: fixed;
+  inset: auto;
+  margin: 0;
+  width: max-content;
+  overflow: auto;
+}
+
+.panel[popover]:popover-open {
+  display: block;
+}
+
+.panel:not([popover]).placement-bottom-start {
   top: 100%;
   left: 0;
   margin-top: 4px;
 }
 
-.panel.placement-bottom-end {
+.panel:not([popover]).placement-bottom-end {
   top: 100%;
   right: 0;
   margin-top: 4px;
 }
 
-.panel.placement-bottom {
+.panel:not([popover]).placement-bottom {
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
   margin-top: 4px;
 }
 
-.panel.placement-top-start {
+.panel:not([popover]).placement-top-start {
   bottom: 100%;
   left: 0;
   margin-bottom: 4px;
 }
 
-.panel.placement-top-end {
+.panel:not([popover]).placement-top-end {
   bottom: 100%;
   right: 0;
   margin-bottom: 4px;
 }
 
-.panel.placement-top {
+.panel:not([popover]).placement-top {
   bottom: 100%;
   left: 50%;
   transform: translateX(-50%);
   margin-bottom: 4px;
 }
 
-/* right placements */
-.panel.placement-right-start {
+.panel:not([popover]).placement-right-start {
   top: 0;
   left: 100%;
   margin-left: 4px;
 }
 
-.panel.placement-right-end {
+.panel:not([popover]).placement-right-end {
   bottom: 0;
   left: 100%;
   margin-left: 4px;
 }
 
-.panel.placement-right {
+.panel:not([popover]).placement-right {
   top: 50%;
   left: 100%;
   transform: translateY(-50%);
   margin-left: 4px;
 }
 
-/* left placements */
-.panel.placement-left-start {
+.panel:not([popover]).placement-left-start {
   top: 0;
   right: 100%;
   margin-right: 4px;
 }
 
-.panel.placement-left-end {
+.panel:not([popover]).placement-left-end {
   bottom: 0;
   right: 100%;
   margin-right: 4px;
 }
 
-.panel.placement-left {
+.panel:not([popover]).placement-left {
   top: 50%;
   right: 100%;
   transform: translateY(-50%);
