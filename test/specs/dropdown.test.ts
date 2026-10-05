@@ -255,6 +255,90 @@ describe('Dropdown', () => {
     })
   })
 
+  describe('popover (top layer)', () => {
+    const supportsPopover = 'popover' in HTMLElement.prototype
+
+    function getPanel(el: Dropdown): HTMLElement {
+      return el.shadowRoot!.querySelector<HTMLElement>('.panel')!
+    }
+
+    it('renders the panel as a popover when supported', async () => {
+      const el = await mount<Dropdown>(`<${TAG}></${TAG}>`)
+      const panel = getPanel(el)
+      if (!supportsPopover) return
+      expect(panel.hasAttribute('popover')).to.be.true
+      el.show()
+      await updated()
+      expect(panel.matches(':popover-open')).to.be.true
+    })
+
+    it('syncs open state when the popover is dismissed via hidePopover()', async () => {
+      const el = await mount<Dropdown>(`<${TAG}></${TAG}>`)
+      if (!supportsPopover) return
+      el.show()
+      await updated()
+
+      let closeFired = false
+      el.addEventListener('close', () => { closeFired = true })
+
+      getPanel(el).hidePopover()
+      await new Promise((r) => setTimeout(r, 0))
+
+      expect(el.open).to.equal(false)
+      expect(closeFired).to.be.true
+    })
+
+    it('positions the panel with fixed coordinates when shown', async () => {
+      const el = await mount<Dropdown>(`<${TAG}></${TAG}>`)
+      if (!supportsPopover) return
+      el.show()
+      await updated()
+
+      const panel = getPanel(el)
+      expect(panel.style.top).to.not.be.empty
+      expect(panel.style.left).to.not.be.empty
+      expect(panel.classList.contains('flipped')).to.be.false
+    })
+
+    it('flips upward when there is no room below', async () => {
+      const el = await mount<Dropdown>(`
+        <${TAG}>
+          <${ITEM_TAG} value="a">Alpha</${ITEM_TAG}>
+          <${ITEM_TAG} value="b">Beta</${ITEM_TAG}>
+        </${TAG}>
+      `)
+      el.style.position = 'fixed'
+      el.style.top = `${window.innerHeight - 40}px`
+      el.style.left = '10px'
+      await updated()
+      if (!supportsPopover) return
+      el.show()
+      await updated()
+
+      expect(getPanel(el).classList.contains('flipped')).to.be.true
+    })
+
+    it('closes when the trigger scrolls out of the viewport', async () => {
+      const el = await mount<Dropdown>(`
+        <${TAG}>
+          <${ITEM_TAG} value="a">Alpha</${ITEM_TAG}>
+        </${TAG}>
+      `)
+      if (!supportsPopover) return
+      el.show()
+      await updated()
+
+      // Move the host far off-screen without scrolling, then trigger the handler via a scroll event
+      el.style.position = 'fixed'
+      el.style.top = `${window.innerHeight * 2}px`
+      window.dispatchEvent(new Event('resize'))
+      await new Promise((r) => setTimeout(r, 0))
+      await new Promise((r) => setTimeout(r, 0))
+
+      expect(el.open).to.equal(false)
+    })
+  })
+
   describe('DropdownItem', () => {
     describe('registration', () => {
       it(`is registered as "${ITEM_TAG}"`, () => {

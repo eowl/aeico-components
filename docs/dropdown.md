@@ -56,6 +56,12 @@ import 'aeico-components';
 </ae-dropdown>
 ```
 
+`bottom` and `top` placements automatically flip vertically when there is not enough space in the viewport.
+
+### Panel rendering (top layer)
+
+The panel is rendered in the browser's top layer via the Popover API (Chrome 114+, Safari 17+, Firefox 125+), so it is never clipped by ancestor `overflow: hidden` and always paints above other content. Pressing `Escape` or clicking outside closes the panel, and the panel closes automatically when the trigger scrolls out of view. In browsers without Popover API support the panel falls back to absolute positioning inside the component.
+
 ### `closeOnSelect="false"` - keep open after selection
 
 ```html
