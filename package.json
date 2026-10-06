@@ -1,6 +1,6 @@
 {
   "name": "aeico-components",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "Built-in UI components for the Aeico Web Components framework",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -78,7 +78,7 @@
   "author": "Eowl",
   "license": "MIT",
   "peerDependencies": {
-    "aeico": "^0.1.8"
+    "aeico": "^0.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -87,7 +87,7 @@
     "@web/dev-server-esbuild": "^1.0.5",
     "@web/test-runner": "^0.20.2",
     "@web/test-runner-playwright": "^0.11.1",
-    "aeico": "^0.1.8",
+    "aeico": "^0.2.0",
     "aeico-localize": "^0.1.1",
     "esbuild": "^0.28.1",
     "eslint": "^10.1.0",
