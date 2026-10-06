@@ -6,7 +6,8 @@ on:
       - 'v*.*.*'
 
 permissions:
-  contents: write
+  contents: write  # for creating GitHub Release
+  id-token: write  # required for npm OIDC (Trusted Publishers)
 
 jobs:
   release:
@@ -16,6 +17,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # need full history for branch check
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -23,6 +26,26 @@ jobs:
           node-version: 22
           cache: npm
           registry-url: https://registry.npmjs.org
+
+      - name: Install latest npm
+        run: npm install -g npm@latest
+
+      - name: Verify tag is on main branch
+        run: |
+          git fetch origin main
+          if ! git merge-base --is-ancestor "${{ github.sha }}" origin/main; then
+            echo "::error::Tag must point to a commit on the main branch."
+            exit 1
+          fi
+
+      - name: Verify version matches package.json
+        run: |
+          ACTUAL=$(node -p "require('./package.json').version")
+          EXPECTED="${GITHUB_REF_NAME#v}"
+          if [ "$ACTUAL" != "$EXPECTED" ]; then
+            echo "::error::Tag version ($EXPECTED) does not match package.json version ($ACTUAL)."
+            exit 1
+          fi
 
       - name: Install dependencies
         run: npm ci
@@ -43,7 +66,7 @@ jobs:
         run: npm run build
 
       - name: Publish to npm
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -51,3 +74,4 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           generate_release_notes: true
+          name: ${{ github.ref_name }}
