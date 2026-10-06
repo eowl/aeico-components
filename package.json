@@ -77,6 +77,14 @@
   ],
   "author": "Eowl",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "github:eowl/aeico-components"
+  },
+  "homepage": "https://github.com/eowl/aeico-components#readme",
+  "bugs": {
+    "url": "https://github.com/eowl/aeico-components/issues"
+  },
   "peerDependencies": {
     "aeico": "^0.2.0"
   },
