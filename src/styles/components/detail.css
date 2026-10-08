@@ -109,6 +109,16 @@ slot[name="collapse"] {
   flex-shrink: 0;
 }
 
+slot[name="expand"]::slotted(*),
+slot[name="collapse"]::slotted(*) {
+  color: var(--ae-color-text-muted, #6e6e6e);
+}
+
+.summary:hover slot[name="expand"]::slotted(*),
+.summary:hover slot[name="collapse"]::slotted(*) {
+  color: inherit;
+}
+
 :host([icon-placement="start"]) slot[name="expand"],
 :host([icon-placement="start"]) slot[name="collapse"] {
   order: -1;

@@ -211,6 +211,28 @@
         </div>
       </div>
 
+      <!-- ─── Item icons via default slot ─────────────────────────── -->
+      <div class="demo-group">
+        <label>Item icons (via <code>&lt;ae-icon&gt;</code> in the default slot)</label>
+        <div class="demo-row">
+          <ae-tree class="tree-demo" default-expand-all>
+            <ae-tree-item key="ic1">
+              <ae-icon name="star"></ae-icon> Favorites
+              <ae-tree-item key="ic1-1">
+                <ae-icon name="settings"></ae-icon> Settings
+              </ae-tree-item>
+              <ae-tree-item key="ic1-2">
+                <ae-icon name="home"></ae-icon> Home
+              </ae-tree-item>
+            </ae-tree-item>
+            <ae-tree-item key="ic2">
+              <ae-icon name="info"></ae-icon> About
+            </ae-tree-item>
+            <ae-tree-item key="ic3">No icon item</ae-tree-item>
+          </ae-tree>
+        </div>
+      </div>
+
       <!-- ─── Icon placement = end ─────────────────────────────────── -->
       <div class="demo-group">
         <label><code>icon-placement="end"</code> - expand toggle after the label</label>
