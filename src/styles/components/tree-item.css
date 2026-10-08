@@ -10,6 +10,7 @@
   --tree-item-color-selected: var(--ae-color-primary, #0e639c);
   --tree-item-line-color: var(--ae-border-default, rgba(0, 0, 0, 0.15));
   --tree-item-expand-size: 1.25rem;
+  --tree-item-expand-color: var(--ae-color-text-muted, #6e6e6e);
 }
 
 .tree-item-content {
@@ -42,10 +43,10 @@
   padding: 0;
   border: none;
   background: transparent;
-  color: inherit;
+  color: var(--tree-item-expand-color);
   cursor: pointer;
   border-radius: var(--ae-border-radius, var(--ae-radius-sm));
-  transition: transform 0.18s;
+  transition: transform 0.18s, color 0.1s;
   outline: none;
   -webkit-appearance: none;
   appearance: none;
@@ -54,6 +55,10 @@
 .expand-btn:focus-visible {
   outline: 2px solid var(--ae-color-primary, #0e639c);
   outline-offset: 1px;
+}
+
+.tree-item-content:hover .expand-btn {
+  color: var(--tree-item-color);
 }
 
 .expand-btn svg {

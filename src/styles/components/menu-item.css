@@ -83,6 +83,11 @@
   width: 0;
   height: 0;
   flex-shrink: 0;
+  color: var(--ae-color-text-muted, #6e6e6e);
+}
+
+:host([selected]) .item-arrow {
+  color: inherit;
 }
 
 .item-arrow--right {
@@ -107,6 +112,18 @@ slot[name="collapse"] {
   align-items: center;
   margin-inline-start: auto;
   flex-shrink: 0;
+}
+
+/* Slotted expand/collapse icons are control icons, render them in a dimmer
+   tone than the item text (same treatment as ae-detail). */
+slot[name="expand"]::slotted(*),
+slot[name="collapse"]::slotted(*) {
+  color: var(--ae-color-text-muted, #6e6e6e);
+}
+
+:host([selected]) slot[name="expand"]::slotted(*),
+:host([selected]) slot[name="collapse"]::slotted(*) {
+  color: inherit;
 }
 
 slot[name="collapse"] {
