@@ -79,10 +79,15 @@ import 'aeico-components';
 </ae-tree>
 ```
 
-### `showLine` - connector lines
+### `indent-line` - guide lines
+
+Two line styles are available:
+
+- `indent-line="dashed"`: dashed connector lines under the expand toggle center
+- `indent-line="solid"`: same position, solid line
 
 ```html
-<ae-tree showLine defaultExpandAll>
+<ae-tree indent-line="dashed" defaultExpandAll>
   <ae-tree-item key="root" label="Root">
     <ae-tree-item key="child1" slot="sub">Child 1</ae-tree-item>
     <ae-tree-item key="child2" slot="sub">
@@ -92,6 +97,9 @@ import 'aeico-components';
   </ae-tree-item>
 </ae-tree>
 ```
+
+Set `indent-line="solid"` if you prefer a solid line style. Both styles share
+the same geometry (under the expand toggle).
 
 ### `expand-icon` / `collapse-icon` - custom expand toggle icons
 
@@ -232,7 +240,7 @@ console.log(tree.expandedKeys);  // string[]
 |-----------|------|---------|-------------|
 | `checkable` | `boolean` | `false` | Shows checkboxes on each item. Parent check state is automatically derived from children. |
 | `multiple` | `boolean` | `false` | Allows multiple items to be selected by clicking (without checkboxes). |
-| `showLine` | `boolean` | `false` | Renders dashed connector lines between parent and children. |
+| `indentLine` | `false \| 'solid' \| 'dashed'` | `false` | Guide lines under the expand toggle. `'dashed'` / `'solid'` select the line style. |
 | `defaultExpandAll` | `boolean` | `false` | Expands all parent nodes on mount. |
 | `wrapText` | `boolean` | `false` | Allows item text to wrap to the next line instead of being truncated with an ellipsis. |
 | `selectedKey` | `string` | - | Convenience prop to set an initially selected key. |
@@ -299,7 +307,7 @@ Set on `ae-tree` or a parent element; all `ae-tree-item` nodes inherit them.
 | `--tree-item-bg-hover` | Background colour on hover. |
 | `--tree-item-bg-selected` | Background colour of the selected item. |
 | `--tree-item-color-selected` | Text colour of the selected item. |
-| `--tree-item-line-color` | Colour of connector lines when `showLine` is set. |
+| `--tree-item-line-color` | Colour of the guide lines when `indent-line` is set. |
 | `--tree-item-expand-size` | Size of the expand/collapse toggle icon (default `1rem`). |
 | `--tree-item-expand-color` | Color of the expand/collapse toggle icon. |
 | `--tree-item-icon-gap` | Gap between a `slot="icon"` icon and the label text (default `0.375rem`). |

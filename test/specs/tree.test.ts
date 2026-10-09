@@ -50,9 +50,9 @@ describe('Tree', () => {
       expect(el.multiple).to.be.false
     })
 
-    it('showLine defaults to false', async () => {
+    it('indentLine defaults to false', async () => {
       const el = await mount<Tree>(BASIC_TREE)
-      expect(el.showLine).to.be.false
+      expect(el.indentLine).to.be.false
     })
 
     it('defaultExpandAll defaults to false', async () => {

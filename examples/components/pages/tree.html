@@ -104,11 +104,11 @@
         </div>
       </div>
 
-      <!-- ─── Show connecting lines ────────────────────────────────── -->
+      <!-- ─── Guide lines: dashed (under expand icon) / solid (indent guides) ── -->
       <div class="demo-group">
-        <label>Show lines</label>
+        <label><code>indent-line="dashed"</code> - connector lines under the expand icon</label>
         <div class="demo-row">
-          <ae-tree class="tree-demo" show-line default-expand-all>
+          <ae-tree class="tree-demo" indent-line="dashed" default-expand-all icon-placement="end">
             <ae-tree-item key="l1">src
               <ae-tree-item key="l1-1">components
                 <ae-tree-item key="l1-1-1">Button.ts</ae-tree-item>
@@ -122,6 +122,43 @@
             <ae-tree-item key="l2">test
               <ae-tree-item key="l2-1">unit</ae-tree-item>
               <ae-tree-item key="l2-2">e2e</ae-tree-item>
+            </ae-tree-item>
+          </ae-tree>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label><code>indent-line="solid"</code> - indent guides at each level start</label>
+        <div class="demo-row">
+          <ae-tree class="tree-demo" indent-line="solid" default-expand-all>
+            <ae-tree-item key="g1">Deciduous
+              <ae-tree-item key="g1-1">Birch</ae-tree-item>
+              <ae-tree-item key="g1-2">Maple
+                <ae-tree-item key="g1-2-1">Field maple</ae-tree-item>
+                <ae-tree-item key="g1-2-2">Red maple</ae-tree-item>
+                <ae-tree-item key="g1-2-3">Sugar maple</ae-tree-item>
+              </ae-tree-item>
+              <ae-tree-item key="g1-3">Oak</ae-tree-item>
+            </ae-tree-item>
+            <ae-tree-item key="g2">Coniferous
+              <ae-tree-item key="g2-1">Cedar</ae-tree-item>
+              <ae-tree-item key="g2-2">Pine</ae-tree-item>
+            </ae-tree-item>
+          </ae-tree>
+        </div>
+        <div class="demo-row">
+          <ae-tree class="tree-demo" indent-line="solid" icon-placement="end" default-expand-all>
+            <ae-tree-item key="ge1">Deciduous
+              <ae-tree-item key="ge1-1">Birch</ae-tree-item>
+              <ae-tree-item key="ge1-2">Maple
+                <ae-tree-item key="ge1-2-1">Field maple</ae-tree-item>
+                <ae-tree-item key="ge1-2-2">Red maple</ae-tree-item>
+              </ae-tree-item>
+              <ae-tree-item key="ge1-3">Oak</ae-tree-item>
+            </ae-tree-item>
+            <ae-tree-item key="ge2">Coniferous
+              <ae-tree-item key="ge2-1">Cedar</ae-tree-item>
+              <ae-tree-item key="ge2-2">Pine</ae-tree-item>
             </ae-tree-item>
           </ae-tree>
         </div>

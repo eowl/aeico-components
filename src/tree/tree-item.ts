@@ -35,7 +35,6 @@ class TreeItem extends AeicoComponent {
   @prop({ type: String })
   accessor key: string | undefined;
 
-  /** Stable auto-generated key used when `key` prop is not set. */
   private readonly _autoKey = `ae-tree-item-${_autoKeyCounter++}`;
 
   private get _effectiveKey(): string {
@@ -62,7 +61,6 @@ class TreeItem extends AeicoComponent {
   connectedCallback() {
     super.connectedCallback();
 
-    // Auto-assign slot so users don't need to write slot="sub" manually
     if (
       this.parentElement?.tagName.toLowerCase() === 'ae-tree-item' &&
       !this.hasAttribute('slot')
@@ -83,8 +81,8 @@ class TreeItem extends AeicoComponent {
     }
     this.style.setProperty('--depth', String(depth));
 
-    if (this._parentTree?.showLine) {
-      this.setAttribute('showline', '');
+    if (this._parentTree?.indentLine) {
+      this.setAttribute('indentline', String(this._parentTree.indentLine));
     }
   }
 
@@ -118,8 +116,6 @@ class TreeItem extends AeicoComponent {
     return !!this.querySelector(':scope > ae-tree-item[slot="sub"]');
   }
 
-  /** Whether the user slotted an icon (light DOM check; slots cannot be
-   * emptiness-tested from CSS). */
   private get _hasIcon(): boolean {
     return !!this.querySelector(':scope > [slot="icon"]');
   }
@@ -166,7 +162,6 @@ class TreeItem extends AeicoComponent {
     );
   }
 
-  /** Primary action for the label text (used by keyboard Enter/Space). */
   private _activate(): void {
     if (this._isCheckable) {
       this._toggleCheck();
@@ -179,9 +174,6 @@ class TreeItem extends AeicoComponent {
     this._dispatchSelect();
   }
 
-  /** If this leaf item's label contains a link, trigger its click. Returns
-   * true if a link was found and clicked. Only called for leaves, so any
-   * `<a>` here belongs to this item's own label. */
   private _activateLink(): boolean {
     const link = this.querySelector<HTMLAnchorElement>('a[href]');
     if (!link) return false;
@@ -189,13 +181,9 @@ class TreeItem extends AeicoComponent {
     return true;
   }
 
-  /** Row click: checkable mode toggles check on the label text; clickable
-   * mode lets the whole row act (parents expand/collapse, leaves select or
-   * follow an inner link). */
   private _handleRowClick = (e: Event): void => {
     if (this.disabled) return;
     const target = e.target as HTMLElement;
-    // The expand toggle, checkbox and inner links handle their own clicks.
     if (
       target.closest('.expand-btn') ||
       target.closest('.tree-item-checkbox') ||
@@ -206,7 +194,6 @@ class TreeItem extends AeicoComponent {
 
     const onLabel = !!target.closest('.tree-item-label');
 
-    // checkable: clicking the label text toggles check.
     if (this._isCheckable && onLabel) {
       this._toggleCheck();
       return;
@@ -217,17 +204,18 @@ class TreeItem extends AeicoComponent {
         this._dispatchToggleExpand();
         return;
       }
-      // A leaf with a link in its label follows the link instead of selecting.
       if (this._activateLink()) return;
+
       if (this._isCheckable) {
         this._toggleCheck();
+
         return;
       }
       this._dispatchSelect();
+
       return;
     }
 
-    // default: only the label text selects.
     if (onLabel) {
       this._dispatchSelect();
     }
@@ -261,7 +249,6 @@ class TreeItem extends AeicoComponent {
   };
 
   protected onUpdated(): void {
-    // indeterminate/checked cannot be set correctly via HTML attribute - must set via JS property
     if (this._checkboxEl) {
       this._checkboxEl.checked = this.checked;
       this._checkboxEl.indeterminate = this.indeterminate;
@@ -271,12 +258,8 @@ class TreeItem extends AeicoComponent {
   protected render() {
     const hasChildren = this._hasChildren;
     const isCheckable = this._isCheckable;
-    // Collapsed shows expandIcon; expanded shows collapseIcon (falls back to
-    // expandIcon, which is rotated by CSS). No icon set -> default SVG triangle.
     const expandIcon = this._parentTree?.expandIcon;
     const collapseIcon = this._parentTree?.collapseIcon ?? expandIcon;
-    // When a distinct collapseIcon is provided, the icon swaps on expand
-    // instead of being rotated.
     const swapIcon = !!this._parentTree?.collapseIcon;
 
     return html(({ div, button, span, input, slot, svg, path, aeIcon }) => {

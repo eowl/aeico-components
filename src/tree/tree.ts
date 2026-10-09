@@ -17,7 +17,7 @@ import type TreeItem from './tree-item';
  *
  * @prop {boolean} checkable       - Enable checkbox selection mode with parent-child sync.
  * @prop {boolean} multiple        - Allow multi-select (click to toggle). Ignored when checkable.
- * @prop {boolean} showLine        - Show dashed connecting lines between items.
+ * @prop {boolean | 'solid' | 'dashed'} indentLine - Tree guide lines. See accessor docs.
  * @prop {boolean} defaultExpandAll - Expand all items on initial connect.
  * @prop {string}  selectedKey     - Currently selected key (single-select convenience prop).
  *
@@ -48,8 +48,8 @@ class Tree extends AeicoComponent {
   @prop({ type: Boolean })
   accessor multiple: boolean = false;
 
-  @prop({ type: Boolean })
-  accessor showLine: boolean = false;
+  @prop({ type: String })
+  accessor indentLine: false | 'solid' | 'dashed' = false;
 
   @prop({ type: Boolean })
   accessor defaultExpandAll: boolean = false;
@@ -83,6 +83,14 @@ class Tree extends AeicoComponent {
     this.listen('_tree-item-toggle-expand', this._handleItemToggleExpand as EventListener);
     this.listen('_tree-item-select', this._handleItemSelect as EventListener);
     this.listen('_tree-item-check', this._handleItemCheck as EventListener);
+    this._propagateFlags();
+  }
+
+  private _propagateFlags(): void {
+    for (const item of this._getAllItems()) {
+      if (this.indentLine) item.setAttribute('indentline', this.indentLine);
+      else item.removeAttribute('indentline');
+    }
   }
 
   private _getAllItems(): TreeItem[] {
