@@ -17,7 +17,7 @@ import type TreeItem from './tree-item';
  *
  * @prop {boolean} checkable       - Enable checkbox selection mode with parent-child sync.
  * @prop {boolean} multiple        - Allow multi-select (click to toggle). Ignored when checkable.
- * @prop {boolean} showLine        - Show dashed connecting lines between items.
+ * @prop {boolean | 'solid' | 'dashed'} indentLine - Tree guide lines. See accessor docs.
  * @prop {boolean} defaultExpandAll - Expand all items on initial connect.
  * @prop {string}  selectedKey     - Currently selected key (single-select convenience prop).
  *
@@ -48,8 +48,8 @@ class Tree extends AeicoComponent {
   @prop({ type: Boolean })
   accessor multiple: boolean = false;
 
-  @prop({ type: Boolean })
-  accessor showLine: boolean = false;
+  @prop({ type: String })
+  accessor indentLine: false | 'solid' | 'dashed' = false;
 
   @prop({ type: Boolean })
   accessor defaultExpandAll: boolean = false;
@@ -61,10 +61,10 @@ class Tree extends AeicoComponent {
   accessor selectedKey: string | undefined;
 
   @prop({ type: String })
-  accessor expandIcon: string | undefined;
+  accessor expandIcon: string | undefined = '_chevron-right';
 
   @prop({ type: String })
-  accessor collapseIcon: string | undefined;
+  accessor collapseIcon: string | undefined = '_chevron-down';
 
   @prop({ type: String })
   accessor iconPlacement: TreeIconPlacement = 'start';
@@ -83,6 +83,14 @@ class Tree extends AeicoComponent {
     this.listen('_tree-item-toggle-expand', this._handleItemToggleExpand as EventListener);
     this.listen('_tree-item-select', this._handleItemSelect as EventListener);
     this.listen('_tree-item-check', this._handleItemCheck as EventListener);
+    this._propagateFlags();
+  }
+
+  private _propagateFlags(): void {
+    for (const item of this._getAllItems()) {
+      if (this.indentLine) item.setAttribute('indentline', this.indentLine);
+      else item.removeAttribute('indentline');
+    }
   }
 
   private _getAllItems(): TreeItem[] {
@@ -130,7 +138,6 @@ class Tree extends AeicoComponent {
     const { key } = e.detail;
 
     if (this.multiple) {
-      // Toggle selection
       const alreadySelected = this.selectedKeys.includes(key);
       if (alreadySelected) {
         this.selectedKeys = this.selectedKeys.filter((k) => k !== key);
@@ -139,7 +146,6 @@ class Tree extends AeicoComponent {
       }
       this.selectedKey = this.selectedKeys[this.selectedKeys.length - 1];
 
-      // Sync visual state
       this._getAllItems().forEach((item) => {
         item.selected = this.selectedKeys.includes(item.key ?? '');
       });
@@ -152,7 +158,6 @@ class Tree extends AeicoComponent {
         } satisfies TreeSelectDetail,
       });
     } else {
-      // Single select - deselect all, select target
       const alreadySelected = this.selectedKey === key;
       this._getAllItems().forEach((item) => {
         item.selected = !alreadySelected && item.key === key;

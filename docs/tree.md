@@ -79,10 +79,15 @@ import 'aeico-components';
 </ae-tree>
 ```
 
-### `showLine` - connector lines
+### `indent-line` - guide lines
+
+Two line styles are available:
+
+- `indent-line="dashed"`: dashed connector lines under the expand toggle center
+- `indent-line="solid"`: same position, solid line
 
 ```html
-<ae-tree showLine defaultExpandAll>
+<ae-tree indent-line="dashed" defaultExpandAll>
   <ae-tree-item key="root" label="Root">
     <ae-tree-item key="child1" slot="sub">Child 1</ae-tree-item>
     <ae-tree-item key="child2" slot="sub">
@@ -93,11 +98,14 @@ import 'aeico-components';
 </ae-tree>
 ```
 
+Set `indent-line="solid"` if you prefer a solid line style. Both styles share
+the same geometry (under the expand toggle).
+
 ### `expand-icon` / `collapse-icon` - custom expand toggle icons
 
 Set custom icons for the expand/collapse toggle. `expand-icon` is shown when the item is
-collapsed; `collapse-icon` (optional) is shown when expanded. If `collapse-icon` is omitted,
-the `expand-icon` is rotated instead.
+collapsed; `collapse-icon` (optional) is shown when expanded. By default the tree uses the
+built-in `_chevron-right` (collapsed) and `_chevron-down` (expanded) icons.
 
 ```html
 <ae-tree expand-icon="chevron-right" collapse-icon="chevron-down">
@@ -105,6 +113,27 @@ the `expand-icon` is rotated instead.
     <ae-tree-item key="main" slot="sub">main.ts</ae-tree-item>
   </ae-tree-item>
 </ae-tree>
+```
+
+### Item icons - default slot vs `slot="icon"`
+
+Icons placed directly in the item's default slot are part of the label content and inherit
+the text color:
+
+```html
+<ae-tree-item key="favorites">
+  <ae-icon name="star"></ae-icon> Favorites
+</ae-tree-item>
+```
+
+To emphasize an icon as a control-style icon, use the `icon` slot instead. It renders after
+the expand toggle (and checkbox) and before the label text, in a dimmer control-icon tone
+with a fixed gap to the text:
+
+```html
+<ae-tree-item key="settings">
+  <ae-icon name="settings" slot="icon"></ae-icon>Settings
+</ae-tree-item>
 ```
 
 ### `disabled` item
@@ -211,12 +240,12 @@ console.log(tree.expandedKeys);  // string[]
 |-----------|------|---------|-------------|
 | `checkable` | `boolean` | `false` | Shows checkboxes on each item. Parent check state is automatically derived from children. |
 | `multiple` | `boolean` | `false` | Allows multiple items to be selected by clicking (without checkboxes). |
-| `showLine` | `boolean` | `false` | Renders dashed connector lines between parent and children. |
+| `indentLine` | `false \| 'solid' \| 'dashed'` | `false` | Guide lines under the expand toggle. `'dashed'` / `'solid'` select the line style. |
 | `defaultExpandAll` | `boolean` | `false` | Expands all parent nodes on mount. |
 | `wrapText` | `boolean` | `false` | Allows item text to wrap to the next line instead of being truncated with an ellipsis. |
 | `selectedKey` | `string` | - | Convenience prop to set an initially selected key. |
-| `expandIcon` | `string` | - | Icon name shown on the expand toggle when collapsed. |
-| `collapseIcon` | `string` | - | Icon name shown on the expand toggle when expanded. Falls back to `expandIcon` (rotated) when omitted. |
+| `expandIcon` | `string` | `'_chevron-right'` | Icon name shown on the expand toggle when collapsed. |
+| `collapseIcon` | `string` | `'_chevron-down'` | Icon name shown on the expand toggle when expanded. Falls back to `expandIcon` (rotated) when omitted. |
 | `iconPlacement` | `'start' \| 'end'` | `'start'` | Placement of the expand toggle icon: `'start'` (before the label) or `'end'` (after the label). |
 | `clickable` | `boolean` | `false` | When true, clicking anywhere on an item row acts: parents expand/collapse, leaves are selected. In `checkable` mode, clicking the row toggles the checkbox instead, so parents only expand via the toggle triangle. |
 
@@ -261,6 +290,7 @@ console.log(tree.expandedKeys);  // string[]
 | Name | Description |
 |------|-------------|
 | (default) | Label text content for the item. |
+| `icon` | Optional item icon, rendered between the expand toggle and the label text. Gets a dimmer control-icon color and a gap to the text. |
 | `sub` | Child `<ae-tree-item>` elements (sub-nodes). Requires the `label` attribute to be set on this item. |
 
 ## CSS Custom Properties
@@ -277,5 +307,7 @@ Set on `ae-tree` or a parent element; all `ae-tree-item` nodes inherit them.
 | `--tree-item-bg-hover` | Background colour on hover. |
 | `--tree-item-bg-selected` | Background colour of the selected item. |
 | `--tree-item-color-selected` | Text colour of the selected item. |
-| `--tree-item-line-color` | Colour of connector lines when `showLine` is set. |
+| `--tree-item-line-color` | Colour of the guide lines when `indent-line` is set. |
 | `--tree-item-expand-size` | Size of the expand/collapse toggle icon (default `1rem`). |
+| `--tree-item-expand-color` | Color of the expand/collapse toggle icon. |
+| `--tree-item-icon-gap` | Gap between a `slot="icon"` icon and the label text (default `0.375rem`). |

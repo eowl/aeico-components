@@ -6,7 +6,6 @@ import copyButtonStyle from '../styles/components/copy-button.css';
 import AeicoComponent from '../aeico-component';
 import { html } from 'aeico';
 import { prop } from 'aeico';
-// Ensure ae-icon and ae-tooltip are registered
 import '../icon/icon';
 import '../tooltip/tooltip';
 import type Tooltip from '../tooltip/tooltip';
@@ -124,10 +123,10 @@ class CopyButton extends AeicoComponent {
             },
             () => {
               span({ className: 'icon-copy' }, () => {
-                aeIcon({ name: 'copy', size: this.size });
+                aeIcon({ name: '_copy', size: this.size });
               });
               span({ className: 'icon-check' }, () => {
-                aeIcon({ name: 'check', size: this.size });
+                aeIcon({ name: '_check', size: this.size });
               });
               this._slotElement = slot();
             },

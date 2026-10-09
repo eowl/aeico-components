@@ -30,6 +30,10 @@
       "import": "./dist/styles/radius.js",
       "require": "./dist/styles/radius.cjs"
     },
+    "./built-in-icons": {
+      "import": "./dist/built-in-icons.js",
+      "require": "./dist/built-in-icons.cjs"
+    },
     "./*": {
       "types": "./dist/types/*/index.d.ts",
       "import": "./dist/*.js",

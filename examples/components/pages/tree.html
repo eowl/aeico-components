@@ -104,11 +104,11 @@
         </div>
       </div>
 
-      <!-- ─── Show connecting lines ────────────────────────────────── -->
+      <!-- ─── Guide lines: dashed (under expand icon) / solid (indent guides) ── -->
       <div class="demo-group">
-        <label>Show lines</label>
+        <label><code>indent-line="dashed"</code> - connector lines under the expand icon</label>
         <div class="demo-row">
-          <ae-tree class="tree-demo" show-line default-expand-all>
+          <ae-tree class="tree-demo" indent-line="dashed" default-expand-all icon-placement="end">
             <ae-tree-item key="l1">src
               <ae-tree-item key="l1-1">components
                 <ae-tree-item key="l1-1-1">Button.ts</ae-tree-item>
@@ -122,6 +122,43 @@
             <ae-tree-item key="l2">test
               <ae-tree-item key="l2-1">unit</ae-tree-item>
               <ae-tree-item key="l2-2">e2e</ae-tree-item>
+            </ae-tree-item>
+          </ae-tree>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label><code>indent-line="solid"</code> - indent guides at each level start</label>
+        <div class="demo-row">
+          <ae-tree class="tree-demo" indent-line="solid" default-expand-all>
+            <ae-tree-item key="g1">Deciduous
+              <ae-tree-item key="g1-1">Birch</ae-tree-item>
+              <ae-tree-item key="g1-2">Maple
+                <ae-tree-item key="g1-2-1">Field maple</ae-tree-item>
+                <ae-tree-item key="g1-2-2">Red maple</ae-tree-item>
+                <ae-tree-item key="g1-2-3">Sugar maple</ae-tree-item>
+              </ae-tree-item>
+              <ae-tree-item key="g1-3">Oak</ae-tree-item>
+            </ae-tree-item>
+            <ae-tree-item key="g2">Coniferous
+              <ae-tree-item key="g2-1">Cedar</ae-tree-item>
+              <ae-tree-item key="g2-2">Pine</ae-tree-item>
+            </ae-tree-item>
+          </ae-tree>
+        </div>
+        <div class="demo-row">
+          <ae-tree class="tree-demo" indent-line="solid" icon-placement="end" default-expand-all>
+            <ae-tree-item key="ge1">Deciduous
+              <ae-tree-item key="ge1-1">Birch</ae-tree-item>
+              <ae-tree-item key="ge1-2">Maple
+                <ae-tree-item key="ge1-2-1">Field maple</ae-tree-item>
+                <ae-tree-item key="ge1-2-2">Red maple</ae-tree-item>
+              </ae-tree-item>
+              <ae-tree-item key="ge1-3">Oak</ae-tree-item>
+            </ae-tree-item>
+            <ae-tree-item key="ge2">Coniferous
+              <ae-tree-item key="ge2-1">Cedar</ae-tree-item>
+              <ae-tree-item key="ge2-2">Pine</ae-tree-item>
             </ae-tree-item>
           </ae-tree>
         </div>
@@ -213,7 +250,7 @@
 
       <!-- ─── Item icons via default slot ─────────────────────────── -->
       <div class="demo-group">
-        <label>Item icons (via <code>&lt;ae-icon&gt;</code> in the default slot)</label>
+        <label>Item icons in default slot (inherit text color)</label>
         <div class="demo-row">
           <ae-tree class="tree-demo" default-expand-all>
             <ae-tree-item key="ic1">
@@ -229,6 +266,28 @@
               <ae-icon name="info"></ae-icon> About
             </ae-tree-item>
             <ae-tree-item key="ic3">No icon item</ae-tree-item>
+          </ae-tree>
+        </div>
+      </div>
+
+      <!-- ─── Item icons via slot="icon" ──────────────────────────── -->
+      <div class="demo-group">
+        <label>Item icons via <code>slot="icon"</code> (default SVG expand arrows + dimmed icon tone)</label>
+        <div class="demo-row">
+          <ae-tree class="tree-demo" icon-placement="start" expand-icon="chevron-right" collapse-icon="chevron-down" default-expand-all>
+            <ae-tree-item key="si1">
+              <ae-icon name="star" slot="icon"></ae-icon>Favorites
+              <ae-tree-item key="si1-1">
+                <ae-icon name="settings" slot="icon"></ae-icon>Settings
+              </ae-tree-item>
+              <ae-tree-item key="si1-2">
+                <ae-icon name="home" slot="icon"></ae-icon>Home
+              </ae-tree-item>
+            </ae-tree-item>
+            <ae-tree-item key="si2">
+              <ae-icon name="info" slot="icon"></ae-icon>About
+            </ae-tree-item>
+            <ae-tree-item key="si3">No icon item</ae-tree-item>
           </ae-tree>
         </div>
       </div>
@@ -274,7 +333,7 @@
       <div class="demo-group">
         <label><code>checkable</code> + <code>clickable</code> - rows expand/select, checkbox checks</label>
         <div class="demo-row">
-          <ae-tree class="tree-demo" checkable clickable>
+          <ae-tree class="tree-demo" checkable clickable expand-icon="chevron-right" collapse-icon="chevron-down" default-expand-all>
             <ae-tree-item key="cc1">Fruits
               <ae-tree-item key="cc1-1">Apple</ae-tree-item>
               <ae-tree-item key="cc1-2">Banana</ae-tree-item>

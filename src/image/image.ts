@@ -150,7 +150,7 @@ class Image extends AeicoComponent {
               '@click': () => this.close(),
             },
             () => {
-              aeIcon({ name: 'close' });
+              aeIcon({ name: '_close' });
             },
           );
 
@@ -166,7 +166,7 @@ class Image extends AeicoComponent {
                 '@click': () => this._step(-1),
               },
               () => {
-                aeIcon({ name: 'chevron-left' });
+                aeIcon({ name: '_chevron-left' });
               },
             );
             button(
@@ -176,7 +176,7 @@ class Image extends AeicoComponent {
                 '@click': () => this._step(1),
               },
               () => {
-                aeIcon({ name: 'chevron-right' });
+                aeIcon({ name: '_chevron-right' });
               },
             );
           }

@@ -57,7 +57,7 @@ class Dialog extends AeicoComponent {
                     '@click': () => this.close(),
                   },
                   () => {
-                    aeIcon({ name: 'close' });
+                    aeIcon({ name: '_close' });
                   },
                 );
               }

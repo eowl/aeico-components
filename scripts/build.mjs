@@ -33,6 +33,7 @@ const entryPoints = {
   divider:        'src/divider/index.ts',
   dropdown:       'src/dropdown/index.ts',
   icon:           'src/icon/index.ts',
+  'built-in-icons': 'src/icon/built-in-icons.ts',
   image:          'src/image/index.ts',
   'icon-button':  'src/icon-button/index.ts',
   list:           'src/list/index.ts',

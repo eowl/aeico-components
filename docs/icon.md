@@ -69,16 +69,48 @@ import 'aeico-components';
 ```js
 import IconRegistry from 'aeico-components';
 
-IconRegistry.register('my-logo', `
+IconRegistry.add({
+  'my-logo': `
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <path d="M12 2L2 22h20L12 2z"/>
   </svg>
-`);
+`,
+});
 ```
 
 ```html
 <ae-icon name="my-logo" size="lg"></ae-icon>
 ```
+
+### Built-in icon set (opt-in)
+
+A small set of public icons (`chevron-*`, `close`, `copy`, `check`, `ellipsis`,
+`filter`, ...) ships with the library. It is **not** registered automatically -
+import it explicitly:
+
+```js
+import 'aeico-components/built-in-icons';
+```
+
+```html
+<ae-icon name="chevron-down"></ae-icon>
+```
+
+These public icons can be overridden via `IconRegistry.add()`; component
+behavior is unaffected because components use the protected internal
+`_`-prefixed icons (see below).
+
+### Internal icons (reserved namespace)
+
+Icons whose names start with `_` (e.g. `_chevron-right`) are used internally by
+components (tree expand toggles, dialog close buttons, pagination arrows, ...).
+They are stored in a protected registry and **cannot be overridden or shadowed**
+by `IconRegistry.add()` - names with the `_` prefix are rejected for user
+registration. This guarantees component behavior stays intact regardless of
+user icon sets.
+
+To customize a component's icon, use its configuration props instead (e.g.
+`<ae-tree expand-icon="my-chevron">`).
 
 ## Properties
 

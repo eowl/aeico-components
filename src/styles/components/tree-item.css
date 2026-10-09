@@ -11,9 +11,11 @@
   --tree-item-line-color: var(--ae-border-default, rgba(0, 0, 0, 0.15));
   --tree-item-expand-size: 1.25rem;
   --tree-item-expand-color: var(--ae-color-text-muted, #6e6e6e);
+  --tree-item-icon-gap: 0.375rem;
 }
 
 .tree-item-content {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 0.25rem;
@@ -36,7 +38,7 @@
 .expand-btn {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   flex-shrink: 0;
   width: var(--tree-item-expand-size);
   height: var(--tree-item-expand-size);
@@ -75,7 +77,6 @@
   transition: transform 0.18s;
 }
 
-/* ae-icon uses font-size for its internal sizing */
 .expand-btn ae-icon,
 .expand-placeholder ae-icon {
   font-size: var(--tree-item-expand-size);
@@ -86,7 +87,6 @@
   transform: rotate(90deg);
 }
 
-/* Leaf placeholder keeps alignment consistent */
 .expand-placeholder {
   display: inline-flex;
   align-items: center;
@@ -105,6 +105,22 @@
   accent-color: var(--ae-color-primary, #0e639c);
 }
 
+.tree-item-label > slot[name="icon"] {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-inline-end: var(--tree-item-icon-gap);
+  color: var(--ae-color-text-muted, #6e6e6e);
+}
+
+.tree-item-label > slot[name="icon"]::slotted(*) {
+  flex-shrink: 0;
+}
+
+.tree-item-label > slot[name="icon"].tree-item-icon-slot--empty {
+  display: none;
+}
+
 .tree-item-label {
   display: inline-flex;
   align-items: center;
@@ -112,6 +128,7 @@
   min-width: 0;
   height: 100%;
   padding: 0 0.25rem;
+  padding-left: 0.125rem;
   border: none;
   background: transparent;
   color: inherit;
@@ -182,8 +199,16 @@
   display: block;
 }
 
-:host([showline]) .tree-item-children {
+:host([indentline='dashed']) .tree-item-children,
+:host([indentline='solid']) .tree-item-children {
   margin-left: calc(var(--ae-tree-indent) * var(--depth, 0) + 0.25rem + calc(var(--tree-item-expand-size) / 2));
   padding-left: calc(var(--ae-tree-indent) - calc(var(--tree-item-expand-size) / 2));
+}
+
+:host([indentline='dashed']) .tree-item-children {
   border-left: 1px dashed var(--tree-item-line-color);
+}
+
+:host([indentline='solid']) .tree-item-children {
+  border-left: 1px solid var(--tree-item-line-color);
 }

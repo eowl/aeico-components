@@ -3,7 +3,7 @@ export type TreeIconPlacement = 'start' | 'end';
 export interface ParentTreeLike extends Element {
   checkable?: boolean;
   multiple?: boolean;
-  showLine?: boolean;
+  indentLine?: false | 'solid' | 'dashed';
   defaultExpandAll?: boolean;
   wrapText?: boolean;
   expandIcon?: string;

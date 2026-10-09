@@ -9,7 +9,7 @@ import style from '../styles/components/icon.css';
 import type { IconSize, IconColor } from './defines';
 import { defaultViewBox } from './defines';
 import IconRegistry from './registry';
-import './built-in-icons';
+import './internal-icons';
 
 class Icon extends AeicoComponent {
   static props: Props = {

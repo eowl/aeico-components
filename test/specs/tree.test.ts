@@ -50,9 +50,9 @@ describe('Tree', () => {
       expect(el.multiple).to.be.false
     })
 
-    it('showLine defaults to false', async () => {
+    it('indentLine defaults to false', async () => {
       const el = await mount<Tree>(BASIC_TREE)
-      expect(el.showLine).to.be.false
+      expect(el.indentLine).to.be.false
     })
 
     it('defaultExpandAll defaults to false', async () => {
@@ -520,7 +520,7 @@ describe('TreeItem', () => {
       const el = await mount<TreeItem>(`<ae-tree-item key="x">Hello World</ae-tree-item>`)
       await updated()
       const labelBtn = el.shadowRoot!.querySelector('.tree-item-label')!
-      const s = labelBtn.querySelector('slot')
+      const s = labelBtn.querySelector('slot:not([name])')
       expect(s).to.exist
       expect(s!.getAttribute('name')).to.be.null
     })
@@ -624,10 +624,10 @@ describe('ae-tree expand icon props', () => {
   beforeEach(() => whenDefined('ae-tree'))
   afterEach(() => unmountAll())
 
-  it('expandIcon/collapseIcon default to undefined', async () => {
+  it('expandIcon/collapseIcon default to protected internal chevrons', async () => {
     const el = await mount<Tree>(BASIC_TREE)
-    expect(el.expandIcon).to.be.undefined
-    expect(el.collapseIcon).to.be.undefined
+    expect(el.expandIcon).to.equal('_chevron-right')
+    expect(el.collapseIcon).to.equal('_chevron-down')
   })
 
   it('parent items show ae-icon in expand-btn when tree has expand-icon set', async () => {
@@ -690,21 +690,26 @@ describe('ae-tree expand icon props', () => {
 
   it('falls back to rotating expand-icon when collapse-icon is omitted', async () => {
     const el = await mount<Tree>(`
-      <ae-tree expand-icon="chevron-right" default-expand-all>
+      <ae-tree expand-icon="chevron-up" default-expand-all>
         <ae-tree-item key="p">
           Parent
           <ae-tree-item key="c">Child</ae-tree-item>
         </ae-tree-item>
       </ae-tree>
     `)
+    // Property assignment: undefined collapseIcon falls back to expandIcon with rotation.
+    // Tree prop change alone doesn't re-render items (they read the tree lazily), so
+    // nudge the item with a property change to force it.
+    const parent = el.querySelector<TreeItem>('[key="p"]')!
+    el.collapseIcon = undefined
+    parent.selected = !parent.selected
     await updated()
     await updated()
 
-    const parent = el.querySelector<TreeItem>('[key="p"]')!
     expect(parent.expanded).to.be.true
 
     const icon = parent.shadowRoot!.querySelector<HTMLElement>('.expand-btn ae-icon')!
-    expect(icon.getAttribute('name')).to.equal('chevron-right')
+    expect(icon.getAttribute('name')).to.equal('chevron-up')
     // No swap class -> CSS rotates the icon via :host([expanded]) rule
     expect(parent.shadowRoot!.querySelector('.expand-btn--swap')).to.not.exist
   })

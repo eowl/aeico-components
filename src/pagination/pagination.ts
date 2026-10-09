@@ -255,7 +255,7 @@ class Pagination extends AeicoComponent {
         if (this.showFirstLast)
           this._renderNavBtn(
             'first',
-            'chevrons-left',
+            '_chevrons-left',
             'First page',
             disabled || isFirst,
             this._handleFirstClick,
@@ -263,7 +263,7 @@ class Pagination extends AeicoComponent {
 
         this._renderNavBtn(
           'prev',
-          'chevron-left',
+          '_chevron-left',
           'Previous page',
           disabled || isFirst,
           this._handlePrevClick,
@@ -277,7 +277,7 @@ class Pagination extends AeicoComponent {
 
         this._renderNavBtn(
           'next',
-          'chevron-right',
+          '_chevron-right',
           'Next page',
           disabled || isLast,
           this._handleNextClick,
@@ -286,7 +286,7 @@ class Pagination extends AeicoComponent {
         if (this.showFirstLast)
           this._renderNavBtn(
             'last',
-            'chevrons-right',
+            '_chevrons-right',
             'Last page',
             disabled || isLast,
             this._handleLastClick,
