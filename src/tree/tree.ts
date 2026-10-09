@@ -61,10 +61,10 @@ class Tree extends AeicoComponent {
   accessor selectedKey: string | undefined;
 
   @prop({ type: String })
-  accessor expandIcon: string | undefined;
+  accessor expandIcon: string | undefined = 'chevron-right';
 
   @prop({ type: String })
-  accessor collapseIcon: string | undefined;
+  accessor collapseIcon: string | undefined = 'chevron-down';
 
   @prop({ type: String })
   accessor iconPlacement: TreeIconPlacement = 'start';
@@ -130,7 +130,6 @@ class Tree extends AeicoComponent {
     const { key } = e.detail;
 
     if (this.multiple) {
-      // Toggle selection
       const alreadySelected = this.selectedKeys.includes(key);
       if (alreadySelected) {
         this.selectedKeys = this.selectedKeys.filter((k) => k !== key);
@@ -139,7 +138,6 @@ class Tree extends AeicoComponent {
       }
       this.selectedKey = this.selectedKeys[this.selectedKeys.length - 1];
 
-      // Sync visual state
       this._getAllItems().forEach((item) => {
         item.selected = this.selectedKeys.includes(item.key ?? '');
       });
@@ -152,7 +150,6 @@ class Tree extends AeicoComponent {
         } satisfies TreeSelectDetail,
       });
     } else {
-      // Single select - deselect all, select target
       const alreadySelected = this.selectedKey === key;
       this._getAllItems().forEach((item) => {
         item.selected = !alreadySelected && item.key === key;

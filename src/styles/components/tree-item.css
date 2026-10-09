@@ -76,7 +76,6 @@
   transition: transform 0.18s;
 }
 
-/* ae-icon uses font-size for its internal sizing */
 .expand-btn ae-icon,
 .expand-placeholder ae-icon {
   font-size: var(--tree-item-expand-size);
@@ -87,7 +86,6 @@
   transform: rotate(90deg);
 }
 
-/* Leaf placeholder keeps alignment consistent */
 .expand-placeholder {
   display: inline-flex;
   align-items: center;
@@ -129,6 +127,7 @@
   min-width: 0;
   height: 100%;
   padding: 0 0.25rem;
+  padding-left: 0.125rem;
   border: none;
   background: transparent;
   color: inherit;
