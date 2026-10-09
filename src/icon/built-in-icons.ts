@@ -1,9 +1,16 @@
 /**
- * Built-in system icons used internally by aeico components.
- * These are pre-registered so components work out of the box.
+ * Built-in system icons available to users out of the box.
  * Users can override any of them by calling IconRegistry.add({ 'name': '...' }).
  *
- * All paths use the Material Design 24×24 viewBox.
+ * This module is opt-in: import it explicitly to register the public icon set:
+ *
+ *   import 'aeico-components/built-in-icons';
+ *
+ * Functional icons that components depend on internally (expand chevrons,
+ * close buttons, etc.) live in internal-icons.ts instead. Those use the
+ * reserved "_"-prefixed namespace and are always registered automatically.
+ *
+ * All paths use the Material Design 24x24 viewBox.
  */
 import IconRegistry from './registry';
 
