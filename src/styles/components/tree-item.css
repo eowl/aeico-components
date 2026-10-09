@@ -37,7 +37,7 @@
 .expand-btn {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   flex-shrink: 0;
   width: var(--tree-item-expand-size);
   height: var(--tree-item-expand-size);

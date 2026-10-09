@@ -235,9 +235,9 @@
 
       <!-- ─── Item icons via slot="icon" ──────────────────────────── -->
       <div class="demo-group">
-        <label>Item icons via <code>slot="icon"</code> (dimmed control-icon tone + gap)</label>
+        <label>Item icons via <code>slot="icon"</code> (default SVG expand arrows + dimmed icon tone)</label>
         <div class="demo-row">
-          <ae-tree class="tree-demo" default-expand-all>
+          <ae-tree class="tree-demo" icon-placement="start" default-expand-all>
             <ae-tree-item key="si1">
               <ae-icon name="star" slot="icon"></ae-icon>Favorites
               <ae-tree-item key="si1-1">
@@ -296,7 +296,7 @@
       <div class="demo-group">
         <label><code>checkable</code> + <code>clickable</code> - rows expand/select, checkbox checks</label>
         <div class="demo-row">
-          <ae-tree class="tree-demo" checkable clickable>
+          <ae-tree class="tree-demo" checkable clickable expand-icon="chevron-right" collapse-icon="chevron-down" default-expand-all>
             <ae-tree-item key="cc1">Fruits
               <ae-tree-item key="cc1-1">Apple</ae-tree-item>
               <ae-tree-item key="cc1-2">Banana</ae-tree-item>
