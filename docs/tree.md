@@ -97,7 +97,7 @@ import 'aeico-components';
 
 Set custom icons for the expand/collapse toggle. `expand-icon` is shown when the item is
 collapsed; `collapse-icon` (optional) is shown when expanded. By default the tree uses the
-built-in `chevron-right` (collapsed) and `chevron-down` (expanded) icons.
+built-in `_chevron-right` (collapsed) and `_chevron-down` (expanded) icons.
 
 ```html
 <ae-tree expand-icon="chevron-right" collapse-icon="chevron-down">
@@ -236,8 +236,8 @@ console.log(tree.expandedKeys);  // string[]
 | `defaultExpandAll` | `boolean` | `false` | Expands all parent nodes on mount. |
 | `wrapText` | `boolean` | `false` | Allows item text to wrap to the next line instead of being truncated with an ellipsis. |
 | `selectedKey` | `string` | - | Convenience prop to set an initially selected key. |
-| `expandIcon` | `string` | `'chevron-right'` | Icon name shown on the expand toggle when collapsed. |
-| `collapseIcon` | `string` | `'chevron-down'` | Icon name shown on the expand toggle when expanded. Falls back to `expandIcon` (rotated) when omitted. |
+| `expandIcon` | `string` | `'_chevron-right'` | Icon name shown on the expand toggle when collapsed. |
+| `collapseIcon` | `string` | `'_chevron-down'` | Icon name shown on the expand toggle when expanded. Falls back to `expandIcon` (rotated) when omitted. |
 | `iconPlacement` | `'start' \| 'end'` | `'start'` | Placement of the expand toggle icon: `'start'` (before the label) or `'end'` (after the label). |
 | `clickable` | `boolean` | `false` | When true, clicking anywhere on an item row acts: parents expand/collapse, leaves are selected. In `checkable` mode, clicking the row toggles the checkbox instead, so parents only expand via the toggle triangle. |
 
