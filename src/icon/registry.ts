@@ -18,7 +18,7 @@ class IconRegistry {
     for (const [name, data] of Object.entries(icons)) {
       if (name.startsWith('_')) {
         console.warn(
-          `[aeico] Icon name "${name}" is reserved for library-internal icons and cannot be registered.`
+          `[aeico] Icon name "${name}" is reserved for library-internal icons and cannot be registered.`,
         );
         continue;
       }
@@ -58,9 +58,7 @@ class IconRegistry {
   static addInternal(icons: IconRegistryData) {
     for (const [name, data] of Object.entries(icons)) {
       if (!name.startsWith('_')) {
-        console.warn(
-          `[aeico] Internal icon name "${name}" must start with "_". Skipped.`
-        );
+        console.warn(`[aeico] Internal icon name "${name}" must start with "_". Skipped.`);
         continue;
       }
       if (typeof data === 'string') {
