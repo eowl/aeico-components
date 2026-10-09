@@ -23,8 +23,11 @@ let _autoKeyCounter = 0;
  * @prop {boolean} checked      - Checkbox state (checkable mode).
  * @prop {boolean} indeterminate - Checkbox partial state (checkable mode, JS-only).
  *
- * @slot default - Child `<ae-tree-item>` elements.
- * @slot label   - Custom label content (falls back to the `label` attribute text).
+ * @slot default - Child `<ae-tree-item>` elements, or the item label text.
+ * @slot icon   - Optional item icon. Rendered after the expand toggle / checkbox,
+ *                before the label text. Gets a dimmer control-icon color and a
+ *                gap to the text (unlike icons placed directly in the default
+ *                slot, which inherit the text color).
  */
 class TreeItem extends AeicoComponent {
   protected static styles = [variables, style];
@@ -113,6 +116,12 @@ class TreeItem extends AeicoComponent {
 
   private get _hasChildren(): boolean {
     return !!this.querySelector(':scope > ae-tree-item[slot="sub"]');
+  }
+
+  /** Whether the user slotted an icon (light DOM check; slots cannot be
+   * emptiness-tested from CSS). */
+  private get _hasIcon(): boolean {
+    return !!this.querySelector(':scope > [slot="icon"]');
   }
 
   private _handleExpandClick = (e: Event): void => {
@@ -342,6 +351,8 @@ class TreeItem extends AeicoComponent {
               '@keydown': this._handleKeydown,
             },
             () => {
+              const iconSlot = slot({ name: 'icon' });
+              if (!this._hasIcon) iconSlot.classList.add('tree-item-icon-slot--empty');
               slot();
             },
           );

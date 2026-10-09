@@ -520,7 +520,7 @@ describe('TreeItem', () => {
       const el = await mount<TreeItem>(`<ae-tree-item key="x">Hello World</ae-tree-item>`)
       await updated()
       const labelBtn = el.shadowRoot!.querySelector('.tree-item-label')!
-      const s = labelBtn.querySelector('slot')
+      const s = labelBtn.querySelector('slot:not([name])')
       expect(s).to.exist
       expect(s!.getAttribute('name')).to.be.null
     })

@@ -107,6 +107,27 @@ the `expand-icon` is rotated instead.
 </ae-tree>
 ```
 
+### Item icons - default slot vs `slot="icon"`
+
+Icons placed directly in the item's default slot are part of the label content and inherit
+the text color:
+
+```html
+<ae-tree-item key="favorites">
+  <ae-icon name="star"></ae-icon> Favorites
+</ae-tree-item>
+```
+
+To emphasize an icon as a control-style icon, use the `icon` slot instead. It renders after
+the expand toggle (and checkbox) and before the label text, in a dimmer control-icon tone
+with a fixed gap to the text:
+
+```html
+<ae-tree-item key="settings">
+  <ae-icon name="settings" slot="icon"></ae-icon>Settings
+</ae-tree-item>
+```
+
 ### `disabled` item
 
 ```html
@@ -261,6 +282,7 @@ console.log(tree.expandedKeys);  // string[]
 | Name | Description |
 |------|-------------|
 | (default) | Label text content for the item. |
+| `icon` | Optional item icon, rendered between the expand toggle and the label text. Gets a dimmer control-icon color and a gap to the text. |
 | `sub` | Child `<ae-tree-item>` elements (sub-nodes). Requires the `label` attribute to be set on this item. |
 
 ## CSS Custom Properties
@@ -279,3 +301,5 @@ Set on `ae-tree` or a parent element; all `ae-tree-item` nodes inherit them.
 | `--tree-item-color-selected` | Text colour of the selected item. |
 | `--tree-item-line-color` | Colour of connector lines when `showLine` is set. |
 | `--tree-item-expand-size` | Size of the expand/collapse toggle icon (default `1rem`). |
+| `--tree-item-expand-color` | Color of the expand/collapse toggle icon. |
+| `--tree-item-icon-gap` | Gap between a `slot="icon"` icon and the label text (default `0.375rem`). |

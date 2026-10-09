@@ -213,7 +213,7 @@
 
       <!-- ─── Item icons via default slot ─────────────────────────── -->
       <div class="demo-group">
-        <label>Item icons (via <code>&lt;ae-icon&gt;</code> in the default slot)</label>
+        <label>Item icons in default slot (inherit text color)</label>
         <div class="demo-row">
           <ae-tree class="tree-demo" default-expand-all>
             <ae-tree-item key="ic1">
@@ -229,6 +229,28 @@
               <ae-icon name="info"></ae-icon> About
             </ae-tree-item>
             <ae-tree-item key="ic3">No icon item</ae-tree-item>
+          </ae-tree>
+        </div>
+      </div>
+
+      <!-- ─── Item icons via slot="icon" ──────────────────────────── -->
+      <div class="demo-group">
+        <label>Item icons via <code>slot="icon"</code> (dimmed control-icon tone + gap)</label>
+        <div class="demo-row">
+          <ae-tree class="tree-demo" default-expand-all>
+            <ae-tree-item key="si1">
+              <ae-icon name="star" slot="icon"></ae-icon>Favorites
+              <ae-tree-item key="si1-1">
+                <ae-icon name="settings" slot="icon"></ae-icon>Settings
+              </ae-tree-item>
+              <ae-tree-item key="si1-2">
+                <ae-icon name="home" slot="icon"></ae-icon>Home
+              </ae-tree-item>
+            </ae-tree-item>
+            <ae-tree-item key="si2">
+              <ae-icon name="info" slot="icon"></ae-icon>About
+            </ae-tree-item>
+            <ae-tree-item key="si3">No icon item</ae-tree-item>
           </ae-tree>
         </div>
       </div>

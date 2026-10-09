@@ -11,6 +11,7 @@
   --tree-item-line-color: var(--ae-border-default, rgba(0, 0, 0, 0.15));
   --tree-item-expand-size: 1.25rem;
   --tree-item-expand-color: var(--ae-color-text-muted, #6e6e6e);
+  --tree-item-icon-gap: 0.375rem;
 }
 
 .tree-item-content {
@@ -103,6 +104,22 @@
   margin: 0;
   cursor: pointer;
   accent-color: var(--ae-color-primary, #0e639c);
+}
+
+.tree-item-label > slot[name="icon"] {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-inline-end: var(--tree-item-icon-gap);
+  color: var(--ae-color-text-muted, #6e6e6e);
+}
+
+.tree-item-label > slot[name="icon"]::slotted(*) {
+  flex-shrink: 0;
+}
+
+.tree-item-label > slot[name="icon"].tree-item-icon-slot--empty {
+  display: none;
 }
 
 .tree-item-label {
