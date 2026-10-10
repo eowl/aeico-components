@@ -5,7 +5,7 @@ function normalize(data: string | IconDefinition): IconDefinition {
     if (data.trimStart().startsWith('<svg')) {
       return { rawSvg: data };
     }
-    
+
     return { paths: data, viewBox: defaultViewBox };
   }
 
