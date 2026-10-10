@@ -66,20 +66,84 @@ import 'aeico-components';
 
 ### Registering custom icons
 
+Icons can be registered as a path `d` string, a full raw `<svg>` string, or an
+`IconDefinition` object:
+
 ```js
 import IconRegistry from 'aeico-components';
 
 IconRegistry.add({
+  // Raw <svg> string (rendered as-is)
   'my-logo': `
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <path d="M12 2L2 22h20L12 2z"/>
   </svg>
 `,
+  // Object form with per-path fill/stroke
+  'my-two-tone': {
+    paths: [
+      { d: 'M12 2L2 22h20L12 2z', fill: '#387eb8' },
+      { d: 'M12 2v20h10L12 2z', stroke: true, strokeWidth: 1.5 },
+    ],
+  },
 });
 ```
 
 ```html
 <ae-icon name="my-logo" size="lg"></ae-icon>
+```
+
+### Gradient fill (defs)
+
+Icons can define gradients in `defs` and reference them via `fill: url(#id)`:
+
+```js
+import IconRegistry from 'aeico-components';
+
+IconRegistry.add({
+  'my-gradient-icon': {
+    defs: [
+      {
+        type: 'linear',
+        id: 'my-grad',
+        x1: 0,
+        y1: 0,
+        x2: 1,
+        y2: 1,
+        stops: [
+          { offset: 0, stopColor: '#387eb8' },
+          { offset: 1, stopColor: '#9333ea' },
+        ],
+      },
+    ],
+    paths: [{ d: 'M12 2L2 22h20L12 2z', fill: 'url(#my-grad)' }],
+  },
+});
+```
+
+```html
+<ae-icon name="my-gradient-icon" size="lg"></ae-icon>
+```
+
+`radial` gradients are also supported (via `cx`/`cy`/`r`/`fx`/`fy`). When `id`
+is omitted, a stable id (`ae-icon-grad-<index>`) is generated - reference it as
+`url(#ae-icon-grad-0)`.
+
+### Multi-path icons
+
+Each path accepts `fill`, `stroke`, and `strokeWidth`. Paths without an
+explicit `fill` fall back to `currentColor` (the `color` attribute / CSS
+color chain):
+
+```js
+IconRegistry.add({
+  'my-mixed': {
+    paths: [
+      { d: 'M4 4h16v16H4z', stroke: true, strokeWidth: 2 },
+      { d: 'M8 12l3 3 5-6', stroke: true, strokeWidth: 2 },
+    ],
+  },
+});
 ```
 
 ### Built-in icon set (opt-in)

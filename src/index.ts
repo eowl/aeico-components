@@ -94,7 +94,15 @@ export type { BadgeProps, BadgeColor, BadgeSize, BadgeVariant } from './badge';
 export type { TagProps, TagColor, TagSize, TagVariant } from './tag';
 export type { DialogProps } from './dialog';
 export type { DrawerProps, DrawerPlacement } from './drawer';
-export type { IconProps, IconSize, IconColor, IconDefinition, IconRegistryData } from './icon';
+export type {
+  IconProps,
+  IconSize,
+  IconColor,
+  IconDefinition,
+  IconPathDef,
+  IconStop,
+  IconGradientDef,
+} from './icon';
 export type { ProgressBarProps, ProgressBarColor } from './progress-bar';
 export type { IconButtonProps, IconButtonVariant, IconButtonSize } from './icon-button';
 export type { DividerProps } from './divider';
