@@ -8,6 +8,4 @@ export type {
   IconPathDef,
   IconStop,
   IconGradientDef,
-  IconRawSvg,
-  IconRegistryInput,
 } from './defines';

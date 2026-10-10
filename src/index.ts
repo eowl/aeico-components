@@ -102,8 +102,6 @@ export type {
   IconPathDef,
   IconStop,
   IconGradientDef,
-  IconRawSvg,
-  IconRegistryInput,
 } from './icon';
 export type { ProgressBarProps, ProgressBarColor } from './progress-bar';
 export type { IconButtonProps, IconButtonVariant, IconButtonSize } from './icon-button';

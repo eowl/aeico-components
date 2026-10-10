@@ -54,8 +54,4 @@ export interface IconRawSvgDefinition {
 
 export type IconDefinition = IconPathDefinition | IconRawSvgDefinition;
 
-export type IconRawSvg = IconRawSvgDefinition;
-
 export const defaultViewBox = '0 0 24 24';
-
-export type IconRegistryInput = Record<string, string | IconDefinition | IconRawSvg>;

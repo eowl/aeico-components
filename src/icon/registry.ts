@@ -1,11 +1,6 @@
-import {
-  IconDefinition,
-  IconRawSvg,
-  IconRegistryInput,
-  defaultViewBox,
-} from './defines';
+import { IconDefinition, defaultViewBox } from './defines';
 
-function normalize(data: string | IconDefinition | IconRawSvg): IconDefinition {
+function normalize(data: string | IconDefinition): IconDefinition {
   if (typeof data === 'string') {
     if (data.trimStart().startsWith('<svg')) {
       return { rawSvg: data };
@@ -26,7 +21,7 @@ class IconRegistry {
   private static _builtInKeys: Set<string> = new Set();
   private static _internalIcons: Map<string, IconDefinition> = new Map();
 
-  static add(icons: IconRegistryInput) {
+  static add(icons: Record<string, string | IconDefinition>) {
     for (const [name, data] of Object.entries(icons)) {
       if (name.startsWith('_')) {
         console.warn(
@@ -39,7 +34,7 @@ class IconRegistry {
     }
   }
 
-  static addBuiltIn(icons: IconRegistryInput) {
+  static addBuiltIn(icons: Record<string, string | IconDefinition>) {
     for (const [name, data] of Object.entries(icons)) {
       if (this._icons.has(name) && !this._builtInKeys.has(name)) continue;
       this._icons.set(name, normalize(data));
@@ -47,7 +42,7 @@ class IconRegistry {
     }
   }
 
-  static addInternal(icons: IconRegistryInput) {
+  static addInternal(icons: Record<string, string | IconDefinition>) {
     for (const [name, data] of Object.entries(icons)) {
       if (!name.startsWith('_')) {
         console.warn(`[aeico] Internal icon name "${name}" must start with "_". Skipped.`);
