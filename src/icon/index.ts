@@ -1,4 +1,13 @@
 export { default as Icon } from './icon';
 export type { IconProps } from './icon';
 export { default as IconRegistry } from './registry';
-export type { IconSize, IconColor, IconDefinition, IconPathDef, IconRegistryData } from './defines';
+export type {
+  IconSize,
+  IconColor,
+  IconDefinition,
+  IconPathDef,
+  IconStop,
+  IconGradientDef,
+  IconRawSvg,
+  IconRegistryInput,
+} from './defines';
