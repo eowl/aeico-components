@@ -205,11 +205,11 @@ describe('Icon', () => {
       expect(paths![1].getAttribute('d')).to.equal(MULTI_PATH_2)
     })
 
-    it('applies inline fill from IconPathDef', async () => {
+    it('applies fill attribute from IconPathDef', async () => {
       const el = await mount<Icon>(`<${TAG_NAME} name="test-multi"></${TAG_NAME}>`)
       const paths = el.shadowRoot?.querySelectorAll<SVGPathElement>('svg.icon-svg path')
-      expect(paths![0].style.fill).to.equal('rgb(56, 126, 184)')
-      expect(paths![1].style.fill).to.equal('rgb(255, 224, 82)')
+      expect(paths![0].getAttribute('fill')).to.equal('#387eb8')
+      expect(paths![1].getAttribute('fill')).to.equal('#ffe052')
     })
 
     it('clears stroke CSS vars in multi-path mode', async () => {
@@ -217,6 +217,120 @@ describe('Icon', () => {
       // stroke prop on component is ignored for multi-path icons
       expect(el.style.getPropertyValue('--icon-fill')).to.equal('')
       expect(el.style.getPropertyValue('--icon-stroke')).to.equal('')
+    })
+  })
+
+  describe('defs and gradients', () => {
+    before(() => {
+      IconRegistry.add({
+        'test-grad': {
+          defs: [
+            {
+              type: 'linear',
+              id: 'test-grad-1',
+              stops: [
+                { offset: 0, stopColor: '#387eb8' },
+                { offset: 1, stopColor: '#9333ea' },
+              ],
+            },
+          ],
+          paths: [{ d: MULTI_PATH_1, fill: 'url(#test-grad-1)' }],
+        },
+        'test-grad-auto-id': {
+          defs: [
+            {
+              type: 'radial',
+              stops: [{ offset: 0, stopColor: 'red' }],
+            },
+          ],
+          paths: [{ d: MULTI_PATH_1, fill: 'url(#ae-icon-grad-0)' }],
+        },
+      })
+    })
+
+    it('renders a <defs> element with a linearGradient', async () => {
+      const el = await mount<Icon>(`<${TAG_NAME} name="test-grad"></${TAG_NAME}>`)
+      const grad = el.shadowRoot?.querySelector('svg.icon-svg defs linearGradient')
+      expect(grad).to.exist
+      expect(grad!.getAttribute('id')).to.equal('test-grad-1')
+      expect(grad!.getAttribute('x1')).to.equal('0')
+      expect(grad!.getAttribute('x2')).to.equal('1')
+    })
+
+    it('renders gradient stops', async () => {
+      const el = await mount<Icon>(`<${TAG_NAME} name="test-grad"></${TAG_NAME}>`)
+      const stops = el.shadowRoot?.querySelectorAll('linearGradient stop')
+      expect(stops?.length).to.equal(2)
+      expect(stops![0].getAttribute('stop-color')).to.equal('#387eb8')
+      expect(stops![1].getAttribute('offset')).to.equal('1')
+    })
+
+    it('path can reference a gradient via fill="url(#id)"', async () => {
+      const el = await mount<Icon>(`<${TAG_NAME} name="test-grad"></${TAG_NAME}>`)
+      const path = el.shadowRoot?.querySelector('svg.icon-svg path')
+      expect(path!.getAttribute('fill')).to.equal('url(#test-grad-1)')
+    })
+
+    it('generates a stable id when gradient id is omitted', async () => {
+      const el = await mount<Icon>(`<${TAG_NAME} name="test-grad-auto-id"></${TAG_NAME}>`)
+      const grad = el.shadowRoot?.querySelector('svg.icon-svg defs radialGradient')
+      expect(grad).to.exist
+      expect(grad!.getAttribute('id')).to.equal('ae-icon-grad-0')
+      expect(grad!.getAttribute('cx')).to.equal('0.5')
+      expect(grad!.getAttribute('r')).to.equal('0.5')
+    })
+  })
+
+  describe('multi-path stroke', () => {
+    before(() => {
+      IconRegistry.add({
+        'test-multi-stroke': {
+          paths: [
+            { d: MULTI_PATH_1, stroke: true, strokeWidth: 1.5 },
+            { d: MULTI_PATH_2, stroke: true },
+          ],
+        },
+      })
+    })
+
+    it('applies stroke attributes per path', async () => {
+      const el = await mount<Icon>(`<${TAG_NAME} name="test-multi-stroke"></${TAG_NAME}>`)
+      const paths = el.shadowRoot?.querySelectorAll('svg.icon-svg path')
+      expect(paths![0].getAttribute('stroke')).to.equal('currentColor')
+      expect(paths![0].getAttribute('stroke-width')).to.equal('1.5')
+      expect(paths![0].getAttribute('fill')).to.equal('none')
+      // Falls back to default stroke width of 2
+      expect(paths![1].getAttribute('stroke-width')).to.equal('2')
+    })
+  })
+
+  describe('raw svg registration', () => {
+    const RAW_SVG =
+      '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#387eb8"/></svg>'
+
+    before(() => {
+      IconRegistry.add({ 'test-raw': RAW_SVG })
+      IconRegistry.add({ 'test-raw-obj': { rawSvg: RAW_SVG, viewBox: '0 0 48 48' } })
+    })
+
+    it('normalises raw svg string to an IconDefinition', () => {
+      const def = IconRegistry.get('test-raw')
+      expect(def && 'rawSvg' in def && def.rawSvg).to.equal(RAW_SVG)
+    })
+
+    it('renders raw svg markup inside the icon svg', async () => {
+      const el = await mount<Icon>(`<${TAG_NAME} name="test-raw"></${TAG_NAME}>`)
+      const svg = el.shadowRoot?.querySelector('svg.icon-svg')
+      expect(svg).to.exist
+      expect(svg!.querySelector('circle')).to.exist
+      expect(svg!.getAttribute('viewBox')).to.equal('0 0 24 24')
+    })
+
+    it('IconRawSvg object can override the viewBox', async () => {
+      const el = await mount<Icon>(`<${TAG_NAME} name="test-raw-obj"></${TAG_NAME}>`)
+      const svg = el.shadowRoot?.querySelector('svg.icon-svg')
+      expect(svg!.getAttribute('viewBox')).to.equal('0 0 48 48')
+      expect(svg!.querySelector('circle')).to.exist
     })
   })
 
@@ -242,8 +356,8 @@ describe('Icon', () => {
 
     it('object definition is stored as-is (multi-path)', () => {
       const def = IconRegistry.get('test-multi')
-      expect(Array.isArray(def?.paths)).to.be.true
-      const paths = def!.paths as Array<{ d: string; fill?: string }>
+      expect(def && 'paths' in def && Array.isArray(def.paths)).to.be.true
+      const paths = (def as { paths: Array<{ d: string; fill?: string }> }).paths
       expect(paths[0].d).to.equal(MULTI_PATH_1)
       expect(paths[0].fill).to.equal('#387eb8')
       expect(paths[1].d).to.equal(MULTI_PATH_2)
@@ -257,7 +371,7 @@ describe('Icon', () => {
       it('registers an icon that can be retrieved', () => {
         IconRegistry.addBuiltIn({ 'test-bi-basic': BUILTIN_PATH })
         expect(IconRegistry.get('test-bi-basic')).to.exist
-        expect(IconRegistry.get('test-bi-basic')?.paths).to.equal(BUILTIN_PATH)
+        expect((IconRegistry.get('test-bi-basic') as { paths: string }).paths).to.equal(BUILTIN_PATH)
       })
 
       it('has() returns true for a built-in icon', () => {
@@ -278,7 +392,7 @@ describe('Icon', () => {
           'test-bi-obj': { paths: [{ d: BUILTIN_PATH, fill: '#ff0000' }] },
         })
         const def = IconRegistry.get('test-bi-obj')
-        const paths = def!.paths as Array<{ d: string; fill?: string }>
+        const paths = (def as { paths: Array<{ d: string; fill?: string }> }).paths
         expect(Array.isArray(paths)).to.be.true
         expect(paths[0].d).to.equal(BUILTIN_PATH)
         expect(paths[0].fill).to.equal('#ff0000')
@@ -288,14 +402,14 @@ describe('Icon', () => {
         const userPath = 'M1 1h22v22H1z'
         IconRegistry.add({ 'test-bi-priority': userPath })
         IconRegistry.addBuiltIn({ 'test-bi-priority': BUILTIN_PATH })
-        expect(IconRegistry.get('test-bi-priority')?.paths).to.equal(userPath)
+        expect((IconRegistry.get('test-bi-priority') as { paths: string }).paths).to.equal(userPath)
       })
 
       it('a subsequent add() call overwrites a built-in icon', () => {
         const userPath = 'M2 2h20v20H2z'
         IconRegistry.addBuiltIn({ 'test-bi-override': BUILTIN_PATH })
         IconRegistry.add({ 'test-bi-override': userPath })
-        expect(IconRegistry.get('test-bi-override')?.paths).to.equal(userPath)
+        expect((IconRegistry.get('test-bi-override') as { paths: string }).paths).to.equal(userPath)
       })
 
       it('add() then addBuiltIn() does not restore the built-in value', () => {
@@ -304,14 +418,14 @@ describe('Icon', () => {
         IconRegistry.add({ 'test-bi-no-restore': userPath })
         // After user add(), addBuiltIn() must not clobber the user value
         IconRegistry.addBuiltIn({ 'test-bi-no-restore': BUILTIN_PATH })
-        expect(IconRegistry.get('test-bi-no-restore')?.paths).to.equal(userPath)
+        expect((IconRegistry.get('test-bi-no-restore') as { paths: string }).paths).to.equal(userPath)
       })
 
       it('a second addBuiltIn() call updates the same built-in key', () => {
         const updatedPath = 'M4 4h16v16H4z'
         IconRegistry.addBuiltIn({ 'test-bi-update': BUILTIN_PATH })
         IconRegistry.addBuiltIn({ 'test-bi-update': updatedPath })
-        expect(IconRegistry.get('test-bi-update')?.paths).to.equal(updatedPath)
+        expect((IconRegistry.get('test-bi-update') as { paths: string }).paths).to.equal(updatedPath)
       })
     })
 
@@ -322,7 +436,7 @@ describe('Icon', () => {
       it('registers an icon that can be retrieved', () => {
         IconRegistry.addInternal({ '_test-internal': INTERNAL_PATH })
         expect(IconRegistry.get('_test-internal')).to.exist
-        expect(IconRegistry.get('_test-internal')?.paths).to.equal(INTERNAL_PATH)
+        expect((IconRegistry.get('_test-internal') as { paths: string }).paths).to.equal(INTERNAL_PATH)
       })
 
       it('has() returns true for an internal icon', () => {
@@ -342,14 +456,14 @@ describe('Icon', () => {
         const userPath = 'M5 5h14v14H5z'
         IconRegistry.addInternal({ '_test-internal-protected': INTERNAL_PATH })
         IconRegistry.add({ '_test-internal-protected': userPath })
-        expect(IconRegistry.get('_test-internal-protected')?.paths).to.equal(INTERNAL_PATH)
+        expect((IconRegistry.get('_test-internal-protected') as { paths: string }).paths).to.equal(INTERNAL_PATH)
       })
 
       it('addBuiltIn() cannot override an internal icon', () => {
         const biPath = 'M6 6h12v12H6z'
         IconRegistry.addInternal({ '_test-internal-vs-bi': INTERNAL_PATH })
         IconRegistry.addBuiltIn({ '_test-internal-vs-bi': biPath })
-        expect(IconRegistry.get('_test-internal-vs-bi')?.paths).to.equal(INTERNAL_PATH)
+        expect((IconRegistry.get('_test-internal-vs-bi') as { paths: string }).paths).to.equal(INTERNAL_PATH)
       })
 
       it('rejects names without the "_" prefix', () => {
@@ -366,8 +480,8 @@ describe('Icon', () => {
         const userPath = 'M7 7h10v10H7z'
         IconRegistry.addInternal({ '_test-internal-sep': INTERNAL_PATH })
         IconRegistry.add({ 'test-internal-sep': userPath })
-        expect(IconRegistry.get('test-internal-sep')?.paths).to.equal(userPath)
-        expect(IconRegistry.get('_test-internal-sep')?.paths).to.equal(INTERNAL_PATH)
+        expect((IconRegistry.get('test-internal-sep') as { paths: string }).paths).to.equal(userPath)
+        expect((IconRegistry.get('_test-internal-sep') as { paths: string }).paths).to.equal(INTERNAL_PATH)
       })
     })
   })
