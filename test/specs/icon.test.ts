@@ -364,71 +364,6 @@ describe('Icon', () => {
       expect(paths[1].fill).to.equal('#ffe052')
     })
 
-    describe('addBuiltIn', () => {
-      // Unique path used as a sentinel value across built-in tests
-      const BUILTIN_PATH = 'M0 0h24v24H0z'
-
-      it('registers an icon that can be retrieved', () => {
-        IconRegistry.addBuiltIn({ 'test-bi-basic': BUILTIN_PATH })
-        expect(IconRegistry.get('test-bi-basic')).to.exist
-        expect((IconRegistry.get('test-bi-basic') as { paths: string }).paths).to.equal(BUILTIN_PATH)
-      })
-
-      it('has() returns true for a built-in icon', () => {
-        IconRegistry.addBuiltIn({ 'test-bi-has': BUILTIN_PATH })
-        expect(IconRegistry.has('test-bi-has')).to.be.true
-      })
-
-      it('normalises string shorthand to IconDefinition with defaultViewBox', () => {
-        IconRegistry.addBuiltIn({ 'test-bi-shorthand': BUILTIN_PATH })
-        expect(IconRegistry.get('test-bi-shorthand')).to.deep.equal({
-          paths: BUILTIN_PATH,
-          viewBox: '0 0 24 24',
-        })
-      })
-
-      it('stores object definition as-is', () => {
-        IconRegistry.addBuiltIn({
-          'test-bi-obj': { paths: [{ d: BUILTIN_PATH, fill: '#ff0000' }] },
-        })
-        const def = IconRegistry.get('test-bi-obj')
-        const paths = (def as { paths: Array<{ d: string; fill?: string }> }).paths
-        expect(Array.isArray(paths)).to.be.true
-        expect(paths[0].d).to.equal(BUILTIN_PATH)
-        expect(paths[0].fill).to.equal('#ff0000')
-      })
-
-      it('does NOT overwrite an icon previously registered via add()', () => {
-        const userPath = 'M1 1h22v22H1z'
-        IconRegistry.add({ 'test-bi-priority': userPath })
-        IconRegistry.addBuiltIn({ 'test-bi-priority': BUILTIN_PATH })
-        expect((IconRegistry.get('test-bi-priority') as { paths: string }).paths).to.equal(userPath)
-      })
-
-      it('a subsequent add() call overwrites a built-in icon', () => {
-        const userPath = 'M2 2h20v20H2z'
-        IconRegistry.addBuiltIn({ 'test-bi-override': BUILTIN_PATH })
-        IconRegistry.add({ 'test-bi-override': userPath })
-        expect((IconRegistry.get('test-bi-override') as { paths: string }).paths).to.equal(userPath)
-      })
-
-      it('add() then addBuiltIn() does not restore the built-in value', () => {
-        const userPath = 'M3 3h18v18H3z'
-        IconRegistry.addBuiltIn({ 'test-bi-no-restore': BUILTIN_PATH })
-        IconRegistry.add({ 'test-bi-no-restore': userPath })
-        // After user add(), addBuiltIn() must not clobber the user value
-        IconRegistry.addBuiltIn({ 'test-bi-no-restore': BUILTIN_PATH })
-        expect((IconRegistry.get('test-bi-no-restore') as { paths: string }).paths).to.equal(userPath)
-      })
-
-      it('a second addBuiltIn() call updates the same built-in key', () => {
-        const updatedPath = 'M4 4h16v16H4z'
-        IconRegistry.addBuiltIn({ 'test-bi-update': BUILTIN_PATH })
-        IconRegistry.addBuiltIn({ 'test-bi-update': updatedPath })
-        expect((IconRegistry.get('test-bi-update') as { paths: string }).paths).to.equal(updatedPath)
-      })
-    })
-
     describe('addInternal', () => {
       // Unique path used as a sentinel value across internal icon tests
       const INTERNAL_PATH = 'M0 0h24v24H0z'
@@ -457,13 +392,6 @@ describe('Icon', () => {
         IconRegistry.addInternal({ '_test-internal-protected': INTERNAL_PATH })
         IconRegistry.add({ '_test-internal-protected': userPath })
         expect((IconRegistry.get('_test-internal-protected') as { paths: string }).paths).to.equal(INTERNAL_PATH)
-      })
-
-      it('addBuiltIn() cannot override an internal icon', () => {
-        const biPath = 'M6 6h12v12H6z'
-        IconRegistry.addInternal({ '_test-internal-vs-bi': INTERNAL_PATH })
-        IconRegistry.addBuiltIn({ '_test-internal-vs-bi': biPath })
-        expect((IconRegistry.get('_test-internal-vs-bi') as { paths: string }).paths).to.equal(INTERNAL_PATH)
       })
 
       it('rejects names without the "_" prefix', () => {

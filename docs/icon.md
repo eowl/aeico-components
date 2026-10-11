@@ -2,7 +2,7 @@
 
 `General`
 
-Renders an SVG icon from the built-in icon library or from a custom-registered icon set. Supports fill mode (default), stroke mode, and colour theming.
+Renders an SVG icon from a registered icon set. Supports fill mode (default), stroke mode, and colour theming.
 
 ## Import
 
@@ -145,24 +145,6 @@ IconRegistry.add({
   },
 });
 ```
-
-### Built-in icon set (opt-in)
-
-A small set of public icons (`chevron-*`, `close`, `copy`, `check`, `ellipsis`,
-`filter`, ...) ships with the library. It is **not** registered automatically -
-import it explicitly:
-
-```js
-import 'aeico-components/built-in-icons';
-```
-
-```html
-<ae-icon name="chevron-down"></ae-icon>
-```
-
-These public icons can be overridden via `IconRegistry.add()`; component
-behavior is unaffected because components use the protected internal
-`_`-prefixed icons (see below).
 
 ### Internal icons (reserved namespace)
 

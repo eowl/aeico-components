@@ -34,7 +34,7 @@ import 'aeico-components';
 | [Button](./button.md) | `ae-button` | Triggers actions; supports variants, sizes, icons, and link mode via `href`. |
 | [Button Group](./button-group.md) | `ae-button-group` | Groups buttons visually, including compact joined mode. |
 | [Copy Button](./copy-button.md) | `ae-copy-button` | Copies text to clipboard with visual feedback. |
-| [Icon](./icon.md) | `ae-icon` | Renders SVG icons from the built-in registry or custom sources. |
+| [Icon](./icon.md) | `ae-icon` | Renders SVG icons from a registered icon set. |
 | [Icon Button](./icon-button.md) | `ae-icon-button` | ⚠️ Deprecated. Use `<ae-button>` with `<ae-icon>` instead. |
 
 ### Form & Input

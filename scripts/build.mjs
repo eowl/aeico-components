@@ -8,6 +8,7 @@
  */
 
 import * as esbuild from 'esbuild'
+import { rmSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { cssInline } from './lib/esbuild.mjs'
@@ -33,7 +34,6 @@ const entryPoints = {
   divider:        'src/divider/index.ts',
   dropdown:       'src/dropdown/index.ts',
   icon:           'src/icon/index.ts',
-  'built-in-icons': 'src/icon/built-in-icons.ts',
   image:          'src/image/index.ts',
   'icon-button':  'src/icon-button/index.ts',
   list:           'src/list/index.ts',
@@ -82,6 +82,7 @@ if (watch) {
   await ctx.watch()
   console.log('ESM watch mode - rebuilding on changes...')
 } else {
+  rmSync(resolve(rootDir, 'dist'), { recursive: true, force: true })
   await esbuild.build(buildOptions)
   console.log('ESM build done to dist/*.js')
 }

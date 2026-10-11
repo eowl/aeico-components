@@ -18,7 +18,6 @@ function normalize(data: string | IconDefinition): IconDefinition {
 
 class IconRegistry {
   private static _icons: Map<string, IconDefinition> = new Map();
-  private static _builtInKeys: Set<string> = new Set();
   private static _internalIcons: Map<string, IconDefinition> = new Map();
 
   static add(icons: Record<string, string | IconDefinition>) {
@@ -30,15 +29,6 @@ class IconRegistry {
         continue;
       }
       this._icons.set(name, normalize(data));
-      this._builtInKeys.delete(name);
-    }
-  }
-
-  static addBuiltIn(icons: Record<string, string | IconDefinition>) {
-    for (const [name, data] of Object.entries(icons)) {
-      if (this._icons.has(name) && !this._builtInKeys.has(name)) continue;
-      this._icons.set(name, normalize(data));
-      this._builtInKeys.add(name);
     }
   }
 
