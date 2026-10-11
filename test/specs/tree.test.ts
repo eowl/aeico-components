@@ -626,8 +626,8 @@ describe('ae-tree expand icon props', () => {
 
   it('expandIcon/collapseIcon default to protected internal chevrons', async () => {
     const el = await mount<Tree>(BASIC_TREE)
-    expect(el.expandIcon).to.equal('_chevron-right')
-    expect(el.collapseIcon).to.equal('_chevron-down')
+    expect(el.expandIcon).to.equal('__chevron-right')
+    expect(el.collapseIcon).to.equal('__chevron-down')
   })
 
   it('parent items show ae-icon in expand-btn when tree has expand-icon set', async () => {

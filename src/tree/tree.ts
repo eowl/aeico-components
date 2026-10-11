@@ -11,6 +11,7 @@ import type {
 } from './defines';
 import './tree-item';
 import type TreeItem from './tree-item';
+import { getInternalName } from '../utils/icon';
 
 /**
  * Tree component. Renders a hierarchical tree of `<ae-tree-item>` elements.
@@ -61,10 +62,10 @@ class Tree extends AeicoComponent {
   accessor selectedKey: string | undefined;
 
   @prop({ type: String })
-  accessor expandIcon: string | undefined = '_chevron-right';
+  accessor expandIcon: string | undefined = getInternalName('chevron-right');
 
   @prop({ type: String })
-  accessor collapseIcon: string | undefined = '_chevron-down';
+  accessor collapseIcon: string | undefined = getInternalName('chevron-down');
 
   @prop({ type: String })
   accessor iconPlacement: TreeIconPlacement = 'start';

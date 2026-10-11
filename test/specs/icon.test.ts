@@ -364,89 +364,24 @@ describe('Icon', () => {
       expect(paths[1].fill).to.equal('#ffe052')
     })
 
-    describe('addBuiltIn', () => {
-      // Unique path used as a sentinel value across built-in tests
-      const BUILTIN_PATH = 'M0 0h24v24H0z'
-
-      it('registers an icon that can be retrieved', () => {
-        IconRegistry.addBuiltIn({ 'test-bi-basic': BUILTIN_PATH })
-        expect(IconRegistry.get('test-bi-basic')).to.exist
-        expect((IconRegistry.get('test-bi-basic') as { paths: string }).paths).to.equal(BUILTIN_PATH)
-      })
-
-      it('has() returns true for a built-in icon', () => {
-        IconRegistry.addBuiltIn({ 'test-bi-has': BUILTIN_PATH })
-        expect(IconRegistry.has('test-bi-has')).to.be.true
-      })
-
-      it('normalises string shorthand to IconDefinition with defaultViewBox', () => {
-        IconRegistry.addBuiltIn({ 'test-bi-shorthand': BUILTIN_PATH })
-        expect(IconRegistry.get('test-bi-shorthand')).to.deep.equal({
-          paths: BUILTIN_PATH,
-          viewBox: '0 0 24 24',
-        })
-      })
-
-      it('stores object definition as-is', () => {
-        IconRegistry.addBuiltIn({
-          'test-bi-obj': { paths: [{ d: BUILTIN_PATH, fill: '#ff0000' }] },
-        })
-        const def = IconRegistry.get('test-bi-obj')
-        const paths = (def as { paths: Array<{ d: string; fill?: string }> }).paths
-        expect(Array.isArray(paths)).to.be.true
-        expect(paths[0].d).to.equal(BUILTIN_PATH)
-        expect(paths[0].fill).to.equal('#ff0000')
-      })
-
-      it('does NOT overwrite an icon previously registered via add()', () => {
-        const userPath = 'M1 1h22v22H1z'
-        IconRegistry.add({ 'test-bi-priority': userPath })
-        IconRegistry.addBuiltIn({ 'test-bi-priority': BUILTIN_PATH })
-        expect((IconRegistry.get('test-bi-priority') as { paths: string }).paths).to.equal(userPath)
-      })
-
-      it('a subsequent add() call overwrites a built-in icon', () => {
-        const userPath = 'M2 2h20v20H2z'
-        IconRegistry.addBuiltIn({ 'test-bi-override': BUILTIN_PATH })
-        IconRegistry.add({ 'test-bi-override': userPath })
-        expect((IconRegistry.get('test-bi-override') as { paths: string }).paths).to.equal(userPath)
-      })
-
-      it('add() then addBuiltIn() does not restore the built-in value', () => {
-        const userPath = 'M3 3h18v18H3z'
-        IconRegistry.addBuiltIn({ 'test-bi-no-restore': BUILTIN_PATH })
-        IconRegistry.add({ 'test-bi-no-restore': userPath })
-        // After user add(), addBuiltIn() must not clobber the user value
-        IconRegistry.addBuiltIn({ 'test-bi-no-restore': BUILTIN_PATH })
-        expect((IconRegistry.get('test-bi-no-restore') as { paths: string }).paths).to.equal(userPath)
-      })
-
-      it('a second addBuiltIn() call updates the same built-in key', () => {
-        const updatedPath = 'M4 4h16v16H4z'
-        IconRegistry.addBuiltIn({ 'test-bi-update': BUILTIN_PATH })
-        IconRegistry.addBuiltIn({ 'test-bi-update': updatedPath })
-        expect((IconRegistry.get('test-bi-update') as { paths: string }).paths).to.equal(updatedPath)
-      })
-    })
-
     describe('addInternal', () => {
       // Unique path used as a sentinel value across internal icon tests
       const INTERNAL_PATH = 'M0 0h24v24H0z'
 
       it('registers an icon that can be retrieved', () => {
-        IconRegistry.addInternal({ '_test-internal': INTERNAL_PATH })
-        expect(IconRegistry.get('_test-internal')).to.exist
-        expect((IconRegistry.get('_test-internal') as { paths: string }).paths).to.equal(INTERNAL_PATH)
+        IconRegistry.addInternal({ '__test-internal': INTERNAL_PATH })
+        expect(IconRegistry.get('__test-internal')).to.exist
+        expect((IconRegistry.get('__test-internal') as { paths: string }).paths).to.equal(INTERNAL_PATH)
       })
 
       it('has() returns true for an internal icon', () => {
-        IconRegistry.addInternal({ '_test-internal-has': INTERNAL_PATH })
-        expect(IconRegistry.has('_test-internal-has')).to.be.true
+        IconRegistry.addInternal({ '__test-internal-has': INTERNAL_PATH })
+        expect(IconRegistry.has('__test-internal-has')).to.be.true
       })
 
       it('normalises string shorthand to IconDefinition with defaultViewBox', () => {
-        IconRegistry.addInternal({ '_test-internal-shorthand': INTERNAL_PATH })
-        expect(IconRegistry.get('_test-internal-shorthand')).to.deep.equal({
+        IconRegistry.addInternal({ '__test-internal-shorthand': INTERNAL_PATH })
+        expect(IconRegistry.get('__test-internal-shorthand')).to.deep.equal({
           paths: INTERNAL_PATH,
           viewBox: '0 0 24 24',
         })
@@ -454,34 +389,87 @@ describe('Icon', () => {
 
       it('add() cannot override an internal icon', () => {
         const userPath = 'M5 5h14v14H5z'
-        IconRegistry.addInternal({ '_test-internal-protected': INTERNAL_PATH })
-        IconRegistry.add({ '_test-internal-protected': userPath })
-        expect((IconRegistry.get('_test-internal-protected') as { paths: string }).paths).to.equal(INTERNAL_PATH)
+        IconRegistry.addInternal({ '__test-internal-protected': INTERNAL_PATH })
+        IconRegistry.add({ '__test-internal-protected': userPath })
+        expect((IconRegistry.get('__test-internal-protected') as { paths: string }).paths).to.equal(INTERNAL_PATH)
       })
 
-      it('addBuiltIn() cannot override an internal icon', () => {
-        const biPath = 'M6 6h12v12H6z'
-        IconRegistry.addInternal({ '_test-internal-vs-bi': INTERNAL_PATH })
-        IconRegistry.addBuiltIn({ '_test-internal-vs-bi': biPath })
-        expect((IconRegistry.get('_test-internal-vs-bi') as { paths: string }).paths).to.equal(INTERNAL_PATH)
-      })
-
-      it('rejects names without the "_" prefix', () => {
+      it('rejects names without the "__" prefix', () => {
         IconRegistry.addInternal({ 'test-internal-noprefix': INTERNAL_PATH })
         expect(IconRegistry.has('test-internal-noprefix')).to.be.false
       })
 
-      it('add() rejects reserved "_"-prefixed names', () => {
-        IconRegistry.add({ '_test-user-reserved': INTERNAL_PATH })
-        expect(IconRegistry.has('_test-user-reserved')).to.be.false
+      it('add() rejects reserved "__"-prefixed names', () => {
+        IconRegistry.add({ '__test-user-reserved': INTERNAL_PATH })
+        expect(IconRegistry.has('__test-user-reserved')).to.be.false
+      })
+
+      it('a single_underscore name is not treated as reserved', () => {
+        IconRegistry.add({ '_test-single-underscore': INTERNAL_PATH })
+        expect(IconRegistry.has('_test-single-underscore')).to.be.true
       })
 
       it('a user icon with a non-reserved name is unaffected by internal icons', () => {
         const userPath = 'M7 7h10v10H7z'
-        IconRegistry.addInternal({ '_test-internal-sep': INTERNAL_PATH })
+        IconRegistry.addInternal({ '__test-internal-sep': INTERNAL_PATH })
         IconRegistry.add({ 'test-internal-sep': userPath })
         expect((IconRegistry.get('test-internal-sep') as { paths: string }).paths).to.equal(userPath)
-        expect((IconRegistry.get('_test-internal-sep') as { paths: string }).paths).to.equal(INTERNAL_PATH)
+        expect((IconRegistry.get('__test-internal-sep') as { paths: string }).paths).to.equal(INTERNAL_PATH)
+      })
+    })
+
+    describe('addShared', () => {
+      const SHARED_PATH = 'M1 1h22v22H1z'
+
+      it('registers an icon that can be retrieved', () => {
+        IconRegistry.addShared({ 'test-shared-basic': SHARED_PATH })
+        expect(IconRegistry.has('test-shared-basic')).to.be.true
+        expect((IconRegistry.get('test-shared-basic') as { paths: string }).paths).to.equal(SHARED_PATH)
+      })
+
+      it('normalises string shorthand to IconDefinition with defaultViewBox', () => {
+        IconRegistry.addShared({ 'test-shared-shorthand': SHARED_PATH })
+        expect(IconRegistry.get('test-shared-shorthand')).to.deep.equal({
+          paths: SHARED_PATH,
+          viewBox: '0 0 24 24',
+        })
+      })
+
+      it('a user icon registered via add() takes precedence over a shared icon', () => {
+        const userPath = 'M2 2h20v20H2z'
+        IconRegistry.addShared({ 'test-shared-priority': SHARED_PATH })
+        IconRegistry.add({ 'test-shared-priority': userPath })
+        expect((IconRegistry.get('test-shared-priority') as { paths: string }).paths).to.equal(userPath)
+      })
+
+      it('does not overwrite a user icon when registered afterwards', () => {
+        const userPath = 'M3 3h18v18H3z'
+        IconRegistry.add({ 'test-shared-priority-2': userPath })
+        IconRegistry.addShared({ 'test-shared-priority-2': SHARED_PATH })
+        expect((IconRegistry.get('test-shared-priority-2') as { paths: string }).paths).to.equal(userPath)
+      })
+
+      it('rejects reserved "__"-prefixed names', () => {
+        IconRegistry.addShared({ '__test-shared-reserved': SHARED_PATH })
+        expect(IconRegistry.has('__test-shared-reserved')).to.be.false
+      })
+
+      it('stores icons in the global shared store keyed by Symbol.for', () => {
+        IconRegistry.addShared({ 'test-shared-store': SHARED_PATH })
+        const store = (globalThis as Record<symbol, Map<string, unknown>>)[
+          Symbol.for('aeico.icon-shared')
+        ]
+        expect(store).to.be.instanceOf(Map)
+        expect(store.has('test-shared-store')).to.be.true
+      })
+
+      it('a fresh registry copy sees shared icons (global store is shared)', () => {
+        IconRegistry.addShared({ 'test-shared-cross': SHARED_PATH })
+        // Simulate another module instance reading the same global store key.
+        const store = (globalThis as Record<symbol, Map<string, unknown>>)[
+          Symbol.for('aeico.icon-shared')
+        ]
+        expect(store.get('test-shared-cross')).to.exist
       })
     })
   })

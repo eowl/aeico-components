@@ -4,6 +4,7 @@ import style from '../styles/components/dialog.css';
 import AeicoComponent from '../aeico-component';
 import { html, tags } from 'aeico';
 import { acquireScrollLock, releaseScrollLock } from '../utils/scroll-lock';
+import { getInternalName } from '../utils/icon';
 import '../icon/icon';
 
 class Dialog extends AeicoComponent {
@@ -57,7 +58,7 @@ class Dialog extends AeicoComponent {
                     '@click': () => this.close(),
                   },
                   () => {
-                    aeIcon({ name: '_close' });
+                    aeIcon({ name: getInternalName('close') });
                   },
                 );
               }

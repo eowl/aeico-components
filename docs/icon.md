@@ -2,7 +2,7 @@
 
 `General`
 
-Renders an SVG icon from the built-in icon library or from a custom-registered icon set. Supports fill mode (default), stroke mode, and colour theming.
+Renders an SVG icon from a registered icon set. Supports fill mode (default), stroke mode, and colour theming.
 
 ## Import
 
@@ -93,6 +93,32 @@ IconRegistry.add({
 <ae-icon name="my-logo" size="lg"></ae-icon>
 ```
 
+### Sharing icons across bundles
+
+`IconRegistry.add()` registers icons privately to the module instance that
+called it. When the same library is loaded more than once on a page (separate
+bundles, duplicated package copies, mixed ESM/CJS), those instances each get
+their own registry and cannot see each other's icons.
+
+`IconRegistry.addShared()` writes to a process-wide store instead, so the icons
+are visible to **every** copy of the library on the page. Use it for reusable
+icon sets:
+
+```js
+import IconRegistry from 'aeico-components';
+
+IconRegistry.addShared({
+  'chevron-left': 'M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z',
+});
+```
+
+Resolution order (for names that do not use the reserved `__` prefix):
+
+1. Icons registered with `add()` (private) take precedence.
+2. Otherwise the shared store is checked.
+
+Names starting with the reserved `__` prefix are rejected here as well.
+
 ### Gradient fill (defs)
 
 Icons can define gradients in `defs` and reference them via `fill: url(#id)`:
@@ -146,30 +172,12 @@ IconRegistry.add({
 });
 ```
 
-### Built-in icon set (opt-in)
-
-A small set of public icons (`chevron-*`, `close`, `copy`, `check`, `ellipsis`,
-`filter`, ...) ships with the library. It is **not** registered automatically -
-import it explicitly:
-
-```js
-import 'aeico-components/built-in-icons';
-```
-
-```html
-<ae-icon name="chevron-down"></ae-icon>
-```
-
-These public icons can be overridden via `IconRegistry.add()`; component
-behavior is unaffected because components use the protected internal
-`_`-prefixed icons (see below).
-
 ### Internal icons (reserved namespace)
 
-Icons whose names start with `_` (e.g. `_chevron-right`) are used internally by
+Icons whose names start with `__` (e.g. `__chevron-right`) are used internally by
 components (tree expand toggles, dialog close buttons, pagination arrows, ...).
 They are stored in a protected registry and **cannot be overridden or shadowed**
-by `IconRegistry.add()` - names with the `_` prefix are rejected for user
+by `IconRegistry.add()` - names with the `__` prefix are rejected for user
 registration. This guarantees component behavior stays intact regardless of
 user icon sets.
 
