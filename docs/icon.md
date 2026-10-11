@@ -148,10 +148,10 @@ IconRegistry.add({
 
 ### Internal icons (reserved namespace)
 
-Icons whose names start with `_` (e.g. `_chevron-right`) are used internally by
+Icons whose names start with `__` (e.g. `__chevron-right`) are used internally by
 components (tree expand toggles, dialog close buttons, pagination arrows, ...).
 They are stored in a protected registry and **cannot be overridden or shadowed**
-by `IconRegistry.add()` - names with the `_` prefix are rejected for user
+by `IconRegistry.add()` - names with the `__` prefix are rejected for user
 registration. This guarantees component behavior stays intact regardless of
 user icon sets.
 

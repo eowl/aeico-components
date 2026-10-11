@@ -5,6 +5,7 @@ import styleVariables from '../styles/variables.css';
 import sizeCSS from '../styles/size.css';
 import paginationStyle from '../styles/components/pagination.css';
 import type { PaginationSize, PaginationVariant } from './defines';
+import { getInternalName } from '../utils/icon';
 import '../icon/icon';
 
 type PageItem = number | 'ellipsis-start' | 'ellipsis-end';
@@ -255,7 +256,7 @@ class Pagination extends AeicoComponent {
         if (this.showFirstLast)
           this._renderNavBtn(
             'first',
-            '_chevrons-left',
+            getInternalName('chevrons-left'),
             'First page',
             disabled || isFirst,
             this._handleFirstClick,
@@ -263,7 +264,7 @@ class Pagination extends AeicoComponent {
 
         this._renderNavBtn(
           'prev',
-          '_chevron-left',
+          getInternalName('chevron-left'),
           'Previous page',
           disabled || isFirst,
           this._handlePrevClick,
@@ -277,7 +278,7 @@ class Pagination extends AeicoComponent {
 
         this._renderNavBtn(
           'next',
-          '_chevron-right',
+          getInternalName('chevron-right'),
           'Next page',
           disabled || isLast,
           this._handleNextClick,
@@ -286,7 +287,7 @@ class Pagination extends AeicoComponent {
         if (this.showFirstLast)
           this._renderNavBtn(
             'last',
-            '_chevrons-right',
+            getInternalName('chevrons-right'),
             'Last page',
             disabled || isLast,
             this._handleLastClick,

@@ -4,6 +4,7 @@ import style from '../styles/components/image.css';
 import AeicoComponent from '../aeico-component';
 import { html, prop } from 'aeico';
 import type { ImageDecoding, ImageFit, ImageLoading } from './defines';
+import { getInternalName } from '../utils/icon';
 import '../icon/icon';
 
 interface ImageViewerItem {
@@ -150,7 +151,7 @@ class Image extends AeicoComponent {
               '@click': () => this.close(),
             },
             () => {
-              aeIcon({ name: '_close' });
+              aeIcon({ name: getInternalName('close') });
             },
           );
 
@@ -166,7 +167,7 @@ class Image extends AeicoComponent {
                 '@click': () => this._step(-1),
               },
               () => {
-                aeIcon({ name: '_chevron-left' });
+                aeIcon({ name: getInternalName('chevron-left') });
               },
             );
             button(
@@ -176,7 +177,7 @@ class Image extends AeicoComponent {
                 '@click': () => this._step(1),
               },
               () => {
-                aeIcon({ name: '_chevron-right' });
+                aeIcon({ name: getInternalName('chevron-right') });
               },
             );
           }

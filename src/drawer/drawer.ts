@@ -5,6 +5,7 @@ import AeicoComponent from '../aeico-component';
 import { html, prop, tags } from 'aeico';
 import type { DrawerPlacement } from './defines';
 import { acquireScrollLock, releaseScrollLock } from '../utils/scroll-lock';
+import { getInternalName } from '../utils/icon';
 import '../icon/icon';
 
 class Drawer extends AeicoComponent {
@@ -74,7 +75,7 @@ class Drawer extends AeicoComponent {
                     '@click': () => this.close(),
                   },
                   () => {
-                    aeIcon({ name: '_close' });
+                    aeIcon({ name: getInternalName('close') });
                   },
                 );
               }
