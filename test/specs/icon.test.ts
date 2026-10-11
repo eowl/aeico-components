@@ -369,19 +369,19 @@ describe('Icon', () => {
       const INTERNAL_PATH = 'M0 0h24v24H0z'
 
       it('registers an icon that can be retrieved', () => {
-        IconRegistry.addInternal({ '_test-internal': INTERNAL_PATH })
-        expect(IconRegistry.get('_test-internal')).to.exist
-        expect((IconRegistry.get('_test-internal') as { paths: string }).paths).to.equal(INTERNAL_PATH)
+        IconRegistry.addInternal({ '__test-internal': INTERNAL_PATH })
+        expect(IconRegistry.get('__test-internal')).to.exist
+        expect((IconRegistry.get('__test-internal') as { paths: string }).paths).to.equal(INTERNAL_PATH)
       })
 
       it('has() returns true for an internal icon', () => {
-        IconRegistry.addInternal({ '_test-internal-has': INTERNAL_PATH })
-        expect(IconRegistry.has('_test-internal-has')).to.be.true
+        IconRegistry.addInternal({ '__test-internal-has': INTERNAL_PATH })
+        expect(IconRegistry.has('__test-internal-has')).to.be.true
       })
 
       it('normalises string shorthand to IconDefinition with defaultViewBox', () => {
-        IconRegistry.addInternal({ '_test-internal-shorthand': INTERNAL_PATH })
-        expect(IconRegistry.get('_test-internal-shorthand')).to.deep.equal({
+        IconRegistry.addInternal({ '__test-internal-shorthand': INTERNAL_PATH })
+        expect(IconRegistry.get('__test-internal-shorthand')).to.deep.equal({
           paths: INTERNAL_PATH,
           viewBox: '0 0 24 24',
         })
@@ -389,27 +389,32 @@ describe('Icon', () => {
 
       it('add() cannot override an internal icon', () => {
         const userPath = 'M5 5h14v14H5z'
-        IconRegistry.addInternal({ '_test-internal-protected': INTERNAL_PATH })
-        IconRegistry.add({ '_test-internal-protected': userPath })
-        expect((IconRegistry.get('_test-internal-protected') as { paths: string }).paths).to.equal(INTERNAL_PATH)
+        IconRegistry.addInternal({ '__test-internal-protected': INTERNAL_PATH })
+        IconRegistry.add({ '__test-internal-protected': userPath })
+        expect((IconRegistry.get('__test-internal-protected') as { paths: string }).paths).to.equal(INTERNAL_PATH)
       })
 
-      it('rejects names without the "_" prefix', () => {
+      it('rejects names without the "__" prefix', () => {
         IconRegistry.addInternal({ 'test-internal-noprefix': INTERNAL_PATH })
         expect(IconRegistry.has('test-internal-noprefix')).to.be.false
       })
 
-      it('add() rejects reserved "_"-prefixed names', () => {
-        IconRegistry.add({ '_test-user-reserved': INTERNAL_PATH })
-        expect(IconRegistry.has('_test-user-reserved')).to.be.false
+      it('add() rejects reserved "__"-prefixed names', () => {
+        IconRegistry.add({ '__test-user-reserved': INTERNAL_PATH })
+        expect(IconRegistry.has('__test-user-reserved')).to.be.false
+      })
+
+      it('a single_underscore name is not treated as reserved', () => {
+        IconRegistry.add({ '_test-single-underscore': INTERNAL_PATH })
+        expect(IconRegistry.has('_test-single-underscore')).to.be.true
       })
 
       it('a user icon with a non-reserved name is unaffected by internal icons', () => {
         const userPath = 'M7 7h10v10H7z'
-        IconRegistry.addInternal({ '_test-internal-sep': INTERNAL_PATH })
+        IconRegistry.addInternal({ '__test-internal-sep': INTERNAL_PATH })
         IconRegistry.add({ 'test-internal-sep': userPath })
         expect((IconRegistry.get('test-internal-sep') as { paths: string }).paths).to.equal(userPath)
-        expect((IconRegistry.get('_test-internal-sep') as { paths: string }).paths).to.equal(INTERNAL_PATH)
+        expect((IconRegistry.get('__test-internal-sep') as { paths: string }).paths).to.equal(INTERNAL_PATH)
       })
     })
   })

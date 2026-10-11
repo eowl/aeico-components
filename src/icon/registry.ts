@@ -1,4 +1,5 @@
 import { IconDefinition, defaultViewBox } from './defines';
+import { INTERNAL_ICON_PREFIX } from '../constants';
 
 function normalize(data: string | IconDefinition): IconDefinition {
   if (typeof data === 'string') {
@@ -22,7 +23,7 @@ class IconRegistry {
 
   static add(icons: Record<string, string | IconDefinition>) {
     for (const [name, data] of Object.entries(icons)) {
-      if (name.startsWith('_')) {
+      if (name.startsWith(INTERNAL_ICON_PREFIX)) {
         console.warn(
           `[aeico] Icon name "${name}" is reserved for library-internal icons and cannot be registered.`,
         );
@@ -34,8 +35,10 @@ class IconRegistry {
 
   static addInternal(icons: Record<string, string | IconDefinition>) {
     for (const [name, data] of Object.entries(icons)) {
-      if (!name.startsWith('_')) {
-        console.warn(`[aeico] Internal icon name "${name}" must start with "_". Skipped.`);
+      if (!name.startsWith(INTERNAL_ICON_PREFIX)) {
+        console.warn(
+          `[aeico] Internal icon name "${name}" must start with "${INTERNAL_ICON_PREFIX}". Skipped.`,
+        );
         continue;
       }
       this._internalIcons.set(name, normalize(data));
