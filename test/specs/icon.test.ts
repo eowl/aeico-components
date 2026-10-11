@@ -417,5 +417,60 @@ describe('Icon', () => {
         expect((IconRegistry.get('__test-internal-sep') as { paths: string }).paths).to.equal(INTERNAL_PATH)
       })
     })
+
+    describe('addShared', () => {
+      const SHARED_PATH = 'M1 1h22v22H1z'
+
+      it('registers an icon that can be retrieved', () => {
+        IconRegistry.addShared({ 'test-shared-basic': SHARED_PATH })
+        expect(IconRegistry.has('test-shared-basic')).to.be.true
+        expect((IconRegistry.get('test-shared-basic') as { paths: string }).paths).to.equal(SHARED_PATH)
+      })
+
+      it('normalises string shorthand to IconDefinition with defaultViewBox', () => {
+        IconRegistry.addShared({ 'test-shared-shorthand': SHARED_PATH })
+        expect(IconRegistry.get('test-shared-shorthand')).to.deep.equal({
+          paths: SHARED_PATH,
+          viewBox: '0 0 24 24',
+        })
+      })
+
+      it('a user icon registered via add() takes precedence over a shared icon', () => {
+        const userPath = 'M2 2h20v20H2z'
+        IconRegistry.addShared({ 'test-shared-priority': SHARED_PATH })
+        IconRegistry.add({ 'test-shared-priority': userPath })
+        expect((IconRegistry.get('test-shared-priority') as { paths: string }).paths).to.equal(userPath)
+      })
+
+      it('does not overwrite a user icon when registered afterwards', () => {
+        const userPath = 'M3 3h18v18H3z'
+        IconRegistry.add({ 'test-shared-priority-2': userPath })
+        IconRegistry.addShared({ 'test-shared-priority-2': SHARED_PATH })
+        expect((IconRegistry.get('test-shared-priority-2') as { paths: string }).paths).to.equal(userPath)
+      })
+
+      it('rejects reserved "__"-prefixed names', () => {
+        IconRegistry.addShared({ '__test-shared-reserved': SHARED_PATH })
+        expect(IconRegistry.has('__test-shared-reserved')).to.be.false
+      })
+
+      it('stores icons in the global shared store keyed by Symbol.for', () => {
+        IconRegistry.addShared({ 'test-shared-store': SHARED_PATH })
+        const store = (globalThis as Record<symbol, Map<string, unknown>>)[
+          Symbol.for('aeico.icon-shared')
+        ]
+        expect(store).to.be.instanceOf(Map)
+        expect(store.has('test-shared-store')).to.be.true
+      })
+
+      it('a fresh registry copy sees shared icons (global store is shared)', () => {
+        IconRegistry.addShared({ 'test-shared-cross': SHARED_PATH })
+        // Simulate another module instance reading the same global store key.
+        const store = (globalThis as Record<symbol, Map<string, unknown>>)[
+          Symbol.for('aeico.icon-shared')
+        ]
+        expect(store.get('test-shared-cross')).to.exist
+      })
+    })
   })
 })
