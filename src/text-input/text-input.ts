@@ -21,10 +21,11 @@ class TextInput extends AeicoField {
   protected static styles = [variables, sizeCSS, fieldLabelCSS, actionButtonCSS, style];
 
   render() {
-    return html(({ div, input }) => {
+    return html(({ div, input, slot }) => {
       const id = this.getFieldId();
       this.renderLabel(id);
       div({ className: 'input-container field-body' }, () => {
+        slot({ name: 'start', '@slotchange': () => this.onIconSlotChange() });
         this.fieldElement = input({
           id,
           type: this.type || 'text',
@@ -32,16 +33,34 @@ class TextInput extends AeicoField {
           required: Boolean(this.required),
           '@input': this.boundOnChange,
         });
+        slot({ name: 'end', '@slotchange': () => this.onIconSlotChange() });
 
         this.renderActionButtons();
       });
       this.renderHelperText();
       this.renderError();
+      this.onIconSlotChange();
 
       if (this.fieldElement && this.value != null) {
         this.fieldElement.value = String(this.value);
       }
     });
+  }
+
+  protected onIconSlotChange(): void {
+    const container = this.shadowRoot?.querySelector('.input-container');
+    if (!container) return;
+    
+    const startSlot = this.shadowRoot!.querySelector<HTMLSlotElement>('slot[name="start"]');
+    const endSlot = this.shadowRoot!.querySelector<HTMLSlotElement>('slot[name="end"]');
+    container.classList.toggle(
+      'has-start-icon',
+      !!startSlot && startSlot.assignedElements().length > 0,
+    );
+    container.classList.toggle(
+      'has-end-icon',
+      !!endSlot && endSlot.assignedElements().length > 0,
+    );
   }
 
   /**

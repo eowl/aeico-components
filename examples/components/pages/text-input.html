@@ -22,6 +22,19 @@
         <ae-text-input placeholder="Resettable and clearable input" resettable clearable value="Hello" default-value="Hello"></ae-text-input>
         <label>With resettable and clearable, default value: Hello, Action Button Style: Standalone</label>
         <ae-text-input placeholder="Resettable and clearable input" resettable clearable value="Hello" default-value="Hello" action-button-style="standalone"></ae-text-input>
+        <label>With start icon</label>
+        <ae-text-input label="url" placeholder="example.com">
+          <ae-icon name="url" slot="start"></ae-icon>
+        </ae-text-input>
+        <label>With end icon</label>
+        <ae-text-input label="search" placeholder="Type to search...">
+          <ae-icon name="search" slot="end"></ae-icon>
+        </ae-text-input>
+        <label>With start and end icons</label>
+        <ae-text-input label="url" placeholder="example.com">
+          <ae-icon name="url" slot="start"></ae-icon>
+          <ae-icon name="search" slot="end"></ae-icon>
+        </ae-text-input>
       </div>
     </div>
 

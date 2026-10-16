@@ -58,6 +58,15 @@ import 'aeico-components';
 <ae-text-input label="Read-only field" value="Cannot edit" disabled></ae-text-input>
 ```
 
+### Icons - `slot="start"` / `slot="end"`
+
+```html
+<ae-text-input label="url" placeholder="example.com">
+  <ae-icon name="url" slot="start"></ae-icon>
+  <ae-icon name="search" slot="end"></ae-icon>
+</ae-text-input>
+```
+
 ### Custom appearance via CSS variables
 
 ```html
