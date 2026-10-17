@@ -1,6 +1,7 @@
 import AeicoField from '../aeico-field';
 import type { InferProps } from 'aeico';
 import { html, prop } from 'aeico';
+import type { InputType } from './defines';
 import variables from '../styles/variables.css';
 import sizeCSS from '../styles/size.css';
 import fieldLabelCSS from '../styles/components/field-label.css';
@@ -14,7 +15,7 @@ class TextInput extends AeicoField {
   accessor placeholder: string | undefined;
 
   @prop({ type: String })
-  accessor type: string | undefined;
+  accessor type: InputType | undefined;
 
   protected static styles = [variables, sizeCSS, fieldLabelCSS, actionButtonCSS, style];
 
@@ -22,6 +23,7 @@ class TextInput extends AeicoField {
     return html(({ div, input, slot }) => {
       const id = this.getFieldId();
       this.renderLabel(id);
+      
       div({ className: 'input-container field-body' }, () => {
         slot({ name: 'start', '@slotchange': () => this.onIconSlotChange() });
         this.fieldElement = input({
@@ -62,9 +64,6 @@ class TextInput extends AeicoField {
     );
   }
 
-  /**
-   * Write value to the input element (DOM only)
-   */
   protected writeValue(value: string): void {
     const strValue = String(value || '');
 
