@@ -17,13 +17,16 @@ class TextInput extends AeicoField {
   @prop({ type: String })
   accessor type: InputType | undefined;
 
+  @prop({ type: Boolean })
+  accessor readonly: boolean | undefined;
+
   protected static styles = [variables, sizeCSS, fieldLabelCSS, actionButtonCSS, style];
 
   render() {
     return html(({ div, input, slot }) => {
       const id = this.getFieldId();
       this.renderLabel(id);
-      
+
       div({ className: 'input-container field-body' }, () => {
         slot({ name: 'start', '@slotchange': () => this.onIconSlotChange() });
         this.fieldElement = input({
@@ -32,6 +35,7 @@ class TextInput extends AeicoField {
           placeholder: this.placeholder || '',
           required: Boolean(this.required),
           disabled: Boolean(this.disabled),
+          readonly: Boolean(this.readonly),
           '@input': this.boundOnChange,
         });
         slot({ name: 'end', '@slotchange': () => this.onIconSlotChange() });
