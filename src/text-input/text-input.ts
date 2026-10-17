@@ -1,6 +1,6 @@
 import AeicoField from '../aeico-field';
-import type { InferProps, Props } from 'aeico';
-import { html } from 'aeico';
+import type { InferProps } from 'aeico';
+import { html, prop } from 'aeico';
 import variables from '../styles/variables.css';
 import sizeCSS from '../styles/size.css';
 import fieldLabelCSS from '../styles/components/field-label.css';
@@ -10,13 +10,11 @@ import style from '../styles/components/text-input.css';
 class TextInput extends AeicoField {
   protected fieldElement: HTMLInputElement | null = null;
 
-  static props: Props = {
-    placeholder: { type: String },
-    type: { type: String },
-  };
+  @prop({ type: String })
+  accessor placeholder: string | undefined;
 
-  declare placeholder?: string;
-  declare type?: string;
+  @prop({ type: String })
+  accessor type: string | undefined;
 
   protected static styles = [variables, sizeCSS, fieldLabelCSS, actionButtonCSS, style];
 
@@ -31,6 +29,7 @@ class TextInput extends AeicoField {
           type: this.type || 'text',
           placeholder: this.placeholder || '',
           required: Boolean(this.required),
+          disabled: Boolean(this.disabled),
           '@input': this.boundOnChange,
         });
         slot({ name: 'end', '@slotchange': () => this.onIconSlotChange() });
