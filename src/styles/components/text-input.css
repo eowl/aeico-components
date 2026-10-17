@@ -72,6 +72,26 @@ slot[name='end']::slotted(*) {
   flex-shrink: 0;
 }
 
+.toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.333em;
+  height: 1.333em;
+  border: none;
+  background: transparent;
+  color: var(--ae-color-text-muted);
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 0;
+  line-height: 1;
+  font-size: 1.1em;
+}
+
+.toggle-btn:hover {
+  color: var(--ae-color-text-default);
+}
+
 .input-container.has-start-icon,
 .input-container.has-end-icon {
   border: var(--input-border-width) solid var(--ae-border-subtle);

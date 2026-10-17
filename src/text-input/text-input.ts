@@ -2,6 +2,8 @@ import AeicoField from '../aeico-field';
 import type { InferProps } from 'aeico';
 import { html, prop } from 'aeico';
 import type { InputType } from './defines';
+import { getInternalName } from '../utils/icon';
+import '../icon/icon';
 import variables from '../styles/variables.css';
 import sizeCSS from '../styles/size.css';
 import fieldLabelCSS from '../styles/components/field-label.css';
@@ -20,18 +22,25 @@ class TextInput extends AeicoField {
   @prop({ type: Boolean })
   accessor readonly: boolean | undefined;
 
+  @prop({ type: Boolean })
+  accessor visibleToggle: boolean | undefined;
+
+  private _passwordVisible = false;
+  private _hasToggleBtn = false;
+
   protected static styles = [variables, sizeCSS, fieldLabelCSS, actionButtonCSS, style];
 
   render() {
-    return html(({ div, input, slot }) => {
+    return html(({ div, input, slot, button, aeIcon }) => {
       const id = this.getFieldId();
+      const inputType = (this.type || 'text') as InputType;
       this.renderLabel(id);
 
       div({ className: 'input-container field-body' }, () => {
         slot({ name: 'start', '@slotchange': () => this.onIconSlotChange() });
         this.fieldElement = input({
           id,
-          type: this.type || 'text',
+          type: inputType === 'password' && this._passwordVisible ? 'text' : inputType,
           placeholder: this.placeholder || '',
           required: Boolean(this.required),
           disabled: Boolean(this.disabled),
@@ -39,6 +48,22 @@ class TextInput extends AeicoField {
           '@input': this.boundOnChange,
         });
         slot({ name: 'end', '@slotchange': () => this.onIconSlotChange() });
+
+        let toggleBtn: HTMLButtonElement | null = null;
+        if (this.visibleToggle && inputType === 'password') {
+          toggleBtn = button(
+            {
+              className: 'toggle-btn',
+              type: 'button',
+              'aria-label': this._passwordVisible ? 'Hide password' : 'Show password',
+              '@click': () => this.togglePasswordVisibility(),
+            },
+            () => {
+              aeIcon({ name: getInternalName(this._passwordVisible ? 'not-visible' : 'visible') });
+            },
+          );
+        }
+        this._hasToggleBtn = !!toggleBtn;
 
         this.renderActionButtons();
       });
@@ -52,10 +77,20 @@ class TextInput extends AeicoField {
     });
   }
 
+  private togglePasswordVisibility(): void {
+    this._passwordVisible = !this._passwordVisible;
+    this.update();
+    
+    if (this.fieldElement) {
+      this.fieldElement.type = this._passwordVisible ? 'text' : 'password';
+      this.fieldElement.focus();
+    }
+  }
+
   protected onIconSlotChange(): void {
     const container = this.shadowRoot?.querySelector('.input-container');
     if (!container) return;
-    
+
     const startSlot = this.shadowRoot!.querySelector<HTMLSlotElement>('slot[name="start"]');
     const endSlot = this.shadowRoot!.querySelector<HTMLSlotElement>('slot[name="end"]');
     container.classList.toggle(
@@ -64,7 +99,7 @@ class TextInput extends AeicoField {
     );
     container.classList.toggle(
       'has-end-icon',
-      !!endSlot && endSlot.assignedElements().length > 0,
+      (!!endSlot && endSlot.assignedElements().length > 0) || this._hasToggleBtn,
     );
   }
 
