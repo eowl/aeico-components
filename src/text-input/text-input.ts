@@ -35,7 +35,7 @@ class TextInput extends AeicoField {
   render() {
     return html(({ div, input, slot, button, span, aeIcon }) => {
       const id = this.getFieldId();
-      const inputType = (this.type || 'text') as InputType;
+      const inputType = this.type || 'text';
       this.renderLabel(id);
 
       div({ className: 'input-container field-body' }, () => {
