@@ -26,12 +26,14 @@ class TextInput extends AeicoField {
   accessor visibleToggle: boolean | undefined;
 
   private _passwordVisible = false;
-  private _hasToggleBtn = false;
+  private _hasInlineActions = false;
+  private _inlineClearBtn: HTMLButtonElement | null = null;
+  private _inlineResetBtn: HTMLButtonElement | null = null;
 
   protected static styles = [variables, sizeCSS, fieldLabelCSS, actionButtonCSS, style];
 
   render() {
-    return html(({ div, input, slot, button, aeIcon }) => {
+    return html(({ div, input, slot, button, span, aeIcon }) => {
       const id = this.getFieldId();
       const inputType = (this.type || 'text') as InputType;
       this.renderLabel(id);
@@ -63,9 +65,66 @@ class TextInput extends AeicoField {
             },
           );
         }
-        this._hasToggleBtn = !!toggleBtn;
 
-        this.renderActionButtons();
+        const inlineActions = !this.actionButtonStyle;
+        let clearBtn: HTMLButtonElement | null = null;
+        let resetBtn: HTMLButtonElement | null = null;
+        const showClear = inlineActions && this.clearable && !!this.getValue();
+        const showReset =
+          inlineActions && this.resettable && this.getValue() !== (this.defaultValue || '');
+
+        if (inlineActions && this.clearable) {
+          clearBtn = button(
+            {
+              className: 'action-icon-btn',
+              type: 'button',
+              'aria-label': 'Clear',
+              'data-action': 'clear',
+              '@click': this.boundOnClear,
+              style: { display: showClear ? '' : 'none' },
+            },
+            () => {
+              slot({ name: 'clear' }, () => {
+                if (this.clearText) {
+                  span({ textContent: this.clearText });
+                } else {
+                  aeIcon({ name: getInternalName('clear') });
+                }
+              });
+            },
+          );
+        }
+        if (inlineActions && this.resettable) {
+          resetBtn = button(
+            {
+              className: 'action-icon-btn',
+              type: 'button',
+              'aria-label': 'Reset',
+              'data-action': 'reset',
+              '@click': this.boundOnReset,
+              style: { display: showReset ? '' : 'none' },
+            },
+            () => {
+              slot({ name: 'reset' }, () => {
+                if (this.resetText) {
+                  span({ textContent: this.resetText });
+                } else {
+                  aeIcon({ name: getInternalName('reset') });
+                }
+              });
+            },
+          );
+        }
+        this._hasInlineActions = inlineActions && (!!clearBtn || !!resetBtn || !!toggleBtn);
+
+        if (inlineActions) {
+          this._inlineClearBtn = clearBtn;
+          this._inlineResetBtn = resetBtn;
+        } else {
+          this._inlineClearBtn = null;
+          this._inlineResetBtn = null;
+          this.renderActionButtons();
+        }
       });
       this.renderHelperText();
       this.renderError();
@@ -77,10 +136,22 @@ class TextInput extends AeicoField {
     });
   }
 
+  protected onUpdated(_changedProps: Map<string, unknown>): void {
+    super.onUpdated?.(_changedProps);
+    const value = this.getValue();
+    if (this._inlineClearBtn) {
+      this._inlineClearBtn.style.display = this.clearable && !!value ? '' : 'none';
+    }
+    if (this._inlineResetBtn) {
+      this._inlineResetBtn.style.display =
+        this.resettable && value !== (this.defaultValue || '') ? '' : 'none';
+    }
+  }
+
   private togglePasswordVisibility(): void {
     this._passwordVisible = !this._passwordVisible;
     this.update();
-    
+
     if (this.fieldElement) {
       this.fieldElement.type = this._passwordVisible ? 'text' : 'password';
       this.fieldElement.focus();
@@ -99,7 +170,7 @@ class TextInput extends AeicoField {
     );
     container.classList.toggle(
       'has-end-icon',
-      (!!endSlot && endSlot.assignedElements().length > 0) || this._hasToggleBtn,
+      (!!endSlot && endSlot.assignedElements().length > 0) || this._hasInlineActions,
     );
   }
 

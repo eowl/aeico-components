@@ -84,11 +84,32 @@ import 'aeico-components';
 ### `actionButtonStyle` - action button display style
 
 ```html
-<!-- Integrated (default): buttons are attached to the input as one piece -->
+<!-- Inline icon buttons (default): clear/reset render as clickable icons inside the input -->
+<ae-text-input label="Default" clearable resettable default-value="Hello" value="Hello"></ae-text-input>
+
+<!-- Integrated (opt-in): buttons are attached to the input as one piece -->
 <ae-text-input label="Integrated" clearable value="Hello" action-button-style="integrated"></ae-text-input>
 
-<!-- Standalone: buttons are separate rounded icons -->
+<!-- Standalone (opt-in): buttons are separate rounded icons -->
 <ae-text-input label="Standalone" clearable value="Hello" action-button-style="standalone"></ae-text-input>
+```
+
+### Custom clear / reset content - `slot="clear"` / `slot="reset"`
+
+When `actionButtonStyle` is not set, the clear/reset buttons render inside the input. Content falls back in order: slot > `clearText`/`resetText` prop > built-in internal icon.
+
+```html
+<!-- Custom icons -->
+<ae-text-input clearable resettable default-value="Hello">
+  <ae-icon name="close" slot="clear"></ae-icon>
+  <ae-icon name="check" slot="reset"></ae-icon>
+</ae-text-input>
+
+<!-- Custom text -->
+<ae-text-input clearable resettable default-value="Hello">
+  <span slot="clear">Clear</span>
+  <span slot="reset">Reset</span>
+</ae-text-input>
 ```
 
 ### Listening to `change`
@@ -117,7 +138,7 @@ import 'aeico-components';
 | `required` | `boolean` | `false` | Marks the field as required in a form. |
 | `clearable` | `boolean` | `false` | Shows a clear button when the input has a value. |
 | `resettable` | `boolean` | `false` | Shows a reset button to restore the default value. |
-| `actionButtonStyle` | `'integrated' \| 'standalone'` | `'integrated'` | Display style for clear/reset buttons. `integrated` attaches them to the input; `standalone` shows them as separate rounded icons. |
+| `actionButtonStyle` | `'integrated' \| 'standalone'` | - | Display style for clear/reset buttons. When unset, buttons render as inline icons inside the input. `integrated` attaches them to the input; `standalone` shows them as separate rounded icons. |
 
 ## Events
 

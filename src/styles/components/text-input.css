@@ -29,6 +29,12 @@ input {
   transition: var(--input-transition);
 }
 
+input[type='password']::-ms-reveal,
+input[type='password']::-ms-clear,
+input[type='password']::-webkit-credentials-auto-fill-button {
+  display: none;
+}
+
 input::placeholder {
   color: var(--ae-color-text-disabled);
 }
@@ -90,6 +96,32 @@ slot[name='end']::slotted(*) {
 
 .toggle-btn:hover {
   color: var(--ae-color-text-default);
+}
+
+.action-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.333em;
+  height: 1.333em;
+  gap: 2px;
+  border: none;
+  background: transparent;
+  color: var(--ae-color-text-muted);
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 0;
+  line-height: 1;
+  font-size: 1.1em;
+  font-size: var(--input-font-size);
+}
+
+.action-icon-btn:hover {
+  color: var(--ae-color-text-default);
+}
+
+.action-icon-btn slot {
+  display: contents;
 }
 
 .input-container.has-start-icon,

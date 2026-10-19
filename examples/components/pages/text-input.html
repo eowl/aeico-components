@@ -18,8 +18,19 @@
         <ae-text-input placeholder="Type something..." resettable value="Hello" default-value="Hello"></ae-text-input>
         <label>With clearable</label>
         <ae-text-input placeholder="Clearable input" clearable value="Hello"></ae-text-input>
+
         <label>With resettable and clearable, default value: Hello, Action Button Style: Integrated(default)</label>
         <ae-text-input placeholder="Resettable and clearable input" resettable clearable value="Hello" default-value="Hello"></ae-text-input>
+
+         <label>With resettable and clearable, default value: Hello, Action Button Style: Integrated(default)</label>
+        <ae-text-input 
+          placeholder="Resettable and clearable input" 
+          resettable clearable value="Hello" 
+          default-value="Hello"
+          clear-text="Clear"
+        >
+        </ae-text-input>
+
         <label>With resettable and clearable, default value: Hello, Action Button Style: Standalone</label>
         <ae-text-input placeholder="Resettable and clearable input" resettable clearable value="Hello" default-value="Hello" action-button-style="standalone"></ae-text-input>
         <label>With start icon</label>
@@ -49,11 +60,28 @@
         </ae-text-input>
 
         <label>Password with visible toggle</label>
-        <ae-text-input label="Password" placeholder="Enter password" type="password" visible-toggle value="secret" size="xs"></ae-text-input>
+        <ae-text-input label="Password" placeholder="Enter password" type="password" visible-toggle value="secret"></ae-text-input>
 
         <label>Password without visible toggle</label>
         <ae-text-input label="Password" placeholder="Enter password" type="password" value="secret" ></ae-text-input>
-      </div>
+
+         <label>Password with visible toggle and clearable </label>
+        <ae-text-input label="Password" placeholder="Enter password" type="password" visible-toggle clearable value="secret"></ae-text-input>
+
+        <label>Inline icon actions (default), clearable + resettable</label>
+        <ae-text-input label="Inline actions" placeholder="Type..." clearable resettable default-value="Hello" value="Hello"></ae-text-input>
+
+        <label>Custom clear/reset content (icon)</label>
+        <ae-text-input label="Custom icons" clearable resettable default-value="Hello" value="Hello">
+          <ae-icon name="close" slot="clear"></ae-icon>
+          <ae-icon name="check" slot="reset"></ae-icon>
+        </ae-text-input>
+
+        <label>Custom clear/reset content (text)</label>
+        <ae-text-input label="Custom text" clearable resettable default-value="Hello" value="Hello">
+          <span slot="clear">Clear</span>
+          <span slot="reset">Reset</span>
+        </ae-text-input>      </div>
     </div>
 
     <!-- Checkbox -->
