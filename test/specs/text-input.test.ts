@@ -68,4 +68,28 @@ describe('TextInput', () => {
       expect(el.shadowRoot!.querySelector<HTMLInputElement>('input')!.value).to.equal('hello')
     })
   })
+
+  describe('icon slots', () => {
+    it('renders start and end slots in the input container', async () => {
+      const el = await mount<TextInput>(`<${TAG_NAME}></${TAG_NAME}>`)
+      expect(el.shadowRoot!.querySelector('slot[name="start"]')).to.exist
+      expect(el.shadowRoot!.querySelector('slot[name="end"]')).to.exist
+    })
+
+    it('assigns slotted icons to the start and end slots', async () => {
+      const el = await mount<TextInput>(`
+        <${TAG_NAME}>
+          <ae-icon slot="start" name="url"></ae-icon>
+          <ae-icon slot="end" name="search"></ae-icon>
+        </${TAG_NAME}>
+      `)
+      await updated()
+      const startSlot = el.shadowRoot!.querySelector<HTMLSlotElement>('slot[name="start"]')!
+      const endSlot = el.shadowRoot!.querySelector<HTMLSlotElement>('slot[name="end"]')!
+      expect(startSlot.assignedElements().length).to.equal(1)
+      expect(endSlot.assignedElements().length).to.equal(1)
+      expect(startSlot.assignedElements()[0].getAttribute('slot')).to.equal('start')
+      expect(endSlot.assignedElements()[0].getAttribute('slot')).to.equal('end')
+    })
+  })
 })
