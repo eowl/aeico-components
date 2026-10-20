@@ -206,8 +206,8 @@
 
 :host([indentline='dashed']) .tree-item-children,
 :host([indentline='solid']) .tree-item-children {
-  margin-left: calc(0.25rem + var(--tree-item-expand-size) / 2);
-  padding-left: calc(var(--ae-tree-indent) - 0.25rem - var(--tree-item-expand-size) / 2 + 0.25rem);
+  margin-left: calc(0.5rem + var(--tree-item-expand-size) / 2);
+  padding-left: calc(var(--ae-tree-indent) - 0.5rem - var(--tree-item-expand-size) / 2);
   border-left: 1px solid var(--tree-item-line-color);
 }
 
