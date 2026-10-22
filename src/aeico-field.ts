@@ -127,12 +127,18 @@ class AeicoField<TValue = string> extends AeicoComponent {
 
     if (force || this.resettable) {
       const className = style === 'integrated' ? 'reset-btn action-btn' : 'reset-btn';
-      this.resetBtn = button({
-        className,
-        textContent: this.resetText || '↺',
-        title: this.resetTitle || '↺',
-        '@click': this.boundOnReset,
-      });
+      this.resetBtn = button(
+        {
+          className,
+          title: this.resetTitle || '↺',
+          '@click': this.boundOnReset,
+        },
+        () => {
+          tags.slot({ name: 'reset' }, () => {
+            tags.span({ textContent: this.resetText || '↺' });
+          });
+        },
+      );
     }
   }
 
@@ -142,12 +148,18 @@ class AeicoField<TValue = string> extends AeicoComponent {
 
     if (force || this.clearable) {
       const className = style === 'integrated' ? 'clear-btn action-btn' : 'clear-btn';
-      this.clearBtn = button({
-        className,
-        textContent: this.clearText || '✕',
-        title: this.clearTitle || '✕',
-        '@click': this.boundOnClear,
-      });
+      this.clearBtn = button(
+        {
+          className,
+          title: this.clearTitle || '✕',
+          '@click': this.boundOnClear,
+        },
+        () => {
+          tags.slot({ name: 'clear' }, () => {
+            tags.span({ textContent: this.clearText || '✕' });
+          });
+        },
+      );
     }
   }
 

@@ -98,13 +98,18 @@ slot[name='end']::slotted(*) {
   color: var(--ae-color-text-default);
 }
 
+.toggle-btn ae-icon {
+  font-size: inherit;
+}
+
 .action-icon-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 1.333em;
+  width: 1.333em;
   height: 1.333em;
   gap: 2px;
+  min-width: fit-content;
   border: none;
   background: transparent;
   color: var(--ae-color-text-muted);
@@ -112,12 +117,15 @@ slot[name='end']::slotted(*) {
   flex-shrink: 0;
   padding: 0;
   line-height: 1;
-  font-size: 1.1em;
   font-size: var(--input-font-size);
 }
 
 .action-icon-btn:hover {
   color: var(--ae-color-text-default);
+}
+
+.action-icon-btn ae-icon {
+  font-size: inherit;
 }
 
 .action-icon-btn slot {
