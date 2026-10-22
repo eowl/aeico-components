@@ -19,6 +19,13 @@
         <label>With clearable</label>
         <ae-text-input placeholder="Clearable input" clearable value="Hello"></ae-text-input>
 
+        <label>External clear/reset controls without clearable or resettable</label>
+        <ae-text-input id="external-actions-input" value="Edited value" default-value="Initial value"></ae-text-input>
+        <div class="demo-row">
+          <button id="external-clear" type="button">Clear externally</button>
+          <a id="external-reset" href="#">Reset externally</a>
+        </div>
+
         <label>With resettable and clearable, default value: Hello</label>
         <ae-text-input 
           placeholder="Resettable and clearable input" 
@@ -103,5 +110,15 @@
     <div id="event-log"></div>
   </footer>
 
+  <script type="module">
+    const field = document.getElementById('external-actions-input');
+    document.getElementById('external-clear').addEventListener('click', () => {
+      field.clear({ silent: false });
+    });
+    document.getElementById('external-reset').addEventListener('click', (event) => {
+      event.preventDefault();
+      field.reset(undefined, { silent: false });
+    });
+  </script>
 </body>
 </html>
