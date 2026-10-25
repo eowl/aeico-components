@@ -3,11 +3,8 @@
   flex: 1;
   min-width: 0;
   font-size: var(--ae-size-base);
-
-  /* Layout variables */
-  --input-field-gap: 4px;
   
-  /* Input element variables */
+  --input-field-gap: 4px;
   --input-font-size: 1em;
   --input-padding: 0.333em 0.583em;
   --input-border-width: 1px;
@@ -25,6 +22,7 @@ input {
   flex: 1;
   min-width: 0;
   font-size: var(--input-font-size);
+  line-height: 1.2;
   padding: var(--input-padding);
   border: var(--input-border-width) solid var(--ae-border-subtle);
   border-radius: var(--ae-border-radius, var(--ae-radius-xs));
@@ -35,7 +33,6 @@ input {
   appearance: textfield;
 }
 
-/* Hide number spinner arrows in WebKit browsers */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -62,7 +59,6 @@ input:disabled {
   cursor: not-allowed;
 }
 
-/* Number stepper controls (right side, integrated, horizontal) */
 .number-controls {
   display: flex;
   flex-direction: row;
