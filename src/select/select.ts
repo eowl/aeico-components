@@ -15,6 +15,8 @@ import fieldLabelCSS from '../styles/components/field-label.css';
 import actionButtonCSS from '../styles/components/action-button.css';
 import SelectOptionElement from './select-option';
 import '../tag/tag';
+import { getInternalName } from '../utils/icon';
+import '../icon/icon';
 import { prop } from 'aeico';
 
 /**
@@ -113,6 +115,25 @@ class Select extends AeicoField<SelectOptionValue | SelectMultiValue> {
     if (this.value != null && this.value !== '') return [this.value];
 
     return [];
+  }
+
+  private _hasValue(): boolean {
+    if (this.multiple) return this._getMultiValues().length > 0;
+    return this.value != null && this.value !== '';
+  }
+
+  private _matchesDefaultValue(): boolean {
+    const current = this.getValue();
+    const def = this.defaultValue;
+    if (this.multiple) {
+      const currentList = Array.isArray(current) ? current : current ? [current] : [];
+      const defaultList = Array.isArray(def) ? def : def != null && def !== '' ? [def] : [];
+      return (
+        currentList.length === defaultList.length &&
+        currentList.every((v, i) => String(v) === String(defaultList[i]))
+      );
+    }
+    return String(current) === String(def ?? '');
   }
 
   protected onDisabledChanged(_newValue: boolean): void {
@@ -341,9 +362,13 @@ class Select extends AeicoField<SelectOptionValue | SelectMultiValue> {
     const isDisabled = Boolean(this.disabled);
     this._selectedListEl = null;
 
+    const inlineActions = !this.actionButtonStyle;
+    const showInlineClear = inlineActions && this.clearable && this._hasValue();
+    const showInlineReset = inlineActions && this.resettable && !this._matchesDefaultValue();
+
     this._syncSlotOptionsSelected();
 
-    return html(({ div, span, slot }) => {
+    return html(({ div, span, slot, button, aeIcon }) => {
       const id = this.getFieldId();
       this.renderLabel(id);
       div(
@@ -403,6 +428,56 @@ class Select extends AeicoField<SelectOptionValue | SelectMultiValue> {
                   span({ className: 'value placeholder', textContent: this.placeholder || '' });
                 }
               }
+              if (inlineActions && this.clearable) {
+                button(
+                  {
+                    className: 'action-icon-btn',
+                    type: 'button',
+                    'aria-label': 'Clear',
+                    'data-action': 'clear',
+                    '@click': (e: Event) => {
+                      e.stopPropagation();
+                      if (isDisabled) return;
+                      this.boundOnClear();
+                    },
+                    style: { display: showInlineClear ? '' : 'none' },
+                  },
+                  () => {
+                    slot({ name: 'clear' }, () => {
+                      if (this.clearText) {
+                        span({ textContent: this.clearText });
+                      } else {
+                        aeIcon({ name: getInternalName('clear') });
+                      }
+                    });
+                  },
+                );
+              }
+              if (inlineActions && this.resettable) {
+                button(
+                  {
+                    className: 'action-icon-btn',
+                    type: 'button',
+                    'aria-label': 'Reset',
+                    'data-action': 'reset',
+                    '@click': (e: Event) => {
+                      e.stopPropagation();
+                      if (isDisabled) return;
+                      this.boundOnReset();
+                    },
+                    style: { display: showInlineReset ? '' : 'none' },
+                  },
+                  () => {
+                    slot({ name: 'reset' }, () => {
+                      if (this.resetText) {
+                        span({ textContent: this.resetText });
+                      } else {
+                        aeIcon({ name: getInternalName('reset') });
+                      }
+                    });
+                  },
+                );
+              }
               span({ className: 'arrow', textContent: '▾' });
             },
           );
@@ -422,7 +497,9 @@ class Select extends AeicoField<SelectOptionValue | SelectMultiValue> {
             },
           );
 
-          this.renderActionButtons();
+          if (!inlineActions) {
+            this.renderActionButtons();
+          }
         },
       );
       this.renderHelperText();

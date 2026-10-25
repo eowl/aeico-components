@@ -83,12 +83,20 @@ describe('Select', () => {
     it('renders clear button when clearable', async () => {
       const el = await mount<Select>(`<${TAG} clearable></${TAG}>`)
       await updated()
-      expect(el.shadowRoot!.querySelector('.clear-btn')).to.exist
+      expect(el.shadowRoot!.querySelector('[data-action="clear"]')).to.exist
     })
 
     it('renders reset button when resettable', async () => {
       const el = await mount<Select>(`<${TAG} resettable></${TAG}>`)
       await updated()
+      expect(el.shadowRoot!.querySelector('[data-action="reset"]')).to.exist
+    })
+
+    it('renders integrated action controls when action-button-style is set', async () => {
+      const el = await mount<Select>(`<${TAG} clearable resettable action-button-style="integrated"></${TAG}>`)
+      await updated()
+      expect(el.shadowRoot!.querySelector('.action-controls')).to.exist
+      expect(el.shadowRoot!.querySelector('.clear-btn')).to.exist
       expect(el.shadowRoot!.querySelector('.reset-btn')).to.exist
     })
 
@@ -347,7 +355,7 @@ describe('Select', () => {
         eventAction = (e as CustomEvent).detail?.action
       })
 
-      el.shadowRoot!.querySelector<HTMLElement>('.clear-btn')!.click()
+      el.shadowRoot!.querySelector<HTMLElement>('[data-action="clear"]')!.click()
       await updated()
 
       expect(el.value == null || el.value === '').to.be.true
@@ -359,7 +367,7 @@ describe('Select', () => {
       el.options = FRUITS
       await updated()
 
-      el.shadowRoot!.querySelector<HTMLElement>('.reset-btn')!.click()
+      el.shadowRoot!.querySelector<HTMLElement>('[data-action="reset"]')!.click()
       await updated()
 
       expect(el.value).to.equal('banana')
