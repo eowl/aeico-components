@@ -35,6 +35,9 @@
         <label>Options prop JS array, <code>clearable</code> + <code>resettable</code> + <code>default-value</code></label>
         <ae-select id="select-opts" clearable resettable placeholder="Choose a fruit..." style="max-width:260px"></ae-select>
 
+        <label>Options prop JS array, <code>clearable</code> + <code>resettable</code> + <code>default-value</code>, Action Button Style: Integrated</label>
+        <ae-select id="select-opts-integrated" clearable resettable placeholder="Choose a fruit..." action-button-style="integrated" style="max-width:260px"></ae-select>
+
         <label>Options prop JS array, <code>clearable</code> + <code>resettable</code> + <code>default-value</code>, Action Button Style: Standalone</label>
         <ae-select id="select-opts-standalone" clearable resettable placeholder="Choose a fruit..." action-button-style="standalone" style="max-width:260px"></ae-select>
       </div>
@@ -166,6 +169,13 @@ if (selectOptsEl) {
   selectOptsEl.options = FRUIT_OPTIONS
   selectOptsEl.defaultValue = 'cherry'
   selectOptsEl.value = 'cherry'
+}
+
+const selectOptsIntegratedEl = document.querySelector('#select-opts-integrated')
+if (selectOptsIntegratedEl) {
+  selectOptsIntegratedEl.options = FRUIT_OPTIONS
+  selectOptsIntegratedEl.defaultValue = 'cherry'
+  selectOptsIntegratedEl.value = 'cherry'
 }
 
 const selectOptsStandaloneEl = document.querySelector('#select-opts-standalone')

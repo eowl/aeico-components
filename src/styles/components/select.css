@@ -201,3 +201,7 @@
 .container:has(.action-controls) .trigger {
   border-radius: var(--ae-border-radius, var(--ae-radius-xs)) 0 0 var(--ae-border-radius, var(--ae-radius-xs));
 }
+
+.container .action-controls {
+  margin-left: calc(-1 * var(--select-field-gap) - 1px);
+}
