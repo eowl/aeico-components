@@ -478,7 +478,9 @@ class Select extends AeicoField<SelectOptionValue | SelectMultiValue> {
                   },
                 );
               }
-              span({ className: 'arrow', textContent: '▾' });
+              span({ className: 'arrow' }, () => {
+                aeIcon({ name: getInternalName('chevron-down') });
+              });
             },
           );
 
