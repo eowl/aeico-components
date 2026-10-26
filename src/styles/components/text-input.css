@@ -96,7 +96,7 @@ slot[name='end']::slotted(*) {
 }
 
 .toggle-btn:hover {
-  color: var(--ae-color-text-default);
+  color: var(--ae-color-text-main);
 }
 
 .toggle-btn ae-icon {

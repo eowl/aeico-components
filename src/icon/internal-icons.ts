@@ -15,6 +15,8 @@ IconRegistry.addInternal({
   [getInternalName('copy')]:
     'M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z',
   [getInternalName('check')]: 'M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z',
+  [getInternalName('add')]: 'M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2Z',
+  [getInternalName('remove')]: 'M19 13H5v-2h14v2Z',
   [getInternalName('chevrons-left')]: 'M18.41 16.59L13.82 12l4.59-4.59L17 6l-6 6 6 6zM6 6h2v12H6z',
   [getInternalName('chevrons-right')]: 'M5.59 7.41L10.18 12l-4.59 4.59L7 18l6-6-6-6zM16 6h2v12h-2z',
   [getInternalName('close')]:

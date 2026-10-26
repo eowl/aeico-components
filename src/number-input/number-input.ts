@@ -1,6 +1,8 @@
 import AeicoField from '../aeico-field';
 import type { InferProps, Props } from 'aeico';
 import { html } from 'aeico';
+import { getInternalName } from '../utils/icon';
+import '../icon/icon';
 import variables from '../styles/variables.css';
 import sizeCSS from '../styles/size.css';
 import fieldLabelCSS from '../styles/components/field-label.css';
@@ -9,6 +11,10 @@ import style from '../styles/components/number-input.css';
 
 class NumberInput extends AeicoField<number> {
   protected fieldElement: HTMLInputElement | null = null;
+
+  private _hasInlineActions = false;
+  private _inlineClearBtn: HTMLButtonElement | null = null;
+  private _inlineResetBtn: HTMLButtonElement | null = null;
 
   static props: Props = {
     placeholder: { type: String },
@@ -27,7 +33,8 @@ class NumberInput extends AeicoField<number> {
   protected static styles = [variables, sizeCSS, fieldLabelCSS, actionButtonCSS, style];
 
   render() {
-    return html(({ div, input, button }) => {
+    const inlineActions = !this.actionButtonStyle;
+    return html(({ div, input, button, span, slot, aeIcon }) => {
       const id = this.getFieldId();
       this.renderLabel(id);
       div({ className: 'input-container field-body' }, () => {
@@ -43,7 +50,7 @@ class NumberInput extends AeicoField<number> {
           '@input': this.boundOnChange,
         });
 
-        if (this.controls) {
+        if (this.controls && !inlineActions) {
           div({ className: 'number-controls' }, () => {
             button({
               className: 'number-btn number-btn-increment',
@@ -60,7 +67,77 @@ class NumberInput extends AeicoField<number> {
           });
         }
 
-        this.renderActionButtons();
+        if (inlineActions) {
+          if (this.controls) {
+            button({
+              className: 'number-btn number-btn-inline number-btn-increment',
+              type: 'button',
+              'aria-label': 'Increment',
+              disabled: Boolean(this.disabled),
+              '@click': this.boundOnIncrement,
+            }, () => {
+              aeIcon({ name: getInternalName('add') });
+            });
+            button({
+              className: 'number-btn number-btn-inline number-btn-decrement',
+              type: 'button',
+              'aria-label': 'Decrement',
+              disabled: Boolean(this.disabled),
+              '@click': this.boundOnDecrement,
+            }, () => {
+              aeIcon({ name: getInternalName('remove') });
+            });
+          }
+          if (this.clearable) {
+            this._inlineClearBtn = button(
+              {
+                className: 'action-icon-btn',
+                type: 'button',
+                'aria-label': 'Clear',
+                'data-action': 'clear',
+                '@click': this.boundOnClear,
+                style: { display: this._hasRawValue() ? '' : 'none' },
+              },
+              () => {
+                slot({ name: 'clear' }, () => {
+                  if (this.clearText) {
+                    span({ textContent: this.clearText });
+                  } else {
+                    aeIcon({ name: getInternalName('clear') });
+                  }
+                });
+              },
+            );
+          }
+          if (this.resettable) {
+            this._inlineResetBtn = button(
+              {
+                className: 'action-icon-btn',
+                type: 'button',
+                'aria-label': 'Reset',
+                'data-action': 'reset',
+                '@click': this.boundOnReset,
+                style: { display: this._matchesDefault() ? 'none' : '' },
+              },
+              () => {
+                slot({ name: 'reset' }, () => {
+                  if (this.resetText) {
+                    span({ textContent: this.resetText });
+                  } else {
+                    aeIcon({ name: getInternalName('reset') });
+                  }
+                });
+              },
+            );
+          }
+        }
+
+        if (!inlineActions) {
+          this.renderActionButtons();
+        }
+
+        this._hasInlineActions = inlineActions && (this.controls || !!this._inlineClearBtn || !!this._inlineResetBtn);
+        this._syncInlineContainer();
       });
       this.renderHelperText();
       this.renderError();
@@ -69,6 +146,34 @@ class NumberInput extends AeicoField<number> {
         this.fieldElement.value = String(this.value);
       }
     });
+  }
+
+  /** Toggle border/background between the bare input and the container (like text-input icons) */
+  private _syncInlineContainer(): void {
+    const container = this.shadowRoot?.querySelector('.input-container');
+    container?.classList.toggle('has-end-icon', this._hasInlineActions);
+  }
+
+  protected onUpdated(changedProps: Map<string, unknown>): void {
+    super.onUpdated(changedProps);
+    if (this._inlineClearBtn) {
+      this._inlineClearBtn.style.display = this.clearable && this._hasRawValue() ? '' : 'none';
+    }
+    if (this._inlineResetBtn) {
+      this._inlineResetBtn.style.display =
+        this.resettable && !this._matchesDefault() ? '' : 'none';
+    }
+  }
+
+  private _hasRawValue(): boolean {
+    return !!this.fieldElement && this.fieldElement.value !== '';
+  }
+
+  private _matchesDefault(): boolean {
+    if (!this.fieldElement) return true;
+    const current = this.fieldElement.value;
+    const def = this.defaultValue;
+    return current === (def != null ? String(def) : '');
   }
 
   protected readonly boundOnIncrement = () => {

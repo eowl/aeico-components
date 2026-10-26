@@ -53,8 +53,10 @@
   font-size: inherit;
 }
 
-.action-icon-btn:hover {
-  color: var(--ae-color-text-default);
+.action-icon-btn:hover:not(:disabled) {
+  color: var(--ae-color-text-main);
+  background: var(--ae-action-icon-btn-bg-hover, var(--ae-surface-raised));
+  border-radius: var(--ae-radius-xs);
 }
 
 .action-icon-btn ae-icon {
