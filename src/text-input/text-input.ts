@@ -52,19 +52,6 @@ class TextInput extends AeicoField {
         slot({ name: 'end', '@slotchange': () => this.onIconSlotChange() });
 
         let toggleBtn: HTMLButtonElement | null = null;
-        if (this.visibleToggle && inputType === 'password') {
-          toggleBtn = button(
-            {
-              className: 'toggle-btn',
-              type: 'button',
-              'aria-label': this._passwordVisible ? 'Hide password' : 'Show password',
-              '@click': () => this.togglePasswordVisibility(),
-            },
-            () => {
-              aeIcon({ name: getInternalName(this._passwordVisible ? 'not-visible' : 'visible') });
-            },
-          );
-        }
 
         const inlineActions = !this.actionButtonStyle;
         let clearBtn: HTMLButtonElement | null = null;
@@ -112,6 +99,19 @@ class TextInput extends AeicoField {
                   aeIcon({ name: getInternalName('reset') });
                 }
               });
+            },
+          );
+        }
+        if (this.visibleToggle && inputType === 'password') {
+          toggleBtn = button(
+            {
+              className: 'toggle-btn',
+              type: 'button',
+              'aria-label': this._passwordVisible ? 'Hide password' : 'Show password',
+              '@click': () => this.togglePasswordVisibility(),
+            },
+            () => {
+              aeIcon({ name: getInternalName(this._passwordVisible ? 'not-visible' : 'visible') });
             },
           );
         }
