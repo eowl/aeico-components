@@ -54,15 +54,21 @@ class NumberInput extends AeicoField<number> {
           div({ className: 'number-controls' }, () => {
             button({
               className: 'number-btn number-btn-increment',
-              textContent: '+',
+              type: 'button',
+              'aria-label': 'Increment',
               disabled: Boolean(this.disabled),
               '@click': this.boundOnIncrement,
+            }, () => {
+              aeIcon({ name: getInternalName('add') });
             });
             button({
               className: 'number-btn number-btn-decrement',
-              textContent: '-',
+              type: 'button',
+              'aria-label': 'Decrement',
               disabled: Boolean(this.disabled),
               '@click': this.boundOnDecrement,
+            }, () => {
+              aeIcon({ name: getInternalName('remove') });
             });
           });
         }
