@@ -33,6 +33,33 @@ describe('Checkbox', () => {
       expect(el.shadowRoot!.querySelector('input[type="checkbox"]')).to.exist
     })
 
+    it('does not render action controls for clearable/resettable', async () => {
+      const el = await mount<Checkbox>(`<${TAG_NAME} clearable resettable default-checked></${TAG_NAME}>`)
+      await updated()
+      expect(el.shadowRoot!.querySelector('.action-controls')).to.be.null
+      expect(el.shadowRoot!.querySelector('.clear-btn')).to.be.null
+      expect(el.shadowRoot!.querySelector('.reset-btn')).to.be.null
+    })
+
+    it('supports external control via built-in clear()/reset() methods', async () => {
+      const el = await mount<Checkbox>(`<${TAG_NAME} checked default-checked></${TAG_NAME}>`)
+      await updated()
+
+      const events: string[] = []
+      el.addEventListener('change', (e: Event) => {
+        events.push((e as CustomEvent).detail?.action)
+      })
+
+      el.clear({ silent: false })
+      await updated()
+      expect(el.shadowRoot!.querySelector<HTMLInputElement>('input[type="checkbox"]')!.checked).to.be.false
+
+      el.reset(undefined, { silent: false })
+      await updated()
+      expect(el.shadowRoot!.querySelector<HTMLInputElement>('input[type="checkbox"]')!.checked).to.be.true
+      expect(events).to.deep.equal(['clear', 'reset'])
+    })
+
     it ('sets the checked state based on the "checked" attribute', async () => {
       const checkedValStr = randomItem(['checked', 'checked="true"'])
       const el = await mount<Checkbox>(`<${TAG_NAME} ${checkedValStr}></${TAG_NAME}>`)

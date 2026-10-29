@@ -189,21 +189,33 @@ describe('Textarea', () => {
     })
   })
 
-  describe('clearable', () => {
-    it('shows a clear button when clearable and value is non-empty', async () => {
-      const el = await mount<Textarea>(`<${TAG} clearable value="some text"></${TAG}>`)
+  describe('clear/reset attributes (removed)', () => {
+    it('does not render action controls for clearable/resettable', async () => {
+      const el = await mount<Textarea>(`<${TAG} clearable resettable value="some text"></${TAG}>`)
       await updated()
-      const clearBtn = el.shadowRoot!.querySelector<HTMLElement>('.clear-btn')
-      expect(clearBtn).to.exist
-      expect(clearBtn!.style.display).to.not.equal('none')
+      expect(el.shadowRoot!.querySelector('.action-controls')).to.be.null
+      expect(el.shadowRoot!.querySelector('.clear-btn')).to.be.null
+      expect(el.shadowRoot!.querySelector('.reset-btn')).to.be.null
     })
 
-    it('hides the clear button when value is empty', async () => {
-      const el = await mount<Textarea>(`<${TAG} clearable value=""></${TAG}>`)
+    it('supports external control via built-in clear()/reset() methods', async () => {
+      const el = await mount<Textarea>(`<${TAG} value="some text" default-value="initial"></${TAG}>`)
       await updated()
-      const clearBtn = el.shadowRoot!.querySelector<HTMLElement>('.clear-btn')
-      expect(clearBtn).to.exist
-      expect(clearBtn!.style.display).to.equal('none')
+
+      const events: string[] = []
+      el.addEventListener('change', (e: Event) => {
+        events.push((e as CustomEvent).detail?.action)
+      })
+
+      el.clear({ silent: false })
+      await updated()
+      expect(el.shadowRoot!.querySelector<HTMLTextAreaElement>('textarea')!.value).to.equal('')
+      expect(el.value).to.equal('')
+
+      el.reset(undefined, { silent: false })
+      await updated()
+      expect(el.shadowRoot!.querySelector<HTMLTextAreaElement>('textarea')!.value).to.equal('initial')
+      expect(events).to.deep.equal(['clear', 'reset'])
     })
   })
 

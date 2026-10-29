@@ -34,8 +34,12 @@
       <label>resize="none"</label>
       <ae-textarea resize="none" placeholder="Cannot be resized..." rows="4" style="max-width:480px"></ae-textarea>
 
-      <label>Clearable + resettable</label>
-      <ae-textarea label="Description" clearable resettable value="Initial content" placeholder="Enter description..." style="max-width:480px"></ae-textarea>
+      <label>External clear/reset controls via built-in clear()/reset() methods</label>
+      <ae-textarea id="textarea-external" label="Description" value="Initial content" default-value="Initial content" placeholder="Enter description..." style="max-width:480px"></ae-textarea>
+      <div class="demo-row">
+        <button id="textarea-clear" type="button">Clear externally</button>
+        <a id="textarea-reset" href="#">Reset externally</a>
+      </div>
 
       <label>maxlength + minlength</label>
       <ae-textarea label="Short bio" placeholder="10–200 characters..." minlength="10" maxlength="200" style="max-width:480px"></ae-textarea>
@@ -46,18 +50,17 @@
 
   </div><!-- .content -->
 
-  <footer id="log-footer">
-    <div id="log-footer-header">
-      Event Log
-      <span class="clear-log" id="clear-log">[clear]</span>
-    </div>
-    <div id="event-log"></div>
-  </footer>
+  <script type="module">
+    const textarea = document.getElementById('textarea-external');
+    document.getElementById('textarea-clear').addEventListener('click', () => {
+      textarea.clear({ silent: false });
+    });
+    document.getElementById('textarea-reset').addEventListener('click', (event) => {
+      event.preventDefault();
+      textarea.reset(undefined, { silent: false });
+    });
+  </script>
 
-</body>
-</html>
-
-  </div>
   <footer id="log-footer">
     <div id="log-footer-header">
       Event Log

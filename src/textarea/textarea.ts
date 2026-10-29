@@ -1,10 +1,9 @@
 import AeicoField from '../aeico-field';
-import type { InferProps } from 'aeico';
+import type { InferProps, Props } from 'aeico';
 import { html, prop } from 'aeico';
 import variables from '../styles/variables.css';
 import sizeCSS from '../styles/size.css';
 import fieldLabelCSS from '../styles/components/field-label.css';
-import actionButtonCSS from '../styles/components/action-button.css';
 import style from '../styles/components/textarea.css';
 
 export type TextareaResize = 'none' | 'vertical' | 'horizontal' | 'both';
@@ -30,7 +29,13 @@ class Textarea extends AeicoField {
   @prop({ type: Boolean })
   accessor autoResize: boolean = false;
 
-  protected static styles = [variables, sizeCSS, fieldLabelCSS, actionButtonCSS, style];
+  static props: Props = {
+    clearable: { observe: false },
+    resettable: { observe: false },
+    actionButtonStyle: { observe: false },
+  };
+
+  protected static styles = [variables, sizeCSS, fieldLabelCSS, style];
 
   private readonly _boundOnInput = () => {
     if (this.autoResize && this.fieldElement) {
@@ -51,7 +56,6 @@ class Textarea extends AeicoField {
           required: Boolean(this.required),
           '@input': this._boundOnInput,
         });
-        this.renderActionButtons();
       });
       this.renderHelperText();
       this.renderError();
@@ -66,7 +70,6 @@ class Textarea extends AeicoField {
         if (this.autoResize) {
           this._syncAutoResize(this.fieldElement);
         }
-        this._updateClearButtonVisibility();
       }
     });
   }
@@ -76,19 +79,12 @@ class Textarea extends AeicoField {
     ta.style.height = `${ta.scrollHeight}px`;
   }
 
-  private _updateClearButtonVisibility(): void {
-    if (this.clearBtn && this.fieldElement) {
-      this.clearBtn.style.display = this.fieldElement.value.length > 0 ? '' : 'none';
-    }
-  }
-
   protected writeValue(value: string): void {
     if (this.fieldElement) {
       this.fieldElement.value = String(value || '');
       if (this.autoResize) {
         this._syncAutoResize(this.fieldElement);
       }
-      this._updateClearButtonVisibility();
     }
   }
 }
