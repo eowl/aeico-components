@@ -1,5 +1,5 @@
 import AeicoField, { type FieldAction } from '../aeico-field';
-import type { InferProps } from 'aeico';
+import type { InferProps, Props } from 'aeico';
 import { html, prop } from 'aeico';
 import type { SwitchIconPlacement } from './defines';
 import '../icon/icon';
@@ -36,6 +36,11 @@ class Switch extends AeicoField<boolean> {
     actionButtonCSS,
     styles,
   ];
+
+  // Switch always renders integrated action controls; standalone is not supported
+  static props: Props = {
+    actionButtonStyle: { observe: false },
+  };
 
   protected getValue(): boolean {
     return this.fieldElement?.checked ?? false;
