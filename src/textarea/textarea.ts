@@ -32,7 +32,6 @@ class Textarea extends AeicoField {
   static props: Props = {
     clearable: { observe: false },
     resettable: { observe: false },
-    actionButtonStyle: { observe: false },
   };
 
   protected static styles = [variables, sizeCSS, fieldLabelCSS, style];

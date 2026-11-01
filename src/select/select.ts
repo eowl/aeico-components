@@ -60,6 +60,9 @@ class Select extends AeicoField<SelectOptionValue | SelectMultiValue> {
   @prop({ type: Boolean })
   accessor expandable: boolean = false;
 
+  @prop({ type: Boolean })
+  accessor actionButton: boolean | undefined;
+
   @prop({
     type: String,
     parser: (v) => {
@@ -362,7 +365,7 @@ class Select extends AeicoField<SelectOptionValue | SelectMultiValue> {
     const isDisabled = Boolean(this.disabled);
     this._selectedListEl = null;
 
-    const inlineActions = !this.actionButtonStyle;
+    const inlineActions = !this.actionButton;
     const showInlineClear = inlineActions && this.clearable && this._hasValue();
     const showInlineReset = inlineActions && this.resettable && !this._matchesDefaultValue();
 

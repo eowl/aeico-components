@@ -25,6 +25,9 @@ class TextInput extends AeicoField {
   @prop({ type: Boolean })
   accessor visibleToggle: boolean | undefined;
 
+  @prop({ type: Boolean })
+  accessor actionButton: boolean | undefined;
+
   private _passwordVisible = false;
   private _hasInlineActions = false;
   private _inlineClearBtn: HTMLButtonElement | null = null;
@@ -53,7 +56,7 @@ class TextInput extends AeicoField {
 
         let toggleBtn: HTMLButtonElement | null = null;
 
-        const inlineActions = !this.actionButtonStyle;
+        const inlineActions = !this.actionButton;
         let clearBtn: HTMLButtonElement | null = null;
         let resetBtn: HTMLButtonElement | null = null;
         const showClear = inlineActions && this.clearable && !!this.getValue();

@@ -4,7 +4,6 @@ import AeicoComponent from './aeico-component';
 
 export type FieldAction = 'clear' | 'reset' | 'change';
 export type FieldElement = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
-export type ActionButtonStyle = 'integrated';
 
 /**
  * Base class for form field components
@@ -29,7 +28,6 @@ class AeicoField<TValue = string> extends AeicoComponent {
     clearable: { type: Boolean },
     clearText: { type: String },
     clearTitle: { type: String },
-    actionButtonStyle: { type: String },
     size: { type: String },
     disabled: { type: Boolean },
     label: { type: String },
@@ -79,7 +77,6 @@ class AeicoField<TValue = string> extends AeicoComponent {
   declare clearable?: boolean;
   declare clearText?: string;
   declare clearTitle?: string;
-  declare actionButtonStyle?: ActionButtonStyle;
   declare size?: string;
   declare disabled?: boolean;
   declare label?: string;

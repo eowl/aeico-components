@@ -22,6 +22,7 @@ class NumberInput extends AeicoField<number> {
     max: { type: Number },
     step: { type: Number },
     controls: { type: Boolean },
+    actionButton: { type: Boolean },
   };
 
   declare placeholder?: string;
@@ -29,11 +30,12 @@ class NumberInput extends AeicoField<number> {
   declare max?: number;
   declare step?: number;
   declare controls?: boolean;
+  declare actionButton?: boolean;
 
   protected static styles = [variables, sizeCSS, fieldLabelCSS, actionButtonCSS, style];
 
   render() {
-    const inlineActions = !this.actionButtonStyle;
+    const inlineActions = !this.actionButton;
     return html(({ div, input, button, span, slot, aeIcon }) => {
       const id = this.getFieldId();
       this.renderLabel(id);

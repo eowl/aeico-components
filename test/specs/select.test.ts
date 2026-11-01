@@ -92,8 +92,8 @@ describe('Select', () => {
       expect(el.shadowRoot!.querySelector('[data-action="reset"]')).to.exist
     })
 
-    it('renders integrated action controls when action-button-style is set', async () => {
-      const el = await mount<Select>(`<${TAG} clearable resettable action-button-style="integrated"></${TAG}>`)
+    it('renders integrated action controls when action-button is set', async () => {
+      const el = await mount<Select>(`<${TAG} clearable resettable action-button></${TAG}>`)
       await updated()
       expect(el.shadowRoot!.querySelector('.action-controls')).to.exist
       expect(el.shadowRoot!.querySelector('.clear-btn')).to.exist

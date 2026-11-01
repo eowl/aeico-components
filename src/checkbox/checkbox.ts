@@ -17,7 +17,6 @@ class Checkbox extends AeicoField<boolean> {
     variant: { type: String },
     clearable: { observe: false },
     resettable: { observe: false },
-    actionButtonStyle: { observe: false },
   };
 
   declare checked?: boolean;

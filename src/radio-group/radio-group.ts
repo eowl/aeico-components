@@ -27,7 +27,6 @@ class RadioGroup extends AeicoField {
     variant: { type: String },
     size: { type: String },
     allowEmpty: { type: Boolean },
-    actionButtonStyle: { type: String },
   };
 
   declare options?: RadioGroupOptions;
