@@ -37,9 +37,6 @@
 
         <label>Options prop JS array, <code>clearable</code> + <code>resettable</code> + <code>default-value</code>, Action Button Style: Integrated</label>
         <ae-select id="select-opts-integrated" clearable resettable placeholder="Choose a fruit..." action-button-style="integrated" style="max-width:260px"></ae-select>
-
-        <label>Options prop JS array, <code>clearable</code> + <code>resettable</code> + <code>default-value</code>, Action Button Style: Standalone</label>
-        <ae-select id="select-opts-standalone" clearable resettable placeholder="Choose a fruit..." action-button-style="standalone" style="max-width:260px"></ae-select>
       </div>
 
       <!-- 2. Disabled option in slot -->
@@ -178,12 +175,6 @@ if (selectOptsIntegratedEl) {
   selectOptsIntegratedEl.value = 'cherry'
 }
 
-const selectOptsStandaloneEl = document.querySelector('#select-opts-standalone')
-if (selectOptsStandaloneEl) {
-  selectOptsStandaloneEl.options = FRUIT_OPTIONS
-  selectOptsStandaloneEl.defaultValue = 'cherry'
-  selectOptsStandaloneEl.value = 'cherry'
-}
 
 const selectDisabledEl = document.querySelector('#select-disabled')
 if (selectDisabledEl) {

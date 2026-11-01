@@ -4,7 +4,7 @@ import AeicoComponent from './aeico-component';
 
 export type FieldAction = 'clear' | 'reset' | 'change';
 export type FieldElement = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
-export type ActionButtonStyle = 'standalone' | 'integrated';
+export type ActionButtonStyle = 'integrated';
 
 /**
  * Base class for form field components
@@ -107,29 +107,23 @@ class AeicoField<TValue = string> extends AeicoComponent {
    * Must be called from within a build() callback.
    */
   protected renderActionButtons(force: boolean = false) {
-    const style = this.actionButtonStyle || 'integrated';
     const hasActions = force || this.clearable || this.resettable;
 
-    if (hasActions && style === 'integrated') {
+    if (hasActions) {
       tags.div({ className: 'action-controls' }, () => {
         this.renderClearButton(force);
         this.renderResetButton(force);
       });
-    } else {
-      this.renderClearButton(force);
-      this.renderResetButton(force);
     }
   }
 
   protected renderResetButton(force: boolean = false) {
     const { button } = tags;
-    const style = this.actionButtonStyle || 'integrated';
 
     if (force || this.resettable) {
-      const className = style === 'integrated' ? 'reset-btn action-btn' : 'reset-btn';
       this.resetBtn = button(
         {
-          className,
+          className: 'reset-btn action-btn',
           title: this.resetTitle || '↺',
           '@click': this.boundOnReset,
         },
@@ -144,13 +138,11 @@ class AeicoField<TValue = string> extends AeicoComponent {
 
   protected renderClearButton(force: boolean = false) {
     const { button } = tags;
-    const style = this.actionButtonStyle || 'integrated';
 
     if (force || this.clearable) {
-      const className = style === 'integrated' ? 'clear-btn action-btn' : 'clear-btn';
       this.clearBtn = button(
         {
-          className,
+          className: 'clear-btn action-btn',
           title: this.clearTitle || '✕',
           '@click': this.boundOnClear,
         },
