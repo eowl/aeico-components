@@ -36,7 +36,7 @@ class TextInput extends AeicoField {
   protected static styles = [variables, sizeCSS, fieldLabelCSS, actionButtonCSS, style];
 
   render() {
-    return html(({ div, input, slot, button, span, aeIcon }) => {
+    return html(({ div, input, slot, button, aeIcon }) => {
       const id = this.getFieldId();
       const inputType = this.type || 'text';
       this.renderLabel(id);
@@ -68,18 +68,15 @@ class TextInput extends AeicoField {
             {
               className: 'action-icon-btn',
               type: 'button',
-              'aria-label': 'Clear',
+              'aria-label': this.clearTitle || 'Clear',
+              title: this.clearTitle || 'Clear',
               'data-action': 'clear',
               '@click': this.boundOnClear,
               style: { display: showClear ? '' : 'none' },
             },
             () => {
               slot({ name: 'clear' }, () => {
-                if (this.clearText) {
-                  span({ textContent: this.clearText });
-                } else {
-                  aeIcon({ name: getInternalName('clear') });
-                }
+                aeIcon({ name: getInternalName('clear') });
               });
             },
           );
@@ -89,18 +86,15 @@ class TextInput extends AeicoField {
             {
               className: 'action-icon-btn',
               type: 'button',
-              'aria-label': 'Reset',
+              'aria-label': this.resetTitle || 'Reset',
+              title: this.resetTitle || 'Reset',
               'data-action': 'reset',
               '@click': this.boundOnReset,
               style: { display: showReset ? '' : 'none' },
             },
             () => {
               slot({ name: 'reset' }, () => {
-                if (this.resetText) {
-                  span({ textContent: this.resetText });
-                } else {
-                  aeIcon({ name: getInternalName('reset') });
-                }
+                aeIcon({ name: getInternalName('reset') });
               });
             },
           );

@@ -1,5 +1,7 @@
 import type { InferProps, Props, Watchers } from 'aeico';
 import { tags } from 'aeico';
+import { getInternalName } from './utils/icon';
+import './icon/icon';
 import AeicoComponent from './aeico-component';
 
 export type FieldAction = 'clear' | 'reset' | 'change';
@@ -23,10 +25,8 @@ class AeicoField<TValue = string> extends AeicoComponent {
     value: { type: String },
     defaultValue: { type: String },
     resettable: { type: Boolean },
-    resetText: { type: String },
     resetTitle: { type: String },
     clearable: { type: Boolean },
-    clearText: { type: String },
     clearTitle: { type: String },
     size: { type: String },
     disabled: { type: Boolean },
@@ -72,10 +72,8 @@ class AeicoField<TValue = string> extends AeicoComponent {
   declare value?: TValue;
   declare defaultValue?: TValue | string;
   declare resettable?: boolean;
-  declare resetText?: string;
   declare resetTitle?: string;
   declare clearable?: boolean;
-  declare clearText?: string;
   declare clearTitle?: string;
   declare size?: string;
   declare disabled?: boolean;
@@ -121,12 +119,13 @@ class AeicoField<TValue = string> extends AeicoComponent {
       this.resetBtn = button(
         {
           className: 'reset-btn action-btn',
-          title: this.resetTitle || '↺',
+          title: this.resetTitle || 'Reset',
+          'aria-label': this.resetTitle || 'Reset',
           '@click': this.boundOnReset,
         },
         () => {
           tags.slot({ name: 'reset' }, () => {
-            tags.span({ textContent: this.resetText || '↺' });
+            tags.aeIcon({ name: getInternalName('reset') });
           });
         },
       );
@@ -140,12 +139,13 @@ class AeicoField<TValue = string> extends AeicoComponent {
       this.clearBtn = button(
         {
           className: 'clear-btn action-btn',
-          title: this.clearTitle || '✕',
+          title: this.clearTitle || 'Clear',
+          'aria-label': this.clearTitle || 'Clear',
           '@click': this.boundOnClear,
         },
         () => {
           tags.slot({ name: 'clear' }, () => {
-            tags.span({ textContent: this.clearText || '✕' });
+            tags.aeIcon({ name: getInternalName('clear') });
           });
         },
       );

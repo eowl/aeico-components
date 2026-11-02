@@ -109,6 +109,8 @@ import 'aeico-components';
 | `controls` | `boolean` | `false` | Shows increment / decrement stepper buttons. |
 | `clearable` | `boolean` | `false` | Shows a clear button when the input has a value. |
 | `resettable` | `boolean` | `false` | Shows a reset button to restore the default value. |
+| `clearTitle` | `string` | `'Clear'` | Tooltip and accessible name for the clear button. |
+| `resetTitle` | `string` | `'Reset'` | Tooltip and accessible name for the reset button. |
 | `actionButton` | `boolean` | `false` | Renders the clear/reset buttons as an integrated piece attached to the input instead of inline icons inside it. |
 | `helperText` | `string` | - | Helper text displayed below the input. |
 | `error` | `string` | - | Error message displayed below the input. |

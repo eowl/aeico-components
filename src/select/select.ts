@@ -436,7 +436,8 @@ class Select extends AeicoField<SelectOptionValue | SelectMultiValue> {
                   {
                     className: 'action-icon-btn',
                     type: 'button',
-                    'aria-label': 'Clear',
+                    'aria-label': this.clearTitle || 'Clear',
+                    title: this.clearTitle || 'Clear',
                     'data-action': 'clear',
                     '@click': (e: Event) => {
                       e.stopPropagation();
@@ -447,11 +448,7 @@ class Select extends AeicoField<SelectOptionValue | SelectMultiValue> {
                   },
                   () => {
                     slot({ name: 'clear' }, () => {
-                      if (this.clearText) {
-                        span({ textContent: this.clearText });
-                      } else {
-                        aeIcon({ name: getInternalName('clear') });
-                      }
+                      aeIcon({ name: getInternalName('clear') });
                     });
                   },
                 );
@@ -461,7 +458,8 @@ class Select extends AeicoField<SelectOptionValue | SelectMultiValue> {
                   {
                     className: 'action-icon-btn',
                     type: 'button',
-                    'aria-label': 'Reset',
+                    'aria-label': this.resetTitle || 'Reset',
+                    title: this.resetTitle || 'Reset',
                     'data-action': 'reset',
                     '@click': (e: Event) => {
                       e.stopPropagation();
@@ -472,11 +470,7 @@ class Select extends AeicoField<SelectOptionValue | SelectMultiValue> {
                   },
                   () => {
                     slot({ name: 'reset' }, () => {
-                      if (this.resetText) {
-                        span({ textContent: this.resetText });
-                      } else {
-                        aeIcon({ name: getInternalName('reset') });
-                      }
+                      aeIcon({ name: getInternalName('reset') });
                     });
                   },
                 );
