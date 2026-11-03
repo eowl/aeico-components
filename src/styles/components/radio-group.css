@@ -43,8 +43,13 @@
   height: 1.726em;
 }
 
-slot {
+slot:not([name]) {
   display: none;
+}
+
+slot[name='clear'],
+slot[name='reset'] {
+  display: contents;
 }
 
 .rg-radio-option {
@@ -262,6 +267,15 @@ slot {
   font-size:     var(--rg-font-size);
 }
 
+:host([mode="button"]) .reset-btn ae-icon,
+:host([mode="button"]) .clear-btn ae-icon,
+:host([mode="button-group"]) .reset-btn ae-icon,
+:host([mode="button-group"]) .clear-btn ae-icon,
+:host([mode="segmented"]) .reset-btn ae-icon,
+:host([mode="segmented"]) .clear-btn ae-icon {
+  font-size: inherit;
+}
+
 :host([mode="button"]) .reset-btn,
 :host([mode="button"]) .clear-btn,
 :host([mode="button-group"]) .reset-btn,
@@ -275,18 +289,13 @@ slot {
 
 :host([mode="button"]) .reset-btn:hover,
 :host([mode="button-group"]) .reset-btn:hover,
-:host([mode="segmented"]) .reset-btn:hover {
-  background:   var(--ae-border-subtle);
-  border-color: var(--ae-color-gray-lighter);
-  color:        var(--ae-color-text-main);
-}
-
+:host([mode="segmented"]) .reset-btn:hover,
 :host([mode="button"]) .clear-btn:hover,
 :host([mode="button-group"]) .clear-btn:hover,
 :host([mode="segmented"]) .clear-btn:hover {
-  background:   rgb(from var(--ae-red) r g b / 0.10);
+  background:   var(--ae-border-subtle);
   border-color: var(--ae-color-gray-lighter);
-  color:        var(--ae-color-danger);
+  color:        var(--ae-color-text-main);
 }
 
 :host([variant="outlined"][mode="button"]) .reset-btn,
@@ -302,18 +311,13 @@ slot {
 
 :host([variant="outlined"][mode="button"]) .reset-btn:hover,
 :host([variant="outlined"][mode="button-group"]) .reset-btn:hover,
-:host([variant="outlined"][mode="segmented"]) .reset-btn:hover {
-  background:   var(--ae-border-subtle);
-  border-color: var(--ae-color-border-hover);
-  color:        var(--ae-color-accent-hover);
-}
-
+:host([variant="outlined"][mode="segmented"]) .reset-btn:hover,
 :host([variant="outlined"][mode="button"]) .clear-btn:hover,
 :host([variant="outlined"][mode="button-group"]) .clear-btn:hover,
 :host([variant="outlined"][mode="segmented"]) .clear-btn:hover {
-  background:   rgb(from var(--ae-red) r g b / 0.10);
+  background:   var(--ae-border-subtle);
   border-color: var(--ae-color-border-hover);
-  color:        var(--ae-color-danger);
+  color:        var(--ae-color-accent-hover);
 }
 
 :host([variant="subtle"][mode="button"]) .reset-btn,
@@ -329,16 +333,11 @@ slot {
 
 :host([variant="subtle"][mode="button"]) .reset-btn:hover,
 :host([variant="subtle"][mode="button-group"]) .reset-btn:hover,
-:host([variant="subtle"][mode="segmented"]) .reset-btn:hover {
-  background:   var(--ae-border-subtle);
-  border-color: transparent;
-  color:        var(--ae-color-accent-hover);
-}
-
+:host([variant="subtle"][mode="segmented"]) .reset-btn:hover,
 :host([variant="subtle"][mode="button"]) .clear-btn:hover,
 :host([variant="subtle"][mode="button-group"]) .clear-btn:hover,
 :host([variant="subtle"][mode="segmented"]) .clear-btn:hover {
-  background:   rgb(from var(--ae-red) r g b / 0.10);
+  background:   var(--ae-border-subtle);
   border-color: transparent;
-  color:        var(--ae-color-danger);
+  color:        var(--ae-color-accent-hover);
 }
