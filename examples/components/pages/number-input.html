@@ -44,6 +44,12 @@
         <label>With resettable and clearable, default value: 25</label>
         <ae-number-input placeholder="Both" resettable clearable value="25" default-value="25"></ae-number-input>
 
+        <label>Custom clear/reset content (text) via <code>slot="clear"</code> / <code>slot="reset"</code></label>
+        <ae-number-input placeholder="Custom icons" resettable clearable value="25" default-value="25">
+          <span slot="clear">清除</span>
+          <span slot="reset">重置</span>
+        </ae-number-input>
+
         <label>With controls, resettable and clearable, default value: 25, Action Button: Integrated</label>
         <ae-number-input label="Count" controls resettable clearable value="25" default-value="25" min="0" max="100" step="5" action-button></ae-number-input>
 

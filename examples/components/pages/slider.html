@@ -20,6 +20,12 @@
         <label>Free mode percentage (step 5) with reset + clear</label>
         <ae-slider value="60" min="0" max="100" step="5" percentage resettable clearable default-value="60"></ae-slider>
 
+        <label>Custom clear/reset content (text) via <code>slot="clear"</code> / <code>slot="reset"</code></label>
+        <ae-slider value="60" min="0" max="100" step="5" percentage resettable clearable default-value="60">
+          <span slot="clear">Clear</span>
+          <span slot="reset">Reset</span>
+        </ae-slider>
+
         <label>Free mode with editable number box, Action Button Style: Integrated (default)</label>
         <ae-slider id="slider-editable" value="30" min="0" max="100" step="10" editable resettable></ae-slider>
 
