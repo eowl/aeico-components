@@ -54,47 +54,59 @@ class NumberInput extends AeicoField<number> {
 
         if (this.controls && !inlineActions) {
           div({ className: 'number-controls' }, () => {
-            button({
-              className: 'number-btn number-btn-increment',
-              type: 'button',
-              'aria-label': 'Increment',
-              disabled: Boolean(this.disabled),
-              '@click': this.boundOnIncrement,
-            }, () => {
-              aeIcon({ name: getInternalName('add') });
-            });
-            button({
-              className: 'number-btn number-btn-decrement',
-              type: 'button',
-              'aria-label': 'Decrement',
-              disabled: Boolean(this.disabled),
-              '@click': this.boundOnDecrement,
-            }, () => {
-              aeIcon({ name: getInternalName('remove') });
-            });
+            button(
+              {
+                className: 'number-btn number-btn-increment',
+                type: 'button',
+                'aria-label': 'Increment',
+                disabled: Boolean(this.disabled),
+                '@click': this.boundOnIncrement,
+              },
+              () => {
+                aeIcon({ name: getInternalName('add') });
+              },
+            );
+            button(
+              {
+                className: 'number-btn number-btn-decrement',
+                type: 'button',
+                'aria-label': 'Decrement',
+                disabled: Boolean(this.disabled),
+                '@click': this.boundOnDecrement,
+              },
+              () => {
+                aeIcon({ name: getInternalName('remove') });
+              },
+            );
           });
         }
 
         if (inlineActions) {
           if (this.controls) {
-            button({
-              className: 'number-btn number-btn-inline number-btn-increment',
-              type: 'button',
-              'aria-label': 'Increment',
-              disabled: Boolean(this.disabled),
-              '@click': this.boundOnIncrement,
-            }, () => {
-              aeIcon({ name: getInternalName('add') });
-            });
-            button({
-              className: 'number-btn number-btn-inline number-btn-decrement',
-              type: 'button',
-              'aria-label': 'Decrement',
-              disabled: Boolean(this.disabled),
-              '@click': this.boundOnDecrement,
-            }, () => {
-              aeIcon({ name: getInternalName('remove') });
-            });
+            button(
+              {
+                className: 'number-btn number-btn-inline number-btn-increment',
+                type: 'button',
+                'aria-label': 'Increment',
+                disabled: Boolean(this.disabled),
+                '@click': this.boundOnIncrement,
+              },
+              () => {
+                aeIcon({ name: getInternalName('add') });
+              },
+            );
+            button(
+              {
+                className: 'number-btn number-btn-inline number-btn-decrement',
+                type: 'button',
+                'aria-label': 'Decrement',
+                disabled: Boolean(this.disabled),
+                '@click': this.boundOnDecrement,
+              },
+              () => {
+                aeIcon({ name: getInternalName('remove') });
+              },
+            );
           }
           if (this.clearable) {
             this._inlineClearBtn = button(
@@ -138,7 +150,8 @@ class NumberInput extends AeicoField<number> {
           this.renderActionButtons();
         }
 
-        this._hasInlineActions = inlineActions && (this.controls || !!this._inlineClearBtn || !!this._inlineResetBtn);
+        this._hasInlineActions =
+          inlineActions && (this.controls || !!this._inlineClearBtn || !!this._inlineResetBtn);
         this._syncInlineContainer();
       });
       this.renderHelperText();
@@ -162,8 +175,7 @@ class NumberInput extends AeicoField<number> {
       this._inlineClearBtn.style.display = this.clearable && this._hasRawValue() ? '' : 'none';
     }
     if (this._inlineResetBtn) {
-      this._inlineResetBtn.style.display =
-        this.resettable && !this._matchesDefault() ? '' : 'none';
+      this._inlineResetBtn.style.display = this.resettable && !this._matchesDefault() ? '' : 'none';
     }
   }
 
