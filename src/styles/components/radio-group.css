@@ -39,7 +39,8 @@
 :host([mode="default"]) .rg-container .action-controls .action-btn {
   padding: 0 0.35em;
   font-size: 0.7em;
-  width: 1.726em;
+  width: auto;
+  min-width: 1.726em;
   height: 1.726em;
 }
 
