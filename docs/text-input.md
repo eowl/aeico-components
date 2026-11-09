@@ -81,22 +81,19 @@ import 'aeico-components';
 </ae-text-input>
 ```
 
-### `actionButtonStyle` - action button display style
+### `actionButton` - integrated action buttons
 
 ```html
 <!-- Inline icon buttons (default): clear/reset render as clickable icons inside the input -->
 <ae-text-input label="Default" clearable resettable default-value="Hello" value="Hello"></ae-text-input>
 
 <!-- Integrated (opt-in): buttons are attached to the input as one piece -->
-<ae-text-input label="Integrated" clearable value="Hello" action-button-style="integrated"></ae-text-input>
-
-<!-- Standalone (opt-in): buttons are separate rounded icons -->
-<ae-text-input label="Standalone" clearable value="Hello" action-button-style="standalone"></ae-text-input>
+<ae-text-input label="Integrated" clearable value="Hello" action-button></ae-text-input>
 ```
 
 ### Custom clear / reset content - `slot="clear"` / `slot="reset"`
 
-When `actionButtonStyle` is not set, the clear/reset buttons render inside the input. Content falls back in order: slot > `clearText`/`resetText` prop > built-in internal icon.
+When `action-button` is not set, the clear/reset buttons render inside the input. Slot content replaces the built-in internal icon; without a slot the internal icon is used.
 
 ```html
 <!-- Custom icons -->
@@ -138,7 +135,9 @@ When `actionButtonStyle` is not set, the clear/reset buttons render inside the i
 | `required` | `boolean` | `false` | Marks the field as required in a form. |
 | `clearable` | `boolean` | `false` | Shows a clear button when the input has a value. |
 | `resettable` | `boolean` | `false` | Shows a reset button to restore the default value. |
-| `actionButtonStyle` | `'integrated' \| 'standalone'` | - | Display style for clear/reset buttons. When unset, buttons render as inline icons inside the input. `integrated` attaches them to the input; `standalone` shows them as separate rounded icons. |
+| `clearTitle` | `string` | `'Clear'` | Tooltip and accessible name for the clear button. |
+| `resetTitle` | `string` | `'Reset'` | Tooltip and accessible name for the reset button. |
+| `actionButton` | `boolean` | `false` | Renders the clear/reset buttons as an integrated piece attached to the input instead of inline icons inside it. |
 
 ## Events
 

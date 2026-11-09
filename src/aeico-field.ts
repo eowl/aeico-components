@@ -1,10 +1,11 @@
 import type { InferProps, Props, Watchers } from 'aeico';
 import { tags } from 'aeico';
+import { getInternalName } from './utils/icon';
+import './icon/icon';
 import AeicoComponent from './aeico-component';
 
 export type FieldAction = 'clear' | 'reset' | 'change';
 export type FieldElement = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
-export type ActionButtonStyle = 'standalone' | 'integrated';
 
 /**
  * Base class for form field components
@@ -24,12 +25,9 @@ class AeicoField<TValue = string> extends AeicoComponent {
     value: { type: String },
     defaultValue: { type: String },
     resettable: { type: Boolean },
-    resetText: { type: String },
     resetTitle: { type: String },
     clearable: { type: Boolean },
-    clearText: { type: String },
     clearTitle: { type: String },
-    actionButtonStyle: { type: String },
     size: { type: String },
     disabled: { type: Boolean },
     label: { type: String },
@@ -74,12 +72,9 @@ class AeicoField<TValue = string> extends AeicoComponent {
   declare value?: TValue;
   declare defaultValue?: TValue | string;
   declare resettable?: boolean;
-  declare resetText?: string;
   declare resetTitle?: string;
   declare clearable?: boolean;
-  declare clearText?: string;
   declare clearTitle?: string;
-  declare actionButtonStyle?: ActionButtonStyle;
   declare size?: string;
   declare disabled?: boolean;
   declare label?: string;
@@ -107,47 +102,53 @@ class AeicoField<TValue = string> extends AeicoComponent {
    * Must be called from within a build() callback.
    */
   protected renderActionButtons(force: boolean = false) {
-    const style = this.actionButtonStyle || 'integrated';
     const hasActions = force || this.clearable || this.resettable;
 
-    if (hasActions && style === 'integrated') {
+    if (hasActions) {
       tags.div({ className: 'action-controls' }, () => {
         this.renderClearButton(force);
         this.renderResetButton(force);
       });
-    } else {
-      this.renderClearButton(force);
-      this.renderResetButton(force);
     }
   }
 
   protected renderResetButton(force: boolean = false) {
     const { button } = tags;
-    const style = this.actionButtonStyle || 'integrated';
 
     if (force || this.resettable) {
-      const className = style === 'integrated' ? 'reset-btn action-btn' : 'reset-btn';
-      this.resetBtn = button({
-        className,
-        textContent: this.resetText || '↺',
-        title: this.resetTitle || '↺',
-        '@click': this.boundOnReset,
-      });
+      this.resetBtn = button(
+        {
+          className: 'reset-btn action-btn',
+          title: this.resetTitle || 'Reset',
+          'aria-label': this.resetTitle || 'Reset',
+          '@click': this.boundOnReset,
+        },
+        () => {
+          tags.slot({ name: 'reset' }, () => {
+            tags.aeIcon({ name: getInternalName('reset') });
+          });
+        },
+      );
     }
   }
 
   protected renderClearButton(force: boolean = false) {
     const { button } = tags;
-    const style = this.actionButtonStyle || 'integrated';
 
     if (force || this.clearable) {
-      const className = style === 'integrated' ? 'clear-btn action-btn' : 'clear-btn';
-      this.clearBtn = button({
-        className,
-        textContent: this.clearText || '✕',
-        title: this.clearTitle || '✕',
-        '@click': this.boundOnClear,
-      });
+      this.clearBtn = button(
+        {
+          className: 'clear-btn action-btn',
+          title: this.clearTitle || 'Clear',
+          'aria-label': this.clearTitle || 'Clear',
+          '@click': this.boundOnClear,
+        },
+        () => {
+          tags.slot({ name: 'clear' }, () => {
+            tags.aeIcon({ name: getInternalName('clear') });
+          });
+        },
+      );
     }
   }
 

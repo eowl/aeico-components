@@ -4,10 +4,7 @@
   min-width: 0;
   font-size: var(--ae-size-base);
 
-  /* Layout variables */
   --input-field-gap: 4px;
-  
-  /* Input element variables */
   --input-font-size: 1em;
   --input-padding: 0.333em 0.583em;
   --input-border-width: 1px;
@@ -25,6 +22,7 @@ input {
   flex: 1;
   min-width: 0;
   font-size: var(--input-font-size);
+  line-height: 1.2;
   padding: var(--input-padding);
   border: var(--input-border-width) solid var(--ae-border-subtle);
   border-radius: var(--ae-border-radius, var(--ae-radius-xs));
@@ -35,7 +33,6 @@ input {
   appearance: textfield;
 }
 
-/* Hide number spinner arrows in WebKit browsers */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -44,6 +41,62 @@ input::-webkit-inner-spin-button {
 
 input::placeholder {
   color: var(--ae-color-text-disabled);
+}
+
+.input-container.has-end-icon {
+  border: var(--input-border-width) solid var(--ae-border-subtle);
+  border-radius: var(--ae-border-radius, var(--ae-radius-xs));
+  background: var(--ae-surface-base);
+  transition: var(--input-transition);
+  padding: 0 0.583em;
+}
+
+.input-container.has-end-icon input {
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  padding-left: 0;
+  padding-right: 0;
+  height: auto;
+}
+
+.input-container.has-end-icon:hover:not(:focus-within) {
+  border-color: var(--ae-border-default);
+  background: var(--ae-surface-raised);
+}
+
+.input-container.has-end-icon:focus-within {
+  border-color: var(--ae-border-focus);
+  background: var(--ae-surface-raised);
+}
+
+:host([error]) .input-container.has-end-icon,
+:host([error]) .input-container.has-end-icon:focus-within {
+  border-color: var(--field-error-color, var(--ae-red));
+}
+
+.input-container.has-end-icon .number-btn-inline.number-btn-increment {
+  order: 1;
+}
+
+.input-container.has-end-icon .number-btn-inline.number-btn-decrement {
+  order: 2;
+}
+
+.input-container.has-end-icon:has(~ .action-controls),
+.input-container.has-end-icon:has(.action-controls) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.input-container.has-end-icon:has(~ .number-controls) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+:host(:has(.number-controls)) input,
+.input-container.has-end-icon:has(~ .number-controls) input {
+  border-radius: var(--ae-border-radius, var(--ae-radius-xs)) 0 0 var(--ae-border-radius, var(--ae-radius-xs));
 }
 
 input:focus {
@@ -62,7 +115,6 @@ input:disabled {
   cursor: not-allowed;
 }
 
-/* Number stepper controls (right side, integrated, horizontal) */
 .number-controls {
   display: flex;
   flex-direction: row;
@@ -89,12 +141,20 @@ input:disabled {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 0.5em;
+  width: 2.081em;
+  height: 2.081em;
+  align-self: center;
+  flex: none;
+  padding: 0;
   transition: background 0.12s;
 }
 
 .number-btn:hover:not(:disabled) {
   background: var(--ae-surface-raised);
+}
+
+.number-btn ae-icon {
+  font-size: inherit;
 }
 
 .number-btn:active:not(:disabled) {
@@ -110,6 +170,26 @@ input:disabled {
   border-right: var(--input-border-width) solid var(--ae-border-subtle);
 }
 
+.number-btn-inline {
+  width: 1.333em;
+  height: 1.333em;
+  align-self: center;
+  padding: 0;
+  border-right: none;
+  flex: none;
+}
+
+.number-btn-inline:hover:not(:disabled),
+.number-btn-inline:active:not(:disabled) {
+  background: var(--ae-action-icon-btn-bg-hover, var(--ae-surface-raised));
+  border-radius: var(--ae-radius-xs);
+  color: var(--ae-color-text-main);
+}
+
+.number-btn-inline ae-icon {
+  font-size: inherit;
+}
+
 .input-container:has(input:focus) .number-controls {
   border-color: var(--ae-border-focus);
 }
@@ -122,8 +202,13 @@ input:disabled {
   border-radius: var(--ae-border-radius, var(--ae-radius-xs)) 0 0 var(--ae-border-radius, var(--ae-radius-xs));
 }
 
-:host(:has(.action-controls)) input {
+:host(:has(.action-controls)) .input-container:not(.has-end-icon) input {
   border-radius: var(--ae-border-radius, var(--ae-radius-xs)) 0 0 var(--ae-border-radius, var(--ae-radius-xs));
+}
+
+.input-container.has-end-icon:has(~ .action-controls) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .number-controls ~ .action-controls {

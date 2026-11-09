@@ -1,37 +1,35 @@
-/* Action button base styles - shared by clear-btn and reset-btn (standalone mode) */
-.clear-btn:not(.action-btn),
-.reset-btn:not(.action-btn) {
-  width: 1.333em;
-  height: 1.333em;
-  border: none;
-  cursor: pointer;
-  display: flex;
+.action-icon-btn {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: 1.333em;
+  height: 1.333em;
+  gap: 2px;
+  min-width: fit-content;
+  border: none;
+  background: transparent;
+  color: var(--ae-color-text-muted);
+  cursor: pointer;
   flex-shrink: 0;
+  padding: 0;
   line-height: 1;
+  font-size: inherit;
 }
 
-.clear-btn:not(.action-btn) {
-  border-radius: var(--ae-clear-btn-border-radius);
-  background: var(--ae-clear-btn-bg);
-  color: var(--ae-clear-btn-color);
-  transition: var(--ae-clear-btn-transition);
+.action-icon-btn:hover:not(:disabled) {
+  color: var(--ae-color-text-main);
+  background: var(--ae-action-icon-btn-bg-hover, var(--ae-surface-raised));
+  border-radius: var(--ae-radius-xs);
 }
 
-.reset-btn:not(.action-btn) {
-  border-radius: var(--ae-reset-btn-border-radius);
-  background: var(--ae-reset-btn-bg);
-  color: var(--ae-reset-btn-color);
-  transition: var(--ae-reset-btn-transition);
+.action-icon-btn ae-icon {
+  font-size: inherit;
 }
 
-.clear-btn:not(.action-btn):hover {
-  background: var(--ae-clear-btn-bg-hover);
-  color: var(--ae-clear-btn-color-hover);
+.action-icon-btn slot::slotted(ae-icon) {
+  font-size: inherit;
 }
 
-.reset-btn:not(.action-btn):hover {
-  background: var(--ae-reset-btn-bg-hover);
-  color: var(--ae-reset-btn-color-hover);
+.action-icon-btn slot {
+  display: contents;
 }

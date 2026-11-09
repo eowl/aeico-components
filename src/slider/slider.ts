@@ -45,6 +45,7 @@ class Slider extends AeicoField {
       if (value === null) return undefined;
       if (value === '' || value === 'true') return true;
       if (value === 'false') return false;
+
       try {
         return JSON.parse(value);
       } catch {
@@ -71,7 +72,6 @@ class Slider extends AeicoField {
         : { label: String(opt), value: String(opt) },
     );
 
-    // Sort by numeric value if all values are numeric; otherwise keep original order
     const allNumeric = opts.every((o) => o.value !== '' && !isNaN(Number(o.value)));
 
     if (allNumeric) {
@@ -143,18 +143,6 @@ class Slider extends AeicoField {
     const label = normalized ? (normalized.find((o) => o.value === value)?.label ?? value) : value;
 
     return this.percentage ? `${label}%` : label;
-  }
-
-  private _maxValueLabelWidth(
-    normalized: NormalizedOption[] | null,
-    attrs: { min: string; max: string },
-  ): string {
-    const candidates = normalized
-      ? normalized.map((o) => this._displayLabel(o.value, normalized))
-      : [this._displayLabel(attrs.min, null), this._displayLabel(attrs.max, null)];
-    const maxLen = Math.max(...candidates.map((l) => l.length), 1);
-
-    return `${maxLen}ch`;
   }
 
   private _updateTrackFill(): void {
@@ -280,12 +268,8 @@ class Slider extends AeicoField {
         this._valueLabel = span({
           key: 'label',
           className: 'value-label',
-          style: { minWidth: this._maxValueLabelWidth(normalized, attrs) },
           textContent: this._displayLabel(this.value, normalized),
         });
-
-        // Action buttons first so the number input can be toggled without disrupting button reuse
-        this.renderActionButtons();
 
         if (this.editable) {
           this._numberInput = input({
@@ -295,13 +279,14 @@ class Slider extends AeicoField {
             min: attrs.min,
             max: attrs.max,
             step: attrs.step,
-            // Disabled in options mode: valid values are discrete, free text makes no sense
             disabled: attrs.inOptionsMode,
             '@input': this._boundOnNumberInput,
           });
         } else {
           this._numberInput = null;
         }
+
+        this.renderActionButtons();
       });
 
       if (this.value != null) this.writeValue(this.value);
@@ -319,7 +304,6 @@ class Slider extends AeicoField {
     if (this._valueLabel) {
       this._valueLabel.textContent = this._displayLabel(actualValue, normalized);
     }
-    // Keep number input in sync during drag
     if (this._numberInput && !normalized) {
       this._numberInput.value = this.fieldElement.value;
     }
@@ -342,13 +326,20 @@ class Slider extends AeicoField {
   public clear(options?: { silent?: boolean }): void {
     const normalized = this._normalizeOptions();
     const attrs = this._getRangeAttrs(normalized);
-    // Reset to the option whose rangeValue === min, or to attrs.min in free mode
     const clearTo = normalized
       ? (normalized.find((o) => String(o.rangeValue) === attrs.min)?.value ??
         normalized[0]?.value ??
         attrs.min)
       : attrs.min;
     this.setValue(clearTo, { ...options, action: 'clear' });
+  }
+
+  public reset(value?: string, options?: { silent?: boolean }): void {
+    if (value === undefined && (this.defaultValue == null || this.defaultValue === '')) {
+      return;
+    }
+
+    this.setValue(value ?? String(this.defaultValue), { ...options, action: 'reset' });
   }
 
   private _isSliderOption(opt: unknown): opt is SliderOption {

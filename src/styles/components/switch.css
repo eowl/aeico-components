@@ -155,6 +155,11 @@
   border-radius: var(--toggle-border-radius) 0 0 var(--toggle-border-radius);
 }
 
+.switch-container .action-controls .action-btn {
+  width: 1.381em;
+  height: 1.381em;
+}
+
 .switch-container .action-controls {
   margin-left: calc(-1 * var(--switch-field-gap) - 1px);
   border: 1px solid var(--field-action-border-color, var(--ae-border-subtle));

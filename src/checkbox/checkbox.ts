@@ -5,7 +5,6 @@ import styleVariables from '../styles/variables.css';
 import sizeCSS from '../styles/size.css';
 import colorCSS from '../styles/color.css';
 import fieldLabelCSS from '../styles/components/field-label.css';
-import actionButtonCSS from '../styles/components/action-button.css';
 import styles from '../styles/components/checkbox.css';
 import { CheckboxVariant } from './defines';
 
@@ -16,20 +15,15 @@ class Checkbox extends AeicoField<boolean> {
     checked: { type: Boolean },
     defaultChecked: { type: Boolean },
     variant: { type: String },
+    clearable: { observe: false },
+    resettable: { observe: false },
   };
 
   declare checked?: boolean;
   declare defaultChecked?: boolean;
   declare variant?: CheckboxVariant;
 
-  protected static styles = [
-    styleVariables,
-    sizeCSS,
-    colorCSS,
-    fieldLabelCSS,
-    actionButtonCSS,
-    styles,
-  ];
+  protected static styles = [styleVariables, sizeCSS, colorCSS, fieldLabelCSS, styles];
 
   protected getValue(): boolean {
     return this.fieldElement?.checked ?? false;
@@ -83,7 +77,6 @@ class Checkbox extends AeicoField<boolean> {
             '@change': this.boundOnChange,
           });
         });
-        this.renderActionButtons();
       });
       this.renderHelperText();
       this.renderError();

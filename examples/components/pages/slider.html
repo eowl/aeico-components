@@ -14,20 +14,23 @@
       <h2>Slider</h2>
       <span class="tag">&lt;ae-slider&gt;</span>
       <div class="demo-group">
-        <label>Free mode default ( 00, step 1) with reset</label>
-        <ae-slider value="40" resettable default-value="40"></ae-slider>
+        <label>Free mode default (step 1), plain (no reset/clear/input)</label>
+        <ae-slider value="40"></ae-slider>
 
         <label>Free mode percentage (step 5) with reset + clear</label>
         <ae-slider value="60" min="0" max="100" step="5" percentage resettable clearable default-value="60"></ae-slider>
+
+        <label>Custom clear/reset content (text) via <code>slot="clear"</code> / <code>slot="reset"</code></label>
+        <ae-slider value="60" min="0" max="100" step="5" percentage resettable clearable default-value="60">
+          <span slot="clear">Clear</span>
+          <span slot="reset">Reset</span>
+        </ae-slider>
 
         <label>Free mode with editable number box, Action Button Style: Integrated (default)</label>
         <ae-slider id="slider-editable" value="30" min="0" max="100" step="10" editable resettable></ae-slider>
 
         <label>Free mode with editable number box + clear + reset, Action Button Style: Integrated</label>
         <ae-slider value="30" min="0" max="100" step="10" editable resettable clearable default-value="30"></ae-slider>
-
-        <label>Free mode with editable number box, Action Button Style: Standalone</label>
-        <ae-slider value="30" min="0" max="100" step="10" editable resettable action-button-style="standalone"></ae-slider>
 
         <label>Options mode numeric values (sorted automatically)</label>
         <ae-slider id="slider-opts-numeric" resettable></ae-slider>

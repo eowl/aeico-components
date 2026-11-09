@@ -38,11 +38,20 @@
       </div>
 
       <div class="demo-group">
-        <label>Default mode, Action Button Style: Standalone</label>
-        <ae-radio-group resettable clearable allow-empty value="b" default-value="b" action-button-style="standalone">
+        <label>Default mode, resettable and clearable</label>
+        <ae-radio-group resettable clearable allow-empty value="b" default-value="b">
           <ae-radio value="a">Option A</ae-radio>
           <ae-radio value="b">Option B</ae-radio>
           <ae-radio value="c">Option C</ae-radio>
+        </ae-radio-group>
+
+        <label>Default mode, custom clear/reset content (text) via <code>slot="clear"</code> / <code>slot="reset"</code></label>
+        <ae-radio-group resettable clearable allow-empty value="b" default-value="b">
+          <ae-radio value="a">Option A</ae-radio>
+          <ae-radio value="b">Option B</ae-radio>
+          <ae-radio value="c">Option C</ae-radio>
+          <span slot="clear">Clear</span>
+          <span slot="reset">Reset</span>
         </ae-radio-group>
       </div>
 

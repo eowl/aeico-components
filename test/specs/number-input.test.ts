@@ -90,16 +90,17 @@ describe('NumberInput', () => {
     it('shows clear button when clearable and has value', async () => {
       const el = await mount<NumberInput>(`<${TAG_NAME} clearable value="5"></${TAG_NAME}>`)
       await updated()
-      const clearBtn = el.shadowRoot!.querySelector('.clear-btn') as HTMLElement
-      expect(clearBtn).to.exist
-    })
-
-    it('clear button is always visible when clearable is set', async () => {
-      const el = await mount<NumberInput>(`<${TAG_NAME} clearable></${TAG_NAME}>`)
-      await updated()
-      const clearBtn = el.shadowRoot!.querySelector('.clear-btn') as HTMLElement
+      const clearBtn = el.shadowRoot!.querySelector('[data-action="clear"]') as HTMLElement
       expect(clearBtn).to.exist
       expect(clearBtn.style.display).to.not.equal('none')
+    })
+
+    it('hides clear button when clearable and no value', async () => {
+      const el = await mount<NumberInput>(`<${TAG_NAME} clearable></${TAG_NAME}>`)
+      await updated()
+      const clearBtn = el.shadowRoot!.querySelector('[data-action="clear"]') as HTMLElement
+      expect(clearBtn).to.exist
+      expect(clearBtn.style.display).to.equal('none')
     })
   })
 
@@ -112,14 +113,13 @@ describe('NumberInput', () => {
   })
 
   describe('controls', () => {
-    it('renders increment and decrement buttons when controls is set', async () => {
+    it('renders inline increment and decrement buttons when controls is set', async () => {
       const el = await mount<NumberInput>(`<${TAG_NAME} controls></${TAG_NAME}>`)
       await updated()
       const buttons = el.shadowRoot!.querySelectorAll('.number-btn')
       expect(buttons.length).to.equal(2)
-      // + on top, − on bottom
-      expect(buttons[0]!.textContent).to.equal('+')
-      expect(buttons[1]!.textContent).to.equal('-')
+      expect(buttons[0]!.classList.contains('number-btn-increment')).to.be.true
+      expect(buttons[1]!.classList.contains('number-btn-decrement')).to.be.true
     })
 
     it('does not render stepper buttons without controls', async () => {

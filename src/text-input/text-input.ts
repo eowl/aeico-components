@@ -25,6 +25,9 @@ class TextInput extends AeicoField {
   @prop({ type: Boolean })
   accessor visibleToggle: boolean | undefined;
 
+  @prop({ type: Boolean })
+  accessor actionButton: boolean | undefined;
+
   private _passwordVisible = false;
   private _hasInlineActions = false;
   private _inlineClearBtn: HTMLButtonElement | null = null;
@@ -33,7 +36,7 @@ class TextInput extends AeicoField {
   protected static styles = [variables, sizeCSS, fieldLabelCSS, actionButtonCSS, style];
 
   render() {
-    return html(({ div, input, slot, button, span, aeIcon }) => {
+    return html(({ div, input, slot, button, aeIcon }) => {
       const id = this.getFieldId();
       const inputType = this.type || 'text';
       this.renderLabel(id);
@@ -52,21 +55,8 @@ class TextInput extends AeicoField {
         slot({ name: 'end', '@slotchange': () => this.onIconSlotChange() });
 
         let toggleBtn: HTMLButtonElement | null = null;
-        if (this.visibleToggle && inputType === 'password') {
-          toggleBtn = button(
-            {
-              className: 'toggle-btn',
-              type: 'button',
-              'aria-label': this._passwordVisible ? 'Hide password' : 'Show password',
-              '@click': () => this.togglePasswordVisibility(),
-            },
-            () => {
-              aeIcon({ name: getInternalName(this._passwordVisible ? 'not-visible' : 'visible') });
-            },
-          );
-        }
 
-        const inlineActions = !this.actionButtonStyle;
+        const inlineActions = !this.actionButton;
         let clearBtn: HTMLButtonElement | null = null;
         let resetBtn: HTMLButtonElement | null = null;
         const showClear = inlineActions && this.clearable && !!this.getValue();
@@ -78,18 +68,15 @@ class TextInput extends AeicoField {
             {
               className: 'action-icon-btn',
               type: 'button',
-              'aria-label': 'Clear',
+              'aria-label': this.clearTitle || 'Clear',
+              title: this.clearTitle || 'Clear',
               'data-action': 'clear',
               '@click': this.boundOnClear,
               style: { display: showClear ? '' : 'none' },
             },
             () => {
               slot({ name: 'clear' }, () => {
-                if (this.clearText) {
-                  span({ textContent: this.clearText });
-                } else {
-                  aeIcon({ name: getInternalName('clear') });
-                }
+                aeIcon({ name: getInternalName('clear') });
               });
             },
           );
@@ -99,19 +86,29 @@ class TextInput extends AeicoField {
             {
               className: 'action-icon-btn',
               type: 'button',
-              'aria-label': 'Reset',
+              'aria-label': this.resetTitle || 'Reset',
+              title: this.resetTitle || 'Reset',
               'data-action': 'reset',
               '@click': this.boundOnReset,
               style: { display: showReset ? '' : 'none' },
             },
             () => {
               slot({ name: 'reset' }, () => {
-                if (this.resetText) {
-                  span({ textContent: this.resetText });
-                } else {
-                  aeIcon({ name: getInternalName('reset') });
-                }
+                aeIcon({ name: getInternalName('reset') });
               });
+            },
+          );
+        }
+        if (this.visibleToggle && inputType === 'password') {
+          toggleBtn = button(
+            {
+              className: 'toggle-btn',
+              type: 'button',
+              'aria-label': this._passwordVisible ? 'Hide password' : 'Show password',
+              '@click': () => this.togglePasswordVisibility(),
+            },
+            () => {
+              aeIcon({ name: getInternalName(this._passwordVisible ? 'not-visible' : 'visible') });
             },
           );
         }

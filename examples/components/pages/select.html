@@ -23,14 +23,26 @@
           <ae-select-option value="cherry">Cherry</ae-select-option>
           <ae-select-option value="grape">Grape</ae-select-option>
         </ae-select>
+
+        
+        <label>With resettable, default value: Hello</label>
+        <ae-text-input placeholder="Type something..." resettable value="Hello" default-value="Hello"></ae-text-input>
+        <label>With clearable</label>
+        <ae-text-input placeholder="Clearable input" clearable value="Hello"></ae-text-input>
       </div>
 
       <div class="demo-group">
         <label>Options prop JS array, <code>clearable</code> + <code>resettable</code> + <code>default-value</code></label>
         <ae-select id="select-opts" clearable resettable placeholder="Choose a fruit..." style="max-width:260px"></ae-select>
 
-        <label>Options prop JS array, <code>clearable</code> + <code>resettable</code> + <code>default-value</code>, Action Button Style: Standalone</label>
-        <ae-select id="select-opts-standalone" clearable resettable placeholder="Choose a fruit..." action-button-style="standalone" style="max-width:260px"></ae-select>
+        <label>Options prop JS array, <code>clearable</code> + <code>resettable</code> + <code>default-value</code>, Action Button: Integrated</label>
+        <ae-select id="select-opts-integrated" clearable resettable placeholder="Choose a fruit..." action-button style="max-width:260px"></ae-select>
+
+        <label>Custom clear/reset content (text) via <code>slot="clear"</code> / <code>slot="reset"</code></label>
+        <ae-select id="select-opts-slots" clearable resettable placeholder="Choose a fruit..." style="max-width:260px">
+          <span slot="clear">Clear</span>
+          <span slot="reset">Reset</span>
+        </ae-select>
       </div>
 
       <!-- 2. Disabled option in slot -->
@@ -162,12 +174,20 @@ if (selectOptsEl) {
   selectOptsEl.value = 'cherry'
 }
 
-const selectOptsStandaloneEl = document.querySelector('#select-opts-standalone')
-if (selectOptsStandaloneEl) {
-  selectOptsStandaloneEl.options = FRUIT_OPTIONS
-  selectOptsStandaloneEl.defaultValue = 'cherry'
-  selectOptsStandaloneEl.value = 'cherry'
+const selectOptsIntegratedEl = document.querySelector('#select-opts-integrated')
+if (selectOptsIntegratedEl) {
+  selectOptsIntegratedEl.options = FRUIT_OPTIONS
+  selectOptsIntegratedEl.defaultValue = 'cherry'
+  selectOptsIntegratedEl.value = 'cherry'
 }
+
+const selectOptsSlotsEl = document.querySelector('#select-opts-slots')
+if (selectOptsSlotsEl) {
+  selectOptsSlotsEl.options = FRUIT_OPTIONS
+  selectOptsSlotsEl.defaultValue = 'cherry'
+  selectOptsSlotsEl.value = 'cherry'
+}
+
 
 const selectDisabledEl = document.querySelector('#select-disabled')
 if (selectDisabledEl) {

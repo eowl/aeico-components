@@ -17,8 +17,6 @@
         <div class="demo-row">
           <ae-checkbox></ae-checkbox>
           <ae-checkbox checked></ae-checkbox>
-          <ae-checkbox resettable default-checked></ae-checkbox>
-          <ae-checkbox checked resettable clearable default-checked></ae-checkbox>
           <ae-checkbox disabled></ae-checkbox>
           <ae-checkbox checked disabled></ae-checkbox>
         </div>
@@ -36,15 +34,11 @@
           <ae-checkbox color="danger" checked></ae-checkbox>
           <ae-checkbox color="warning" checked></ae-checkbox>
         </div>
-        <label>With resettable, default-checked, Action Button Style: Integrated (default)</label>
+        <label>External clear/reset controls via built-in clear()/reset() methods</label>
         <div class="demo-row">
-          <ae-checkbox resettable default-checked></ae-checkbox>
-          <ae-checkbox checked resettable clearable default-checked></ae-checkbox>
-        </div>
-        <label>With resettable, default-checked, Action Button Style: Standalone</label>
-        <div class="demo-row">
-          <ae-checkbox resettable default-checked action-button-style="standalone"></ae-checkbox>
-          <ae-checkbox checked resettable clearable default-checked action-button-style="standalone"></ae-checkbox>
+          <ae-checkbox id="checkbox-external" checked default-checked></ae-checkbox>
+          <button id="checkbox-clear" type="button">Clear externally</button>
+          <a id="checkbox-reset" href="#">Reset externally</a>
         </div>
       </div>
     </div>
@@ -58,6 +52,17 @@
     </div>
     <div id="event-log"></div>
   </footer>
+
+  <script type="module">
+    const checkbox = document.getElementById('checkbox-external');
+    document.getElementById('checkbox-clear').addEventListener('click', () => {
+      checkbox.clear({ silent: false });
+    });
+    document.getElementById('checkbox-reset').addEventListener('click', (event) => {
+      event.preventDefault();
+      checkbox.reset(undefined, { silent: false });
+    });
+  </script>
 
 </body>
 </html>

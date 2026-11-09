@@ -66,14 +66,11 @@ import 'aeico-components';
 <ae-number-input label="Quantity" controls value="10" min="0" max="100" step="5"></ae-number-input>
 ```
 
-### `actionButtonStyle` - action button display style
+### `actionButton` - integrated action buttons
 
 ```html
-<!-- Integrated (default): buttons are attached to the input as one piece -->
-<ae-number-input label="Integrated" clearable value="50" action-button-style="integrated"></ae-number-input>
-
-<!-- Standalone: buttons are separate rounded icons -->
-<ae-number-input label="Standalone" clearable value="50" action-button-style="standalone"></ae-number-input>
+<!-- Integrated: buttons are attached to the input as one piece -->
+<ae-number-input label="Integrated" clearable value="50" action-button></ae-number-input>
 ```
 
 ### `clearable` / `resettable`
@@ -112,7 +109,9 @@ import 'aeico-components';
 | `controls` | `boolean` | `false` | Shows increment / decrement stepper buttons. |
 | `clearable` | `boolean` | `false` | Shows a clear button when the input has a value. |
 | `resettable` | `boolean` | `false` | Shows a reset button to restore the default value. |
-| `actionButtonStyle` | `'integrated' \| 'standalone'` | `'integrated'` | Display style for clear/reset buttons. `integrated` attaches them to the input; `standalone` shows them as separate rounded icons. |
+| `clearTitle` | `string` | `'Clear'` | Tooltip and accessible name for the clear button. |
+| `resetTitle` | `string` | `'Reset'` | Tooltip and accessible name for the reset button. |
+| `actionButton` | `boolean` | `false` | Renders the clear/reset buttons as an integrated piece attached to the input instead of inline icons inside it. |
 | `helperText` | `string` | - | Helper text displayed below the input. |
 | `error` | `string` | - | Error message displayed below the input. |
 

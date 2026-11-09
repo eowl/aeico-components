@@ -19,28 +19,41 @@
         <label>With clearable</label>
         <ae-text-input placeholder="Clearable input" clearable value="Hello"></ae-text-input>
 
-        <label>With resettable and clearable, default value: Hello, Action Button Style: Integrated(default)</label>
-        <ae-text-input placeholder="Resettable and clearable input" resettable clearable value="Hello" default-value="Hello"></ae-text-input>
+        <label>External clear/reset controls without clearable or resettable</label>
+        <ae-text-input id="external-actions-input" value="Edited value" default-value="Initial value"></ae-text-input>
+        <div class="demo-row">
+          <button id="external-clear" type="button">Clear externally</button>
+          <a id="external-reset" href="#">Reset externally</a>
+        </div>
 
-         <label>With resettable and clearable, default value: Hello, Action Button Style: Integrated(default)</label>
+        <label>With resettable and clearable, default value: Hello</label>
         <ae-text-input 
           placeholder="Resettable and clearable input" 
           resettable clearable value="Hello" 
           default-value="Hello"
-          clear-text="Clear"
         >
         </ae-text-input>
 
-        <label>With resettable and clearable, default value: Hello, Action Button Style: Standalone</label>
-        <ae-text-input placeholder="Resettable and clearable input" resettable clearable value="Hello" default-value="Hello" action-button-style="standalone"></ae-text-input>
+        <label>With resettable and clearable, default value: Hello, Action Button: Integrated</label>
+        <ae-text-input placeholder="Resettable and clearable input" resettable clearable value="Hello" default-value="Hello" action-button>
+        </ae-text-input>
+
+        <label>With resettable and clearable, default value: Hello, Action Button: Integrated, and with custom icons</label>
+        <ae-text-input placeholder="Resettable and clearable input" resettable clearable value="Hello" default-value="Hello" action-button>
+          <ae-icon name="close" slot="clear"></ae-icon>
+          <ae-icon name="check" slot="reset"></ae-icon>
+        </ae-text-input>
+
         <label>With start icon</label>
         <ae-text-input label="url" placeholder="example.com">
           <ae-icon name="url" slot="start"></ae-icon>
         </ae-text-input>
+
         <label>With end icon</label>
         <ae-text-input label="search" placeholder="Type to search...">
           <ae-icon name="search" slot="end"></ae-icon>
         </ae-text-input>
+
         <label>With start and end icons</label>
         <ae-text-input label="url" placeholder="example.com">
           <ae-icon name="url" slot="start"></ae-icon>
@@ -65,7 +78,7 @@
         <label>Password without visible toggle</label>
         <ae-text-input label="Password" placeholder="Enter password" type="password" value="secret" ></ae-text-input>
 
-         <label>Password with visible toggle and clearable </label>
+        <label>Password with visible toggle and clearable </label>
         <ae-text-input label="Password" placeholder="Enter password" type="password" visible-toggle clearable value="secret"></ae-text-input>
 
         <label>Inline icon actions (default), clearable + resettable</label>
@@ -79,8 +92,8 @@
 
         <label>Custom clear/reset content (text)</label>
         <ae-text-input label="Custom text" clearable resettable default-value="Hello" value="Hello">
-          <span slot="clear">Clear</span>
-          <span slot="reset">Reset</span>
+          <span slot="clear">清除</span>
+          <span slot="reset">重置</span>
         </ae-text-input>      </div>
     </div>
 
@@ -94,5 +107,15 @@
     <div id="event-log"></div>
   </footer>
 
+  <script type="module">
+    const field = document.getElementById('external-actions-input');
+    document.getElementById('external-clear').addEventListener('click', () => {
+      field.clear({ silent: false });
+    });
+    document.getElementById('external-reset').addEventListener('click', (event) => {
+      event.preventDefault();
+      field.reset(undefined, { silent: false });
+    });
+  </script>
 </body>
 </html>
