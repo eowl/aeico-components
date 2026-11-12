@@ -121,4 +121,3 @@ Detail appearance is driven by global `--ae-color-*` tokens (vary by `variant`).
 | `--ae-color-solid` | Body background (`filled` variant). |
 | `--ae-color-on-solid` | Body text colour (`filled` variant). |
 | `--ae-color-border` | Border colour (`outlined` variant). |
-| `--detail-radius` | Border radius (default: `6px`). |

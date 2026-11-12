@@ -1,22 +1,19 @@
 :host {
   display: block;
-
-  --detail-radius:     6px;
 }
 
 .detail {
   border: 1px solid var(--ae-color-solid);
   border-radius:
-    var(--detail-r-tl, var(--detail-radius))
-    var(--detail-r-tr, var(--detail-radius))
-    var(--detail-r-br, var(--detail-radius))
-    var(--detail-r-bl, var(--detail-radius));
+    var(--detail-r-tl, var(--ae-border-radius, var(--ae-radius-md)))
+    var(--detail-r-tr, var(--ae-border-radius, var(--ae-radius-md)))
+    var(--detail-r-br, var(--ae-border-radius, var(--ae-radius-md)))
+    var(--detail-r-bl, var(--ae-border-radius, var(--ae-radius-md)));
   color: var(--ae-color-on-solid);
   background: var(--ae-color-solid);
   overflow: hidden;
 }
 
-/* variant overrides */
 :host([variant="subtle"]) .detail {
   border-color: transparent;
   background: var(--ae-color-bg-subtle);

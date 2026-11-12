@@ -35,8 +35,6 @@ class DetailGroup extends AeicoComponent {
 
   private slotEl: HTMLSlotElement | null = null;
 
-  private readonly DETAIL_RADIUS = 6;
-
   connectedCallback() {
     super.connectedCallback();
     this.listen('open', this._handleOpen);
@@ -51,22 +49,27 @@ class DetailGroup extends AeicoComponent {
 
   private _syncChildren(): void {
     const details = this._getDetails();
-    const r = this.DETAIL_RADIUS;
 
     details.forEach((detail, i) => {
       const isFirst = i === 0;
       const isLast = i === details.length - 1;
-
-      // Collapse borders between adjacent items
       detail.style.marginTop = isFirst ? '' : '-1px';
 
-      // Adjust per-corner radius so only the outer edges of the group keep it
-      detail.style.setProperty('--detail-r-tl', isFirst ? `${r}px` : '0');
-      detail.style.setProperty('--detail-r-tr', isFirst ? `${r}px` : '0');
-      detail.style.setProperty('--detail-r-br', isLast ? `${r}px` : '0');
-      detail.style.setProperty('--detail-r-bl', isLast ? `${r}px` : '0');
+      if (isFirst) {
+        detail.style.removeProperty('--detail-r-tl');
+        detail.style.removeProperty('--detail-r-tr');
+      } else {
+        detail.style.setProperty('--detail-r-tl', '0');
+        detail.style.setProperty('--detail-r-tr', '0');
+      }
+      if (isLast) {
+        detail.style.removeProperty('--detail-r-br');
+        detail.style.removeProperty('--detail-r-bl');
+      } else {
+        detail.style.setProperty('--detail-r-br', '0');
+        detail.style.setProperty('--detail-r-bl', '0');
+      }
 
-      // Propagate variant / color only when explicitly set on the group
       if (this.variant !== undefined) detail.variant = this.variant;
       if (this.color !== undefined) detail.color = this.color;
     });
