@@ -8,7 +8,7 @@ import { prop } from 'aeico';
 import type { DetailColor, DetailVariant, DetailIconPlacement } from './defines';
 
 /**
- * Detail component that can be used to show/hide additional content.
+ * Detail component that can be used to show/hide additional content
  *
  * @example
  * ```html
@@ -47,7 +47,6 @@ class Detail extends AeicoComponent {
     this.emit('open');
   }
 
-  /** Closes the detail panel. */
   close(): void {
     if (!this._open) return;
     this._open = false;
@@ -56,7 +55,6 @@ class Detail extends AeicoComponent {
     this.emit('close');
   }
 
-  /** Toggles the detail panel open/closed. */
   toggle(): void {
     if (this._open) {
       this.close();
@@ -65,7 +63,6 @@ class Detail extends AeicoComponent {
     }
   }
 
-  /** Returns whether the detail panel is currently open. */
   isOpen(): boolean {
     return this._open;
   }
