@@ -46,6 +46,11 @@
   border-left: 4px solid var(--ae-color-border);
 }
 
+:host([variant="filled"][accent]) .callout {
+  border-left-width: 1px;
+  border-left-color: var(--ae-color-solid);
+}
+
 .header-row {
   display: none;
   align-items: center;
