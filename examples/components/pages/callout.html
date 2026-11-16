@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>(function(){if(localStorage.getItem("aeico-demo-theme")==="dark")document.documentElement.setAttribute("theme","dark")})()</script>
+  <title>Callout - Aeico Components</title>
+  <link rel="stylesheet" href="../demo.css">
+  <script type="module" src="../shared.ts"></script>
+</head>
+<body>
+  <div class="content">
+    <div class="section">
+      <h2>Callout</h2>
+      <span class="tag">&lt;ae-callout&gt;</span>
+
+      <div class="demo-group">
+        <label>filled (default)</label>
+        <ae-callout color="primary">
+          <ae-icon slot="icon" name="home"></ae-icon>
+          <span slot="header">Primary</span>
+          Some content in the callout.
+        </ae-callout>
+        <ae-callout color="success">
+          <ae-icon slot="icon" name="home"></ae-icon>
+          <span slot="header">Success</span>
+          Some content in the callout.
+        </ae-callout>
+        <ae-callout color="danger">
+          <ae-icon slot="icon" name="home"></ae-icon>
+          <span slot="header">Danger</span>
+          Some content in the callout.
+        </ae-callout>
+        <ae-callout color="warning">
+          <ae-icon slot="icon" name="home"></ae-icon>
+          <span slot="header">Warning</span>
+          Some content in the callout.
+        </ae-callout>
+        <ae-callout color="info">
+          <ae-icon slot="icon" name="home"></ae-icon>
+          <span slot="header">Info</span>
+          Some content in the callout.
+        </ae-callout>
+      </div>
+
+      <div class="demo-group">
+        <label>subtle</label>
+        <ae-callout variant="subtle" color="primary">
+          <ae-icon slot="icon" name="home"></ae-icon>
+          <span slot="header">Primary</span>
+          Some content in the callout.
+        </ae-callout>
+        <ae-callout variant="subtle" color="success">
+          <ae-icon slot="icon" name="home"></ae-icon>
+          <span slot="header">Success</span>
+          Some content in the callout.
+        </ae-callout>
+        <ae-callout variant="subtle" color="danger">
+          <ae-icon slot="icon" name="home"></ae-icon>
+          <span slot="header">Danger</span>
+          Some content in the callout.
+        </ae-callout>
+        <ae-callout variant="subtle" color="warning">
+          <ae-icon slot="icon" name="home"></ae-icon>
+          <span slot="header">Warning</span>
+          Some content in the callout.
+        </ae-callout>
+        <ae-callout variant="subtle" color="info">
+          <ae-icon slot="icon" name="home"></ae-icon>
+          <span slot="header">Info</span>
+          Some content in the callout.
+        </ae-callout>
+      </div>
+
+      <div class="demo-group">
+        <label>outlined</label>
+        <ae-callout variant="outlined" color="primary">
+          <ae-icon slot="icon" name="home"></ae-icon>
+          <span slot="header">Primary</span>
+          Some content in the callout.
+        </ae-callout>
+        <ae-callout variant="outlined" color="success">
+          <ae-icon slot="icon" name="home"></ae-icon>
+          <span slot="header">Success</span>
+          Some content in the callout.
+        </ae-callout>
+        <ae-callout variant="outlined" color="danger">
+          <ae-icon slot="icon" name="home"></ae-icon>
+          <span slot="header">Danger</span>
+          Some content in the callout.
+        </ae-callout>
+        <ae-callout variant="outlined" color="warning">
+          <ae-icon slot="icon" name="home"></ae-icon>
+          <span slot="header">Warning</span>
+          Some content in the callout.
+        </ae-callout>
+        <ae-callout variant="outlined" color="info">
+          <ae-icon slot="icon" name="home"></ae-icon>
+          <span slot="header">Info</span>
+          Some content in the callout.
+        </ae-callout>
+      </div>
+
+      <div class="demo-group">
+        <label>without icon / header</label>
+        <ae-callout color="primary">Content only</ae-callout>
+        <ae-callout color="primary">
+          <span slot="header">Header only, no icon</span>
+          Some content in the callout.
+        </ae-callout>
+        <ae-callout color="primary">
+          <ae-icon slot="icon" name="home"></ae-icon>
+          Icon only, no header
+        </ae-callout>
+        <ae-callout color="primary" variant="subtle">
+          <span slot="header">
+            <ae-icon name="home" style="vertical-align: -0.15em; margin-right: 4px;"></ae-icon>Icon inside header
+          </span>
+          No icon slot, icon placed in the header.
+        </ae-callout>
+      </div>
+
+      <div class="demo-group">
+        <label>accent (left border)</label>
+        <ae-callout color="primary" variant="subtle" accent>
+          <ae-icon slot="icon" name="home"></ae-icon>
+          <span slot="header">Primary</span>
+          Some content in the callout.
+        </ae-callout>
+        <ae-callout color="success" variant="subtle" accent>
+          <ae-icon slot="icon" name="home"></ae-icon>
+          <span slot="header">Success</span>
+          Some content in the callout.
+        </ae-callout>
+        <ae-callout color="danger" variant="outlined" accent>
+          <ae-icon slot="icon" name="home"></ae-icon>
+          <span slot="header">Danger</span>
+          Some content in the callout.
+        </ae-callout>
+        <ae-callout color="info" accent>
+          <ae-icon slot="icon" name="home"></ae-icon>
+          <span slot="header">Info</span>
+          Some content in the callout.
+        </ae-callout>
+      </div>
+    </div>
+
+    <!-- Divider -->
+  </div>
+  <footer id="log-footer">

@@ -1,0 +1,99 @@
+:host {
+  display: block;
+}
+
+.callout {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--ae-color-border-subtle);
+  border-radius: var(--ae-border-radius, var(--ae-radius-lg));
+  background: var(--ae-color-bg-subtle);
+  color: var(--ae-color-text-subtle);
+  padding: 12px 16px;
+}
+
+:host([variant="faint"]) .callout {
+  border-color: var(--ae-color-border-subtle);
+  background: var(--ae-color-bg-subtle);
+  color: var(--ae-color-text-subtle);
+}
+
+:host([variant="subtle"]) .callout {
+  border-color: transparent;
+}
+
+:host([variant="filled"]) .callout {
+  border-color: var(--ae-color-solid);
+  background: var(--ae-color-solid);
+  color: var(--ae-color-on-solid);
+}
+
+:host([variant="outlined"]) .callout {
+  border-color: var(--ae-color-border);
+  background: transparent;
+  color: var(--ae-color-text-subtle);
+}
+
+:host([variant="text"]) .callout {
+  border-color: transparent;
+  background: transparent;
+  color: var(--ae-color-text-main);
+}
+
+:host([accent]) .callout {
+  border-left: 4px solid var(--ae-color-border);
+}
+
+.header-row {
+  display: none;
+  align-items: center;
+  gap: 8px;
+}
+
+:host([has-icon]) .header-row,
+:host([has-header]) .header-row {
+  display: flex;
+  margin-bottom: 4px;
+}
+
+.icon {
+  display: none;
+  flex-shrink: 0;
+  line-height: 0;
+  color: var(--ae-color-accent);
+}
+
+:host([variant="filled"]) .icon {
+  color: var(--ae-color-on-solid);
+}
+
+:host([has-icon]) .icon {
+  display: inline-flex;
+}
+
+.icon ::slotted(ae-icon) {
+  font-size: 1.4em;
+}
+
+.body {
+  flex: 1;
+  min-width: 0;
+  color: var(--ae-color-text-main);
+}
+
+.header {
+  display: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ae-color-text-subtle);
+}
+
+:host([has-header]) .header {
+  display: block;
+}
+
+:host([variant="filled"]) .header {
+  color: var(--ae-color-on-solid);
+}

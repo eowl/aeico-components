@@ -26,6 +26,7 @@ const entryPoints = {
   'button-group': 'src/button-group/index.ts',
   'copy-button':  'src/copy-button/index.ts',
   card:           'src/card/index.ts',
+  callout:        'src/callout/index.ts',
   checkbox:       'src/checkbox/index.ts',
   detail:         'src/detail/index.ts',
   'detail-group': 'src/detail-group/index.ts',
