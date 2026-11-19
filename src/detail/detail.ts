@@ -38,7 +38,6 @@ class Detail extends AeicoComponent {
 
   private _open: boolean = false;
 
-  /** Opens the detail panel. */
   open(): void {
     if (this.disabled || this._open) return;
     this._open = true;
