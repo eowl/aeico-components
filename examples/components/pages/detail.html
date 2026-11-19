@@ -89,6 +89,82 @@
       </div>
 
       <div class="demo-group">
+        <label>Colors</label>
+        <div class="demo-group" style="max-width: 480px;">
+          <ae-detail summary="default" variant="outlined">
+            <ae-icon name="chevron-down" slot="expand"></ae-icon>
+            <ae-icon name="chevron-up" slot="collapse"></ae-icon>
+            Default (gray) color.
+          </ae-detail>
+          <ae-detail summary="primary" variant="outlined" color="primary">
+            <ae-icon name="chevron-down" slot="expand"></ae-icon>
+            <ae-icon name="chevron-up" slot="collapse"></ae-icon>
+            Primary color.
+          </ae-detail>
+          <ae-detail summary="secondary" variant="outlined" color="secondary">
+            <ae-icon name="chevron-down" slot="expand"></ae-icon>
+            <ae-icon name="chevron-up" slot="collapse"></ae-icon>
+            Secondary color.
+          </ae-detail>
+          <ae-detail summary="success" variant="outlined" color="success">
+            <ae-icon name="chevron-down" slot="expand"></ae-icon>
+            <ae-icon name="chevron-up" slot="collapse"></ae-icon>
+            Success color.
+          </ae-detail>
+          <ae-detail summary="danger" variant="outlined" color="danger">
+            <ae-icon name="chevron-down" slot="expand"></ae-icon>
+            <ae-icon name="chevron-up" slot="collapse"></ae-icon>
+            Danger color.
+          </ae-detail>
+          <ae-detail summary="warning" variant="outlined" color="warning">
+            <ae-icon name="chevron-down" slot="expand"></ae-icon>
+            <ae-icon name="chevron-up" slot="collapse"></ae-icon>
+            Warning color.
+          </ae-detail>
+          <ae-detail summary="info" variant="outlined" color="info">
+            <ae-icon name="chevron-down" slot="expand"></ae-icon>
+            <ae-icon name="chevron-up" slot="collapse"></ae-icon>
+            Info color.
+          </ae-detail>
+          <ae-detail summary="light" variant="outlined" color="light">
+            <ae-icon name="chevron-down" slot="expand"></ae-icon>
+            <ae-icon name="chevron-up" slot="collapse"></ae-icon>
+            Light color.
+          </ae-detail>
+          <ae-detail summary="dark" variant="outlined" color="dark">
+            <ae-icon name="chevron-down" slot="expand"></ae-icon>
+            <ae-icon name="chevron-up" slot="collapse"></ae-icon>
+            Dark color.
+          </ae-detail>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <label>Events</label>
+        <ae-detail id="demo-event-detail" summary="open / close events" variant="outlined" style="max-width: 480px;">
+          <ae-icon name="chevron-down" slot="expand"></ae-icon>
+          <ae-icon name="chevron-up" slot="collapse"></ae-icon>
+          Toggle this panel - open / close events are logged in the footer.
+        </ae-detail>
+      </div>
+
+      <div class="demo-group">
+        <label>Nested content</label>
+        <ae-detail summary="Parent detail" variant="outlined" style="max-width: 480px;">
+          <ae-icon name="chevron-down" slot="expand"></ae-icon>
+          <ae-icon name="chevron-up" slot="collapse"></ae-icon>
+          The parent panel can contain rich content:
+          <div style="margin-top: 0.5rem;">
+            <ae-detail summary="Child detail" variant="subtle">
+              <ae-icon name="chevron-down" slot="expand"></ae-icon>
+              <ae-icon name="chevron-up" slot="collapse"></ae-icon>
+              A nested ae-detail inside another one.
+            </ae-detail>
+          </div>
+        </ae-detail>
+      </div>
+
+      <div class="demo-group">
         <label>Programmatic control</label>
         <div class="demo-row">
           <ae-button id="detail-open-btn" size="sm" color="primary">open()</ae-button>
@@ -118,6 +194,9 @@ const demoDetail = document.querySelector('#demo-detail')
 document.getElementById('detail-open-btn')?.addEventListener('click', () => demoDetail?.open())
 document.getElementById('detail-close-btn')?.addEventListener('click', () => demoDetail?.close())
 document.getElementById('detail-toggle-btn')?.addEventListener('click', () => demoDetail?.toggle())
+const demoEventDetail = document.querySelector('#demo-event-detail')
+demoEventDetail?.addEventListener('open', () => console.log('detail opened'))
+demoEventDetail?.addEventListener('close', () => console.log('detail closed'))
 </script>
 </body>
 </html>
