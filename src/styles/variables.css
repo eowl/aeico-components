@@ -163,10 +163,10 @@
 }
 
 
-.theme-light,
-:root[theme="light"],
-:host([theme="light"]),
-:host-context([theme="light"]),
+.color-mode-light,
+:root[color-mode="light"],
+:host([color-mode="light"]),
+:host-context([color-mode="light"]),
 :where(:root),
 :host {
   color-scheme: light;
@@ -303,10 +303,10 @@
   --container-padding-x: 1.5rem;
 }
 
-.theme-dark,
-:root[theme="dark"],
-:host([theme="dark"]),
-:host-context([theme="dark"]) {
+.color-mode-dark,
+:root[color-mode="dark"],
+:host([color-mode="dark"]),
+:host-context([color-mode="dark"]) {
   color-scheme: dark;
 
   /* Hover / active - slightly gentler on dark backgrounds */

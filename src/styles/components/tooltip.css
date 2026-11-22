@@ -13,7 +13,7 @@
   --ae-tooltip-max-width: 20rem;
 }
 
-:host-context([theme="dark"]) {
+:host-context([color-mode="dark"]) {
   --ae-tooltip-bg: var(--ae-light, #f8f9fa);
   --ae-tooltip-color: var(--ae-dark, #343a40);
 }
